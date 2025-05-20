@@ -1,0 +1,102 @@
+// 
+// Copyright (c) 2025 Open Mail.dat
+// 
+// This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
+// 
+// This code was auto-generated on May 19th, 2025.
+// by the Open Mail.dat Code Generator.
+// 
+// Author: Daniel M porrey
+// Version 1.0.0
+// 
+using Diamond.Core.Repository;
+
+namespace Mail.dat
+{
+	/// <summary>
+	/// Allows customers to tie or link container information between Jobs from Mail.dat and Mail.XML.
+	/// </summary>
+	public interface IOci : IEntity<int>
+	{
+		/// <summary>
+		/// Job ID (OCI-1001)
+		/// </summary>
+		string JobID { get; set; }
+
+		/// <summary>
+		/// Container ID (OCI-1002)
+		/// This file is not designed for Mother Pallets.
+		/// </summary>
+		int ContainerID { get; set; }
+
+		/// <summary>
+		/// Original Job ID (OCI-1101)
+		/// Job Id provided in another Mailing Job.
+		/// </summary>
+		string OriginalJobID { get; set; }
+
+		/// <summary>
+		/// Original User License Code (OCI-1102)
+		/// User License Code provided in another mailing/Job.
+		/// </summary>
+		string OriginalUserLicenseCode { get; set; }
+
+		/// <summary>
+		/// Original Segment ID (OCI-1103)
+		/// Segment ID provided in another mailing/Job.
+		/// </summary>
+		string OriginalSegmentID { get; set; }
+
+		/// <summary>
+		/// Original Container ID (OCI-1104)
+		/// Container ID provided in another mailing/Job. This file is not designed for Mother Pallets.
+		/// </summary>
+		int OriginalContainerID { get; set; }
+
+		/// <summary>
+		/// Original Display Container ID (OCI-1105)
+		/// Meaningful (external to Mail.dat) container ID as defined by specific production application; the
+		/// Postal container label. Display Container ID provided in another mailing/Job.
+		/// </summary>
+		string OriginalDisplayContainerID { get; set; }
+
+		/// <summary>
+		/// Original Label: IM™ Container Or IM™ Tray Barcode (OCI-1106)
+		/// </summary>
+		string OriginalLabelIMContainerOrIMTrayBarcode { get; set; }
+
+		/// <summary>
+		/// Original Mail.XML Customer Group ID (OCI-1107)
+		/// Mail.XML Customer Group ID provided in another Mailing Job.
+		/// </summary>
+		string OriginalMailXMLCustomerGroupID { get; set; }
+
+		/// <summary>
+		/// Original Mail.XML Mailing Group ID (OCI-1108)
+		/// Mail.XML Mailing Group Id provided in another Mailing Job.
+		/// </summary>
+		string OriginalMailXMLMailingGroupID { get; set; }
+
+		/// <summary>
+		/// Original Mail.XML Container ID (OCI-1109)
+		/// Mail.XML Container Id provided in another Mailing Job.
+		/// </summary>
+		int OriginalMailXMLContainerID { get; set; }
+
+		/// <summary>
+		/// OCI Record Status (OCI-2000)
+		/// </summary>
+		string OCIRecordStatus { get; set; }
+
+		/// <summary>
+		/// Reserve (OCI-1110)
+		/// </summary>
+		string ReserveOCI1110 { get; set; }
+
+		/// <summary>
+		/// Closing Character (OCI-9999)
+		/// Must be the # sign.
+		/// </summary>
+		string ClosingCharacter { get; }
+	}
+}

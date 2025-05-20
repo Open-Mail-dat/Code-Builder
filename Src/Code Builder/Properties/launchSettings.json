@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Code Builder": {
+      "commandName": "Project",
+      "commandLineArgs": "--specification-file \"./Specification/mail-dat.json\" --class-output-directory \"../../../../Mail.dat.Models/Models\" --interface-output-directory \"../../../../Mail.dat.Models/Interfaces\""
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    }
+  }
+}

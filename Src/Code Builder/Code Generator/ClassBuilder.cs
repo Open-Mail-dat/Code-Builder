@@ -7,8 +7,8 @@
 		public ImplementsBuilder Implements { get; set; }
 		public List<string> Using { get; } = [];
 		public string NameSpace { get; internal set; }
-		public string ObjectType { get; internal set; } = "class";
-		public string Scope { get; internal set; } = "public";
+		public string ObjectType { get; internal set; }
+		public string Scope { get; internal set; }
 		public SummaryBuilder Summary { get; internal set; }
 		public CommentBuilder HeaderComments { get; internal set; }
 		public List<PropertyBuilder> Properties { get; } = [];
@@ -49,7 +49,7 @@
 			return this;
 		}
 
-		public ClassBuilder SetClassScope(string scope)
+		public ClassBuilder SetScope(string scope)
 		{
 			this.Scope = scope;
 			return this;

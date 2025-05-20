@@ -21,7 +21,7 @@
 			return this;
 		}
 
-		public PropertyBuilder SetClassScope(string scope)
+		public PropertyBuilder SetScope(string scope)
 		{
 			this.Scope = scope;
 			return this;
@@ -69,7 +69,7 @@
 			//
 			// Write the property.
 			//
-			File.AppendAllText(filePath, $"{Tabs.Create(indentLevel)}{this.Scope} {this.ReturnType} {this.Name}");
+			File.AppendAllText(filePath, $"{Tabs.Create(indentLevel)}{(this.Scope != null ? $"{this.Scope} " : "")}{this.ReturnType} {this.Name}");
 
 			if (!string.IsNullOrWhiteSpace(this.DefaultValue))
 			{
