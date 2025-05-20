@@ -1,19 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-	  <Nullable>disable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<Version>25.1.0.2</Version>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Models\" />
-    <Folder Include="Context\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="Interfaces\" />
+		<Folder Include="Models\" />
+		<Folder Include="Context\" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Mail.dat.DataTypes\Mail.dat.Abstractions.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Mail.dat.DataTypes\Mail.dat.Abstractions.csproj" />
+	</ItemGroup>
 
 </Project>

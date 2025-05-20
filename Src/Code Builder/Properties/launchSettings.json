@@ -2,7 +2,7 @@
   "profiles": {
     "Code Builder": {
       "commandName": "Project",
-      "commandLineArgs": "--specification-file \"./Specification/mail-dat.json\" --class-output-directory \"../../../../Mail.dat.Models/Models\" --interface-output-directory \"../../../../Mail.dat.Models/Interfaces\""
+      "commandLineArgs": "--specification-file \"./Specification/mail-dat.json\" --class-output-directory \"../../../../Mail.dat.Models/Models\" --interface-output-directory \"../../../../Mail.dat.Models/Interfaces\" --context-output-directory \"../../../../Mail.dat.Models/Context\""
     },
     "WSL": {
       "commandName": "WSL2",

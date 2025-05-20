@@ -5,9 +5,9 @@
 		public string Name { get; set; }
 		public List<AttributeBuilder> Attributes { get; } = [];
 		public string ReturnType { get; internal set; }
-		public string Scope { get; internal set; } = "public";
+		public string Scope { get; internal set; }
 		public SummaryBuilder Summary { get; internal set; }
-		public string DefaultValue { get; internal set; } = string.Empty;
+		public string DefaultValue { get; internal set; }
 		public bool ReadOnly { get; internal set; } = false;
 
 		public static PropertyBuilder Create(string name)
@@ -56,7 +56,7 @@
 			//
 			// Write the summary.
 			//
-			this.Summary.Build(filePath, indentLevel);
+			this.Summary?.Build(filePath, indentLevel);
 
 			//
 			// Write the attributes.
@@ -73,11 +73,11 @@
 
 			if (!string.IsNullOrWhiteSpace(this.DefaultValue))
 			{
-				File.AppendAllLines(filePath, [$" {{ get;{(!this.ReadOnly ? " set;" : null)} }} = {this.DefaultValue};"]);
+				File.AppendAllText(filePath, $" {{ get;{(!this.ReadOnly ? " set;" : null)} }} = {this.DefaultValue};");
 			}
 			else
 			{
-				File.AppendAllLines(filePath, [$" {{ get;{(!this.ReadOnly ? " set;" : null)} }}"]);
+				File.AppendAllText(filePath, $" {{ get;{(!this.ReadOnly ? " set;" : null)} }}");
 			}
 
 			return this;

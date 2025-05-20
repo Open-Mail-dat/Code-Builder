@@ -12,5 +12,8 @@ namespace Mail.dat.CodeBuilder
 
 		[Option('i', "interface-output-directory", Required = true, HelpText = "The directory where interface files are written.")]
 		public string InterfaceOutputDirectory { get; set; }
+
+		[Option('x', "context-output-directory", Required = true, HelpText = "The directory where the context file is written.")]
+		public string ContextOutputDirectory { get; set; }
 	}
 }

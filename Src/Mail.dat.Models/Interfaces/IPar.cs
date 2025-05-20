@@ -7,7 +7,7 @@
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 1.0.0
+// Version 25.1.0.2
 // 
 using Diamond.Core.Repository;
 
