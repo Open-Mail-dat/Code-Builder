@@ -3,20 +3,19 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 19th, 2025.
+// This code was auto-generated on May 23rd, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
 // Version 25.1.0.2
 // 
-using Diamond.Core.Repository;
 
 namespace Mail.dat
 {
 	/// <summary>
 	/// Identifies package/container of seed names within the presort.
 	/// </summary>
-	public interface ISnr : IEntity<int>
+	public interface IISnr : IMaildatEntity
 	{
 		/// <summary>
 		/// Job ID (SNR-1001)
@@ -60,7 +59,7 @@ namespace Mail.dat
 		/// Seed Name Received Date (SNR-1101)
 		/// The date the seed agent received the mail piece.
 		/// </summary>
-		DateOnly SeedNameReceivedDate { get; set; }
+		DateOnly? SeedNameReceivedDate { get; set; }
 
 		/// <summary>
 		/// Seed Type (SNR-1104)

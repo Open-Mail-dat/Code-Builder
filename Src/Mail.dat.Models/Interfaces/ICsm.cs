@@ -3,20 +3,19 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 19th, 2025.
+// This code was auto-generated on May 23rd, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
 // Version 25.1.0.2
 // 
-using Diamond.Core.Repository;
 
 namespace Mail.dat
 {
 	/// <summary>
 	/// Quantity, weights and destination per container.
 	/// </summary>
-	public interface ICsm : IEntity<int>
+	public interface IICsm : IMaildatEntity
 	{
 		/// <summary>
 		/// Job ID (CSM-1001)
@@ -52,7 +51,7 @@ namespace Mail.dat
 		/// Meaningful (external to Mail.dat) container ID as defined by specific production application; the
 		/// Postal container label.
 		/// </summary>
-		int DisplayContainerID { get; set; }
+		string DisplayContainerID { get; set; }
 
 		/// <summary>
 		/// Container Grouping Description (CSM-1102)
@@ -157,33 +156,33 @@ namespace Mail.dat
 		/// As available, date when the container releases from mailing facility or agent's facility. YYYYMMDD
 		/// (cannot be all zeros). Unscheduled DMU verified/USPS Transported.
 		/// </summary>
-		DateOnly ActualContainerShipDate { get; set; }
+		DateOnly? ActualContainerShipDate { get; set; }
 
 		/// <summary>
 		/// Actual Container Ship Time (CSM-1164)
 		/// As available, time when the container releases from mailing facility or agent's facility. HH:MM (EX:
 		/// 18:12). Unscheduled DMU verified/USPS Transported.
 		/// </summary>
-		TimeOnly ActualContainerShipTime { get; set; }
+		TimeOnly? ActualContainerShipTime { get; set; }
 
 		/// <summary>
 		/// Scheduled Pick Up Date (CSM-1177)
 		/// Scheduled pick up date.
 		/// </summary>
-		DateOnly ScheduledPickUpDate { get; set; }
+		DateOnly? ScheduledPickUpDate { get; set; }
 
 		/// <summary>
 		/// Scheduled Pick Up Time (CSM-1178)
 		/// Scheduled pick up time.
 		/// </summary>
-		TimeOnly ScheduledPickUpTime { get; set; }
+		TimeOnly? ScheduledPickUpTime { get; set; }
 
 		/// <summary>
 		/// Scheduled In-Home Date (CSM-1115)
 		/// The first, or only date of the ranged targeted for in-home delivery. YYYYMMDD (cannot be all zeros)
 		/// (first date in range).
 		/// </summary>
-		DateOnly ScheduledInHomeDate { get; set; }
+		DateOnly? ScheduledInHomeDate { get; set; }
 
 		/// <summary>
 		/// Additional In-Home Range (CSM-1116)
@@ -197,14 +196,14 @@ namespace Mail.dat
 		/// be all zeros). If both Scheduled Induction Start and End Dates are populated, the start date must be
 		/// before or equal to the end date.
 		/// </summary>
-		DateOnly ScheduledInductionStartDate { get; set; }
+		DateOnly? ScheduledInductionStartDate { get; set; }
 
 		/// <summary>
 		/// Scheduled Induction Start Time (CSM-1118)
 		/// That hour of the scheduled start date on which the mail is to be transferred to the consignee for
 		/// processing. HH:MM (EX: 18:12).
 		/// </summary>
-		TimeOnly ScheduledInductionStartTime { get; set; }
+		TimeOnly? ScheduledInductionStartTime { get; set; }
 
 		/// <summary>
 		/// Scheduled Induction End Date (CSM-2001)
@@ -212,39 +211,39 @@ namespace Mail.dat
 		/// all zeros). If both Scheduled Induction Start and End Dates are populated, the start date must be
 		/// before or equal to the end date.
 		/// </summary>
-		DateOnly ScheduledInductionEndDate { get; set; }
+		DateOnly? ScheduledInductionEndDate { get; set; }
 
 		/// <summary>
 		/// Scheduled Induction End Time (CSM-2002)
 		/// That hour of the scheduled end date on which the mail is to be transferred to the consignee for
 		/// processing. HH:MM (EX: 18:12).
 		/// </summary>
-		TimeOnly ScheduledInductionEndTime { get; set; }
+		TimeOnly? ScheduledInductionEndTime { get; set; }
 
 		/// <summary>
 		/// Actual induction Date (CSM-1179)
 		/// Actual date when mail was inducted.
 		/// </summary>
-		DateOnly ActualInductionDate { get; set; }
+		DateOnly? ActualInductionDate { get; set; }
 
 		/// <summary>
 		/// Actual Induction Time (CSM-1180)
 		/// Actual time when mail was inducted.
 		/// </summary>
-		TimeOnly ActualInductionTime { get; set; }
+		TimeOnly? ActualInductionTime { get; set; }
 
 		/// <summary>
 		/// Postage Statement Mailing Date (CSM-1184)
 		/// YYYYMMDD (cannot be all zeros). The date on which postage is paid to the USPS and verification is
 		/// completed.
 		/// </summary>
-		DateOnly PostageStatementMailingDate { get; set; }
+		DateOnly? PostageStatementMailingDate { get; set; }
 
 		/// <summary>
 		/// Postage Statement Mailing Time (CSM-1183)
 		/// HH:MM (EX: 18:12). The time on which postage is paid to the USPS and verification is completed.
 		/// </summary>
-		TimeOnly PostageStatementMailingTime { get; set; }
+		TimeOnly? PostageStatementMailingTime { get; set; }
 
 		/// <summary>
 		/// Number of Copies (CSM-1120)
@@ -269,7 +268,7 @@ namespace Mail.dat
 		/// <summary>
 		/// User Container ID (CSM-1123)
 		/// </summary>
-		int UserContainerID { get; set; }
+		string UserContainerID { get; set; }
 
 		/// <summary>
 		/// Container Status (CSM-1124)
@@ -390,13 +389,13 @@ namespace Mail.dat
 		/// Scheduled Ship Date (CSM-1172)
 		/// Date of Dispatch based upon CSA agreement. DMU verified/USPS Transported.
 		/// </summary>
-		DateOnly ScheduledShipDate { get; set; }
+		DateOnly? ScheduledShipDate { get; set; }
 
 		/// <summary>
 		/// Scheduled Ship Time (CSM-1173)
 		/// (EX: 18:12) - Time of Dispatch based upon CSA agreement. DMU verified/USPS Transported.
 		/// </summary>
-		TimeOnly ScheduledShipTime { get; set; }
+		TimeOnly? ScheduledShipTime { get; set; }
 
 		/// <summary>
 		/// DMM Section Defining Container Preparation (CSM-1147)
@@ -587,14 +586,14 @@ namespace Mail.dat
 		/// Start date for the Referenceable Mail. Default to blank spaces when no constraint requested;
 		/// YYYYMMDD (cannot be all zeros).
 		/// </summary>
-		DateOnly ReferenceableMailStartDate { get; set; }
+		DateOnly? ReferenceableMailStartDate { get; set; }
 
 		/// <summary>
 		/// Referenceable Mail End Date (CSM-1200)
 		/// End date for the Referenceable Mail. Default to blank spaces when no constraint requested; YYYYMMDD
 		/// (cannot be all zeros).
 		/// </summary>
-		DateOnly ReferenceableMailEndDate { get; set; }
+		DateOnly? ReferenceableMailEndDate { get; set; }
 
 		/// <summary>
 		/// CSM Record Status (CSM-2000)

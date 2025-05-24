@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 19th, 2025.
+// This code was auto-generated on May 23rd, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -11,32 +11,28 @@
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 
 namespace Mail.dat
 {
 	/// <summary>
 	/// Relates containers to associated ink jet output tapes/files.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "icr", File = "Ij/C Relationship Record", Summary = "Relates containers to associated ink jet output tapes/files.", Description = "Relates containers to associated ink jet output tapes/files.")]
+	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "icr", File = "Ij/C Relationship Record", Summary = "Relates containers to associated ink jet output tapes/files.", Description = "Relates containers to associated ink jet output tapes/files.", LineLength = 82, ClosingCharacter = "#")]
 	[Table("Icr", Schema = "Maildat")]
-	public partial class Icr : MaildatFieldTemplate
+	[PrimaryKey("Id")]
+	public partial class Icr : MaildatEntity
 	{
-		/// <summary>
-		/// The unique identifier for the record.
-		/// </summary>
-		[Key]
-		[Column("Id", Order = 0)]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public new int Id { get; set; }
-
 		/// <summary>
 		/// Job ID (ICR-1001)
 		/// </summary>
 		[MaildatField(Extension = "icr", FieldCode = "ICR-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Type = "string", Format = "zfillnumeric", References = "HDR-1001")]
-		[Column("JobID", Order = 1)]
+		[Column("JobID", Order = 2)]
 		[Required]
-		[Key]
+		[MaildatKey]
 		[MaxLength(8)]
+		[Comment("ICR-1001")]
 		public string JobID { get; set; }
 
 		/// <summary>
@@ -45,9 +41,10 @@ namespace Mail.dat
 		/// container exists.
 		/// </summary>
 		[MaildatField(Extension = "icr", FieldCode = "ICR-1101", FieldName = "File Name", Start = 9, Length = 30, Required = true, Key = false, DataType = "A/N", Description = "The agreed file name describing the content of the single Transmitted file within which this container exists.", Type = "string", Format = "leftjustify")]
-		[Column("FileName", Order = 2)]
+		[Column("FileName", Order = 3)]
 		[Required]
 		[MaxLength(30)]
+		[Comment("ICR-1101")]
 		public string FileName { get; set; }
 
 		/// <summary>
@@ -56,9 +53,10 @@ namespace Mail.dat
 		/// number if non- Inkjet transmission.
 		/// </summary>
 		[MaildatField(Extension = "icr", FieldCode = "ICR-1102", FieldName = "Tape ID", Start = 39, Length = 6, Required = true, Key = false, DataType = "A/N", Description = "The identifying A/N string for the tape within which this Container exists. Use arbitrary sequence number if non- Inkjet transmission.", Type = "string", Format = "zfillnumeric")]
-		[Column("TapeID", Order = 3)]
+		[Column("TapeID", Order = 4)]
 		[Required]
 		[MaxLength(6)]
+		[Comment("ICR-1102")]
 		public string TapeID { get; set; }
 
 		/// <summary>
@@ -66,9 +64,11 @@ namespace Mail.dat
 		/// See Container Summary File's Container ID definition.
 		/// </summary>
 		[MaildatField(Extension = "icr", FieldCode = "ICR-1006", FieldName = "Container ID", Start = 45, Length = 6, Required = true, Key = true, DataType = "N", Description = "See Container Summary File's Container ID definition.", Type = "integer", Format = "zfill", References = "CSM-1006")]
-		[Column("ContainerID", Order = 4)]
+		[Column("ContainerID", Order = 5)]
 		[Required]
-		[Key]
+		[MaildatKey]
+		[Comment("ICR-1006")]
+		[TypeConverter(typeof(MaildatIntegerConverter))]
 		public int ContainerID { get; set; }
 
 		/// <summary>
@@ -77,7 +77,9 @@ namespace Mail.dat
 		/// this record.
 		/// </summary>
 		[MaildatField(Extension = "icr", FieldCode = "ICR-1103", FieldName = "Beginning Record", Start = 51, Length = 8, Required = false, Key = false, DataType = "N", Description = "The record number of the first address on the file/tape that is for the container defined within this record.", Type = "integer", Format = "zfill")]
-		[Column("BeginningRecord", Order = 5)]
+		[Column("BeginningRecord", Order = 6)]
+		[Comment("ICR-1103")]
+		[TypeConverter(typeof(MaildatIntegerConverter))]
 		public int BeginningRecord { get; set; }
 
 		/// <summary>
@@ -86,17 +88,20 @@ namespace Mail.dat
 		/// record.
 		/// </summary>
 		[MaildatField(Extension = "icr", FieldCode = "ICR-1104", FieldName = "Ending Record", Start = 59, Length = 8, Required = false, Key = false, DataType = "N", Description = "The record number of the last address on the file/tape that is for the container defined within this record.", Type = "integer", Format = "zfill")]
-		[Column("EndingRecord", Order = 6)]
+		[Column("EndingRecord", Order = 7)]
+		[Comment("ICR-1104")]
+		[TypeConverter(typeof(MaildatIntegerConverter))]
 		public int EndingRecord { get; set; }
 
 		/// <summary>
 		/// ICR Record Status (ICR-2000)
 		/// </summary>
 		[MaildatField(Extension = "icr", FieldCode = "ICR-2000", FieldName = "ICR Record Status", Start = 67, Length = 1, Required = true, Key = false, DataType = "A/N", Type = "enum", Format = "leftjustify")]
-		[Column("ICRRecordStatus", Order = 7)]
+		[Column("ICRRecordStatus", Order = 8)]
 		[Required]
 		[MaxLength(1)]
 		[AllowedValues("D", "I", "O", "U")]
+		[Comment("ICR-2000")]
 		public string ICRRecordStatus { get; set; }
 
 		/// <summary>
@@ -104,8 +109,9 @@ namespace Mail.dat
 		/// Reserved for future use.
 		/// </summary>
 		[MaildatField(Extension = "icr", FieldCode = "ICR-1105", FieldName = "Reserve", Start = 68, Length = 14, Required = false, Key = false, DataType = "A/N", Description = "Reserved for future use.", Type = "string", Format = "leftjustify")]
-		[Column("Reserve", Order = 8)]
+		[Column("ReserveICR1105", Order = 9)]
 		[MaxLength(14)]
+		[Comment("ICR-1105")]
 		public string ReserveICR1105 { get; set; }
 
 		/// <summary>
@@ -113,10 +119,32 @@ namespace Mail.dat
 		/// Must be the # sign.
 		/// </summary>
 		[MaildatField(Extension = "icr", FieldCode = "ICR-9999", FieldName = "Closing Character", Start = 82, Length = 1, Required = true, Key = false, Description = "Must be the # sign.", Type = "closing", Format = "leftjustify")]
-		[Column("ClosingCharacter", Order = 9)]
+		[Column("ClosingCharacter", Order = 10)]
 		[Required]
 		[MaxLength(1)]
 		[AllowedValues("#")]
-		public string ClosingCharacter { get; } = "#";
+		[Comment("ICR-9999")]
+		public string ClosingCharacter { get; set; } = "#";
+
+		/// <summary>
+		/// Sets property values from one line of an import file.
+		/// </summary>
+		protected override ILoadError[] OnLoadData(int fileLineNumber, byte[] line)
+		{
+			List<ILoadError> returnValue = [];
+			
+			this.FileLineNumber = fileLineNumber;
+			this.JobID = line.Parse<Icr, string>(p => p.JobID, returnValue);
+			this.FileName = line.Parse<Icr, string>(p => p.FileName, returnValue);
+			this.TapeID = line.Parse<Icr, string>(p => p.TapeID, returnValue);
+			this.ContainerID = line.Parse<Icr, int>(p => p.ContainerID, returnValue);
+			this.BeginningRecord = line.Parse<Icr, int>(p => p.BeginningRecord, returnValue);
+			this.EndingRecord = line.Parse<Icr, int>(p => p.EndingRecord, returnValue);
+			this.ICRRecordStatus = line.Parse<Icr, string>(p => p.ICRRecordStatus, returnValue);
+			this.ReserveICR1105 = line.Parse<Icr, string>(p => p.ReserveICR1105, returnValue);
+			this.ClosingCharacter = line.Parse<Icr, string>(p => p.ClosingCharacter, returnValue);
+			
+			return returnValue.ToArray();
+		}
 	}
 }

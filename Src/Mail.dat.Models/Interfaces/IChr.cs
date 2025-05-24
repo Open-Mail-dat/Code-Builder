@@ -3,20 +3,19 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 19th, 2025.
+// This code was auto-generated on May 23rd, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
 // Version 25.1.0.2
 // 
-using Diamond.Core.Repository;
 
 namespace Mail.dat
 {
 	/// <summary>
 	/// Provides the header information that is present on the Certificate of Mailing Forms.
 	/// </summary>
-	public interface IChr : IEntity<int>
+	public interface IIChr : IMaildatEntity
 	{
 		/// <summary>
 		/// Job ID (CHR-1001)
@@ -115,7 +114,7 @@ namespace Mail.dat
 		/// Mailing Date (CHR-1114)
 		/// The date on which postage is paid to the USPS and verification is completed.
 		/// </summary>
-		DateOnly MailingDate { get; set; }
+		DateOnly? MailingDate { get; set; }
 
 		/// <summary>
 		/// Certificate Status (CHR-1115)

@@ -3,13 +3,12 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 19th, 2025.
+// This code was auto-generated on May 23rd, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
 // Version 25.1.0.2
 // 
-using Diamond.Core.Repository;
 
 namespace Mail.dat
 {
@@ -18,7 +17,7 @@ namespace Mail.dat
 	/// the Piece Barcode file; when used instead of the Piece Barcode file, acts as an extension of the PQT
 	/// file.
 	/// </summary>
-	public interface IPdr : IEntity<int>
+	public interface IIPdr : IMaildatEntity
 	{
 		/// <summary>
 		/// Job ID (PDR-1001)

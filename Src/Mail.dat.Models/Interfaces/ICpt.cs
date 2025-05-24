@@ -3,20 +3,19 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 19th, 2025.
+// This code was auto-generated on May 23rd, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
 // Version 25.1.0.2
 // 
-using Diamond.Core.Repository;
 
 namespace Mail.dat
 {
 	/// <summary>
 	/// A description of the applicable component.
 	/// </summary>
-	public interface ICpt : IEntity<int>
+	public interface IICpt : IMaildatEntity
 	{
 		/// <summary>
 		/// Job ID (CPT-1001)
@@ -110,13 +109,13 @@ namespace Mail.dat
 		/// Mailer ID of Mail Owner (CPT-1148)
 		/// USPS ID Left justify, space padded to the right, only digits 0 - 9 acceptable.
 		/// </summary>
-		int MailerIDOfMailOwner { get; set; }
+		string MailerIDOfMailOwner { get; set; }
 
 		/// <summary>
 		/// CRID of Mail Owner (CPT-1149)
 		/// USPS ID Left justify, space padded to the right, only digits 0 - 9 acceptable.
 		/// </summary>
-		int CRIDOfMailOwner { get; set; }
+		string CRIDOfMailOwner { get; set; }
 
 		/// <summary>
 		/// Periodical Ad% Treatment (CPT-1138)
@@ -137,7 +136,7 @@ namespace Mail.dat
 		/// Periodical Issue Date (CPT-1141)
 		/// YYYYMMDD- date on which periodical is issued (can't be all zeros).
 		/// </summary>
-		DateOnly PeriodicalIssueDate { get; set; }
+		DateOnly? PeriodicalIssueDate { get; set; }
 
 		/// <summary>
 		/// Periodical Frequency (CPT-1142)

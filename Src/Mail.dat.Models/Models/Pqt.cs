@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 19th, 2025.
+// This code was auto-generated on May 23rd, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -11,32 +11,28 @@
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 
 namespace Mail.dat
 {
 	/// <summary>
 	/// Quantity and destination per package.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "pqt", File = "Package Quantity Record", Summary = "Quantity and destination per package.", Description = "Quantity and destination per package.")]
+	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "pqt", File = "Package Quantity Record", Summary = "Quantity and destination per package.", Description = "Quantity and destination per package.", LineLength = 70, ClosingCharacter = "#")]
 	[Table("Pqt", Schema = "Maildat")]
-	public partial class Pqt : MaildatFieldTemplate
+	[PrimaryKey("Id")]
+	public partial class Pqt : MaildatEntity
 	{
-		/// <summary>
-		/// The unique identifier for the record.
-		/// </summary>
-		[Key]
-		[Column("Id", Order = 0)]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public new int Id { get; set; }
-
 		/// <summary>
 		/// Job ID (PQT-1001)
 		/// </summary>
 		[MaildatField(Extension = "pqt", FieldCode = "PQT-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Type = "string", Format = "zfillnumeric", References = "HDR-1001")]
-		[Column("JobID", Order = 1)]
+		[Column("JobID", Order = 2)]
 		[Required]
-		[Key]
+		[MaildatKey]
 		[MaxLength(8)]
+		[Comment("PQT-1001")]
 		public string JobID { get; set; }
 
 		/// <summary>
@@ -44,9 +40,11 @@ namespace Mail.dat
 		/// See Container Quantity File's CQT Database ID definition.
 		/// </summary>
 		[MaildatField(Extension = "pqt", FieldCode = "PQT-1034", FieldName = "CQT Database ID", Start = 9, Length = 8, Required = true, Key = true, DataType = "N", Description = "See Container Quantity File's CQT Database ID definition.", Type = "integer", Format = "zfill", References = "CQT-1034")]
-		[Column("CQTDatabaseID", Order = 2)]
+		[Column("CQTDatabaseID", Order = 3)]
 		[Required]
-		[Key]
+		[MaildatKey]
+		[Comment("PQT-1034")]
+		[TypeConverter(typeof(MaildatIntegerConverter))]
 		public int CQTDatabaseID { get; set; }
 
 		/// <summary>
@@ -54,10 +52,11 @@ namespace Mail.dat
 		/// Unique identifier for the package within the container.
 		/// </summary>
 		[MaildatField(Extension = "pqt", FieldCode = "PQT-1012", FieldName = "Package ID", Start = 17, Length = 6, Required = true, Key = true, DataType = "A/N", Description = "Unique identifier for the package within the container.", Type = "string", Format = "zfillnumeric")]
-		[Column("PackageID", Order = 3)]
+		[Column("PackageID", Order = 4)]
 		[Required]
-		[Key]
+		[MaildatKey]
 		[MaxLength(6)]
+		[Comment("PQT-1012")]
 		public string PackageID { get; set; }
 
 		/// <summary>
@@ -69,9 +68,10 @@ namespace Mail.dat
 		/// for U.S. Domestic International: (ex: FRCDGA = FR CDG A).
 		/// </summary>
 		[MaildatField(Extension = "pqt", FieldCode = "PQT-1013", FieldName = "Package ZIP Code", Start = 23, Length = 6, Required = true, Key = false, DataType = "A/N", Description = "The 5-digit, 3-digit, 6-character or 6-alpha destination of the package Defined in the record. Left Justify. For a Package Service parcel presort the Parcel Piece is the package; Therefore, populate with the 5-digit of the parcel. US = 99999_, or 888___ CAN = A1A9Z9 Default for packages with no ZIP or Postal Code: CANADA = if Canadian AOFRGN = if all other foreign MEXICO = if for Mexico USA = if for U.S. Domestic International: (ex: FRCDGA = FR CDG A).", Type = "string", Format = "leftjustify")]
-		[Column("PackageZIPCode", Order = 4)]
+		[Column("PackageZIPCode", Order = 5)]
 		[Required]
 		[MaxLength(6)]
+		[Comment("PQT-1013")]
 		public string PackageZIPCode { get; set; }
 
 		/// <summary>
@@ -79,8 +79,9 @@ namespace Mail.dat
 		/// Example: C999, R999, B999, H999 as applicable.
 		/// </summary>
 		[MaildatField(Extension = "pqt", FieldCode = "PQT-1101", FieldName = "Package Carrier Route", Start = 29, Length = 4, Required = false, Key = false, DataType = "A/N", Description = "Example: C999, R999, B999, H999 as applicable.", Type = "string", Format = "leftjustify")]
-		[Column("PackageCarrierRoute", Order = 5)]
+		[Column("PackageCarrierRoute", Order = 6)]
 		[MaxLength(4)]
+		[Comment("PQT-1101")]
 		public string PackageCarrierRoute { get; set; }
 
 		/// <summary>
@@ -88,10 +89,11 @@ namespace Mail.dat
 		/// See Below.
 		/// </summary>
 		[MaildatField(Extension = "pqt", FieldCode = "PQT-1102", FieldName = "Package Level", Start = 33, Length = 2, Required = true, Key = false, DataType = "A/N", Description = "See Below.", Type = "enum", Format = "leftjustify")]
-		[Column("PackageLevel", Order = 6)]
+		[Column("PackageLevel", Order = 7)]
 		[Required]
 		[MaxLength(2)]
 		[AllowedValues("9", "A", "B", "C", "D", "F", "H", "I", "K", "L", "M", "R", "S", "T", "U", "V")]
+		[Comment("PQT-1102")]
 		public string PackageLevel { get; set; }
 
 		/// <summary>
@@ -99,8 +101,10 @@ namespace Mail.dat
 		/// Number of copies within the specific package.
 		/// </summary>
 		[MaildatField(Extension = "pqt", FieldCode = "PQT-1103", FieldName = "Number of Copies", Start = 35, Length = 5, Required = true, Key = false, DataType = "N", Description = "Number of copies within the specific package.", Type = "integer", Format = "zfill")]
-		[Column("NumberOfCopies", Order = 7)]
+		[Column("NumberOfCopies", Order = 8)]
 		[Required]
+		[Comment("PQT-1103")]
+		[TypeConverter(typeof(MaildatIntegerConverter))]
 		public int NumberOfCopies { get; set; }
 
 		/// <summary>
@@ -111,8 +115,10 @@ namespace Mail.dat
 		/// copies in some Periodical or 4C mailings).
 		/// </summary>
 		[MaildatField(Extension = "pqt", FieldCode = "PQT-1104", FieldName = "Number of Pieces", Start = 40, Length = 5, Required = true, Key = false, DataType = "N", Description = "Number of pieces within this specific package. Note: First record Within Firm Package or Multi-Piece Parcel has Piece Count = 1 Subsequent records within same Package the piece count = 0 (see Scenarios for Firm Packages and Standard Mail combined in Fourth Class bundles) (Pieces may be less than copies in some Periodical or 4C mailings).", Type = "integer", Format = "zfill")]
-		[Column("NumberOfPieces", Order = 8)]
+		[Column("NumberOfPieces", Order = 9)]
 		[Required]
+		[Comment("PQT-1104")]
+		[TypeConverter(typeof(MaildatIntegerConverter))]
 		public int NumberOfPieces { get; set; }
 
 		/// <summary>
@@ -121,7 +127,10 @@ namespace Mail.dat
 		/// proportion of cost of its bundle that it's carrying.
 		/// </summary>
 		[MaildatField(Extension = "pqt", FieldCode = "PQT-1113", FieldName = "Bundle Charge Allocation", Start = 45, Length = 7, Required = false, Key = false, DataType = "N", Description = "9v999999 - proportion, rounded, (decimal point implied) This field is to be used for denoting the proportion of cost of its bundle that it's carrying.", Type = "decimal", Format = "zfill", Precision = 6)]
-		[Column("BundleChargeAllocation", Order = 9)]
+		[Column("BundleChargeAllocation", Order = 10)]
+		[Precision(6)]
+		[Comment("PQT-1113")]
+		[TypeConverter(typeof(MaildatDecimalConverter))]
 		public decimal BundleChargeAllocation { get; set; }
 
 		/// <summary>
@@ -129,26 +138,29 @@ namespace Mail.dat
 		/// The unique code for this combo-pack within this package.
 		/// </summary>
 		[MaildatField(Extension = "pqt", FieldCode = "PQT-1114", FieldName = "Combo-Pack ID", Start = 52, Length = 6, Required = false, Key = false, DataType = "A/N", Description = "The unique code for this combo-pack within this package.", Type = "string", Format = "leftjustify")]
-		[Column("ComboPackID", Order = 10)]
+		[Column("ComboPackID", Order = 11)]
 		[MaxLength(6)]
+		[Comment("PQT-1114")]
 		public string ComboPackID { get; set; }
 
 		/// <summary>
 		/// PQT Record Status (PQT-2000)
 		/// </summary>
 		[MaildatField(Extension = "pqt", FieldCode = "PQT-2000", FieldName = "PQT Record Status", Start = 58, Length = 1, Required = true, Key = false, DataType = "A/N", Type = "enum", Format = "leftjustify")]
-		[Column("PQTRecordStatus", Order = 11)]
+		[Column("PQTRecordStatus", Order = 12)]
 		[Required]
 		[MaxLength(1)]
 		[AllowedValues("D", "I", "O", "U")]
+		[Comment("PQT-2000")]
 		public string PQTRecordStatus { get; set; }
 
 		/// <summary>
 		/// Reserve (PQT-1105)
 		/// </summary>
 		[MaildatField(Extension = "pqt", FieldCode = "PQT-1105", FieldName = "Reserve", Start = 59, Length = 11, Required = false, Key = false, DataType = "A/N", Type = "string", Format = "leftjustify")]
-		[Column("Reserve", Order = 12)]
+		[Column("ReservePQT1105", Order = 13)]
 		[MaxLength(11)]
+		[Comment("PQT-1105")]
 		public string ReservePQT1105 { get; set; }
 
 		/// <summary>
@@ -156,10 +168,36 @@ namespace Mail.dat
 		/// Must be the # sign.
 		/// </summary>
 		[MaildatField(Extension = "pqt", FieldCode = "PQT-9999", FieldName = "Closing Character", Start = 70, Length = 1, Required = true, Key = false, Description = "Must be the # sign.", Type = "closing", Format = "leftjustify")]
-		[Column("ClosingCharacter", Order = 13)]
+		[Column("ClosingCharacter", Order = 14)]
 		[Required]
 		[MaxLength(1)]
 		[AllowedValues("#")]
-		public string ClosingCharacter { get; } = "#";
+		[Comment("PQT-9999")]
+		public string ClosingCharacter { get; set; } = "#";
+
+		/// <summary>
+		/// Sets property values from one line of an import file.
+		/// </summary>
+		protected override ILoadError[] OnLoadData(int fileLineNumber, byte[] line)
+		{
+			List<ILoadError> returnValue = [];
+			
+			this.FileLineNumber = fileLineNumber;
+			this.JobID = line.Parse<Pqt, string>(p => p.JobID, returnValue);
+			this.CQTDatabaseID = line.Parse<Pqt, int>(p => p.CQTDatabaseID, returnValue);
+			this.PackageID = line.Parse<Pqt, string>(p => p.PackageID, returnValue);
+			this.PackageZIPCode = line.Parse<Pqt, string>(p => p.PackageZIPCode, returnValue);
+			this.PackageCarrierRoute = line.Parse<Pqt, string>(p => p.PackageCarrierRoute, returnValue);
+			this.PackageLevel = line.Parse<Pqt, string>(p => p.PackageLevel, returnValue);
+			this.NumberOfCopies = line.Parse<Pqt, int>(p => p.NumberOfCopies, returnValue);
+			this.NumberOfPieces = line.Parse<Pqt, int>(p => p.NumberOfPieces, returnValue);
+			this.BundleChargeAllocation = line.Parse<Pqt, decimal>(p => p.BundleChargeAllocation, returnValue);
+			this.ComboPackID = line.Parse<Pqt, string>(p => p.ComboPackID, returnValue);
+			this.PQTRecordStatus = line.Parse<Pqt, string>(p => p.PQTRecordStatus, returnValue);
+			this.ReservePQT1105 = line.Parse<Pqt, string>(p => p.ReservePQT1105, returnValue);
+			this.ClosingCharacter = line.Parse<Pqt, string>(p => p.ClosingCharacter, returnValue);
+			
+			return returnValue.ToArray();
+		}
 	}
 }

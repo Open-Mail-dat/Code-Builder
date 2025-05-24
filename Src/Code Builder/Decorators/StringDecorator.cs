@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Text.RegularExpressions;
 using Humanizer;
 
 namespace Mail.dat.CodeBuilder
@@ -130,26 +131,53 @@ namespace Mail.dat.CodeBuilder
 			return lines;
 		}
 
-		public static string ToDotNetType(this string type)
+		public static string ToDotNetType(this string type, string dataType, bool required)
 		{
 			string returnValue = type;
 
 			switch (type)
 			{
+				case "decimal":
+					returnValue = "decimal";
+					break;
+				case "string":
+					returnValue = "string";
+					break;
 				case "enum":
 					returnValue = "string";
 					break;
 				case "integer":
-					returnValue = "int";
+					if (dataType == "A/N")
+					{
+						returnValue = "string";
+					}
+					else
+					{
+						returnValue = "int";
+					}
 					break;
 				case "zipcode":
 					returnValue = "string";
 					break;
 				case "time":
-					returnValue = "TimeOnly";
+					if (required)
+					{
+						returnValue = "TimeOnly";
+					}
+					else
+					{
+						returnValue = "TimeOnly?";
+					}
 					break;
 				case "date":
-					returnValue = "DateOnly";
+					if (required)
+					{
+						returnValue = "DateOnly";
+					}
+					else
+					{
+						returnValue = "DateOnly?";
+					}
 					break;
 				case "reserve":
 					returnValue = "string";

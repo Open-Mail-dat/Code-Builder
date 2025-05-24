@@ -3,20 +3,19 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 19th, 2025.
+// This code was auto-generated on May 23rd, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
 // Version 25.1.0.2
 // 
-using Diamond.Core.Repository;
 
 namespace Mail.dat
 {
 	/// <summary>
 	/// Identifies specific mail list supplied for this job.
 	/// </summary>
-	public interface ISeg : IEntity<int>
+	public interface IISeg : IMaildatEntity
 	{
 		/// <summary>
 		/// Job ID (SEG-1001)
@@ -164,7 +163,7 @@ namespace Mail.dat
 		/// Oldest date on which any portion of the mail file represented by This Segment was updated in accord
 		/// with Move Update policy. YYYYMMDD (cannot be all zeros).
 		/// </summary>
-		DateOnly MoveUpdateDate { get; set; }
+		DateOnly? MoveUpdateDate { get; set; }
 
 		/// <summary>
 		/// Detached Mailing Label Indicator (SEG-1136)
@@ -243,7 +242,7 @@ namespace Mail.dat
 		/// Should have a valid date when Informed Address pieces are in the mailing, in The YYYYMMDD format
 		/// (Cannot be all zeroes). In case of multiple Expiration dates, use the oldest date.
 		/// </summary>
-		DateOnly InformedAddressExpirationDate { get; set; }
+		DateOnly? InformedAddressExpirationDate { get; set; }
 
 		/// <summary>
 		/// Information Exchange (SEG-1182)

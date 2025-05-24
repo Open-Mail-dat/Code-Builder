@@ -14,6 +14,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.5" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\Mail.dat.DataTypes\Mail.dat.Abstractions.csproj" />
 	</ItemGroup>
 

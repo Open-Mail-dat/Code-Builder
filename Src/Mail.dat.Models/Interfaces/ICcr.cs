@@ -3,13 +3,12 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 19th, 2025.
+// This code was auto-generated on May 23rd, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
 // Version 25.1.0.2
 // 
-using Diamond.Core.Repository;
 
 namespace Mail.dat
 {
@@ -17,7 +16,7 @@ namespace Mail.dat
 	/// Allows mailers to identify surcharges, incentive and specific contents that are part of the mail
 	/// piece.
 	/// </summary>
-	public interface ICcr : IEntity<int>
+	public interface IICcr : IMaildatEntity
 	{
 		/// <summary>
 		/// Job ID (CCR-1001)

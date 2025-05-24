@@ -35,6 +35,12 @@
 			return this;
 		}
 
+		public MethodBuilder AddCode(params List<string> code)
+		{
+			this.Code.AddRange(code);
+			return this;
+		}
+
 		public MethodBuilder SetObjectType(string objectType)
 		{
 			this.ObjectType = objectType;

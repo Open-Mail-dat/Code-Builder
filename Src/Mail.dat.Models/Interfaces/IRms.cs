@@ -3,20 +3,19 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 19th, 2025.
+// This code was auto-generated on May 23rd, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
 // Version 25.1.0.2
 // 
-using Diamond.Core.Repository;
 
 namespace Mail.dat
 {
 	/// <summary>
 	/// Records identify a summary of campaigns that can be tied to barcode records.
 	/// </summary>
-	public interface IRms : IEntity<int>
+	public interface IIRms : IMaildatEntity
 	{
 		/// <summary>
 		/// Job ID (RMS-1001)
@@ -73,14 +72,14 @@ namespace Mail.dat
 		/// YYYYMMDD Start Date when the Referenceable Mail Content can be used. Default to blank spaces when no
 		/// constraint requested, Cannot be all zeroes.
 		/// </summary>
-		DateOnly DateStart { get; set; }
+		DateOnly? DateStart { get; set; }
 
 		/// <summary>
 		/// Date End (RMS-1008)
 		/// YYYYMMDD End Date when the Referenceable Mail Content can be used. Default to blank spaces when no
 		/// constraint requested, Cannot be all zeroes.
 		/// </summary>
-		DateOnly DateEnd { get; set; }
+		DateOnly? DateEnd { get; set; }
 
 		/// <summary>
 		/// Campaign Sharing Indicator (RMS-1010)

@@ -9,6 +9,7 @@
 		public SummaryBuilder Summary { get; internal set; }
 		public string DefaultValue { get; internal set; }
 		public bool ReadOnly { get; internal set; } = false;
+		public int Precision { get; internal set; } = 0;
 
 		public static PropertyBuilder Create(string name)
 		{
@@ -48,6 +49,12 @@
 		public PropertyBuilder AddAttributes(params IEnumerable<AttributeBuilder> attributes)
 		{
 			((List<AttributeBuilder>)this.Attributes).AddRange(attributes);
+			return this;
+		}
+
+		public PropertyBuilder SetPrecision(int precision)
+		{
+			this.Precision = precision;
 			return this;
 		}
 

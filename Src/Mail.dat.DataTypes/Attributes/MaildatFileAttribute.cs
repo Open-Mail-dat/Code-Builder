@@ -39,5 +39,15 @@
 		/// The summary of the file.
 		/// </summary>
 		public string Summary { get; set; }
+
+		/// <summary>
+		/// The length of the line not including any line terminators.
+		/// </summary>
+		public int LineLength { get; set; }
+
+		/// <summary>
+		/// The charcater that marks the end of a line in the file.
+		/// </summary>
+		public string ClosingCharacter { get; set; }
 	}
 }
