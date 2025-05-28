@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 23rd, 2025.
+// This code was auto-generated on May 27th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -15,7 +15,7 @@ namespace Mail.dat
 	/// <summary>
 	/// A common code for set of components in a mail piece.
 	/// </summary>
-	public interface IIMpu : IMaildatEntity
+	public interface IMpu : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (MPU-1001)
@@ -95,19 +95,19 @@ namespace Mail.dat
 		/// Mail Piece Unit - Length (MPU-1106)
 		/// Length of a copy in inches, rounded.
 		/// </summary>
-		decimal MailPieceUnitLength { get; set; }
+		decimal? MailPieceUnitLength { get; set; }
 
 		/// <summary>
 		/// Mail Piece Unit - Width (MPU-1107)
 		/// Width of a copy in inches, rounded.
 		/// </summary>
-		decimal MailPieceUnitWidth { get; set; }
+		decimal? MailPieceUnitWidth { get; set; }
 
 		/// <summary>
 		/// Mail Piece Unit - Thickness (MPU-1108)
 		/// Thickness of a copy in inches.
 		/// </summary>
-		decimal MailPieceUnitThickness { get; set; }
+		decimal? MailPieceUnitThickness { get; set; }
 
 		/// <summary>
 		/// Mail Piece Unit - Class (MPU-1111)
@@ -160,7 +160,7 @@ namespace Mail.dat
 		/// <summary>
 		/// Pre-Denominated Amount (MPU-1124)
 		/// </summary>
-		decimal PreDenominatedAmount { get; set; }
+		decimal? PreDenominatedAmount { get; set; }
 
 		/// <summary>
 		/// Postage Affixed Type (MPU-1125)

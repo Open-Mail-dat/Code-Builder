@@ -133,12 +133,19 @@ namespace Mail.dat.CodeBuilder
 
 		public static string ToDotNetType(this string type, string dataType, bool required)
 		{
-			string returnValue = type;
+			string returnValue = "string";
 
 			switch (type)
 			{
 				case "decimal":
-					returnValue = "decimal";
+					if(required)
+					{
+						returnValue = "decimal";
+					}
+					else
+					{
+						returnValue = "decimal?";
+					}
 					break;
 				case "string":
 					returnValue = "string";
@@ -153,7 +160,14 @@ namespace Mail.dat.CodeBuilder
 					}
 					else
 					{
-						returnValue = "int";
+						if (required)
+						{
+							returnValue = "int";
+						}
+						else
+						{
+							returnValue = "int?";
+						}
 					}
 					break;
 				case "zipcode":
@@ -186,7 +200,55 @@ namespace Mail.dat.CodeBuilder
 					returnValue = "string";
 					break;
 				default:
-					returnValue = type;
+					returnValue = "string";
+					break;
+			}
+
+			return returnValue;
+		}
+
+		public static string ToSqliteType(this string type, string dataType)
+		{
+			string returnValue = type;
+
+			switch (type)
+			{
+				case "decimal":
+					returnValue = "NUMERIC";
+					break;
+				case "string":
+					returnValue = "TEXT";
+					break;
+				case "enum":
+					returnValue = "TEXT";
+					break;
+				case "integer":
+					if (dataType == "A/N")
+					{
+						returnValue = "TEXT";
+					}
+					else
+					{
+						returnValue = "INTEGER";
+					}
+					break;
+				case "zipcode":
+					returnValue = "TEXT";
+					break;
+				case "time":
+					returnValue = "TEXT";
+					break;
+				case "date":
+					returnValue = "TEXT";
+					break;
+				case "reserve":
+					returnValue = "TEXT";
+					break;
+				case "closing":
+					returnValue = "TEXT";
+					break;
+				default:
+					returnValue = "TEXT";
 					break;
 			}
 

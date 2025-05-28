@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 23rd, 2025.
+// This code was auto-generated on May 27th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -15,7 +15,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Provides the bulk form information that is present on the Certificate of Mailing Forms.
 	/// </summary>
-	public interface IICbr : IMaildatEntity
+	public interface ICbr : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (CBR-1001)
@@ -62,7 +62,7 @@ namespace Mail.dat
 		/// Fee Paid (CBR-1105)
 		/// Fee for Certificate of Bulk Mailing; dollars.
 		/// </summary>
-		decimal FeePaid { get; set; }
+		decimal? FeePaid { get; set; }
 
 		/// <summary>
 		/// Total Postage Paid for Mailpieces (CBR-1106)

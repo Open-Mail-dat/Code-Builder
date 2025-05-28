@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 23rd, 2025.
+// This code was auto-generated on May 27th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -15,7 +15,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Allows customers to tie or link container information between Jobs from Mail.dat and Mail.XML.
 	/// </summary>
-	public interface IIOci : IMaildatEntity
+	public interface IOci : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (OCI-1001)
@@ -80,7 +80,7 @@ namespace Mail.dat
 		/// Original Mail.XML Container ID (OCI-1109)
 		/// Mail.XML Container Id provided in another Mailing Job.
 		/// </summary>
-		int OriginalMailXMLContainerID { get; set; }
+		int? OriginalMailXMLContainerID { get; set; }
 
 		/// <summary>
 		/// OCI Record Status (OCI-2000)

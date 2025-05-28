@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Runtime.Serialization;
 using Mail.dat.Io.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -6,11 +7,9 @@ using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Mail.dat.Io
 {
-	public delegate Task ProgressUpdateAsyncDelegate(IImportMessage message);
-
 	public class MaildatImport : IMaildatImport
 	{
-		public ProgressUpdateAsyncDelegate ProgressUpdate { get; set; }
+		public ProgressAsyncDelegate ProgressUpdate { get; set; }
 
 		private MaildatImport()
 		{
@@ -21,11 +20,11 @@ namespace Mail.dat.Io
 			return new MaildatImport();
 		}
 
-		public static IMaildatImport Create(ProgressUpdateAsyncDelegate progressUpdate)
+		public static IMaildatImport Create(ProgressAsyncDelegate progressAction)
 		{
 			return new MaildatImport()
 			{
-				ProgressUpdate = progressUpdate
+				ProgressUpdate = progressAction
 			};
 		}
 
@@ -67,7 +66,10 @@ namespace Mail.dat.Io
 				//
 				// Get all of the model entities.
 				//
-				IEnumerable<IEntityType> entities = context.Model.GetEntityTypes();
+				IEnumerable<IEntityType> entities = context.Model.GetEntityTypes()
+													.Where(t => t.ClrType.GetAttribute<MaildatImportAttribute>() != null)
+													.OrderBy(t => t.ClrType.GetAttribute<MaildatImportAttribute>().Order)
+													.ToArray();
 
 				//
 				// Forward the progress events.
@@ -80,47 +82,75 @@ namespace Mail.dat.Io
 					}
 				};
 
-				MethodInfo method = typeof(FileImporter).GetMethod(nameof(ImportAsync));
+				//
+				// Get the ImportAsync method from the FileImporter class.
+				//
+				MethodInfo method = typeof(FileImporter).GetMethod("ImportAsync");
 
-				Parallel.ForEach(context.Model.GetEntityTypes(), (entityType) =>
+				//
+				// Use Parallel.ForEach to import each entity type.
+				//
+				Parallel.ForEach(entities, (entityType) =>
 				{
+					//
+					// Check if the cancellation token has been requested.
+					//
 					if (!options.CancellationToken.IsCancellationRequested)
 					{
+						//
+						// Get the type and create the genic method for ImportAsync.
+						//
 						Type clrType = entityType.ClrType;
 						MethodInfo genericMethod = method.MakeGenericMethod(clrType);
+
+						//
+						// Invoke the generic method with the fileImporter instance and the options.
+						//
 						genericMethod.Invoke(fileImporter, [options, context, options.CancellationToken]);
 					}
 				});
 
+				//
+				// Check if the cancellation token has been requested.
+				//
 				if (!options.CancellationToken.IsCancellationRequested)
 				{
 					//
 					// Delete the database if it exists and create a new one.
 					//
-					await this.FireProgressUpdateAsync(new ImportMessage() { Type = ImportMessageType.Message, Message = "Creating the database." });
+					await this.FireProgressUpdateAsync(new ProgressMessage() { ItemAction = ProgressMessageType.Message, Message = "Creating the database." });
 					await context.EnsureDeletedAsync();
 					await context.EnsureCreatedAsync();
 
 					//
 					// Save the changes to the database.
 					//
-					await this.FireProgressUpdateAsync(new ImportMessage() { Type = ImportMessageType.Message, Message = "Updating the database." });
+					await this.FireProgressUpdateAsync(new ProgressMessage() { ItemAction = ProgressMessageType.Message, Message = "Updating the database." });
 
+					//
+					// Lock the context to ensure thread safety while saving changes.
+					//
 					lock (context)
 					{
+						//
+						// Save changes to the context.
+						//
 						context.SaveChanges();
 					}
 				}
 			}
 			finally
 			{
-				await this.FireProgressUpdateAsync(new ImportMessage() { Type = ImportMessageType.Completed, Message = "Import completed." });
+				//
+				// Fire a progress update indicating that the import is completed.
+				//
+				await this.FireProgressUpdateAsync(new ProgressMessage() {ItemAction = ProgressMessageType.Completed, Message = "Import completed." });
 			}
 
 			return (returnValue, context);
 		}
 
-		protected Task FireProgressUpdateAsync(IImportMessage message)
+		protected Task FireProgressUpdateAsync(IProgressMessage message)
 		{
 			this.ProgressUpdate?.Invoke(message);
 			return Task.CompletedTask;

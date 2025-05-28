@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 23rd, 2025.
+// This code was auto-generated on May 27th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -16,7 +16,7 @@ namespace Mail.dat
 	/// Provides piece level detail required of full service mailings; when used instead of the Piece Detail
 	/// file, acts as an extension of the PQT file.
 	/// </summary>
-	public interface IIPbc : IMaildatEntity
+	public interface IPbc : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (PBC-1001)

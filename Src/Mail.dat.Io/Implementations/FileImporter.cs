@@ -4,11 +4,11 @@ namespace Mail.dat.Io
 {
 	internal class FileImporter
 	{
-		public ProgressUpdateAsyncDelegate ProgressUpdateAsync { get; set; }
+		public ProgressAsyncDelegate ProgressUpdateAsync { get; set; }
 
 		public async Task<bool> ImportAsync<T>(IImportOptions options, MaildatContext context, CancellationToken cancellationToken) where T : class, IMaildatEntity, new()
 		{
-			bool returnValue = false;
+			bool returnValue = true;
 
 			//
 			// Get the MaildatFileAttribute attribute.
@@ -59,7 +59,7 @@ namespace Mail.dat.Io
 									//
 									// The import was cancelled. Break out of the loop.
 									//
-									await this.FireProgressUpdateAsync(new ImportMessage() { Type = ImportMessageType.Message, Message = "Import cancelled." });
+									await this.FireProgressUpdateAsync(new ProgressMessage() { ItemAction = ProgressMessageType.Message, Message = "Import cancelled." });
 								}
 								else
 								{
@@ -71,7 +71,7 @@ namespace Mail.dat.Io
 									//
 									// Load the data into the model.
 									//
-									ILoadError[] errors = model.LoadData(lineNumber, buffer);
+									ILoadError[] errors = await model.ImportDataAsync(lineNumber, buffer);
 
 									//
 									// Add the model to the context.
@@ -94,8 +94,9 @@ namespace Mail.dat.Io
 											//
 											// Build the import error model.
 											//
-											ImportError ie = new()
+											Error ie = new()
 											{
+												Process = "Import",
 												File = extension,
 												FieldName = error.Attribute.FieldName,
 												FieldCode = error.Attribute.FieldCode,
@@ -121,9 +122,14 @@ namespace Mail.dat.Io
 									//
 									// Send a progress update.
 									//
-									await this.FireProgressUpdateAsync(new ImportMessage() { Type = ImportMessageType.Progress, Name = name, File = filePath, LineNumber = lineNumber, LineCount = lineCount });
+									await this.FireProgressUpdateAsync(new ProgressMessage() { ItemAction = ProgressMessageType.ImportExport, ItemName = name, ItemSource = filePath, ItemIndex = lineNumber, ItemCount = lineCount });
 								}
 							}
+
+							//
+							// Send a progress update.
+							//
+							await this.FireProgressUpdateAsync(new ProgressMessage() { ItemAction = ProgressMessageType.Completed, ItemName = name, ItemSource = filePath, ItemIndex = lineCount, ItemCount = lineCount });
 
 							if (options.SaveMode == SaveModeType.SaveAfterEachFile)
 							{								
@@ -143,7 +149,7 @@ namespace Mail.dat.Io
 			return returnValue;
 		}
 
-		protected Task FireProgressUpdateAsync(IImportMessage message)
+		protected Task FireProgressUpdateAsync(IProgressMessage message)
 		{
 			this.ProgressUpdateAsync?.Invoke(message);
 			return Task.CompletedTask;

@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 23rd, 2025.
+// This code was auto-generated on May 27th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -18,7 +18,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Entity Framework Core database context for Mail.dat entities.
 	/// </summary>
-	public partial class MaildatContext : RepositoryContext<MaildatContext>
+	public partial class MaildatContext : RepositoryContext<MaildatContext> 
 	{
 		public MaildatContext()
 			 : base()
@@ -31,35 +31,91 @@ namespace Mail.dat
 			logger.LogDebug("Created {context}.", nameof(MaildatContext));
 		}
 
-		public DbSet<ImportError> ImportErrors { get; set; }
-		public DbSet<Cbr> Cbr { get; set; }
-		public DbSet<Ccr> Ccr { get; set; }
-		public DbSet<Cdr> Cdr { get; set; }
-		public DbSet<Cfr> Cfr { get; set; }
-		public DbSet<Chr> Chr { get; set; }
-		public DbSet<Cpt> Cpt { get; set; }
-		public DbSet<Cqt> Cqt { get; set; }
-		public DbSet<Csm> Csm { get; set; }
-		public DbSet<Epd> Epd { get; set; }
+		[MaildatExport(Order = 1)]
 		public DbSet<Hdr> Hdr { get; set; }
-		public DbSet<Icr> Icr { get; set; }
-		public DbSet<Mcr> Mcr { get; set; }
-		public DbSet<Mpa> Mpa { get; set; }
-		public DbSet<Mpu> Mpu { get; set; }
-		public DbSet<Oci> Oci { get; set; }
-		public DbSet<Par> Par { get; set; }
-		public DbSet<Pbc> Pbc { get; set; }
-		public DbSet<Pdr> Pdr { get; set; }
-		public DbSet<Pqt> Pqt { get; set; }
-		public DbSet<Rmb> Rmb { get; set; }
-		public DbSet<Rmr> Rmr { get; set; }
-		public DbSet<Rms> Rms { get; set; }
+
+		[MaildatExport(Order = 2)]
 		public DbSet<Seg> Seg { get; set; }
-		public DbSet<Sfb> Sfb { get; set; }
-		public DbSet<Sfr> Sfr { get; set; }
-		public DbSet<Snr> Snr { get; set; }
-		public DbSet<Upa> Upa { get; set; }
+
+		[MaildatExport(Order = 3)]
+		public DbSet<Mpu> Mpu { get; set; }
+
+		[MaildatExport(Order = 4)]
+		public DbSet<Mcr> Mcr { get; set; }
+
+		[MaildatExport(Order = 5)]
+		public DbSet<Mpa> Mpa { get; set; }
+
+		[MaildatExport(Order = 6)]
+		public DbSet<Cpt> Cpt { get; set; }
+
+		[MaildatExport(Order = 7)]
+		public DbSet<Ccr> Ccr { get; set; }
+
+		[MaildatExport(Order = 8)]
+		public DbSet<Csm> Csm { get; set; }
+
+		[MaildatExport(Order = 9)]
+		public DbSet<Cqt> Cqt { get; set; }
+
+		[MaildatExport(Order = 10)]
+		public DbSet<Pqt> Pqt { get; set; }
+
+		[MaildatExport(Order = 11)]
 		public DbSet<Wsr> Wsr { get; set; }
+
+		[MaildatExport(Order = 12)]
+		public DbSet<Snr> Snr { get; set; }
+
+		[MaildatExport(Order = 13)]
+		public DbSet<Icr> Icr { get; set; }
+
+		[MaildatExport(Order = 14)]
+		public DbSet<Pdr> Pdr { get; set; }
+
+		[MaildatExport(Order = 15)]
+		public DbSet<Pbc> Pbc { get; set; }
+
+		[MaildatExport(Order = 16)]
+		public DbSet<Sfr> Sfr { get; set; }
+
+		[MaildatExport(Order = 17)]
+		public DbSet<Sfb> Sfb { get; set; }
+
+		[MaildatExport(Order = 18)]
+		public DbSet<Par> Par { get; set; }
+
+		[MaildatExport(Order = 19)]
+		public DbSet<Oci> Oci { get; set; }
+
+		[MaildatExport(Order = 20)]
+		public DbSet<Upa> Upa { get; set; }
+
+		[MaildatExport(Order = 21)]
+		public DbSet<Epd> Epd { get; set; }
+
+		[MaildatExport(Order = 22)]
+		public DbSet<Rmr> Rmr { get; set; }
+
+		[MaildatExport(Order = 23)]
+		public DbSet<Rmb> Rmb { get; set; }
+
+		[MaildatExport(Order = 24)]
+		public DbSet<Rms> Rms { get; set; }
+
+		[MaildatExport(Order = 25)]
+		public DbSet<Chr> Chr { get; set; }
+
+		[MaildatExport(Order = 26)]
+		public DbSet<Cbr> Cbr { get; set; }
+
+		[MaildatExport(Order = 27)]
+		public DbSet<Cdr> Cdr { get; set; }
+
+		[MaildatExport(Order = 28)]
+		public DbSet<Cfr> Cfr { get; set; }
+
+		public DbSet<Error> Errors { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{

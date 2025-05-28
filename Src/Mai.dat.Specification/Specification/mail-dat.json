@@ -23,7 +23,7 @@
                     ],
                     "data": {
                         "type": "string",
-                        "format": "zfillnumeric",
+                        "format": "type",
                         "references": [
                             "HDR-1001"
                         ]

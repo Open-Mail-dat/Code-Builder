@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 23rd, 2025.
+// This code was auto-generated on May 27th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -15,7 +15,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Records specific ancillary fees (linked to the .PDR or .PBC). To be only used for extra services.
 	/// </summary>
-	public interface IISfr : IMaildatEntity
+	public interface ISfr : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (SFR-1001)
@@ -52,14 +52,14 @@ namespace Mail.dat
 		/// 99999999v99; dollars/cents, rounded (decimal implied). The Value of the single piece noted when
 		/// applying for the Special Service.
 		/// </summary>
-		decimal ServiceStatedValue { get; set; }
+		decimal? ServiceStatedValue { get; set; }
 
 		/// <summary>
 		/// Service Fee (SFR-1102)
 		/// 99999v99; dollars/cents, rounded (decimal implied). Actual Postal dollars & cents incurred in costs
 		/// for the specific Piece for one or more fees or charges noted above.
 		/// </summary>
-		decimal ServiceFee { get; set; }
+		decimal? ServiceFee { get; set; }
 
 		/// <summary>
 		/// Special Fees/Charges Services ID (SFR-1103)
@@ -73,7 +73,7 @@ namespace Mail.dat
 		/// 99999v99; dollars/cents, rounded (decimal implied). Actual Postal dollars & cents to be collected
 		/// for the COD service For specific piece upon delivery.
 		/// </summary>
-		decimal AmountDue { get; set; }
+		decimal? AmountDue { get; set; }
 
 		/// <summary>
 		/// SFR Record Status (SFR-2000)

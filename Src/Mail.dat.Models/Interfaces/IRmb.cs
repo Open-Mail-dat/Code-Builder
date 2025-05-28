@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 23rd, 2025.
+// This code was auto-generated on May 27th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -16,7 +16,7 @@ namespace Mail.dat
 	/// Records identify digital campaigns and enhance capabilities of the USPS Informed Delivery  program
 	/// separate from the required file structure.
 	/// </summary>
-	public interface IIRmb : IMaildatEntity
+	public interface IRmb : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (RMB-1001)

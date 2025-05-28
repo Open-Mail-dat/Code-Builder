@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 23rd, 2025.
+// This code was auto-generated on May 27th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -15,7 +15,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Provides the fee information that is present on the Certificate of Mail Forms.
 	/// </summary>
-	public interface IICfr : IMaildatEntity
+	public interface ICfr : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (CFR-1001)
@@ -52,14 +52,14 @@ namespace Mail.dat
 		/// Service Stated Value (CFR-1102)
 		/// Dollars/cents, rounded The value of the single piece noted when applying for the Special Service.
 		/// </summary>
-		decimal ServiceStatedValue { get; set; }
+		decimal? ServiceStatedValue { get; set; }
 
 		/// <summary>
 		/// Service Fee (CFR-1103)
 		/// Dollars/cents, rounded Actual Postal dollars & cents incurred in costs for the specific piece for
 		/// the one or more fees or charges noted above.
 		/// </summary>
-		decimal ServiceFee { get; set; }
+		decimal? ServiceFee { get; set; }
 
 		/// <summary>
 		/// Special Fees/Charges Services ID (CFR-1104)
@@ -73,7 +73,7 @@ namespace Mail.dat
 		/// Dollars/cents, rounded Actual Postal dollars & cents to be collected for the COD service for
 		/// specific piece upon delivery.
 		/// </summary>
-		decimal AmountDue { get; set; }
+		decimal? AmountDue { get; set; }
 
 		/// <summary>
 		/// Flex Option A (CFR-1106)

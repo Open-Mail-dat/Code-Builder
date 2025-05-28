@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="Implementations\MaildatIExport.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Mail.dat.Models\Mail.dat.Models.csproj" />
   </ItemGroup>
 	

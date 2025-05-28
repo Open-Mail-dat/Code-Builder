@@ -1,7 +1,7 @@
 ﻿namespace Mail.dat
 {
 	/// <summary>
-	/// Provides extension methods for the Platinum application.
+	/// Provides extension methods for the application.
 	/// </summary>
 	public static class DbEnvironment
 	{

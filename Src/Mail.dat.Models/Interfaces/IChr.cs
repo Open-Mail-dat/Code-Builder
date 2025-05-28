@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 23rd, 2025.
+// This code was auto-generated on May 27th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -15,7 +15,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Provides the header information that is present on the Certificate of Mailing Forms.
 	/// </summary>
-	public interface IIChr : IMaildatEntity
+	public interface IChr : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (CHR-1001)

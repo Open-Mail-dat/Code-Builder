@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 23rd, 2025.
+// This code was auto-generated on May 27th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -15,7 +15,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Relates containers to associated ink jet output tapes/files.
 	/// </summary>
-	public interface IIIcr : IMaildatEntity
+	public interface IIcr : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (ICR-1001)
@@ -47,14 +47,14 @@ namespace Mail.dat
 		/// The record number of the first address on the file/tape that is for the container defined within
 		/// this record.
 		/// </summary>
-		int BeginningRecord { get; set; }
+		int? BeginningRecord { get; set; }
 
 		/// <summary>
 		/// Ending Record (ICR-1104)
 		/// The record number of the last address on the file/tape that is for the container defined within this
 		/// record.
 		/// </summary>
-		int EndingRecord { get; set; }
+		int? EndingRecord { get; set; }
 
 		/// <summary>
 		/// ICR Record Status (ICR-2000)

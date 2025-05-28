@@ -16,9 +16,6 @@ namespace Mail.dat.CodeBuilder
 		[Option('x', "context-output-directory", Required = true, HelpText = "The directory where the context file is written.")]
 		public string ContextOutputDirectory { get; set; }
 
-		[Option('m', "add-tracking-fields", Required = true, HelpText = "When true, CreatedDateTime, CreatedBy, ModifiedDateTime and ModifiedBy fields are added to every class definition. The default is false.")]
-		public bool AddTrackingFields { get; set; }
-
 		[Option('m', "database-context-name", Required = true, HelpText = "Specifies the name of the Entity Framework Core context class name.")]
 		public string DatabaseContextName { get; set; }
 	}

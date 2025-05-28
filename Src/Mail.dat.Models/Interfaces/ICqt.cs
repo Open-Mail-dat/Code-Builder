@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 23rd, 2025.
+// This code was auto-generated on May 27th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -15,7 +15,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Quantity/rates per 3 or 5 digit in each container.
 	/// </summary>
-	public interface IICqt : IMaildatEntity
+	public interface ICqt : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (CQT-1001)
@@ -130,7 +130,7 @@ namespace Mail.dat
 		/// Container Charge Allocation (CQT-1111)
 		/// This field is to be used for denoting the proportion of cost of its container that it's carrying.
 		/// </summary>
-		decimal ContainerChargeAllocation { get; set; }
+		decimal? ContainerChargeAllocation { get; set; }
 
 		/// <summary>
 		/// Service Level Indicator (CQT-1112)

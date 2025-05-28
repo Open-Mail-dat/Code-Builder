@@ -1,7 +1,7 @@
 ﻿namespace Mail.dat
 {
     /// <summary>
-    /// Attribute to specify the number of decimal places for a property.
+    /// Attribute to specify the field is a Mail.dat Key.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public class MaildatKeyAttribute : Attribute

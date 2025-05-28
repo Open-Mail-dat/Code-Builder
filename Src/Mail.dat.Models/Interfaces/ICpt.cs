@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 23rd, 2025.
+// This code was auto-generated on May 27th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -15,7 +15,7 @@ namespace Mail.dat
 	/// <summary>
 	/// A description of the applicable component.
 	/// </summary>
-	public interface IICpt : IMaildatEntity
+	public interface ICpt : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (CPT-1001)
@@ -59,19 +59,19 @@ namespace Mail.dat
 		/// Component - Length (CPT-1105)
 		/// Length of a copy 999v9999; inches, rounded (decimal point implied).
 		/// </summary>
-		decimal ComponentLength { get; set; }
+		decimal? ComponentLength { get; set; }
 
 		/// <summary>
 		/// Component - Width (CPT-1106)
 		/// Width of a copy 99v9999; inches, rounded (decimal point implied).
 		/// </summary>
-		decimal ComponentWidth { get; set; }
+		decimal? ComponentWidth { get; set; }
 
 		/// <summary>
 		/// Component - Thickness (CPT-1107)
 		/// Thickness of a copy 99v9999; inches, rounded (decimal point implied).
 		/// </summary>
-		decimal ComponentThickness { get; set; }
+		decimal? ComponentThickness { get; set; }
 
 		/// <summary>
 		/// Component - Periodical Ad Percentage (CPT-1108)
@@ -80,7 +80,7 @@ namespace Mail.dat
 		/// mail.dat file the ad percent of the supplement is (2/50)x.5 = 2.0% and the ad percent of the
 		/// Periodical is (48/50)x.4 =38.40%. The sum is 40.40% Field is necessary for Periodicals Enclosures.
 		/// </summary>
-		decimal ComponentPeriodicalAdPercentage { get; set; }
+		decimal? ComponentPeriodicalAdPercentage { get; set; }
 
 		/// <summary>
 		/// Component - Periodical Ad Percentage: Status (CPT-1109)
@@ -142,7 +142,7 @@ namespace Mail.dat
 		/// Periodical Frequency (CPT-1142)
 		/// Number of times published per year.
 		/// </summary>
-		int PeriodicalFrequency { get; set; }
+		int? PeriodicalFrequency { get; set; }
 
 		/// <summary>
 		/// Equivalent User License Code (CPT-1144)
@@ -173,7 +173,7 @@ namespace Mail.dat
 		/// Ad % Basis (CPT-1152)
 		/// 9999v99 implied 2 decimal places.
 		/// </summary>
-		decimal AdBasis { get; set; }
+		decimal? AdBasis { get; set; }
 
 		/// <summary>
 		/// Component Title (CPT-1147)
@@ -198,7 +198,7 @@ namespace Mail.dat
 		/// The CSR or PCSC ruling number approving the mailing of a specific Style/design of mail piece. These
 		/// new designs could include but not Limited to automation, non-rectangular, non-paper mail pieces.
 		/// </summary>
-		int ApprovedPieceDesign { get; set; }
+		int? ApprovedPieceDesign { get; set; }
 
 		/// <summary>
 		/// User Option Field (CPT-1150)

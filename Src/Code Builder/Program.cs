@@ -1,6 +1,9 @@
 ﻿using CommandLine;
 using Humanizer;
-using Newtonsoft.Json.Linq;
+using Mai.dat.Specification;
+using Mai.dat.Specification.Models;
+using Mail.dat.CodeBuilder.Decorators;
+using Newtonsoft.Json;
 using Spectre.Console;
 
 namespace Mail.dat.CodeBuilder
@@ -23,25 +26,42 @@ namespace Mail.dat.CodeBuilder
 			if (!result.Errors.Any())
 			{
 				//
+				// Remove all targets files now so that we do not get an error mid-way through the process.
+				//
+				(new DirectoryInfo(options.ClassOutputDirectory)).DeleteAllFiles("*.cs");
+				(new DirectoryInfo(options.InterfaceOutputDirectory)).DeleteAllFiles("*.cs");
+				(new DirectoryInfo(options.ContextOutputDirectory)).DeleteAllFiles("*.cs");
+
+				//
 				// Read the file contents into a string.
 				//
 				string jsonContent = File.ReadAllText(options.SpecificationFile);
 
 				//
-				// Parse the JSON string into a JObject.
+				// Deserialize the JSON into a SpecificationFile.
 				//
-				JObject specification = JObject.Parse(jsonContent);
+				SpecificationFile specificationFile = JsonConvert.DeserializeObject<SpecificationFile>(jsonContent);
+
+
+				var items = specificationFile.Files.SelectMany(t => t.RecordDefinitions)
+												   .GroupBy(t => new { t.DataType, t.Data.Type, t.Data.Format })
+												   .OrderBy(t => t.Key.Type)
+												   .Select(t => new { t.Key.Type, t.Key.DataType, t.Key.Format,  });
+
+
 
 				//
-				// Get the version and revision.
+				// Get the proper file ordering.
 				//
-				string version = specification["version"]["major"].ToString();
-				string revision = specification["version"]["revision"].ToString();
+				FileOrdering fileOrdering = [];
 
 				//
-				// Parse the JSON.
+				// Assign the file ordering.
 				//
-				JArray attributes = (JArray)specification["files"];
+				foreach (FileDefinition fileDefinition in specificationFile.Files)
+				{
+					fileDefinition.Ordinal = fileOrdering.Where(t => t.Extension == fileDefinition.FileExtension).Select(t => t.Ordinal).SingleOrDefault();
+				}
 
 				//
 				// Create a list for the classes.
@@ -52,15 +72,16 @@ namespace Mail.dat.CodeBuilder
 				//
 				// Iterate through each file and build the classes.
 				//
-				foreach (JObject attribute in attributes.Cast<JObject>())
+				foreach (FileDefinition fileDefinition in specificationFile.Files.OrderBy(t => t.Ordinal))
 				{
-					string file = attribute["file"].ToString().Transform(To.LowerCase).Sanitize().Transform(To.TitleCase).AddRecord();
-					string fileExtension = attribute["fileExtension"].ToString();
-					string fileSummary = attribute["fileSummary"].ToString().Sanitize().Transform(To.SentenceCase).EndSentence();
-					string fileDescription = attribute["fileDescription"].ToString().Sanitize().Transform(To.SentenceCase).EndSentence() ?? fileSummary;
+					string file = fileDefinition.File.Transform(To.LowerCase).Sanitize().Transform(To.TitleCase).AddRecord();
+					string fileExtension = fileDefinition.FileExtension;
+					string fileSummary = fileDefinition.FileSummary.Sanitize().Transform(To.SentenceCase).EndSentence();
+					string fileDescription = fileDefinition.FileDescription.Sanitize().Transform(To.SentenceCase).EndSentence() ?? fileSummary;
 					fileDescription = string.IsNullOrEmpty(fileDescription) ? fileSummary : fileDescription;
 
-					AnsiConsole.Write(new Panel($"[yellow]{fileExtension}[/]").RoundedBorder());
+					Panel panel = new Panel($"[yellow]{fileExtension} - {file}[/]").RoundedBorder().Expand();
+					AnsiConsole.Write(panel);
 
 					int columnOrder = 2;
 
@@ -80,7 +101,7 @@ namespace Mail.dat.CodeBuilder
 							"by the Open Mail.dat Code Generator.",
 							"",
 							"Author: Daniel M porrey",
-							$"Version {version.Replace("-", ".")}.{revision}",
+							$"Version {specificationFile.Version.Major.Replace("-", ".")}.{specificationFile.Version.Revision}",
 							""
 						])
 						.SetNameSpace("Mail.dat")
@@ -88,6 +109,7 @@ namespace Mail.dat.CodeBuilder
 						.AddUsing("System.ComponentModel.DataAnnotations")
 						.AddUsing("Microsoft.EntityFrameworkCore")
 						.AddUsing("System.ComponentModel")
+						.AddUsing("System.Text")
 						.SetSummary(fileDescription)
 						.SetObjectType("class")
 						.SetScope("public")
@@ -95,41 +117,35 @@ namespace Mail.dat.CodeBuilder
 						.AddAttributes(
 						[
 							AttributeBuilder.Create("MaildatFile")
-								.AddParameter("Version", version)
-								.AddParameter("Revision", revision)
+								.AddParameter("Version", specificationFile.Version.Major)
+								.AddParameter("Revision", specificationFile.Version.Revision)
 								.AddParameter("Extension", fileExtension)
 								.AddParameter("File", file)
 								.AddParameter("Summary", fileSummary)
 								.AddParameter("Description", fileDescription)
-								.AddParameter("LineLength", attribute.GetLineLenth().ToString(), false)
+								.AddParameter("LineLength", fileDefinition.RecordDefinitions.TotalLineLength())
 								.AddParameter("ClosingCharacter", "#"),
 							AttributeBuilder.Create("Table")
 								.AddParameter("", fileExtension.Pascalize())
 								.AddParameter("Schema", "Maildat"),
 							AttributeBuilder.Create("PrimaryKey")
-								.AddParameter("", "Id")
+								.AddParameter("", "Id"),
+							AttributeBuilder.Create("MaildatImport")
+								.AddParameter("Order", fileDefinition.Ordinal)
 						])
-						.AddImplements(ImplementsBuilder.Create(options.AddTrackingFields ? "MaildatEntity" : "Entity<int>"))
+						.AddImplements("MaildatEntity")
+						.AddImplements($"I{fileExtension.ToClassName()}")
 						.AddProperties(
 						[..
 							//
 							// Add the properties from the JSON file.
 							//
-							from tbl in (JArray)attribute["recordDefinitions"]
+							from tbl in fileDefinition.RecordDefinitions
 							//
 							// Read some of the variables so they can be used multiple times.
 							//
-							let propertyName = tbl["fieldName"].ToPropertyName(tbl["fieldCode"])
-							let fieldCode = tbl["fieldCode"].ToString()
-							let dataType = tbl["dataType"].ToString()
-							let isRequired = tbl["required"].ToString().Equals("true", StringComparison.CurrentCultureIgnoreCase)
-							let isKey = tbl["key"].ToString().Equals("true", StringComparison.CurrentCultureIgnoreCase)
-							let description = string.Join(" ", tbl["description"].Select(t => t.ToString().Sanitize().Transform(To.SentenceCase))).EndSentence()
-							let type = tbl["data"]["type"].ToString()
-							let length = tbl["length"].ToString()
-							let precision = tbl["data"]["precision"]?.ToString()
-							let values = !string.IsNullOrWhiteSpace(tbl["data"]["values"]?.ToString()) ? tbl["data"]["values"].ToObject<Dictionary<string, string>>() : []
-							let references = !string.IsNullOrWhiteSpace(tbl["data"]["references"]?.ToString()) ? tbl["data"]["references"].ToObject<List<string>>() : []
+							let propertyName = tbl.FieldName.ToPropertyName(tbl.FieldCode)
+							let description = string.Join(" ", tbl.Description.Select(t => t.Sanitize().Transform(To.SentenceCase))).EndSentence()
 							//
 							// Create the class property. If the name is Reserve, then append th field code because a
 							// class may have more than one reserve field.
@@ -142,19 +158,19 @@ namespace Mail.dat.CodeBuilder
 								//
 								// Set the return type using a ntive .NET type.
 								//
-								.SetReturnType(type.ToDotNetType(dataType, isRequired))
+								.SetReturnType(tbl.Data.Type.ToDotNetType(tbl.DataType, tbl.Required))
 								//
 								// Add a summary made up of the code, name and description.
 								//
-								.SetSummary($"{tbl["fieldName"].ToString().Sanitize()} ({tbl["fieldCode"]})", description)
+								.SetSummary($"{tbl.FieldName.Sanitize()} ({tbl.FieldCode})", description)
 								//
 								// Set the default value of the clsoing character to #.
 								//
-								.SetDefaultValue(type == "closing" ? "\"#\"" : null)
+								.SetDefaultValue(tbl.Data.Type == "closing" ? "\"#\"" : null)
 								//
-								//  
+								// 
 								//
-								.SetPrecision(Convert.ToInt32(precision))
+								.SetPrecision(tbl.Data.Precision)
 								//
 								// Add the property attributes.
 								//
@@ -166,115 +182,198 @@ namespace Mail.dat.CodeBuilder
 									//
 									AttributeBuilder.Create("MaildatField")
 										.AddParameter("Extension", fileExtension)
-										.AddParameter("FieldCode", tbl["fieldCode"].ToString())
-										.AddParameter("FieldName", tbl["fieldName"].ToString().Sanitize().Transform(To.SentenceCase))
-										.AddParameter("Start", tbl["start"].ToString(), false)
-										.AddParameter("Length", length, false)
-										.AddParameter("Required", tbl["required"].ToString().ToLower(), false)
-										.AddParameter("Key",  tbl["key"].ToString().ToLower(), false)
-										.AddParameter("DataType", dataType)
-										.AddParameter("Default", tbl["default"]?.ToString())
+										.AddParameter("FieldCode", tbl.FieldCode)
+										.AddParameter("FieldName", tbl.FieldName.Sanitize().Transform(To.SentenceCase))
+										.AddParameter("Start", tbl.Start)
+										.AddParameter("Length", tbl.Length)
+										.AddParameter("Required", tbl.Required)
+										.AddParameter("Key",  tbl.Key)
+										.AddParameter("DataType", tbl.DataType)
+										.AddParameter("Default", tbl.Default)
 										.AddParameter("Description", description)
-										.AddParameter("Type", type)
-										.AddParameter("Format", tbl["data"]["format"]?.ToString())
-										.AddParameter("Precision", precision, false)
-										.AddParameter("References", string.Join(",", references)),
+										.AddParameter("Type", tbl.Data.Type)
+										.AddParameter("Format", tbl.Data.Format)
+										.AddConditionalParameter(tbl.Data.Precision.HasValue, "Precision", tbl.Data.Precision)
+										.AddConditionalParameter(tbl.Data.References != null && tbl.Data.References.Count != 0, "References", string.Join(",", tbl.Data.References)),
 									//
 									// Add the column attribute for compatibility to EF Core.
 									//
 									AttributeBuilder.Create("Column")
 										.AddParameter("", propertyName)
-										.AddParameter("Order", (columnOrder++).ToString(), false),
+										.AddParameter("Order", columnOrder++)
+										.AddParameter("TypeName", tbl.Data.Type.ToSqliteType(tbl.DataType)),
 									//
 									// Add a Required attribute if this field is required.
 									//
-									isRequired ? AttributeBuilder.Create("Required") : null,
+									AttributeBuilder.CreateConditional(
+										tbl.Required,
+										"Required"),
 									//
 									// Add a Key attribute if this field is a key.
 									//
-									isKey ? AttributeBuilder.Create("MaildatKey") : null,
+									AttributeBuilder.CreateConditional(
+										tbl.Key,
+										"MaildatKey"),
 									//
 									// Add a MaxLength attribute if this field is a string.
 									//
-									type.ToDotNetType(dataType, isRequired) == "string" ? AttributeBuilder.Create("MaxLength").AddParameter("", length, false) : null,
+									AttributeBuilder.CreateConditional(
+										tbl.Data.Type.ToDotNetType(tbl.DataType, tbl.Required) == "string",
+										"MaxLength",
+										AttributeParameter.Create("", tbl.Length)),
 									//
 									// Add the allowed values.
 									//
-									values.Count != 0 ?
-										AttributeBuilder.Create("AllowedValues")
-											.AddParameters(values.Select(t => new AttributeParameter() { Name = "", Value = t.Key, Quoted = true }).ToList())
-									: null,
+									AttributeBuilder.CreateConditional(
+										tbl.Data.Values != null && tbl.Data.Values.Count != 0,
+										"AllowedValues",
+										[.. (from tbl in tbl.Data.Values
+										 select AttributeParameter.Create("", tbl.Key))]),
 									//
 									// Add allowed values for the closing field.
 									//
-									type=="closing" ?
-										AttributeBuilder.Create("AllowedValues")
-											.AddParameter("", "#")
-									: null,
-									Convert.ToInt32(precision) > 0 ?
-										AttributeBuilder.Create("Precision")
-											.AddParameter("", precision, false)
-											: null,
+									AttributeBuilder.CreateConditional(
+										tbl.Data.Type=="closing",
+										"AllowedValues",
+										AttributeParameter.Create("", "#")),
+									//
+									// Add the precision attribute if this field has a precision value.
+									//
+									AttributeBuilder.CreateConditional(
+										tbl.Data.Precision.HasValue,
+										"Precision",
+										AttributeParameter.Create("", tbl.Data.Precision)),
+									//
+									// Add the comment attribute to preserve the field code and name.
+									//
 									AttributeBuilder.Create("Comment")
-										.AddParameter("", tbl["fieldCode"].ToString()),
+										.AddParameter("", tbl.FieldCode),
 									//
 									// Add the type converter for date fields.
 									//
-									type == "date" ?
-										AttributeBuilder.Create("TypeConverter")
-											.AddParameter("", "typeof(MaildatDateConverter)", false)
-										: null,
+									AttributeBuilder.CreateConditional(
+										tbl.Data.Type == "date",
+										"TypeConverter",
+										AttributeParameter.Create("", typeof(MaildatDateConverter))),
 									//
 									// Add the type converter for time fields.
 									//
-									type == "time" ?
-										AttributeBuilder.Create("TypeConverter")
-											.AddParameter("", "typeof(MaildatTimeConverter)", false)
-										: null,
+									AttributeBuilder.CreateConditional(
+										tbl.Data.Type == "time",
+										"TypeConverter",
+										AttributeParameter.Create("", typeof(MaildatTimeConverter))),
 									//
-									// Add the type converter for time fields.
+									// Add the type converter for integer fields.
 									//
-									type == "integer" && dataType == "N" ?
-										AttributeBuilder.Create("TypeConverter")
-											.AddParameter("", "typeof(MaildatIntegerConverter)", false)
-										: null,
+									AttributeBuilder.CreateConditional(
+										tbl.Data.Type == "integer" && tbl.DataType == "N",
+										"TypeConverter",
+										AttributeParameter.Create("", typeof(MaildatIntegerConverter))),
 									//
-									// Add the type converter for time fields.
+									// Add the type converter for decimal fields.
 									//
-									type == "decimal" ?
-										AttributeBuilder.Create("TypeConverter")
-											.AddParameter("", "typeof(MaildatDecimalConverter)", false)
-										: null
+									AttributeBuilder.CreateConditional(
+										tbl.Data.Type == "decimal",
+										"TypeConverter",
+										AttributeParameter.Create("", typeof(MaildatDecimalConverter))),
+									//
+									// Add the type converter for string fields.
+									//
+									AttributeBuilder.CreateConditional(
+										tbl.Data.Type == "string",
+										"TypeConverter",
+										AttributeParameter.Create("", typeof(MaildatStringConverter))),
+									//
+									// Add the type converter for closing fields.
+									//
+									AttributeBuilder.CreateConditional(
+										tbl.Data.Type == "closing",
+										"TypeConverter",
+										AttributeParameter.Create("", typeof(MaildatClosingConverter))),
+									//
+									// Add the type converter for enum fields.
+									//
+									AttributeBuilder.CreateConditional(
+										tbl.Data.Type == "enum",
+										"TypeConverter",
+										AttributeParameter.Create("", typeof(MaildatEnumConverter))),
+									//
+									// Add the type converter for reserve fields.
+									//
+									AttributeBuilder.CreateConditional(
+										tbl.Data.Type == "reserve",
+										"TypeConverter",
+										AttributeParameter.Create("", typeof(MaildatReserveConverter))),
+									//
+									// Add the type converter for reserve fields.
+									//
+									AttributeBuilder.CreateConditional(
+										tbl.Data.Type == "zipcode",
+										"TypeConverter",
+										AttributeParameter.Create("", typeof(MaildatZipCodeConverter)))
 								])
 						])
-						.AddMethod(MethodBuilder.Create("OnLoadData")
+						//.AddMethod(MethodBuilder.Create("OnImportDataAsync")
+						//	.SetScope("protected override ")
+						//	.SetReturnType("async Task<ILoadError[]>")
+						//	.SetSummary("Sets property values from one line of an import file.")
+						//	.AddParameter("int", "fileLineNumber")
+						//	.AddParameter("byte[]", "line")
+						//	.AddCode("List<ILoadError> returnValue = [];")
+						//	.AddCode("")
+						//	.AddCode("await this.MultipleActionsAsync")
+						//	.AddCode("(")
+						//	.AddCode(
+						//		[.. from tbl in fileDefinition.RecordDefinitions
+						//			let propertyName = tbl.FieldName.ToPropertyName(tbl.FieldCode)
+						//			select $"\t() => this.{propertyName} = line.ParseForImport<{fileExtension.ToClassName()}, {tbl.Data.Type.ToDotNetType(tbl.DataType, tbl.Required)}>(p => p.{propertyName}, returnValue),"
+						//		]
+						//	)
+						//	.AddCode("\t() => this.FileLineNumber = fileLineNumber")
+						//	.AddCode(");")
+						//	.AddCode("")
+						//	.AddCode("return returnValue.ToArray();")
+						//)
+						.AddMethod(MethodBuilder.Create("OnImportDataAsync")
 							.SetScope("protected override ")
-							.SetReturnType("ILoadError[]")
+							.SetReturnType("Task<ILoadError[]>")
 							.SetSummary("Sets property values from one line of an import file.")
 							.AddParameter("int", "fileLineNumber")
 							.AddParameter("byte[]", "line")
 							.AddCode("List<ILoadError> returnValue = [];")
 							.AddCode("")
-							.AddCode("this.FileLineNumber = fileLineNumber;")
 							.AddCode(
-								[.. from tbl in (JArray)attribute["recordDefinitions"]
-									let propertyName = tbl["fieldName"].ToPropertyName(tbl["fieldCode"])
-									let dataType = tbl["dataType"].ToString()
-									let type = tbl["data"]["type"].ToString()
-									let isRequired = tbl["required"].ToString().Equals("true", StringComparison.CurrentCultureIgnoreCase)
-									select $"this.{propertyName} = line.Parse<{fileExtension.ToClassName()}, {type.ToDotNetType(dataType, isRequired)}>(p => p.{propertyName}, returnValue);"
+								[.. from tbl in fileDefinition.RecordDefinitions
+									let propertyName = tbl.FieldName.ToPropertyName(tbl.FieldCode)
+									select $"this.{propertyName} = line.ParseForImport<{fileExtension.ToClassName()}, {tbl.Data.Type.ToDotNetType(tbl.DataType, tbl.Required)}>(p => p.{propertyName}, returnValue);"
+								]
+							)
+							.AddCode("this.FileLineNumber = fileLineNumber;")
+							.AddCode("")
+							.AddCode("return Task.FromResult<ILoadError[]>(returnValue.ToArray());")
+						)
+						.AddMethod(MethodBuilder.Create("OnExportDataAsync")
+							.SetScope("protected override ")
+							.SetReturnType("Task<string>")
+							.SetSummary("Formats all property values into a single line suitable for export.")
+							.AddCode("StringBuilder sb = new();")
+							.AddCode("")
+							.AddCode(
+								[.. from tbl in fileDefinition.RecordDefinitions
+									let propertyName = tbl.FieldName.ToPropertyName(tbl.FieldCode)
+									select $"sb.Append(this.{propertyName}.FormatForExport<{fileExtension.ToClassName()}, {tbl.Data.Type.ToDotNetType(tbl.DataType, tbl.Required)}>(p => p.{propertyName}));"
 								]
 							)
 							.AddCode("")
-							.AddCode("return returnValue.ToArray();")
+							.AddCode("return Task.FromResult(sb.ToString());")
 						)
 						.Build($"{options.ClassOutputDirectory}/{fileExtension.ToClassFileName()}", 1));
 
-		//
-		// Create an interface for this file.
-		//
-		AnsiConsole.MarkupLine("\tBuilding [yellow]interface[/] file.");
-					interfaces.Add(ClassBuilder.Create($"I{fileExtension.ToInterfaceName()}")
+					//
+					// Create an interface for this file.
+					//
+					AnsiConsole.MarkupLine("\tBuilding [yellow]interface[/] file.");
+					interfaces.Add(ClassBuilder.Create($"{fileExtension.ToInterfaceName()}")
 						.SetHeaderComments(
 						[
 							"",
@@ -286,7 +385,7 @@ namespace Mail.dat.CodeBuilder
 							"by the Open Mail.dat Code Generator.",
 							"",
 							"Author: Daniel M porrey",
-							$"Version {version.Replace("-", ".")}.{revision}",
+							$"Version {specificationFile.Version.Major.Replace("-", ".")}.{specificationFile.Version.Revision}",
 							""
 						])
 						.SetNameSpace("Mail.dat")
@@ -294,27 +393,18 @@ namespace Mail.dat.CodeBuilder
 						.SetObjectType("interface")
 						.SetScope("public")
 						.SetPartial(false)
-						.AddImplements(ImplementsBuilder.Create(options.AddTrackingFields ? "IMaildatEntity" : "IEntity<int>"))
+						.AddImplements("IMaildatEntity")
 						.AddProperties(
 						[..
 							//
 							// Add the properties from the JSON file.
 							//
-							from tbl in (JArray)attribute["recordDefinitions"]
+							from tbl in fileDefinition.RecordDefinitions
 							//
 							// Read some of the variables so they can be used multiple times.
 							//
-							let propertyName = tbl["fieldName"].ToPropertyName(tbl["fieldCode"])
-							let fieldCode = tbl["fieldCode"].ToString()
-							let dataType = tbl["dataType"].ToString()
-							let isRequired = tbl["required"].ToString().Equals("true", StringComparison.CurrentCultureIgnoreCase)
-							let isKey = tbl["key"].ToString().Equals("true", StringComparison.CurrentCultureIgnoreCase)
-							let description = string.Join(" ", tbl["description"].Select(t => t.ToString().Sanitize().Transform(To.SentenceCase))).EndSentence()
-							let type = tbl["data"]["type"].ToString()
-							let length = tbl["length"].ToString()
-							let precision = tbl["data"]["precision"]?.ToString()
-							let values = !string.IsNullOrWhiteSpace(tbl["data"]["values"]?.ToString()) ? tbl["data"]["values"].ToObject<Dictionary<string, string>>() : []
-							let references = !string.IsNullOrWhiteSpace(tbl["data"]["references"]?.ToString()) ? tbl["data"]["references"].ToObject<List<string>>() : []
+							let propertyName = tbl.FieldName.ToPropertyName(tbl.FieldCode)
+							let description = string.Join(" ", tbl.Description.Select(t => t.Sanitize().Transform(To.SentenceCase))).EndSentence()
 							//
 							// Create the class property. If the name is Reserve, then append th field code because a
 							// class may have more than one reserve field.
@@ -327,15 +417,15 @@ namespace Mail.dat.CodeBuilder
 								//
 								// Set the return type using a ntive .NET type.
 								//
-								.SetReturnType(type.ToDotNetType(dataType, isRequired))
+								.SetReturnType(tbl.Data.Type.ToDotNetType(tbl.DataType, tbl.Required))
 								//
 								// Add a summary made up of the code, name and description.
 								//
-								.SetSummary($"{tbl["fieldName"].ToString().Sanitize()} ({tbl["fieldCode"]})", description)
+								.SetSummary($"{tbl.FieldName.Sanitize()} ({tbl.FieldCode})", description)
 								//
 								// Make these fields read-only.
 								//
-								.SetReadOnly(type == "closing")
+								.SetReadOnly(tbl.Data.Type == "closing")
 							])
 						.Build($"{options.InterfaceOutputDirectory}/I{fileExtension.Pascalize()}.cs", 1));
 
@@ -358,7 +448,7 @@ namespace Mail.dat.CodeBuilder
 						"by the Open Mail.dat Code Generator.",
 						"",
 						"Author: Daniel M porrey",
-						$"Version {version.Replace("-", ".")}.{revision}",
+						$"Version {specificationFile.Version.Major.Replace("-", ".")}.{specificationFile.Version.Revision}",
 						""
 					])
 					.SetNameSpace("Mail.dat")
@@ -369,7 +459,7 @@ namespace Mail.dat.CodeBuilder
 					.SetObjectType("class")
 					.SetScope("public")
 					.SetPartial(true)
-					.AddImplements(ImplementsBuilder.Create($"RepositoryContext<{options.DatabaseContextName}>"))
+					.AddImplements($"RepositoryContext<{options.DatabaseContextName}>")
 					.AddConstructor(MethodBuilder.Create(options.DatabaseContextName)
 						.SetScope("public")
 						.SetBase("base()")
@@ -382,28 +472,31 @@ namespace Mail.dat.CodeBuilder
 						.AddCode($"logger.LogDebug(\"Created {{context}}.\", nameof({options.DatabaseContextName}));")
 					)
 					.AddProperties(
-					[
-						PropertyBuilder.Create("ImportErrors")
-							.SetScope("public")
-							.SetReturnType($"DbSet<ImportError>")
-					])
-					.AddProperties(
 						[..
 						//
 						// Add the properties from the JSON file.
 						//
-						from tbl in classes
-						select PropertyBuilder.Create(tbl.Name)
+						from tbl in specificationFile.Files.OrderBy(t => t.Ordinal)
+						select PropertyBuilder.Create(tbl.FileExtension.ToClassName())
 							//
 							// All properties will be set to public.
 							//
 							.SetScope("public")
 							//
 							// Set the return type using a ntive .NET type.
-
 							//
-							.SetReturnType($"DbSet<{tbl.Name}>")
+							.SetReturnType($"DbSet<{tbl.FileExtension.ToClassName()}>")
+							.AddAttributes(
+								AttributeBuilder.Create("MaildatExport")
+									.AddParameter("Order", tbl.Ordinal)
+							)
 						])
+					.AddProperties(
+					[
+						PropertyBuilder.Create("Errors")
+							.SetScope("public")
+							.SetReturnType($"DbSet<Error>")
+					])
 					.AddMethod(MethodBuilder.Create("OnModelCreating")
 						.SetScope("protected override void")
 						.AddParameter("ModelBuilder", "modelBuilder")
@@ -423,7 +516,7 @@ namespace Mail.dat.CodeBuilder
 			}
 			else
 			{
-				foreach (Error error in result.Errors)
+				foreach (CommandLine.Error error in result.Errors)
 				{
 					AnsiConsole.MarkupLine($"[red]Error:[/] '[white]{error}[/]'");
 				}

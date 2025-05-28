@@ -1,9 +1,9 @@
 ﻿namespace Mail.dat
 {
-    /// <summary>
-    /// Attribute to specify the number of decimal places for a property.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Class)]
+	/// <summary>
+	/// Attribute to specify the characteristics of a Maildat fle.
+	/// </summary>
+	[AttributeUsage(AttributeTargets.Class)]
     public class MaildatFileAttribute : Attribute
     {
         public MaildatFileAttribute()

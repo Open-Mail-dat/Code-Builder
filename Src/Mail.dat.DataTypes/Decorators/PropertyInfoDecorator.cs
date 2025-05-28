@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Globalization;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
@@ -10,7 +11,11 @@ namespace Mail.dat
 		public static TAttribute GetAttribute<TAttribute>(this Type type)
 			where TAttribute : Attribute
 		{
-			return type.GetCustomAttributes(typeof(TAttribute), inherit: true).FirstOrDefault() as TAttribute;
+			TAttribute returnValue = null;
+
+			returnValue = type.GetCustomAttributes(typeof(TAttribute), inherit: true).FirstOrDefault() as TAttribute;
+
+			return returnValue;
 		}
 
 		public static IEnumerable<PropertyInfo> GetPropertiesWithAttribute<TAttribute>(this Type type)
@@ -41,7 +46,7 @@ namespace Mail.dat
 			return returnValue;
 		}
 
-		public static TValue Parse<TModel, TValue>(this byte[] line, Expression<Func<TModel, TValue>> propertyExpression, IList<ILoadError> errors)
+		public static TValue ParseForImport<TModel, TValue>(this byte[] line, Expression<Func<TModel, TValue>> propertyExpression, IList<ILoadError> errors)
 		{
 			TValue returnValue = default;
 
@@ -70,19 +75,52 @@ namespace Mail.dat
 					//
 					// try to convert.
 					//
-					returnValue = (TValue)typeConverter.ConvertFrom(value);
+					returnValue = (TValue)typeConverter.ConvertFrom(new ConverterContext(value, propInfo.GetCustomAttribute<MaildatFieldAttribute>()), CultureInfo.CurrentCulture, value);
 				}
-				catch(Exception ex)
+				catch (Exception ex)
 				{
 					//
 					// If the conversion fails, set the load error.
 					//
-					errors.Add(new LoadError()
+					lock (errors)
 					{
-						Attribute = attribute,
-						Value = value,
-						ErrorMessage = ex.Message //$"Could not convert from string to '{propInfo.PropertyType.Name}'. {ex.Message}",
-					});
+						errors.Add(new LoadError()
+						{
+							Attribute = attribute,
+							Value = value,
+							ErrorMessage = ex.Message
+						});
+					}
+				}
+			}
+
+			return returnValue;
+		}
+
+		public static string FormatForExport<TModel, TValue>(this TValue value, Expression<Func<TModel, TValue>> propertyExpression)
+		{
+			string returnValue = null;
+
+			//
+			// Get PropertyInfo from the expression.
+			//
+			if (propertyExpression.Body is MemberExpression memberExpr && memberExpr.Member is PropertyInfo propInfo)
+			{
+				//
+				// Get the type converter defined in the property attribute.
+				//
+				TypeConverter typeConverter = propInfo.GetTypeConverter();
+
+				try
+				{
+					//
+					// Try to convert.
+					//
+					returnValue = typeConverter.ConvertToString(new ConverterContext(value, propInfo.GetCustomAttribute<MaildatFieldAttribute>()), value);
+				}
+				catch
+				{
+
 				}
 			}
 

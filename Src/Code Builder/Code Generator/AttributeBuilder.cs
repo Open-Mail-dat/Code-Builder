@@ -1,9 +1,32 @@
-﻿namespace Mail.dat.CodeBuilder
+﻿using System.ComponentModel;
+
+namespace Mail.dat.CodeBuilder
 {
 	public class AttributeParameter
 	{
+		public AttributeParameter()
+		{
+		}
+
+		public AttributeParameter(string name, object value)
+		{
+			this.Name = name;
+			this.Value = value;
+			this.Quoted = (value is string);
+		}
+
+		public static AttributeParameter Create(string name, object value)
+		{
+			return new AttributeParameter()
+			{
+				Name = name,
+				Value = value,
+				Quoted = (value is string)
+			};
+		}
+
 		public string Name { get; set; }
-		public string Value { get; set; }
+		public object Value { get; set; }
 		public bool Quoted { get; set; }
 	}
 
@@ -17,9 +40,36 @@
 			return new AttributeBuilder() { Name = attributeName };
 		}
 
-		public AttributeBuilder AddParameter(string name, string value, bool quoted = true)
+		public static AttributeBuilder CreateConditional(bool condition, string attributeName, params IEnumerable<AttributeParameter> items)
 		{
-			this.Parameters.Add(new AttributeParameter() { Name = name, Value= value, Quoted	= quoted });
+			AttributeBuilder returnValue = null;
+
+			if (condition)
+			{
+				returnValue = new AttributeBuilder()
+				{
+					Name = attributeName
+				};
+
+				returnValue.Parameters.AddRange(items);
+			}
+
+			return returnValue;
+		}
+
+		public AttributeBuilder AddParameter(string name, object value)
+		{
+			this.Parameters.Add(AttributeParameter.Create(name, value));
+			return this;
+		}
+
+		public AttributeBuilder AddConditionalParameter(bool condition, string name, object value)
+		{
+			if (condition)
+			{
+				this.AddParameter(name, value);
+			}
+
 			return this;
 		}
 
@@ -48,22 +98,48 @@
 
 			foreach (AttributeParameter parameter in this.Parameters)
 			{
-				if (!string.IsNullOrWhiteSpace(parameter.Value))
+				if (parameter.Value != null)
 				{
+					TypeConverter converter = TypeDescriptor.GetConverter(parameter.Value.GetType());
+					string stringValue = Convert.ToString(parameter.Value);
+
+					//
+					// Perform special conversions for certain types.
+					//
+					if (parameter.Value is bool)
+					{
+						stringValue = stringValue.ToLower();
+					}
+					else if (parameter.Value is Type type)
+					{
+						stringValue = $"typeof({type.Name})";
+					}
+
+					//
+					// Put quotes around the value if the parameter is quoted.
+					//
+					if (parameter.Quoted)
+					{
+						stringValue = $"\"{stringValue}\"";
+					}
+
+					//
+					// If the parameter has no name, just use the value.
+					//
 					if (string.IsNullOrWhiteSpace(parameter.Name))
 					{
-						fields.Add($"{(parameter.Quoted ? "\"" : "")}{parameter.Value}{(parameter.Quoted ? "\"" : "")}");
+						fields.Add(stringValue);
 					}
 					else
 					{
-						fields.Add($"{parameter.Name} = {(parameter.Quoted ? "\"" : "")}{parameter.Value}{(parameter.Quoted ? "\"" : "")}");
+						fields.Add($"{parameter.Name} = {stringValue}");
 					}
 				}
 			}
 
 			attributeString += string.Join(", ", fields);
 
-			if (this.Parameters.Any())
+			if (this.Parameters.Count != 0)
 			{
 				attributeString += ")";
 			}

@@ -1,0 +1,70 @@
+﻿using Mail.dat.Io.Models;
+
+namespace Mail.dat.Io
+{
+	internal class FileExporter
+	{
+		public ProgressAsyncDelegate ProgressUpdateAsync { get; set; }
+
+		public async Task<bool> ExportAsync<T>(IExportOptions options, Type entityType, IQueryable<IMaildatEntity> items, CancellationToken cancellationToken) where T : class, IMaildatEntity, new()
+		{
+			bool returnValue = true;
+
+			int lineCount = items.Count();
+
+			if (lineCount > 0)
+			{
+				//
+				// Get the MaildatFileAttribute attribute.
+				//
+				MaildatFileAttribute classAttribute = typeof(T).GetAttribute<MaildatFileAttribute>();
+
+				//
+				// Get the path for the export file.
+				//
+				string filePath = $"{Path.GetDirectoryName(options.File.FilePath)}/{Path.GetFileNameWithoutExtension(options.File.FilePath)}.{classAttribute.Extension}";
+
+				//
+				// Delete the target file if it exists.
+				//
+				if (File.Exists(filePath))
+				{
+					File.Delete(filePath);
+				}
+
+				//
+				// Open the file for reading.
+				//
+				using (FileStream io = new(filePath, FileMode.CreateNew, FileAccess.Write))
+				{
+					//
+					// Write the file in binary mode.
+					//
+					using (StreamWriter writer = new(io, options.Encoding))
+					{
+						int lineNumber = 1;
+
+						foreach (IMaildatEntity item in items.OrderBy(t => t.FileLineNumber))
+						{
+							string line = await item.ExportDataAsync() + options.LineTerminator;
+							writer.Write(line);
+
+							//
+							// Send a progress update.
+							//
+							await this.FireProgressUpdateAsync(new ProgressMessage() { ItemAction = ProgressMessageType.ImportExport, ItemName = classAttribute.File, ItemSource = filePath, ItemIndex = lineNumber++, ItemCount = lineCount });
+						}
+					}
+				}
+			}
+
+			return returnValue;
+		}
+
+		protected Task FireProgressUpdateAsync(IProgressMessage message)
+		{
+			this.ProgressUpdateAsync?.Invoke(message);
+			return Task.CompletedTask;
+		}
+	}
+}

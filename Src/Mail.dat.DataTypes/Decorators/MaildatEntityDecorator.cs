@@ -1,7 +1,7 @@
 ﻿namespace Mail.dat
 {
 	/// <summary>
-	/// Provides a set of methods that can be performed on any <see cref="IPlatinumEntity"/>
+	/// Provides a set of methods that can be performed on any <see cref="IMaildatEntity"/>
 	/// entity model.
 	/// </summary>
 	public static class MaildatEntityDecorator

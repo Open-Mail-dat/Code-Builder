@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 23rd, 2025.
+// This code was auto-generated on May 27th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -15,7 +15,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Quantity, weights and destination per container.
 	/// </summary>
-	public interface IICsm : IMaildatEntity
+	public interface ICsm : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (CSM-1001)
@@ -131,7 +131,7 @@ namespace Mail.dat
 		/// Populated ONLY for those child containers linked to a parent container; if container is parent only,
 		/// then field is blank.
 		/// </summary>
-		int ParentContainerReferenceID { get; set; }
+		int? ParentContainerReferenceID { get; set; }
 
 		/// <summary>
 		/// Truck or Dispatch Number (CSM-1110)
@@ -188,7 +188,7 @@ namespace Mail.dat
 		/// Additional In-Home Range (CSM-1116)
 		/// Additional days in In-Home Range (values = 0,1,2,3,4,5,6,7,8,9).
 		/// </summary>
-		int AdditionalInHomeRange { get; set; }
+		int? AdditionalInHomeRange { get; set; }
 
 		/// <summary>
 		/// Scheduled Induction Start Date (CSM-1117)
@@ -325,7 +325,7 @@ namespace Mail.dat
 		/// Identifies the original container with which this Sibling Container is associated, if such
 		/// relationship exists. Blank if no such relationship.
 		/// </summary>
-		int SiblingContainerReferenceID { get; set; }
+		int? SiblingContainerReferenceID { get; set; }
 
 		/// <summary>
 		/// Postage Grouping ID (CSM-1136)
@@ -337,13 +337,13 @@ namespace Mail.dat
 		/// Container Gross Weight (CSM-1137)
 		/// 99999999v9999, (decimal point implied) Inclusive of mail and container.
 		/// </summary>
-		decimal ContainerGrossWeight { get; set; }
+		decimal? ContainerGrossWeight { get; set; }
 
 		/// <summary>
 		/// Container Height (CSM-1139)
 		/// (value in inches, no decimal) (inclusive of mail and container).
 		/// </summary>
-		int ContainerHeight { get; set; }
+		int? ContainerHeight { get; set; }
 
 		/// <summary>
 		/// EMD - 8125 ASN Barcode (CSM-1141)
@@ -371,7 +371,7 @@ namespace Mail.dat
 		/// CRID for eInduction errors invoicing on mis-shipped errors in excess of scorecard thresholds. Left
 		/// justify, space padded to the right, only digits 0 - 9 acceptable.
 		/// </summary>
-		int FASTSchedulerID { get; set; }
+		int? FASTSchedulerID { get; set; }
 
 		/// <summary>
 		/// USPS Pick Up (CSM-1171)
@@ -383,7 +383,7 @@ namespace Mail.dat
 		/// The CSA Separation ID is the separation number as defined in the USPS Guide to Customer/Supplier
 		/// Agreements.
 		/// </summary>
-		int CSASeparationID { get; set; }
+		int? CSASeparationID { get; set; }
 
 		/// <summary>
 		/// Scheduled Ship Date (CSM-1172)
@@ -573,7 +573,7 @@ namespace Mail.dat
 		/// relocations may possibly have values of zero for the aforementioned fields, if it exists solely for
 		/// the purpose of receiving such relocations.
 		/// </summary>
-		int SupplementalPhysicalContainerID { get; set; }
+		int? SupplementalPhysicalContainerID { get; set; }
 
 		/// <summary>
 		/// Accept Misshipped (CSM-1188)

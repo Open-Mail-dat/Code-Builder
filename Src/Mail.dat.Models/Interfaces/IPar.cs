@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 23rd, 2025.
+// This code was auto-generated on May 27th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -15,7 +15,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Notes technique and reports postage adjustment per container.
 	/// </summary>
-	public interface IIPar : IMaildatEntity
+	public interface IPar : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (PAR-1001)
@@ -69,7 +69,7 @@ namespace Mail.dat
 		/// Total Pieces Affected (PAR-1106)
 		/// (0 [zero] is a permitted value).
 		/// </summary>
-		int TotalPiecesAffected { get; set; }
+		int? TotalPiecesAffected { get; set; }
 
 		/// <summary>
 		/// User Comments (PAR-1105)

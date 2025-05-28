@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 23rd, 2025.
+// This code was auto-generated on May 27th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -15,7 +15,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Provide the detailed information that is present on the Certificate of Mail Forms.
 	/// </summary>
-	public interface IICdr : IMaildatEntity
+	public interface ICdr : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (CDR-1001)
@@ -108,7 +108,7 @@ namespace Mail.dat
 		/// Fee (CDR-1112)
 		/// Fee for Certificate of Mailing;  dollars.
 		/// </summary>
-		decimal Fee { get; set; }
+		decimal? Fee { get; set; }
 
 		/// <summary>
 		/// PAL Fee Indicator (CDR-1113)
@@ -120,7 +120,7 @@ namespace Mail.dat
 		/// PAL Fee Amount (CDR-1114)
 		/// Fee for Parcel Airlift; dollars.
 		/// </summary>
-		decimal PALFeeAmount { get; set; }
+		decimal? PALFeeAmount { get; set; }
 
 		/// <summary>
 		/// Piece ID (CDR-1115)

@@ -29,14 +29,24 @@ namespace Mail.dat
 		[Column("ModifiedBy", Order = 9999)]
 		public string ModifiedBy { get; set; }
 
-		public virtual ILoadError[] LoadData(int lineNumber, byte[] line)
+		public virtual Task<ILoadError[]> ImportDataAsync(int lineNumber, byte[] line)
 		{
-			return this.OnLoadData(lineNumber, line);
+			return this.OnImportDataAsync(lineNumber, line);
 		}
 
-		protected virtual ILoadError[] OnLoadData(int lineNumber, byte[] line)
+		public virtual Task<string> ExportDataAsync()
 		{
-			return [];
+			return this.OnExportDataAsync();
+		}
+
+		protected virtual Task<ILoadError[]> OnImportDataAsync(int lineNumber, byte[] line)
+		{
+			return Task.FromResult<ILoadError[]>([]);
+		}
+
+		protected virtual Task<string> OnExportDataAsync()
+		{
+			return Task.FromResult<string>(null);
 		}
 	}
 }

@@ -16,7 +16,7 @@ namespace Mail.dat
 	/// 
 	/// </summary>
 	[PrimaryKey("Id")]
-	public partial class ImportError : MaildatEntity
+	public partial class Error : MaildatEntity, IError
 	{
 		/// <summary>
 		/// The unique identifier for the record.
@@ -26,35 +26,39 @@ namespace Mail.dat
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public new int Id { get; set; }
 
-		[MaxLength(3)]
+		[MaxLength(100)]
 		[Column(Order = 1)]
+		public string Process { get; set; }
+
+		[MaxLength(3)]
+		[Column(Order = 2)]
 		public string File { get; set; }
 
-		[Column(Order = 2)]
+		[Column(Order = 3)]
 		public string FieldName { get; set; }
 
-		[Column(Order = 3)]
+		[Column(Order = 4)]
 		public string FieldCode { get; set; }
 
-		[Column(Order = 4)]
+		[Column(Order = 5)]
 		public string DataType { get; set; }
 
-		[Column(Order = 5)]
+		[Column(Order = 6)]
 		public string Type { get; set; }
 
-		[Column(Order = 6)]
+		[Column(Order = 7)]
 		public int LineNumber { get; set; }
 
-		[Column(Order = 7)]
+		[Column(Order = 8)]
 		public int StartPosition { get; set; }
 
 		[Column(Order = 8)]
 		public int Length { get; set; }
 
-		[Column(Order = 9)]
+		[Column(Order = 10)]
 		public string Value { get; set; }
 
-		[Column(Order = 10)]
+		[Column(Order = 11)]
 		public string ErrorMessage { get; set; }
 	}
 }

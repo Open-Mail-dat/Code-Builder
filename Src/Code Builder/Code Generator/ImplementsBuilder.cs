@@ -2,12 +2,7 @@
 {
 	public class ImplementsBuilder : ICodeBuilder<ImplementsBuilder>
 	{
-		public List<string> Items { get; internal set; }
-
-		public static ImplementsBuilder Create(params List<string> items)
-		{
-			return new ImplementsBuilder() { Items = items };
-		}
+		public List<string> Items { get; } = [];
 
 		public ImplementsBuilder Add(string item)
 		{
@@ -20,25 +15,29 @@
 			if (this.Items.Count != 0)
 			{
 				//
+				// Get the first item that does not start with "I".
+				//
+				string classItem = this.Items.FirstOrDefault(item => !item.StartsWith("I", StringComparison.OrdinalIgnoreCase));
+
+				//
+				// Get the items that start with an "I".
+				//
+				IEnumerable<string> interfaces = this.Items.Where(item => item.StartsWith("I", StringComparison.OrdinalIgnoreCase));
+
+				//
+				// Create a new list with the class first and the interfaces after.
+				//
+				IEnumerable<string> items = (new string[] { classItem }).Union(interfaces).Where(t => t != null);
+
+				//
+				// Combine all of the itmes as a comma separated list.
+				//
+				string list = string.Join(", ", items);
+
+				//
 				// Write the name.
 				//
-				foreach (string item in this.Items)
-				{
-					if (item == this.Items.First())
-					{
-						File.AppendAllText(filePath, " : ");
-					}
-
-					if (item != this.Items.Last())
-					{
-						File.AppendAllText(filePath, item);
-						File.AppendAllText(filePath, ", ");
-					}
-					else
-					{
-						File.AppendAllLines(filePath, [item]);
-					}
-				}
+				File.AppendAllLines(filePath, [$" : {list} "]);
 			}
 			else
 			{

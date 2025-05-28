@@ -5,7 +5,7 @@
 		public string Name { get; internal set; }
 		public List<MethodBuilder> Constructors { get; } = [];
 		public List<AttributeBuilder> Attributes { get; } = [];
-		public ImplementsBuilder Implements { get; set; }
+		public ImplementsBuilder Implements { get; set; } = new();
 		public List<string> Using { get; } = [];
 		public string NameSpace { get; internal set; }
 		public string ObjectType { get; internal set; }
@@ -27,9 +27,9 @@
 			return this;
 		}
 
-		public ClassBuilder AddImplements(ImplementsBuilder implements)
+		public ClassBuilder AddImplements(string implements)
 		{
-			this.Implements = implements;
+			this.Implements.Add(implements);
 			return this;
 		}
 

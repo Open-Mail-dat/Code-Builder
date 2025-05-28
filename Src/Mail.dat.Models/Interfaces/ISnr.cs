@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 23rd, 2025.
+// This code was auto-generated on May 27th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -15,7 +15,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Identifies package/container of seed names within the presort.
 	/// </summary>
-	public interface IISnr : IMaildatEntity
+	public interface ISnr : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (SNR-1001)

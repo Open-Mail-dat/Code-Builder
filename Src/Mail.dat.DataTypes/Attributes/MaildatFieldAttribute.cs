@@ -16,7 +16,7 @@
     }
 
     /// <summary>
-    /// Attribute to specify the number of decimal places for a property.
+    /// Attribute to specify the characteristics of a Maildat field.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public class MaildatFieldAttribute : Attribute

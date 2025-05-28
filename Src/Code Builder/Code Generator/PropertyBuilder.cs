@@ -9,7 +9,7 @@
 		public SummaryBuilder Summary { get; internal set; }
 		public string DefaultValue { get; internal set; }
 		public bool ReadOnly { get; internal set; } = false;
-		public int Precision { get; internal set; } = 0;
+		public int? Precision { get; internal set; } = null;
 
 		public static PropertyBuilder Create(string name)
 		{
@@ -52,7 +52,7 @@
 			return this;
 		}
 
-		public PropertyBuilder SetPrecision(int precision)
+		public PropertyBuilder SetPrecision(int? precision)
 		{
 			this.Precision = precision;
 			return this;

@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 23rd, 2025.
+// This code was auto-generated on May 27th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -15,7 +15,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Records identify third party move update entities that should be invoiced.
 	/// </summary>
-	public interface IIEpd : IMaildatEntity
+	public interface IEpd : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (EPD-1001)

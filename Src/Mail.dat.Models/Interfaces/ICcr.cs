@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 23rd, 2025.
+// This code was auto-generated on May 27th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -16,7 +16,7 @@ namespace Mail.dat
 	/// Allows mailers to identify surcharges, incentive and specific contents that are part of the mail
 	/// piece.
 	/// </summary>
-	public interface IICcr : IMaildatEntity
+	public interface ICcr : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (CCR-1001)
@@ -46,7 +46,7 @@ namespace Mail.dat
 		/// Should be used in conjunction with the CCR for Credit Redemption. If left blank, then do not apply
 		/// any limit to the credit amount used.
 		/// </summary>
-		decimal PreDenominatedMaximumCreditAmount { get; set; }
+		decimal? PreDenominatedMaximumCreditAmount { get; set; }
 
 		/// <summary>
 		/// Reserve (CCR-1102)

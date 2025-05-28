@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 23rd, 2025.
+// This code was auto-generated on May 27th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -17,7 +17,7 @@ namespace Mail.dat
 	/// the Piece Barcode file; when used instead of the Piece Barcode file, acts as an extension of the PQT
 	/// file.
 	/// </summary>
-	public interface IIPdr : IMaildatEntity
+	public interface IPdr : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (PDR-1001)
@@ -53,7 +53,7 @@ namespace Mail.dat
 		/// Line-Of-Travel Sequence Number (PDR-1114)
 		/// Specific piece's L.O.T.-relative sequence number within ZIP+4.
 		/// </summary>
-		int LineOfTravelSequenceNumber { get; set; }
+		int? LineOfTravelSequenceNumber { get; set; }
 
 		/// <summary>
 		/// Line-Of-Travel Seq. Direction Code (PDR-1115)
@@ -65,7 +65,7 @@ namespace Mail.dat
 		/// Walk Sequence Number (PDR-1116)
 		/// Relative Walk Sequence number describing ranking within the carrier's actual delivery sequence.
 		/// </summary>
-		int WalkSequenceNumber { get; set; }
+		int? WalkSequenceNumber { get; set; }
 
 		/// <summary>
 		/// Wasted or Shortage Piece Indicator (PDR-1117)

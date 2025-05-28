@@ -7,7 +7,7 @@ namespace Mail.dat
 	{
 		public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
 		{
-			return sourceType == typeof(string) || base.CanConvertFrom(context, sourceType);
+			return sourceType == typeof(string);
 		}
 
 		public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
@@ -32,23 +32,34 @@ namespace Mail.dat
 
 		public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
 		{
-			return destinationType == typeof(string) || base.CanConvertTo(context, destinationType);
+			return destinationType == typeof(string);
 		}
 
 		public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
 		{
-			object returnValue = null;
+			string returnValue = null;
+			
+			//
+			// Get attribute from the context.
+			//
+			MaildatFieldAttribute attribute = context.Get().MaildatFieldAttribute;
 
-			if (destinationType == typeof(string) && value is DateOnly date)
+			if (destinationType == typeof(string) && value is DateOnly dateValue)
 			{
-				returnValue = date.ToString("yyyyMMdd");
+				returnValue = dateValue.ToString("yyyyMMdd");
 			}
 			else
 			{
-				returnValue = "        ";
+				//
+				// Default is a blank string filled with spaces.
+				//
+				returnValue = "".PadLeft(attribute.Length, ' ');
 			}
 
-			return returnValue;
+			//
+			// Limit the return value to the specified length.
+			//
+			return returnValue.Limit(attribute.Length);
 		}
 	}
 }

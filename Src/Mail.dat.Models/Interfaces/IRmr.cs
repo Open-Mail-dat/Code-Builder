@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 23rd, 2025.
+// This code was auto-generated on May 27th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -15,7 +15,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Records identify digital campaigns and enhances capabilities of the USPS Informed Delivery program.
 	/// </summary>
-	public interface IIRmr : IMaildatEntity
+	public interface IRmr : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (RMR-1001)
@@ -55,7 +55,7 @@ namespace Mail.dat
 		/// See Container Quantity File's CQT Database ID definition. Required for RMR ID type of PBC and PDR.
 		/// Field must be blank for RMR ID type of Component.
 		/// </summary>
-		int CQTDatabaseID { get; set; }
+		int? CQTDatabaseID { get; set; }
 
 		/// <summary>
 		/// RMR Value (RMR-1005)
