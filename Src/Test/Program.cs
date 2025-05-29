@@ -64,67 +64,58 @@ namespace Test
 						{
 							switch (item.ItemAction)
 							{
-								case ProgressMessageType.Completed:
+								case ProgressMessageType.Start:
 									{
 										//
-										// Stop the last task.
+										// Determine the text to show on screen for the task.
 										//
-										if (!tasks.Last().Value.IsFinished)
-										{
-											tasks.Last().Value.Value(1.0);
-										}
-
-										tasks.Last().Value.StopTask();
-									}
-									break;
-								case ProgressMessageType.Message:
-									{
-										//
-										// Stop the last task.
-										//
-										if ( tasks.Any() && !tasks.Last().Value.IsFinished)
-										{
-											tasks.Last().Value.Value(1.0);
-											tasks.Last().Value.StopTask();
-										}
+										string description = item.WillShowProgress ?
+															$"[white]Importing[/] [yellow]{item.ItemName.Replace(" Record", "")}[/]" :
+															$"[white]{item.Message}[/]";
 
 										//
 										// Create and start a new task
 										//
-										ProgressTask task = ctx.AddTask($"[white]{item.Message}[/]");
-										tasks.Add($"{tasks.Count}", task);
-										task.IsIndeterminate = true;
-										task.MaxValue(1.0);
-										task.StartTask();
-									}
-									break;
-								case ProgressMessageType.ImportExport:
-									{
-										double percentage = item.ItemIndex / item.ItemCount;
+										ProgressTask task = ctx.AddTask(description);
 
-										if (tasks.ContainsKey(item.ItemName))
+										if (item.WillShowProgress)
 										{
-											//
-											// Update the progress bar.
-											//
-											tasks[item.ItemName].Value(item.ItemIndex);
-
-											if (item.ItemIndex >= item.ItemCount)
-											{
-												tasks[item.ItemName].StopTask();
-											}
+											task.IsIndeterminate = false;
+											task.StartTask();
+											task.MaxValue(item.ItemCount);
 										}
 										else
 										{
-											//
-											// Create a new progress bar.
-											//
-											ProgressTask task = ctx.AddTask($"[white]Importing[/] [yellow]{item.ItemName.Replace(" Record", "")}[/]");
-											tasks.Add(item.ItemName, task);
-											tasks[item.ItemName].StartTask();
-											tasks[item.ItemName].MaxValue(item.ItemCount);
-											tasks[item.ItemName].Increment(percentage);
+											task.IsIndeterminate = true;
+											task.MaxValue(1.0);
 										}
+
+										tasks.Add(item.ItemName, task);
+										task.StartTask();
+									}
+									break;
+								case ProgressMessageType.Progress:
+									if (tasks.ContainsKey(item.ItemName))
+									{
+										ProgressTask task = tasks[item.ItemName];
+										task.Value(item.ItemIndex);
+									}
+									break;
+								case ProgressMessageType.Completed:
+									if (tasks.ContainsKey(item.ItemName))
+									{
+										ProgressTask task = tasks[item.ItemName];
+
+										if (item.WillShowProgress)
+										{
+											task.Value(item.ItemIndex);
+										}
+										else
+										{
+											task.Value(1.0);
+										}
+
+										task.StopTask();
 									}
 									break;
 								default:
@@ -233,69 +224,58 @@ namespace Test
 						{
 							switch (item.ItemAction)
 							{
-								case ProgressMessageType.Completed:
+								case ProgressMessageType.Start:
 									{
 										//
-										// Stop the last task.
+										// Determine the text to show on screen for the task.
 										//
-										if (!tasks.Last().Value.IsFinished)
-										{
-											tasks.Last().Value.Value(1.0);
-											tasks.Last().Value.StopTask();
-										}
-
-										AnsiConsole.MarkupLine($"[white]{item.Message}[/]");
-									}
-									break;
-								case ProgressMessageType.Message:
-									{
-										//
-										// Stop the last task.
-										//
-										if (!tasks.Last().Value.IsFinished)
-										{
-											tasks.Last().Value.Value(1.0);
-											tasks.Last().Value.StopTask();
-										}
+										string description = item.WillShowProgress ?
+															$"[white]Importing[/] [yellow]{item.ItemName.Replace(" Record", "")}[/]" :
+															$"[white]{item.Message}[/]";
 
 										//
 										// Create and start a new task
 										//
-										ProgressTask task = ctx.AddTask($"[white]{item.Message}[/]");
-										tasks.Add($"{tasks.Count}", task);
-										task.IsIndeterminate = true;
-										task.MaxValue(1.0);
-										task.StartTask();
-									}
-									break;
-								case ProgressMessageType.ImportExport:
-									{
-										double percentage = item.ItemIndex / item.ItemCount;
+										ProgressTask task = ctx.AddTask(description);
 
-										if (tasks.ContainsKey(item.ItemName))
+										if (item.WillShowProgress)
 										{
-											//
-											// Update the progress bar.
-											//
-											tasks[item.ItemName].Value(item.ItemIndex);
-
-											if (item.ItemIndex >= item.ItemCount)
-											{
-												tasks[item.ItemName].StopTask();
-											}
+											task.IsIndeterminate = false;
+											task.StartTask();
+											task.MaxValue(item.ItemCount);
 										}
 										else
 										{
-											//
-											// Create a new progress bar.
-											//
-											ProgressTask task = ctx.AddTask($"[white]Exporting[/] [yellow]{item.ItemName.Replace(" Record", "")}[/]");
-
-											tasks.Add(item.ItemName, task);
-											tasks[item.ItemName].StartTask();
-											tasks[item.ItemName].MaxValue(item.ItemCount);
-											tasks[item.ItemName].Increment(percentage);
+											task.IsIndeterminate = true;
+											task.MaxValue(1.0);
 										}
+
+										tasks.Add(item.ItemName, task);
+										task.StartTask();
+									}
+									break;
+								case ProgressMessageType.Progress:
+									if (tasks.ContainsKey(item.ItemName))
+									{
+										ProgressTask task = tasks[item.ItemName];
+										task.Value(item.ItemIndex);
+									}
+									break;
+								case ProgressMessageType.Completed:
+									if (tasks.ContainsKey(item.ItemName))
+									{
+										ProgressTask task = tasks[item.ItemName];
+
+										if (item.WillShowProgress)
+										{
+											task.Value(item.ItemIndex);
+										}
+										else
+										{
+											task.Value(1.0);
+										}
+
+										task.StopTask();
 									}
 									break;
 								default:

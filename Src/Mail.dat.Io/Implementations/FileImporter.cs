@@ -55,6 +55,8 @@ namespace Mail.dat.Io
 							//
 							List<T> models = new(lineCount);
 
+							await this.FireProgressUpdateAsync(new ProgressMessage() { ItemName = name, ItemAction = ProgressMessageType.Start, WillShowProgress = true, ItemSource = filePath, ItemIndex = 1, ItemCount = lineCount, Context = classAttribute });
+
 							//
 							// Loop through the file and read each line.
 							//
@@ -65,7 +67,7 @@ namespace Mail.dat.Io
 									//
 									// The import was cancelled. Break out of the loop.
 									//
-									await this.FireProgressUpdateAsync(new ProgressMessage() { ItemAction = ProgressMessageType.Message, Message = "Import cancelled." });
+									await this.FireProgressUpdateAsync(new ProgressMessage() { ItemName = "Import", ItemAction = ProgressMessageType.Completed, Message = "Import cancelled.", Context = classAttribute });
 								}
 								else
 								{
@@ -112,7 +114,7 @@ namespace Mail.dat.Io
 									//
 									// Send a progress update.
 									//
-									await this.FireProgressUpdateAsync(new ProgressMessage() { ItemAction = ProgressMessageType.ImportExport, ItemName = name, ItemSource = filePath, ItemIndex = lineNumber, ItemCount = lineCount });
+									await this.FireProgressUpdateAsync(new ProgressMessage() { ItemName = name, ItemAction = ProgressMessageType.Progress, WillShowProgress = true, ItemSource = filePath, ItemIndex = lineNumber, ItemCount = lineCount, Context = classAttribute });
 								}
 							}
 
@@ -123,9 +125,9 @@ namespace Mail.dat.Io
 							await context.BulkInsertAsync(models, cancellationToken: cancellationToken);
 
 							//
-							// Send a progress update.
+							// Send the completed update.
 							//
-							_ = this.FireProgressUpdateAsync(new ProgressMessage() { ItemAction = ProgressMessageType.Completed, ItemName = name, ItemSource = filePath, ItemIndex = lineCount, ItemCount = lineCount });
+							_ = this.FireProgressUpdateAsync(new ProgressMessage() { ItemName = name, ItemAction = ProgressMessageType.Completed, WillShowProgress = true, ItemSource = filePath, ItemIndex = lineCount, ItemCount = lineCount, Context = classAttribute });
 						}
 					}
 				}

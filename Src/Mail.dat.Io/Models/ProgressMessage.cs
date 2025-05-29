@@ -8,5 +8,7 @@
 		public string ItemSource { get; set; }
 		public int ItemIndex { get; set; }
 		public int ItemCount { get; set; }
+		public bool WillShowProgress { get; set; }
+		public object Context { get; set; }
 	}
 }

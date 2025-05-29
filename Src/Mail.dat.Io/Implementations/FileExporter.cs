@@ -24,6 +24,8 @@ namespace Mail.dat.Io
 				//
 				string filePath = $"{Path.GetDirectoryName(options.File.FilePath)}/{Path.GetFileNameWithoutExtension(options.File.FilePath)}.{classAttribute.Extension}";
 
+				await this.FireProgressUpdateAsync(new ProgressMessage() { ItemName = classAttribute.File, ItemAction = ProgressMessageType.Start, WillShowProgress = true, ItemSource = filePath, ItemIndex = 1, ItemCount = lineCount });
+
 				//
 				// Delete the target file if it exists.
 				//
@@ -52,8 +54,10 @@ namespace Mail.dat.Io
 							//
 							// Send a progress update.
 							//
-							await this.FireProgressUpdateAsync(new ProgressMessage() { ItemAction = ProgressMessageType.ImportExport, ItemName = classAttribute.File, ItemSource = filePath, ItemIndex = lineNumber++, ItemCount = lineCount });
+							await this.FireProgressUpdateAsync(new ProgressMessage() { ItemName = classAttribute.File, ItemAction = ProgressMessageType.Progress, WillShowProgress = true, ItemSource = filePath, ItemIndex = lineNumber++, ItemCount = lineCount });
 						}
+
+						await this.FireProgressUpdateAsync(new ProgressMessage() { ItemName = classAttribute.File, ItemAction = ProgressMessageType.Completed, WillShowProgress = true, ItemSource = filePath, ItemIndex = lineCount, ItemCount = lineCount });
 					}
 				}
 			}

@@ -32,6 +32,8 @@ namespace Mail.dat.Io
 		{
 			(bool returnValue, MaildatContext context) = (true, null);
 
+			await this.FireProgressUpdateAsync(new ProgressMessage() { ItemName = "Import", ItemAction = ProgressMessageType.Start, Message = "Import" });
+			
 			try
 			{
 				//
@@ -74,10 +76,10 @@ namespace Mail.dat.Io
 				//
 				// Delete the database if it exists and create a new one.
 				//
-				await this.FireProgressUpdateAsync(new ProgressMessage() { ItemAction = ProgressMessageType.Message, Message = "Creating the database." });
+				await this.FireProgressUpdateAsync(new ProgressMessage() { ItemName = "CreatingDatabase", ItemAction = ProgressMessageType.Start, Message = "Creating Database" });
 				await context.EnsureDeletedAsync();
 				await context.EnsureCreatedAsync();
-				await this.FireProgressUpdateAsync(new ProgressMessage() { ItemAction = ProgressMessageType.Completed, Message = "Database Created." });
+				await this.FireProgressUpdateAsync(new ProgressMessage() { ItemName = "CreatingDatabase", ItemAction = ProgressMessageType.Completed, Message = "Creating Database" });
 
 				//
 				// Get all of the model entities.
@@ -138,10 +140,9 @@ namespace Mail.dat.Io
 					//
 					// Commit the transaction to save all changes to the database.
 					//
-					await this.FireProgressUpdateAsync(new ProgressMessage() { ItemAction = ProgressMessageType.Message, Message = "Committing transactions to the database." });
+					await this.FireProgressUpdateAsync(new ProgressMessage() { ItemName = "SavingDatabase", ItemAction = ProgressMessageType.Start, Message = "Committing Transactions" });
 					transaction.Commit();
-					await this.FireProgressUpdateAsync(new ProgressMessage() { ItemAction = ProgressMessageType.Completed, Message = "Database update complete." });
-
+					await this.FireProgressUpdateAsync(new ProgressMessage() { ItemName = "SavingDatabase", ItemAction = ProgressMessageType.Completed, Message = "Committing Transactions" });
 				}
 			}
 			finally
@@ -149,7 +150,7 @@ namespace Mail.dat.Io
 				//
 				// Fire a progress update indicating that the import is completed.
 				//
-				await this.FireProgressUpdateAsync(new ProgressMessage() {ItemAction = ProgressMessageType.Completed, Message = "Import completed." });
+				await this.FireProgressUpdateAsync(new ProgressMessage() { ItemName = "Import", ItemAction = ProgressMessageType.Completed, Message = "Import" });
 			}
 
 			return (returnValue, context);
@@ -157,7 +158,7 @@ namespace Mail.dat.Io
 
 		protected Task FireProgressUpdateAsync(IProgressMessage message)
 		{
-			this.ProgressUpdate?.Invoke(message);
+			this.ProgressUpdate.Invoke(message);
 			return Task.CompletedTask;
 		}
 	}

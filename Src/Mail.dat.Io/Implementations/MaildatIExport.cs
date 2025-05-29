@@ -34,6 +34,8 @@ namespace Mail.dat.Io
 
 			if (File.Exists(options.DatabasePath))
 			{
+				await this.FireProgressUpdateAsync(new ProgressMessage() { ItemName = "Export", ItemAction = ProgressMessageType.Start, Message = "Export" });
+
 				try
 				{
 					//
@@ -146,7 +148,7 @@ namespace Mail.dat.Io
 				}
 				finally
 				{
-					await this.FireProgressUpdateAsync(new ProgressMessage() { ItemAction = ProgressMessageType.Completed, Message = "Export completed." });
+					await this.FireProgressUpdateAsync(new ProgressMessage() { ItemName = "Export", ItemAction = ProgressMessageType.Completed, Message = "Export" });
 				}
 			}
 			else
