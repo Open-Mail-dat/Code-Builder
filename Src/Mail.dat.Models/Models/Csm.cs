@@ -1020,10 +1020,12 @@ namespace Mail.dat
 		/// <summary>
 		/// Sets property values from one line of an import file.
 		/// </summary>
-		protected override Task<ILoadError[]> OnImportDataAsync(int fileLineNumber, byte[] line)
+		protected override Task<ILoadError[]> OnImportDataAsync(int fileLineNumber, ReadOnlySpan<byte> line)
 		{
 			List<ILoadError> returnValue = [];
-			
+
+			ReadOnlySpan<byte> span = line;
+
 			this.JobID = line.ParseForImport<Csm, string>(p => p.JobID, returnValue);
 			this.SegmentID = line.ParseForImport<Csm, string>(p => p.SegmentID, returnValue);
 			this.ContainerType = line.ParseForImport<Csm, string>(p => p.ContainerType, returnValue);

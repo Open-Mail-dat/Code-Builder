@@ -14,6 +14,8 @@ namespace Test
 		{
 			bool import = true;
 
+			AnsiConsole.Clear();
+
 			if (import)
 			{
 				await AnsiConsole.Progress()
@@ -21,7 +23,7 @@ namespace Test
 				.AutoRefresh(true)
 				.Columns(
 				[
-						new TaskDescriptionColumn(),    // Task description
+					new TaskDescriptionColumn(),    // Task description
                     new ProgressBarColumn(),        // Progress bar
                     new PercentageColumn(),         // Percentage
                     new ElapsedTimeColumn(),        // Elapsed time
@@ -53,7 +55,7 @@ namespace Test
 					string databasePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}/0000000001.db";
 
 					//
-					// Create a new import instance . This is used to import the Mail.dat files.
+					// Create a new import instance. This is used to import the Mail.dat files.
 					//
 					IMaildatImport import = MaildatImport.Create(
 					(item) =>
@@ -80,7 +82,7 @@ namespace Test
 										//
 										// Stop the last task.
 										//
-										if (!tasks.Last().Value.IsFinished)
+										if ( tasks.Any() && !tasks.Last().Value.IsFinished)
 										{
 											tasks.Last().Value.Value(1.0);
 											tasks.Last().Value.StopTask();
@@ -148,7 +150,7 @@ namespace Test
 						TargetDirectory = tempPath.FullName,
 						DatabasePath = databasePath,
 						CancellationToken = cancellationTokenSource.Token,
-						SkipPbcFile = true
+						SkipPbcFile = false
 					};
 
 					//

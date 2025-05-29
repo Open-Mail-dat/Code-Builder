@@ -10,7 +10,6 @@ namespace Mail.dat.Io
 		public string DatabasePath { get; set; }
 		public CancellationToken CancellationToken { get; set; } = CancellationToken.None;
 		public ILogger<IImportOptions> Logger { get; set; } = new NullLogger<IImportOptions>();
-		public bool SkipPbcFile{ get; set; } = false;
-		public SaveModeType SaveMode { get; set; } = SaveModeType.SaveAtEnd;
+		public bool SkipPbcFile { get; set; } = false;
 	}
 }

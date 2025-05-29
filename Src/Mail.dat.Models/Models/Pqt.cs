@@ -189,7 +189,7 @@ namespace Mail.dat
 		/// <summary>
 		/// Sets property values from one line of an import file.
 		/// </summary>
-		protected override Task<ILoadError[]> OnImportDataAsync(int fileLineNumber, byte[] line)
+		protected override Task<ILoadError[]> OnImportDataAsync(int fileLineNumber, ReadOnlySpan<byte> line)
 		{
 			List<ILoadError> returnValue = [];
 			
@@ -206,7 +206,7 @@ namespace Mail.dat
 			this.PQTRecordStatus = line.ParseForImport<Pqt, string>(p => p.PQTRecordStatus, returnValue);
 			this.ReservePQT1105 = line.ParseForImport<Pqt, string>(p => p.ReservePQT1105, returnValue);
 			this.ClosingCharacter = line.ParseForImport<Pqt, string>(p => p.ClosingCharacter, returnValue);
-				this.FileLineNumber = fileLineNumber;
+			this.FileLineNumber = fileLineNumber;
 			
 			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
 		}

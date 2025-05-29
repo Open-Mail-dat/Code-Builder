@@ -2,12 +2,6 @@
 
 namespace Mail.dat.Io
 {
-	public enum SaveModeType
-	{
-		SaveAtEnd,
-		SaveAfterEachFile
-	}
-
 	public interface IImportOptions
 	{
 		IMaildatFile File { get; set; }
@@ -16,6 +10,5 @@ namespace Mail.dat.Io
 		bool SkipPbcFile { get; set; }
 		ILogger<IImportOptions> Logger { get; set; }
 		CancellationToken CancellationToken { get; set; }
-		SaveModeType SaveMode { get; set; }
 	}
 }

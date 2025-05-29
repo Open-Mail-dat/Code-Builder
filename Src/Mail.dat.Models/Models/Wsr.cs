@@ -24,7 +24,7 @@ namespace Mail.dat
 	[Table("Wsr", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 11)]
-	public partial class Wsr : MaildatEntity, IWsr 
+	public partial class Wsr : MaildatEntity, IWsr
 	{
 		/// <summary>
 		/// Job ID (WSR-1001)
@@ -186,10 +186,10 @@ namespace Mail.dat
 		/// <summary>
 		/// Sets property values from one line of an import file.
 		/// </summary>
-		protected override Task<ILoadError[]> OnImportDataAsync(int fileLineNumber, byte[] line)
+		protected override Task<ILoadError[]> OnImportDataAsync(int fileLineNumber, ReadOnlySpan<byte> line)
 		{
 			List<ILoadError> returnValue = [];
-			
+
 			this.JobID = line.ParseForImport<Wsr, string>(p => p.JobID, returnValue);
 			this.SegmentID = line.ParseForImport<Wsr, string>(p => p.SegmentID, returnValue);
 			this.PackageZIPCode = line.ParseForImport<Wsr, string>(p => p.PackageZIPCode, returnValue);
@@ -202,8 +202,8 @@ namespace Mail.dat
 			this.WSRRecordStatus = line.ParseForImport<Wsr, string>(p => p.WSRRecordStatus, returnValue);
 			this.ReserveWSR1105 = line.ParseForImport<Wsr, string>(p => p.ReserveWSR1105, returnValue);
 			this.ClosingCharacter = line.ParseForImport<Wsr, string>(p => p.ClosingCharacter, returnValue);
-				this.FileLineNumber = fileLineNumber;
-			
+			this.FileLineNumber = fileLineNumber;
+
 			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
 		}
 
@@ -213,7 +213,7 @@ namespace Mail.dat
 		protected override Task<string> OnExportDataAsync()
 		{
 			StringBuilder sb = new();
-			
+
 			sb.Append(this.JobID.FormatForExport<Wsr, string>(p => p.JobID));
 			sb.Append(this.SegmentID.FormatForExport<Wsr, string>(p => p.SegmentID));
 			sb.Append(this.PackageZIPCode.FormatForExport<Wsr, string>(p => p.PackageZIPCode));
@@ -226,7 +226,7 @@ namespace Mail.dat
 			sb.Append(this.WSRRecordStatus.FormatForExport<Wsr, string>(p => p.WSRRecordStatus));
 			sb.Append(this.ReserveWSR1105.FormatForExport<Wsr, string>(p => p.ReserveWSR1105));
 			sb.Append(this.ClosingCharacter.FormatForExport<Wsr, string>(p => p.ClosingCharacter));
-			
+
 			return Task.FromResult(sb.ToString());
 		}
 	}

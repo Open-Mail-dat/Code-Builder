@@ -85,7 +85,7 @@ namespace Mail.dat.Io
 					//
 					// Iterate through each property in the context.
 					//
-					//new ParallelOptions() { MaxDegreeOfParallelism = 1 },
+					// new ParallelOptions() { MaxDegreeOfParallelism = 1 },
 					Parallel.ForEach(properties, (property) =>
 					{
 						//

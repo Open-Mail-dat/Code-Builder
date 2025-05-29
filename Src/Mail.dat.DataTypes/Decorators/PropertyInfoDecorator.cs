@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -46,7 +47,7 @@ namespace Mail.dat
 			return returnValue;
 		}
 
-		public static TValue ParseForImport<TModel, TValue>(this byte[] line, Expression<Func<TModel, TValue>> propertyExpression, IList<ILoadError> errors)
+		public static TValue ParseForImport<TModel, TValue>(this ReadOnlySpan<byte> line, Expression<Func<TModel, TValue>> propertyExpression, IList<ILoadError> errors)
 		{
 			TValue returnValue = default;
 
@@ -68,7 +69,8 @@ namespace Mail.dat
 				//
 				// Convert the string value to the property type using the type converter.
 				//
-				string value = Encoding.UTF8.GetString(line, attribute.Start - 1, attribute.Length);
+				string value = Encoding.ASCII.GetString(line.Slice(attribute.Start - 1, attribute.Length)).Trim(); 
+				// Encoding.UTF8.GetString(line, attribute.Start - 1, attribute.Length);
 
 				try
 				{

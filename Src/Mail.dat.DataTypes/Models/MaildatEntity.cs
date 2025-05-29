@@ -29,7 +29,7 @@ namespace Mail.dat
 		[Column("ModifiedBy", Order = 9999)]
 		public string ModifiedBy { get; set; }
 
-		public virtual Task<ILoadError[]> ImportDataAsync(int lineNumber, byte[] line)
+		public virtual Task<ILoadError[]> ImportDataAsync(int lineNumber, ReadOnlySpan<byte> line)
 		{
 			return this.OnImportDataAsync(lineNumber, line);
 		}
@@ -39,7 +39,7 @@ namespace Mail.dat
 			return this.OnExportDataAsync();
 		}
 
-		protected virtual Task<ILoadError[]> OnImportDataAsync(int lineNumber, byte[] line)
+		protected virtual Task<ILoadError[]> OnImportDataAsync(int lineNumber, ReadOnlySpan<byte> line)
 		{
 			return Task.FromResult<ILoadError[]>([]);
 		}

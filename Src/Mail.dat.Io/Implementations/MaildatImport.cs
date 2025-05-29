@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
-using System.Runtime.Serialization;
 using Mail.dat.Io.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Mail.dat.Io
@@ -64,12 +64,27 @@ namespace Mail.dat.Io
 				context = new MaildatContext(new NullLogger<MaildatContext>(), contextOption);
 
 				//
+				// Help to improve performace.
+				//
+				context.ChangeTracker.AutoDetectChangesEnabled = false;
+				context.Database.ExecuteSqlRaw("PRAGMA synchronous = OFF;");
+				context.Database.ExecuteSqlRaw("PRAGMA journal_mode = MEMORY;");
+				context.Database.ExecuteSqlRaw("PRAGMA temp_store = MEMORY;");
+
+				//
+				// Delete the database if it exists and create a new one.
+				//
+				await this.FireProgressUpdateAsync(new ProgressMessage() { ItemAction = ProgressMessageType.Message, Message = "Creating the database." });
+				await context.EnsureDeletedAsync();
+				await context.EnsureCreatedAsync();
+				await this.FireProgressUpdateAsync(new ProgressMessage() { ItemAction = ProgressMessageType.Completed, Message = "Database Created." });
+
+				//
 				// Get all of the model entities.
 				//
 				IEnumerable<IEntityType> entities = context.Model.GetEntityTypes()
 													.Where(t => t.ClrType.GetAttribute<MaildatImportAttribute>() != null)
-													.OrderBy(t => t.ClrType.GetAttribute<MaildatImportAttribute>().Order)
-													.ToArray();
+													.OrderBy(t => t.ClrType.GetAttribute<MaildatImportAttribute>().Order);
 
 				//
 				// Forward the progress events.
@@ -88,55 +103,45 @@ namespace Mail.dat.Io
 				MethodInfo method = typeof(FileImporter).GetMethod("ImportAsync");
 
 				//
-				// Use Parallel.ForEach to import each entity type.
+				// Using a transaction boosts performance.
 				//
-				Parallel.ForEach(entities, (entityType) =>
+				using IDbContextTransaction transaction = context.Database.BeginTransaction();
+
+				try
 				{
 					//
-					// Check if the cancellation token has been requested.
+					// Use Parallel.ForEach to import each entity type.
 					//
-					if (!options.CancellationToken.IsCancellationRequested)
+					// new ParallelOptions() { MaxDegreeOfParallelism = 1 },
+					Parallel.ForEach(entities, (entityType) =>
 					{
 						//
-						// Get the type and create the genic method for ImportAsync.
+						// Check if the cancellation token has been requested.
 						//
-						Type clrType = entityType.ClrType;
-						MethodInfo genericMethod = method.MakeGenericMethod(clrType);
+						if (!options.CancellationToken.IsCancellationRequested)
+						{
+							//
+							// Get the type and create the genic method for ImportAsync.
+							//
+							Type clrType = entityType.ClrType;
+							MethodInfo genericMethod = method.MakeGenericMethod(clrType);
 
-						//
-						// Invoke the generic method with the fileImporter instance and the options.
-						//
-						genericMethod.Invoke(fileImporter, [options, context, options.CancellationToken]);
-					}
-				});
-
-				//
-				// Check if the cancellation token has been requested.
-				//
-				if (!options.CancellationToken.IsCancellationRequested)
+							//
+							// Invoke the generic method with the fileImporter instance and the options.
+							//
+							genericMethod.Invoke(fileImporter, [options, context, options.CancellationToken]);
+						}
+					});
+				}
+				finally
 				{
 					//
-					// Delete the database if it exists and create a new one.
+					// Commit the transaction to save all changes to the database.
 					//
-					await this.FireProgressUpdateAsync(new ProgressMessage() { ItemAction = ProgressMessageType.Message, Message = "Creating the database." });
-					await context.EnsureDeletedAsync();
-					await context.EnsureCreatedAsync();
+					await this.FireProgressUpdateAsync(new ProgressMessage() { ItemAction = ProgressMessageType.Message, Message = "Committing transactions to the database." });
+					transaction.Commit();
+					await this.FireProgressUpdateAsync(new ProgressMessage() { ItemAction = ProgressMessageType.Completed, Message = "Database update complete." });
 
-					//
-					// Save the changes to the database.
-					//
-					await this.FireProgressUpdateAsync(new ProgressMessage() { ItemAction = ProgressMessageType.Message, Message = "Updating the database." });
-
-					//
-					// Lock the context to ensure thread safety while saving changes.
-					//
-					lock (context)
-					{
-						//
-						// Save changes to the context.
-						//
-						context.SaveChanges();
-					}
 				}
 			}
 			finally

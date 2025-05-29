@@ -1,4 +1,5 @@
-﻿using Mail.dat.Io.Models;
+﻿using EFCore.BulkExtensions;
+using Mail.dat.Io.Models;
 
 namespace Mail.dat.Io
 {
@@ -49,11 +50,16 @@ namespace Mail.dat.Io
 						using (BinaryReader reader = new(io))
 						{
 							//
+							// Create  list for the modesl, they will
+							// all be bulk inserted at the end.
+							//
+							List<T> models = new(lineCount);
+
+							//
 							// Loop through the file and read each line.
 							//
 							await foreach ((int lineNumber, byte[] buffer) in reader.ReadMaildatFileAsync(lineLength, lineEndingCharacters, closingCharacter, cancellationToken))
 							{
-
 								if (cancellationToken.IsCancellationRequested)
 								{
 									//
@@ -71,15 +77,12 @@ namespace Mail.dat.Io
 									//
 									// Load the data into the model.
 									//
-									ILoadError[] errors = await model.ImportDataAsync(lineNumber, buffer);
+									ILoadError[] errors = await model.ImportDataAsync(lineNumber, buffer.AsSpan());
 
 									//
 									// Add the model to the context.
 									//
-									lock (context)
-									{
-										context.Add(model.Touch());
-									}
+									models.Add(model);
 
 									//
 									// Check for errors.
@@ -89,34 +92,21 @@ namespace Mail.dat.Io
 										//
 										// Load the errors into the context.
 										//
-										foreach (ILoadError error in errors)
-										{
-											//
-											// Build the import error model.
-											//
-											Error ie = new()
-											{
-												Process = "Import",
-												File = extension,
-												FieldName = error.Attribute.FieldName,
-												FieldCode = error.Attribute.FieldCode,
-												DataType = error.Attribute.DataType,
-												Type = error.Attribute.Type,
-												StartPosition = error.Attribute.Start,
-												Length = error.Attribute.Length,
-												Value = error.Value,
-												ErrorMessage = error.ErrorMessage,
-												LineNumber = lineNumber
-											};
-
-											//
-											// Add it to the context.
-											//
-											lock (context)
-											{
-												context.Add(ie.Touch());
-											}
-										}
+										context.Errors.AddRange((from tbl in errors
+																 select new Error
+																 {
+																	 Process = "Import",
+																	 File = extension,
+																	 FieldName = tbl.Attribute.FieldName,
+																	 FieldCode = tbl.Attribute.FieldCode,
+																	 DataType = tbl.Attribute.DataType,
+																	 Type = tbl.Attribute.Type,
+																	 StartPosition = tbl.Attribute.Start,
+																	 Length = tbl.Attribute.Length,
+																	 Value = tbl.Value,
+																	 ErrorMessage = tbl.ErrorMessage,
+																	 LineNumber = lineNumber
+																 }).Select(m => m.Touch()).ToList());
 									}
 
 									//
@@ -127,20 +117,15 @@ namespace Mail.dat.Io
 							}
 
 							//
+							// Using the EFCore.BulkExtensions.Sqlite package to perform a bulk insert
+							// to improve performacne.
+							//
+							await context.BulkInsertAsync(models, cancellationToken: cancellationToken);
+
+							//
 							// Send a progress update.
 							//
-							await this.FireProgressUpdateAsync(new ProgressMessage() { ItemAction = ProgressMessageType.Completed, ItemName = name, ItemSource = filePath, ItemIndex = lineCount, ItemCount = lineCount });
-
-							if (options.SaveMode == SaveModeType.SaveAfterEachFile)
-							{								
-								//
-								// Save the changes to the database.
-								//
-								lock (context)
-								{
-									context.SaveChanges();
-								}
-							}
+							_ = this.FireProgressUpdateAsync(new ProgressMessage() { ItemAction = ProgressMessageType.Completed, ItemName = name, ItemSource = filePath, ItemIndex = lineCount, ItemCount = lineCount });
 						}
 					}
 				}

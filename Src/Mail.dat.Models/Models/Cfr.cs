@@ -211,7 +211,7 @@ namespace Mail.dat
 		/// <summary>
 		/// Sets property values from one line of an import file.
 		/// </summary>
-		protected override Task<ILoadError[]> OnImportDataAsync(int fileLineNumber, byte[] line)
+		protected override Task<ILoadError[]> OnImportDataAsync(int fileLineNumber, ReadOnlySpan<byte> line)
 		{
 			List<ILoadError> returnValue = [];
 			

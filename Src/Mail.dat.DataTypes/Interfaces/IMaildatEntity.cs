@@ -11,7 +11,7 @@ namespace Mail.dat
 		string ModifiedBy { get; set; }
 		DateTimeOffset ModifiedDateTime { get; set; }
 
-		Task<ILoadError[]> ImportDataAsync(int lineNumber, byte[] line);
+		Task<ILoadError[]> ImportDataAsync(int lineNumber, ReadOnlySpan<byte> line);
 		Task<string> ExportDataAsync();
 	}
 }
