@@ -23,12 +23,12 @@ namespace Test
 				.AutoRefresh(true)
 				.Columns(
 				[
-					new TaskDescriptionColumn(),    // Task description
-                    new ProgressBarColumn(),        // Progress bar
-                    new PercentageColumn(),         // Percentage
-                    new ElapsedTimeColumn(),        // Elapsed time
-                    new SpinnerColumn(),            // Spinner
-					new LineCountColumn(),          // Line count
+					new TaskDescriptionColumn(),	// Task description
+                    new ProgressBarColumn(),		// Progress bar
+                    new PercentageColumn(),			// Percentage
+                    new ElapsedTimeColumn(),		// Elapsed time
+                    new SpinnerColumn(),			// Spinner
+					new LineCountColumn()			// Line count
 				])
 				.UseRenderHook((renderable, tasks) => RenderHook(tasks, renderable))
 				.StartAsync(async ctx =>

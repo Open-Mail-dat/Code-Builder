@@ -7,7 +7,14 @@ namespace Test
 	{
 		public override IRenderable Render(RenderOptions options, ProgressTask task, TimeSpan deltaTime)
 		{
-			return new Markup($"([white]{task.Value:#,###}[/] of [white]{task.MaxValue:#,###}[/])").Overflow(Overflow.Ellipsis).Justify(Justify.Left);
+			if (task.Value == 0)
+			{
+				return new Markup("");
+			}
+			else
+			{
+				return new Markup($"([white]{task.Value:#,###}[/] of [white]{task.MaxValue:#,###}[/])").Overflow(Overflow.Ellipsis).Justify(Justify.Left);
+			}
 		}
 	}
 }
