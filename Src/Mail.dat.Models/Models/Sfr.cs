@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 27th, 2025.
+// This code was auto-generated on May 29th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -193,7 +193,7 @@ namespace Mail.dat
 			this.SFRRecordStatus = line.ParseForImport<Sfr, string>(p => p.SFRRecordStatus, returnValue);
 			this.ReserveSFR1104 = line.ParseForImport<Sfr, string>(p => p.ReserveSFR1104, returnValue);
 			this.ClosingCharacter = line.ParseForImport<Sfr, string>(p => p.ClosingCharacter, returnValue);
-				this.FileLineNumber = fileLineNumber;
+			this.FileLineNumber = fileLineNumber;
 			
 			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
 		}

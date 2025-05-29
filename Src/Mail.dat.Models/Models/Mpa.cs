@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 27th, 2025.
+// This code was auto-generated on May 29th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -327,7 +327,7 @@ namespace Mail.dat
 			this.MPARecordStatus = line.ParseForImport<Mpa, string>(p => p.MPARecordStatus, returnValue);
 			this.ReserveMPA1116 = line.ParseForImport<Mpa, string>(p => p.ReserveMPA1116, returnValue);
 			this.ClosingCharacter = line.ParseForImport<Mpa, string>(p => p.ClosingCharacter, returnValue);
-				this.FileLineNumber = fileLineNumber;
+			this.FileLineNumber = fileLineNumber;
 			
 			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
 		}

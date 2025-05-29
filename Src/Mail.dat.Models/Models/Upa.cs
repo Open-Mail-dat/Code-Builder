@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 27th, 2025.
+// This code was auto-generated on May 29th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -24,7 +24,7 @@ namespace Mail.dat
 	[Table("Upa", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 20)]
-	public partial class Upa : MaildatEntity, IUpa
+	public partial class Upa : MaildatEntity, IUpa 
 	{
 		/// <summary>
 		/// Job ID (UPA-1001)
@@ -124,7 +124,7 @@ namespace Mail.dat
 		protected override Task<ILoadError[]> OnImportDataAsync(int fileLineNumber, ReadOnlySpan<byte> line)
 		{
 			List<ILoadError> returnValue = [];
-
+			
 			this.JobID = line.ParseForImport<Upa, string>(p => p.JobID, returnValue);
 			this.PieceID = line.ParseForImport<Upa, string>(p => p.PieceID, returnValue);
 			this.CQTDatabaseID = line.ParseForImport<Upa, int>(p => p.CQTDatabaseID, returnValue);
@@ -134,7 +134,7 @@ namespace Mail.dat
 			this.ReserveUPA1120 = line.ParseForImport<Upa, string>(p => p.ReserveUPA1120, returnValue);
 			this.ClosingCharacter = line.ParseForImport<Upa, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
-
+			
 			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
 		}
 
@@ -144,7 +144,7 @@ namespace Mail.dat
 		protected override Task<string> OnExportDataAsync()
 		{
 			StringBuilder sb = new();
-
+			
 			sb.Append(this.JobID.FormatForExport<Upa, string>(p => p.JobID));
 			sb.Append(this.PieceID.FormatForExport<Upa, string>(p => p.PieceID));
 			sb.Append(this.CQTDatabaseID.FormatForExport<Upa, int>(p => p.CQTDatabaseID));
@@ -153,7 +153,7 @@ namespace Mail.dat
 			sb.Append(this.UPARecordStatus.FormatForExport<Upa, string>(p => p.UPARecordStatus));
 			sb.Append(this.ReserveUPA1120.FormatForExport<Upa, string>(p => p.ReserveUPA1120));
 			sb.Append(this.ClosingCharacter.FormatForExport<Upa, string>(p => p.ClosingCharacter));
-
+			
 			return Task.FromResult(sb.ToString());
 		}
 	}

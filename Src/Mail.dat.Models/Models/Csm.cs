@@ -3,7 +3,7 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 27th, 2025.
+// This code was auto-generated on May 29th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
@@ -1023,9 +1023,7 @@ namespace Mail.dat
 		protected override Task<ILoadError[]> OnImportDataAsync(int fileLineNumber, ReadOnlySpan<byte> line)
 		{
 			List<ILoadError> returnValue = [];
-
-			ReadOnlySpan<byte> span = line;
-
+			
 			this.JobID = line.ParseForImport<Csm, string>(p => p.JobID, returnValue);
 			this.SegmentID = line.ParseForImport<Csm, string>(p => p.SegmentID, returnValue);
 			this.ContainerType = line.ParseForImport<Csm, string>(p => p.ContainerType, returnValue);
@@ -1105,7 +1103,7 @@ namespace Mail.dat
 			this.CSMRecordStatus = line.ParseForImport<Csm, string>(p => p.CSMRecordStatus, returnValue);
 			this.ReserveCSM1134 = line.ParseForImport<Csm, string>(p => p.ReserveCSM1134, returnValue);
 			this.ClosingCharacter = line.ParseForImport<Csm, string>(p => p.ClosingCharacter, returnValue);
-				this.FileLineNumber = fileLineNumber;
+			this.FileLineNumber = fileLineNumber;
 			
 			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
 		}
