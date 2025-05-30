@@ -2,7 +2,7 @@
   "profiles": {
     "Import": {
       "commandName": "Project",
-      "commandLineArgs": "import --source-file-path \"Z:/Downloads/52850001-25-1.zip\" --target-file-path \"Z:/Desktop/MD0000000001.db\" --skip-pbc true",
+      "commandLineArgs": "import --source-file-path \"Z:/Downloads/52850001-25-1.zip\" --target-file-path \"Z:/Desktop/MD0000000001.db\" --skip-pbc false --favor-memory-over-performance true --max-records-in-memory 5000",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }

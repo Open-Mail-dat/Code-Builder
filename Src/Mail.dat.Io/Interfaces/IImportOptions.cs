@@ -10,5 +10,7 @@ namespace Mail.dat.Io
 		bool SkipPbcFile { get; set; }
 		ILogger<IImportOptions> Logger { get; set; }
 		CancellationToken CancellationToken { get; set; }
+		bool FavorMemoryOverPerformance { get; set; }
+		int BatchSize { get; set; }
 	}
 }

@@ -11,5 +11,7 @@ namespace Mail.dat.Io
 		public CancellationToken CancellationToken { get; set; } = CancellationToken.None;
 		public ILogger<IImportOptions> Logger { get; set; } = new NullLogger<IImportOptions>();
 		public bool SkipPbcFile { get; set; } = false;
+		public bool FavorMemoryOverPerformance { get; set; }
+		public int BatchSize { get; set; } = 10_000;
 	}
 }
