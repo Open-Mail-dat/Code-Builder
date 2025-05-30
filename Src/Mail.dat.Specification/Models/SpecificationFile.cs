@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Mai.dat.Specification
+namespace Mail.dat.Specification
 {
 	public class SpecificationFile
 	{

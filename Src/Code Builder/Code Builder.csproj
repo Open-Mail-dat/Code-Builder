@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Mai.dat.Specification\Mai.dat.Specification.csproj" />
+    <ProjectReference Include="..\Mail.dat.Specification\Mail.dat.Specification.csproj" />
     <ProjectReference Include="..\Mail.dat.DataTypes\Mail.dat.Abstractions.csproj" />
   </ItemGroup>
 

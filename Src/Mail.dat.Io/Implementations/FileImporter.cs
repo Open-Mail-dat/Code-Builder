@@ -23,7 +23,7 @@ namespace Mail.dat.Io
 				// Get the header file
 				//
 				string extension = classAttribute.Extension;
-				string filePath = options.File.GetFile(extension);
+				string filePath = options.SourceFile.GetFile(extension);
 
 				if (File.Exists(filePath))
 				{

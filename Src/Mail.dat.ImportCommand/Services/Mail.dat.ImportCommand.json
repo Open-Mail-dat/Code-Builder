@@ -1,0 +1,9 @@
+{
+  "services": [
+    {
+      "ServiceType": "<ICommand>",
+      "ImplementationType": "Mail.dat.ImportCommand.ImportCommandHandler, Mail.dat.ImportCommand",
+      "Lifetime": "Scoped"
+    }
+  ]
+}

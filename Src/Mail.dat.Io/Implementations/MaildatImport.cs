@@ -39,11 +39,11 @@ namespace Mail.dat.Io
 				//
 				// Unzip the files.
 				//
-				if (options.File.IsZipped)
+				if (options.SourceFile.IsZipped)
 				{
-					if (!await options.File.Unzip(options.TargetDirectory))
+					if (!await options.SourceFile.Unzip(options.TemporaryDirectory))
 					{
-						throw new Exception($"The file '{options.File.FilePath}' could not be unzipped.");
+						throw new Exception($"The file '{options.SourceFile.FilePath}' could not be unzipped.");
 					}
 				}
 
@@ -51,7 +51,7 @@ namespace Mail.dat.Io
 				// Generate a connection string using the database
 				// path that was provided.
 				//
-				string connectionString = $"Data Source={options.DatabasePath}";
+				string connectionString = $"Data Source={options.TargetFile}";
 
 				//
 				// Create the DB Context options.

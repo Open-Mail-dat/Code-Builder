@@ -1,7 +1,7 @@
 ﻿using Spectre.Console;
 using Spectre.Console.Rendering;
 
-namespace Test
+namespace Mail.dat.ImportCommand
 {
 	public class LineCountColumn : ProgressColumn
 	{

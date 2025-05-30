@@ -4,9 +4,9 @@ namespace Mail.dat.Io
 {
 	public interface IImportOptions
 	{
-		IMaildatFile File { get; set; }
-		string TargetDirectory { get; set; }
-		string DatabasePath { get; set; }
+		IMaildatFile SourceFile { get; set; }
+		string TemporaryDirectory { get; set; }
+		string TargetFile { get; set; }
 		bool SkipPbcFile { get; set; }
 		ILogger<IImportOptions> Logger { get; set; }
 		CancellationToken CancellationToken { get; set; }

@@ -5,8 +5,8 @@ namespace Mail.dat.Io
 {
 	public interface IExportOptions
 	{
-		IMaildatFile File { get; set; }
-		string DatabasePath { get; set; }
+		IMaildatFile TargetFile { get; set; }
+		string SourceFile { get; set; }
 		Encoding Encoding { get; set; }
 		string LineTerminator { get; set; }
 		ILogger<IImportOptions> Logger { get; set; }

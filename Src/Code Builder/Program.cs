@@ -1,7 +1,7 @@
 ﻿using CommandLine;
 using Humanizer;
-using Mai.dat.Specification;
-using Mai.dat.Specification.Models;
+using Mail.dat.Specification;
+using Mail.dat.Specification.Models;
 using Mail.dat.CodeBuilder.Decorators;
 using Newtonsoft.Json;
 using Spectre.Console;

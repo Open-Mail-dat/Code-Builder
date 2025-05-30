@@ -22,7 +22,16 @@ namespace Mail.dat.Io
 				//
 				// Get the path for the export file.
 				//
-				string filePath = $"{Path.GetDirectoryName(options.File.FilePath)}/{Path.GetFileNameWithoutExtension(options.File.FilePath)}.{classAttribute.Extension}";
+				string filePath = $"{Path.GetDirectoryName(options.TargetFile.FilePath)}/{Path.GetFileNameWithoutExtension(options.TargetFile.FilePath)}.{classAttribute.Extension}";
+				DirectoryInfo targetDirectoy = new(options.TargetFile.FilePath);
+
+				//
+				// Create the target directory if it does not exist.
+				//
+				if (!targetDirectoy.Exists)
+				{
+					targetDirectoy.Create();
+				}
 
 				await this.FireProgressUpdateAsync(new ProgressMessage() { ItemName = classAttribute.File, ItemAction = ProgressMessageType.Start, WillShowProgress = true, ItemSource = filePath, ItemIndex = 1, ItemCount = lineCount });
 

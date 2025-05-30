@@ -32,7 +32,7 @@ namespace Mail.dat.Io
 		{
 			bool returnValue = true;
 
-			if (File.Exists(options.DatabasePath))
+			if (File.Exists(options.SourceFile))
 			{
 				await this.FireProgressUpdateAsync(new ProgressMessage() { ItemName = "Export", ItemAction = ProgressMessageType.Start, Message = "Export" });
 
@@ -42,7 +42,7 @@ namespace Mail.dat.Io
 					// Generate a connection string using the database
 					// path that was provided.
 					//
-					string connectionString = $"Data Source={options.DatabasePath}";
+					string connectionString = $"Data Source={options.SourceFile}";
 
 					//
 					// Create the DB Context options.
@@ -138,7 +138,7 @@ namespace Mail.dat.Io
 					//
 					// Check if the output should be zipped.
 					//
-					if (Path.GetExtension(options.File.FilePath).ToLower() == ".zip")
+					if (Path.GetExtension(options.TargetFile.FilePath).ToLower() == ".zip")
 					{
 						//
 						// Zip the Mail.dat.
@@ -153,7 +153,7 @@ namespace Mail.dat.Io
 			}
 			else
 			{
-				throw new FileNotFoundException(options.DatabasePath);
+				throw new FileNotFoundException(options.SourceFile);
 			}
 
 			return returnValue;
