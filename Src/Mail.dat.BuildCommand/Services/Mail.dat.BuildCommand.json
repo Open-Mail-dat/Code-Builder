@@ -1,0 +1,9 @@
+{
+  "services": [
+    {
+      "ServiceType": "<ICommand>",
+      "ImplementationType": "Mail.dat.BuildCommand.BuildCommandHandler, Mail.dat.BuildCommand",
+      "Lifetime": "Scoped"
+    }
+  ]
+}

@@ -1,8 +1,7 @@
 ﻿using System.Text;
-using System.Text.RegularExpressions;
 using Humanizer;
 
-namespace Mail.dat.CodeBuilder
+namespace Mail.dat.BuildCommand
 {
 	public static class StringDecorator
 	{

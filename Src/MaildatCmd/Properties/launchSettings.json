@@ -13,6 +13,13 @@
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }
+    },
+    "Build": {
+      "commandName": "Project",
+      "commandLineArgs": "build --specification-file \"./Specification/mail-dat.json\" --class-output-directory \"../../../../Mail.dat.Models/Models\" --interface-output-directory \"../../../../Mail.dat.Models/Interfaces\" --context-output-directory \"../../../../Mail.dat.Models/Context\"",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
     }
   }
 }

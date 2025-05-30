@@ -1,98 +1,87 @@
-﻿using CommandLine;
+﻿using Diamond.Core.CommandLine.Model;
 using Humanizer;
 using Mail.dat.Specification;
 using Mail.dat.Specification.Models;
-using Mail.dat.CodeBuilder.Decorators;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Spectre.Console;
 
-namespace Mail.dat.CodeBuilder
+namespace Mail.dat.BuildCommand
 {
-	internal class Program
+	internal class BuildCommandHandler : ModelCommand<CommandOptions>
 	{
-		static Task<int> Main(string[] args)
+		public BuildCommandHandler(ILogger<BuildCommandHandler> logger)
+			: base(logger, "build", "Generates code from the JSON Mail.dat specification..")
+		{
+		}
+
+		private const string NameSpace = "Mail.dat";
+		private const string ContextName = "MaildatContext";
+
+		protected override Task<int> OnHandleCommand(CommandOptions options)
 		{
 			int returnValue = 0;
 
 			//
-			// Parse the command arguments.
+			// Remove all targets files now so that we do not get an error mid-way through the process.
 			//
-			ParserResult<CommandOptions> result = Parser.Default.ParseArguments<CommandOptions>(args);
-			CommandOptions options = result.Value;
+			options.ClassOutputDirectory.DeleteAllFiles("*.cs");
+			options.InterfaceOutputDirectory.DeleteAllFiles("*.cs");
+			options.ContextOutputDirectory.DeleteAllFiles("*.cs");
 
 			//
-			// Check for parse errors.
+			// Read the file contents into a string.
 			//
-			if (!result.Errors.Any())
+			string jsonContent = File.ReadAllText(options.SpecificationFile.FullName);
+
+			//
+			// Deserialize the JSON into a SpecificationFile.
+			//
+			SpecificationFile specificationFile = JsonConvert.DeserializeObject<SpecificationFile>(jsonContent);
+
+			//
+			// Get the proper file ordering.
+			//
+			FileOrdering fileOrdering = [];
+
+			//
+			// Assign the file ordering.
+			//
+			foreach (FileDefinition fileDefinition in specificationFile.Files)
 			{
-				//
-				// Remove all targets files now so that we do not get an error mid-way through the process.
-				//
-				(new DirectoryInfo(options.ClassOutputDirectory)).DeleteAllFiles("*.cs");
-				(new DirectoryInfo(options.InterfaceOutputDirectory)).DeleteAllFiles("*.cs");
-				(new DirectoryInfo(options.ContextOutputDirectory)).DeleteAllFiles("*.cs");
+				fileDefinition.Ordinal = fileOrdering.Where(t => t.Extension == fileDefinition.FileExtension).Select(t => t.Ordinal).SingleOrDefault();
+			}
+
+			//
+			// Create a list for the classes.
+			//
+			List<ClassBuilder> classes = [];
+			List<ClassBuilder> interfaces = [];
+
+			//
+			// Iterate through each file and build the classes.
+			//
+			foreach (FileDefinition fileDefinition in specificationFile.Files.OrderBy(t => t.Ordinal))
+			{
+				string file = fileDefinition.File.Transform(To.LowerCase).Sanitize().Transform(To.TitleCase).AddRecord();
+				string fileExtension = fileDefinition.FileExtension;
+				string fileSummary = fileDefinition.FileSummary.Sanitize().Transform(To.SentenceCase).EndSentence();
+				string fileDescription = fileDefinition.FileDescription.Sanitize().Transform(To.SentenceCase).EndSentence() ?? fileSummary;
+				fileDescription = string.IsNullOrEmpty(fileDescription) ? fileSummary : fileDescription;
+
+				Panel panel = new Panel($"[yellow]{fileExtension} - {file}[/]").RoundedBorder().Expand();
+				AnsiConsole.Write(panel);
+
+				int columnOrder = 2;
 
 				//
-				// Read the file contents into a string.
+				// Create a class for this file.
 				//
-				string jsonContent = File.ReadAllText(options.SpecificationFile);
-
-				//
-				// Deserialize the JSON into a SpecificationFile.
-				//
-				SpecificationFile specificationFile = JsonConvert.DeserializeObject<SpecificationFile>(jsonContent);
-
-
-				var items = specificationFile.Files.SelectMany(t => t.RecordDefinitions)
-												   .GroupBy(t => new { t.DataType, t.Data.Type, t.Data.Format })
-												   .OrderBy(t => t.Key.Type)
-												   .Select(t => new { t.Key.Type, t.Key.DataType, t.Key.Format,  });
-
-
-
-				//
-				// Get the proper file ordering.
-				//
-				FileOrdering fileOrdering = [];
-
-				//
-				// Assign the file ordering.
-				//
-				foreach (FileDefinition fileDefinition in specificationFile.Files)
-				{
-					fileDefinition.Ordinal = fileOrdering.Where(t => t.Extension == fileDefinition.FileExtension).Select(t => t.Ordinal).SingleOrDefault();
-				}
-
-				//
-				// Create a list for the classes.
-				//
-				List<ClassBuilder> classes = [];
-				List<ClassBuilder> interfaces = [];
-
-				//
-				// Iterate through each file and build the classes.
-				//
-				foreach (FileDefinition fileDefinition in specificationFile.Files.OrderBy(t => t.Ordinal))
-				{
-					string file = fileDefinition.File.Transform(To.LowerCase).Sanitize().Transform(To.TitleCase).AddRecord();
-					string fileExtension = fileDefinition.FileExtension;
-					string fileSummary = fileDefinition.FileSummary.Sanitize().Transform(To.SentenceCase).EndSentence();
-					string fileDescription = fileDefinition.FileDescription.Sanitize().Transform(To.SentenceCase).EndSentence() ?? fileSummary;
-					fileDescription = string.IsNullOrEmpty(fileDescription) ? fileSummary : fileDescription;
-
-					Panel panel = new Panel($"[yellow]{fileExtension} - {file}[/]").RoundedBorder().Expand();
-					AnsiConsole.Write(panel);
-
-					int columnOrder = 2;
-
-					//
-					// Create a class for this file.
-					//
-					AnsiConsole.MarkupLine("\tBuilding [yellow]class[/] file.");
-					classes.Add(ClassBuilder.Create(fileExtension.ToClassName())
-						.SetHeaderComments(
-						[
-							"",
+				AnsiConsole.MarkupLine("\tBuilding [yellow]class[/] file.");
+				classes.Add(ClassBuilder.Create(fileExtension.ToClassName())
+					.SetHeaderComments(
+					[
+						"",
 							"Copyright (c) 2025 Open Mail.dat",
 							"",
 							"This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.",
@@ -103,20 +92,20 @@ namespace Mail.dat.CodeBuilder
 							"Author: Daniel M porrey",
 							$"Version {specificationFile.Version.Major.Replace("-", ".")}.{specificationFile.Version.Revision}",
 							""
-						])
-						.SetNameSpace("Mail.dat")
-						.AddUsing("System.ComponentModel.DataAnnotations.Schema")
-						.AddUsing("System.ComponentModel.DataAnnotations")
-						.AddUsing("Microsoft.EntityFrameworkCore")
-						.AddUsing("System.ComponentModel")
-						.AddUsing("System.Text")
-						.SetSummary(fileDescription)
-						.SetObjectType("class")
-						.SetScope("public")
-						.SetPartial(true)
-						.AddAttributes(
-						[
-							AttributeBuilder.Create("MaildatFile")
+					])
+					.SetNameSpace(NameSpace)
+					.AddUsing("System.ComponentModel.DataAnnotations.Schema")
+					.AddUsing("System.ComponentModel.DataAnnotations")
+					.AddUsing("Microsoft.EntityFrameworkCore")
+					.AddUsing("System.ComponentModel")
+					.AddUsing("System.Text")
+					.SetSummary(fileDescription)
+					.SetObjectType("class")
+					.SetScope("public")
+					.SetPartial(true)
+					.AddAttributes(
+					[
+						AttributeBuilder.Create("MaildatFile")
 								.AddParameter("Version", specificationFile.Version.Major)
 								.AddParameter("Revision", specificationFile.Version.Revision)
 								.AddParameter("Extension", fileExtension)
@@ -132,11 +121,11 @@ namespace Mail.dat.CodeBuilder
 								.AddParameter("", "Id"),
 							AttributeBuilder.Create("MaildatImport")
 								.AddParameter("Order", fileDefinition.Ordinal)
-						])
-						.AddImplements("MaildatEntity")
-						.AddImplements($"I{fileExtension.ToClassName()}")
-						.AddProperties(
-						[..
+					])
+					.AddImplements("MaildatEntity")
+					.AddImplements($"I{fileExtension.ToClassName()}")
+					.AddProperties(
+					[..
 							//
 							// Add the properties from the JSON file.
 							//
@@ -312,50 +301,50 @@ namespace Mail.dat.CodeBuilder
 										"TypeConverter",
 										AttributeParameter.Create("", typeof(MaildatZipCodeConverter)))
 								])
-						])
-						.AddMethod(MethodBuilder.Create("OnImportDataAsync")
-							.SetScope("protected override ")
-							.SetReturnType("Task<ILoadError[]>")
-							.SetSummary("Sets property values from one line of an import file.")
-							.AddParameter("int", "fileLineNumber")
-							.AddParameter("ReadOnlySpan<byte>", "line")
-							.AddCode("List<ILoadError> returnValue = [];")
-							.AddCode("")
-							.AddCode(
-								[.. from tbl in fileDefinition.RecordDefinitions
+					])
+					.AddMethod(MethodBuilder.Create("OnImportDataAsync")
+						.SetScope("protected override ")
+						.SetReturnType("Task<ILoadError[]>")
+						.SetSummary("Sets property values from one line of an import file.")
+						.AddParameter("int", "fileLineNumber")
+						.AddParameter("ReadOnlySpan<byte>", "line")
+						.AddCode("List<ILoadError> returnValue = [];")
+						.AddCode("")
+						.AddCode(
+							[.. from tbl in fileDefinition.RecordDefinitions
 									let propertyName = tbl.FieldName.ToPropertyName(tbl.FieldCode)
 									select $"this.{propertyName} = line.ParseForImport<{fileExtension.ToClassName()}, {tbl.Data.Type.ToDotNetType(tbl.DataType, tbl.Required)}>(p => p.{propertyName}, returnValue);"
-								]
-							)
-							.AddCode("this.FileLineNumber = fileLineNumber;")
-							.AddCode("")
-							.AddCode("return Task.FromResult<ILoadError[]>(returnValue.ToArray());")
+							]
 						)
-						.AddMethod(MethodBuilder.Create("OnExportDataAsync")
-							.SetScope("protected override ")
-							.SetReturnType("Task<string>")
-							.SetSummary("Formats all property values into a single line suitable for export.")
-							.AddCode("StringBuilder sb = new();")
-							.AddCode("")
-							.AddCode(
-								[.. from tbl in fileDefinition.RecordDefinitions
+						.AddCode("this.FileLineNumber = fileLineNumber;")
+						.AddCode("")
+						.AddCode("return Task.FromResult<ILoadError[]>(returnValue.ToArray());")
+					)
+					.AddMethod(MethodBuilder.Create("OnExportDataAsync")
+						.SetScope("protected override ")
+						.SetReturnType("Task<string>")
+						.SetSummary("Formats all property values into a single line suitable for export.")
+						.AddCode("StringBuilder sb = new();")
+						.AddCode("")
+						.AddCode(
+							[.. from tbl in fileDefinition.RecordDefinitions
 									let propertyName = tbl.FieldName.ToPropertyName(tbl.FieldCode)
 									select $"sb.Append(this.{propertyName}.FormatForExport<{fileExtension.ToClassName()}, {tbl.Data.Type.ToDotNetType(tbl.DataType, tbl.Required)}>(p => p.{propertyName}));"
-								]
-							)
-							.AddCode("")
-							.AddCode("return Task.FromResult(sb.ToString());")
+							]
 						)
-						.Build($"{options.ClassOutputDirectory}/{fileExtension.ToClassFileName()}", 1));
+						.AddCode("")
+						.AddCode("return Task.FromResult(sb.ToString());")
+					)
+					.Build($"{options.ClassOutputDirectory}/{fileExtension.ToClassFileName()}", 1));
 
-					//
-					// Create an interface for this file.
-					//
-					AnsiConsole.MarkupLine("\tBuilding [yellow]interface[/] file.");
-					interfaces.Add(ClassBuilder.Create($"{fileExtension.ToInterfaceName()}")
-						.SetHeaderComments(
-						[
-							"",
+				//
+				// Create an interface for this file.
+				//
+				AnsiConsole.MarkupLine("\tBuilding [yellow]interface[/] file.");
+				interfaces.Add(ClassBuilder.Create($"{fileExtension.ToInterfaceName()}")
+					.SetHeaderComments(
+					[
+						"",
 							"Copyright (c) 2025 Open Mail.dat",
 							"",
 							"This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.",
@@ -366,15 +355,15 @@ namespace Mail.dat.CodeBuilder
 							"Author: Daniel M porrey",
 							$"Version {specificationFile.Version.Major.Replace("-", ".")}.{specificationFile.Version.Revision}",
 							""
-						])
-						.SetNameSpace("Mail.dat")
-						.SetSummary(fileDescription)
-						.SetObjectType("interface")
-						.SetScope("public")
-						.SetPartial(false)
-						.AddImplements("IMaildatEntity")
-						.AddProperties(
-						[..
+					])
+					.SetNameSpace(NameSpace)
+					.SetSummary(fileDescription)
+					.SetObjectType("interface")
+					.SetScope("public")
+					.SetPartial(false)
+					.AddImplements("IMaildatEntity")
+					.AddProperties(
+					[..
 							//
 							// Add the properties from the JSON file.
 							//
@@ -405,20 +394,20 @@ namespace Mail.dat.CodeBuilder
 								// Make these fields read-only.
 								//
 								.SetReadOnly(tbl.Data.Type == "closing")
-							])
-						.Build($"{options.InterfaceOutputDirectory}/I{fileExtension.Pascalize()}.cs", 1));
+						])
+					.Build($"{options.InterfaceOutputDirectory}/I{fileExtension.Pascalize()}.cs", 1));
 
-					AnsiConsole.MarkupLine($"\t[blue]{classes.Last().Properties.Count}[/] properties added.\r\n");
-				}
+				AnsiConsole.MarkupLine($"\t[blue]{classes.Last().Properties.Count}[/] properties added.\r\n");
+			}
 
-				//
-				// Build the database context.
-				//
-				AnsiConsole.MarkupLine("\r\nBuilding [yellow]database context[/] file.");
-				ClassBuilder.Create(options.DatabaseContextName)
-					.SetHeaderComments(
-					[
-						"",
+			//
+			// Build the database context.
+			//
+			AnsiConsole.MarkupLine("\r\nBuilding [yellow]database context[/] file.");
+			ClassBuilder.Create("ContextName")
+				.SetHeaderComments(
+				[
+					"",
 						"Copyright (c) 2025 Open Mail.dat",
 						"",
 						"This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.",
@@ -429,29 +418,29 @@ namespace Mail.dat.CodeBuilder
 						"Author: Daniel M porrey",
 						$"Version {specificationFile.Version.Major.Replace("-", ".")}.{specificationFile.Version.Revision}",
 						""
-					])
-					.SetNameSpace("Mail.dat")
-					.AddUsing("Diamond.Core.Repository.EntityFrameworkCore")
-					.AddUsing("Microsoft.EntityFrameworkCore")
-					.AddUsing("Microsoft.Extensions.Logging")
-					.SetSummary("Entity Framework Core database context for Mail.dat entities.")
-					.SetObjectType("class")
+				])
+				.SetNameSpace(NameSpace)
+				.AddUsing("Diamond.Core.Repository.EntityFrameworkCore")
+				.AddUsing("Microsoft.EntityFrameworkCore")
+				.AddUsing("Microsoft.Extensions.Logging")
+				.SetSummary("Entity Framework Core database context for Mail.dat entities.")
+				.SetObjectType("class")
+				.SetScope("public")
+				.SetPartial(true)
+				.AddImplements($"RepositoryContext<{ContextName}>")
+				.AddConstructor(MethodBuilder.Create(ContextName)
 					.SetScope("public")
-					.SetPartial(true)
-					.AddImplements($"RepositoryContext<{options.DatabaseContextName}>")
-					.AddConstructor(MethodBuilder.Create(options.DatabaseContextName)
-						.SetScope("public")
-						.SetBase("base()")
-					)
-					.AddConstructor(MethodBuilder.Create(options.DatabaseContextName)
-						.SetScope("public")
-						.AddParameter($"ILogger<{options.DatabaseContextName}>", "logger")
-						.AddParameter($"DbContextOptions<{options.DatabaseContextName}>", "options")
-						.SetBase("base(logger, options)")
-						.AddCode($"logger.LogDebug(\"Created {{context}}.\", nameof({options.DatabaseContextName}));")
-					)
-					.AddProperties(
-						[..
+					.SetBase("base()")
+				)
+				.AddConstructor(MethodBuilder.Create(ContextName)
+					.SetScope("public")
+					.AddParameter($"ILogger<{ContextName}>", "logger")
+					.AddParameter($"DbContextOptions<{ContextName}>", "options")
+					.SetBase("base(logger, options)")
+					.AddCode($"logger.LogDebug(\"Created {{context}}.\", nameof({ContextName}));")
+				)
+				.AddProperties(
+					[..
 						//
 						// Add the properties from the JSON file.
 						//
@@ -469,39 +458,29 @@ namespace Mail.dat.CodeBuilder
 								AttributeBuilder.Create("MaildatExport")
 									.AddParameter("Order", tbl.Ordinal)
 							)
-						])
-					.AddProperties(
-					[
-						PropertyBuilder.Create("Errors")
+					])
+				.AddProperties(
+				[
+					PropertyBuilder.Create("Errors")
 							.SetScope("public")
 							.SetReturnType($"DbSet<Error>")
-					])
-					.AddMethod(MethodBuilder.Create("OnModelCreating")
-						.SetScope("protected override void")
-						.AddParameter("ModelBuilder", "modelBuilder")
-						.AddCode($"this.Logger.LogDebug(\"OnModelCreating() called in {{context}}\", nameof({options.DatabaseContextName}));")
-						.AddCode(classes.BuildContextHasKeyCode())
-						.AddCode(classes.BuildContextHasIndexCode())
-						.AddCode()
-					)
-					.Build($"{options.ContextOutputDirectory}/{options.DatabaseContextName}.cs", 1);
+				])
+				.AddMethod(MethodBuilder.Create("OnModelCreating")
+					.SetScope("protected override void")
+					.AddParameter("ModelBuilder", "modelBuilder")
+					.AddCode($"this.Logger.LogDebug(\"OnModelCreating() called in {{context}}\", nameof({ContextName}));")
+					.AddCode(classes.BuildContextHasKeyCode())
+					.AddCode(classes.BuildContextHasIndexCode())
+					.AddCode()
+				)
+				.Build($"{options.ContextOutputDirectory}/{ContextName}.cs", 1);
 
-				//
-				// Display the summary.
-				//
-				AnsiConsole.MarkupLine($"\r\n[green]{classes.Count}[/] classes built.");
-				AnsiConsole.MarkupLine($"[green]{interfaces.Count}[/] interfaces built.");
-				AnsiConsole.MarkupLine($"[green]1[/] context file built.");
-			}
-			else
-			{
-				foreach (CommandLine.Error error in result.Errors)
-				{
-					AnsiConsole.MarkupLine($"[red]Error:[/] '[white]{error}[/]'");
-				}
-
-				returnValue = 1;
-			}
+			//
+			// Display the summary.
+			//
+			AnsiConsole.MarkupLine($"\r\n[green]{classes.Count}[/] classes built.");
+			AnsiConsole.MarkupLine($"[green]{interfaces.Count}[/] interfaces built.");
+			AnsiConsole.MarkupLine($"[green]1[/] context file built.");
 
 			return Task.FromResult(returnValue);
 		}

@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<RootNamespace>Mail.dat.BuildCommand</RootNamespace>
+		<Version>1.0.0</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Content Include="Services\Mail.dat.BuildCommand.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Humanizer.Core" Version="2.14.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Spectre.Console" Version="0.50.0" />
+		<PackageReference Include="Diamond.Core.CommandLine" Version="9.0.1" />
+		<PackageReference Include="Diamond.Core.CommandLine.Abstractions" Version="9.0.1" />
+		<PackageReference Include="Diamond.Core.CommandLine.Model" Version="9.0.1" />
+		<PackageReference Include="Diamond.Core.Extensions.DependencyInjection.Abstractions" Version="9.0.1" />
+		<PackageReference Include="Diamond.Core.Extensions.Hosting.Abstractions" Version="9.0.1" />
+		<PackageReference Include="Diamond.Core.System.TemporaryFolder" Version="9.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.5" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Mail.dat.Specification\Mail.dat.Specification.csproj" />
+		<ProjectReference Include="..\Mail.dat.DataTypes\Mail.dat.Abstractions.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Update="C:\Users\Danie\.nuget\packages\diamond.core.commandline.abstractions\9.0.1\contentFiles\any\net9.0\Services\Diamond.Core.CommandLine.Abstractions.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+</Project>

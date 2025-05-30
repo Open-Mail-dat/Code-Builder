@@ -1,6 +1,6 @@
 ﻿using Humanizer;
 
-namespace Mail.dat.CodeBuilder
+namespace Mail.dat.BuildCommand
 {
 	public static class KeyNamesDecorator
 	{

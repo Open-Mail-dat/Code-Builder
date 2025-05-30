@@ -1,4 +1,4 @@
-﻿namespace Mail.dat.CodeBuilder
+﻿namespace Mail.dat.BuildCommand
 {
 	public interface ICodeBuilder<T>
 	{

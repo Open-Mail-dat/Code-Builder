@@ -1,4 +1,4 @@
-﻿namespace Mail.dat.CodeBuilder.Decorators
+﻿namespace Mail.dat.BuildCommand
 {
 	public static class DirectoryDecorator
 	{

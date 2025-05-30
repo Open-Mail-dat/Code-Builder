@@ -22,4 +22,3 @@ namespace Mail.dat.ImportCommand
 		public int MaxRecordsInMemory { get; set; } = 10_000;
 	}
 }
-.
