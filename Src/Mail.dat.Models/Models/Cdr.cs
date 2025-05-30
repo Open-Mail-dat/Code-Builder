@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +20,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Provide the detailed information that is present on the Certificate of Mail Forms.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "cdr", File = "Certificate of Mailing Detail Record", Summary = "Is used to capture the Detail information that is present on the Certificate of Mail Forms.", Description = "Provide the detailed information that is present on the Certificate of Mail Forms.", LineLength = 395, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "cdr", File = "Certificate of Mailing Detail Record", Summary = "Is used to capture the Detail information that is present on the Certificate of Mail Forms.", Description = "Provide the detailed information that is present on the Certificate of Mail Forms.", LineLength = 395, ClosingCharacter = "#")]
 	[Table("Cdr", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 27)]
@@ -232,11 +232,9 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Piece ID (CDR-1115)
-		/// Set for Future Use - Unique ID of individual piece within a mailing. One of the following two values
-		/// can be used: PBC - PBC Unique ID, right justify and zero fill; PDR - Piece ID, zero fill prior to
-		/// numeric, if numeric only.
+		/// Set for Future Use - Unique ID of individual piece within a mailing.
 		/// </summary>
-		[MaildatField(Extension = "cdr", FieldCode = "CDR-1115", FieldName = "Piece ID", Start = 346, Length = 22, Required = false, Key = false, DataType = "A/N", Description = "Set for Future Use - Unique ID of individual piece within a mailing. One of the following two values can be used: PBC - PBC Unique ID, right justify and zero fill; PDR - Piece ID, zero fill prior to numeric, if numeric only.", Type = "string", Format = "leftjustify", References = "PDR-1018,PBC-1002")]
+		[MaildatField(Extension = "cdr", FieldCode = "CDR-1115", FieldName = "Piece ID", Start = 346, Length = 22, Required = false, Key = false, DataType = "A/N", Description = "Set for Future Use - Unique ID of individual piece within a mailing.", Type = "string", Format = "zfillnumeric", References = "PDR-1018,PBC-1002")]
 		[Column("PieceID", Order = 19, TypeName = "TEXT")]
 		[MaxLength(22)]
 		[Comment("CDR-1115")]
@@ -280,11 +278,11 @@ namespace Mail.dat
 		/// Reserve (CDR-1119)
 		/// Reserved for future use.
 		/// </summary>
-		[MaildatField(Extension = "cdr", FieldCode = "CDR-1119", FieldName = "Reserve", Start = 374, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "Reserved for future use.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "cdr", FieldCode = "CDR-1119", FieldName = "Reserve", Start = 374, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "Reserved for future use.", Type = "reserve", Format = "leftjustify")]
 		[Column("ReserveCDR1119", Order = 23, TypeName = "TEXT")]
 		[MaxLength(20)]
 		[Comment("CDR-1119")]
-		[TypeConverter(typeof(MaildatStringConverter))]
+		[TypeConverter(typeof(MaildatReserveConverter))]
 		public string ReserveCDR1119 { get; set; }
 
 		/// <summary>
@@ -345,7 +343,7 @@ namespace Mail.dat
 			this.ClosingCharacter = line.ParseForImport<Cdr, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>

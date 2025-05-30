@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 
 namespace Mail.dat
@@ -37,7 +37,7 @@ namespace Mail.dat
 		/// <summary>
 		/// Service Type (SFR-1019)
 		/// If, applicable; Left Justify; Space Added Multiple records can be added per piece in PDR or PBC each
-		/// Representing an Extra Service associated to the mailpiece.
+		/// representing an Extra Service associated to the mailpiece.
 		/// </summary>
 		string ServiceType { get; set; }
 
@@ -49,29 +49,28 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Service Stated Value (SFR-1101)
-		/// 99999999v99; dollars/cents, rounded (decimal implied). The Value of the single piece noted when
-		/// applying for the Special Service.
+		/// Dollars/cents, rounded. The value of the single piece noted when applying for the Special Service.
 		/// </summary>
 		decimal? ServiceStatedValue { get; set; }
 
 		/// <summary>
 		/// Service Fee (SFR-1102)
-		/// 99999v99; dollars/cents, rounded (decimal implied). Actual Postal dollars & cents incurred in costs
-		/// for the specific Piece for one or more fees or charges noted above.
+		/// Dollars/cents, rounded. Actual Postal dollars & cents incurred in costs for the specific piece for
+		/// one or more fees or charges noted above.
 		/// </summary>
 		decimal? ServiceFee { get; set; }
 
 		/// <summary>
 		/// Special Fees/Charges Services ID (SFR-1103)
-		/// Long Number unique for this set of services within the Job And Segment. Cannot mix services of two
-		/// different IDs Within the same record.
+		/// Long Number unique for this set of services within the Job and Segment. Cannot mix services of two
+		/// different IDs within the same record.
 		/// </summary>
 		string SpecialFeesChargesServicesID { get; set; }
 
 		/// <summary>
 		/// Amount Due (SFR-1120)
-		/// 99999v99; dollars/cents, rounded (decimal implied). Actual Postal dollars & cents to be collected
-		/// for the COD service For specific piece upon delivery.
+		/// Dollars/cents, rounded. Actual Postal dollars & cents to be collected for the COD service for
+		/// specific piece upon delivery.
 		/// </summary>
 		decimal? AmountDue { get; set; }
 

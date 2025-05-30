@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mail.dat.Models", "Mail.dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mail.dat.Io", "Mail.dat.Io\Mail.dat.Io.csproj", "{F89F34F2-B0E1-4345-BBCC-0A7DF7C6F0E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mail.dat.Specification", "Mail.dat.Specification\Mail.dat.Specification.csproj", "{5F482BDD-75FB-4F02-A9C8-71F54BFCBE38}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mail.dat.Json.Specification", "Mail.dat.Json.Specification\Mail.dat.Json.Specification.csproj", "{5F482BDD-75FB-4F02-A9C8-71F54BFCBE38}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{28B33211-591B-4E47-9AFE-0947FAD26F0B}"
 EndProject

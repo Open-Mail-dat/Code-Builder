@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +20,7 @@ namespace Mail.dat
 	/// <summary>
 	/// A common code for set of components in a mail piece.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "mpu", File = "Mail Piece Unit Record", Summary = "A common code for set of components in a mail piece.", Description = "A common code for set of components in a mail piece.", LineLength = 193, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "mpu", File = "Mail Piece Unit Record", Summary = "A common code for set of components in a mail piece.", Description = "A common code for set of components in a mail piece.", LineLength = 193, ClosingCharacter = "#")]
 	[Table("Mpu", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 3)]
@@ -53,11 +53,11 @@ namespace Mail.dat
 		/// <summary>
 		/// Mail Piece Unit ID (MPU-1003)
 		/// Must have some value, even if single edition. This ID will be used by the computer controlled
-		/// equipment at the mailing facility to manufacture The specific binding parts for this make-up within
+		/// equipment at the mailing facility to manufacture the specific binding parts for this make-up within
 		/// this particular mailing. Any Mail Piece Unit exists within a specific Segment. Therefore,
 		/// Segment/MPU is mutually exclusive. MPU alone is not unique.
 		/// </summary>
-		[MaildatField(Extension = "mpu", FieldCode = "MPU-1003", FieldName = "Mail Piece Unit ID", Start = 13, Length = 5, Required = true, Key = true, DataType = "A/N", Description = "Must have some value, even if single edition. This ID will be used by the computer controlled equipment at the mailing facility to manufacture The specific binding parts for this make-up within this particular mailing. Any Mail Piece Unit exists within a specific Segment. Therefore, Segment/MPU is mutually exclusive. MPU alone is not unique.", Type = "string", Format = "zfillnumeric")]
+		[MaildatField(Extension = "mpu", FieldCode = "MPU-1003", FieldName = "Mail Piece Unit ID", Start = 13, Length = 5, Required = true, Key = true, DataType = "A/N", Description = "Must have some value, even if single edition. This ID will be used by the computer controlled equipment at the mailing facility to manufacture the specific binding parts for this make-up within this particular mailing. Any Mail Piece Unit exists within a specific Segment. Therefore, Segment/MPU is mutually exclusive. MPU alone is not unique.", Type = "string", Format = "zfillnumeric")]
 		[Column("MailPieceUnitID", Order = 4, TypeName = "TEXT")]
 		[Required]
 		[MaildatKey]
@@ -70,19 +70,19 @@ namespace Mail.dat
 		/// Mail Piece Unit Name (MPU-1101)
 		/// The name used to identify a specific marketing version within a list, bind and distribution
 		/// environment. This name may be on-going as a description from issue to issue, as opposed to the job
-		/// to job alpha And/or numeric Selective Bind Code that will control the binding machine.  The Mail
+		/// to job alpha and/or numeric Selective Bind Code that will control the binding machine. The Mail
 		/// Piece Unit Name, more traditionally in Periodicals, may be a meaningful identifier; such as S-S NW
 		/// Metro. Whether in Periodicals or other classes, the MPU Name field is a defined location where
-		/// downstream Users can find the MPU's meaningful Name for this job, regardless of the arbitrary MPU
+		/// downstream users can find the MPU's meaningful Name for this job, regardless of the arbitrary MPU
 		/// ID. If, as may often be the case in non-Periodical, there is no benefit derived from special naming
-		/// Then the Book Make-up Name can be the same as the MPU ID. The MPU Name will be the source for mail
-		/// owner's name on Postage Payment forms or their electronic equivalents.  Suggested convention for
+		/// then the Book Make-up Name can be the same as the MPU ID. The MPU Name will be the source for mail
+		/// owner's name on Postage Payment forms or their electronic equivalents. Suggested convention for
 		/// carrying the identity of the base book: - Example MPU Name Value:Exxxxxxx_BRO -- E (hard coded)
 		/// stands for edition; -- xxxxxxx (only as many as necessary) represents base book edition; -- _
 		/// (underline) separates edition & suffix; -- B/R/O (solo or BO or RO) --- B = Bill, R = Renewal, O=
 		/// Other H = Periodicals Ride-Along - Additional Examples: E9711COM_B or E1997S_O or E01_RO.
 		/// </summary>
-		[MaildatField(Extension = "mpu", FieldCode = "MPU-1101", FieldName = "Mail Piece Unit Name", Start = 18, Length = 12, Required = true, Key = false, DataType = "A/N", Description = "The name used to identify a specific marketing version within a list, bind and distribution environment. This name may be on-going as a description from issue to issue, as opposed to the job to job alpha And/or numeric Selective Bind Code that will control the binding machine.  The Mail Piece Unit Name, more traditionally in Periodicals, may be a meaningful identifier; such as S-S NW Metro. Whether in Periodicals or other classes, the MPU Name field is a defined location where downstream Users can find the MPU's meaningful Name for this job, regardless of the arbitrary MPU ID. If, as may often be the case in non-Periodical, there is no benefit derived from special naming Then the Book Make-up Name can be the same as the MPU ID. The MPU Name will be the source for mail owner's name on Postage Payment forms or their electronic equivalents.  Suggested convention for carrying the identity of the base book: - Example MPU Name Value:Exxxxxxx_BRO -- E (hard coded) stands for edition; -- xxxxxxx (only as many as necessary) represents base book edition; -- _ (underline) separates edition & suffix; -- B/R/O (solo or BO or RO) --- B = Bill, R = Renewal, O= Other H = Periodicals Ride-Along - Additional Examples: E9711COM_B or E1997S_O or E01_RO.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "mpu", FieldCode = "MPU-1101", FieldName = "Mail Piece Unit Name", Start = 18, Length = 12, Required = true, Key = false, DataType = "A/N", Description = "The name used to identify a specific marketing version within a list, bind and distribution environment. This name may be on-going as a description from issue to issue, as opposed to the job to job alpha and/or numeric Selective Bind Code that will control the binding machine. The Mail Piece Unit Name, more traditionally in Periodicals, may be a meaningful identifier; such as S-S NW Metro. Whether in Periodicals or other classes, the MPU Name field is a defined location where downstream users can find the MPU's meaningful Name for this job, regardless of the arbitrary MPU ID. If, as may often be the case in non-Periodical, there is no benefit derived from special naming then the Book Make-up Name can be the same as the MPU ID. The MPU Name will be the source for mail owner's name on Postage Payment forms or their electronic equivalents. Suggested convention for carrying the identity of the base book: - Example MPU Name Value:Exxxxxxx_BRO -- E (hard coded) stands for edition; -- xxxxxxx (only as many as necessary) represents base book edition; -- _ (underline) separates edition & suffix; -- B/R/O (solo or BO or RO) --- B = Bill, R = Renewal, O= Other H = Periodicals Ride-Along - Additional Examples: E9711COM_B or E1997S_O or E01_RO.", Type = "string", Format = "leftjustify")]
 		[Column("MailPieceUnitName", Order = 5, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(12)]
@@ -92,22 +92,22 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Mail Piece Unit Description (MPU-1102)
-		/// This is a unique name or code for each specific version being created Within this mailing. However,
+		/// This is a unique name or code for each specific version being created within this mailing. However,
 		/// as a differentiation from the Mail Piece Unit Name, this may be a meaningful descriptor of a broader
-		/// Significance than just this mailing. Therefore, this field is an Opportunity to have absolute, as
-		/// well as of relative, information in this Record. This offers information for enhanced quality
-		/// assurance and Reduced error. For example: A periodical has a Metro Northwest Superspot edition That
-		/// is run every issue. Therefore, the Mail Piece Unit ID to drive the Machine in the bindery might be B
-		/// for one issue and Q a month Later. However, the Mail Piece Unit Name would always be S-S NW Metro
+		/// significance than just this mailing. Therefore, this field is an opportunity to have absolute, as
+		/// well as of relative, information in this record. This offers information for enhanced quality
+		/// assurance and reduced error. For example: A periodical has a Metro Northwest Superspot edition that
+		/// is run every issue. Therefore, the Mail Piece Unit ID to drive the machine in the bindery might be B
+		/// for one issue and Q a month later. However, the Mail Piece Unit Name would always be S-S NW Metro
 		/// and the Mail Piece Unit Description would always be Metro Northwest Superspot A 3C campaign may not
-		/// have repeating market target names; or they May. So, the Mail Piece Unit IDs for a mailing may be A,
+		/// have repeating market target names; or they may. So, the Mail Piece Unit IDs for a mailing may be A,
 		/// B, and C. For that campaign, the MPU Descriptions may be A, B, and C., or the MPU Descriptions could
-		/// be RHF, RHS, and RHT, If those were meaningful codes carrying over from one job to another. The
-		/// originator of the Mail.dat® file, as agreed by receiving mailing Facilities, can choose to the
-		/// finest level of detail in the preceding two Fields or simply clone that which is in the Mail Piece
+		/// be RHF, RHS, and RHT, if those were meaningful codes carrying over from one job to another. The
+		/// originator of the Mail.dat® file, as agreed by receiving mailing facilities, can choose to the
+		/// finest level of detail in the preceding two fields or simply clone that which is in the Mail Piece
 		/// Unit ID field.
 		/// </summary>
-		[MaildatField(Extension = "mpu", FieldCode = "MPU-1102", FieldName = "Mail Piece Unit Description", Start = 30, Length = 30, Required = false, Key = false, DataType = "A/N", Description = "This is a unique name or code for each specific version being created Within this mailing. However, as a differentiation from the Mail Piece Unit Name, this may be a meaningful descriptor of a broader Significance than just this mailing. Therefore, this field is an Opportunity to have absolute, as well as of relative, information in this Record. This offers information for enhanced quality assurance and Reduced error. For example: A periodical has a Metro Northwest Superspot edition That is run every issue. Therefore, the Mail Piece Unit ID to drive the Machine in the bindery might be B for one issue and Q a month Later. However, the Mail Piece Unit Name would always be S-S NW Metro and the Mail Piece Unit Description would always be Metro Northwest Superspot A 3C campaign may not have repeating market target names; or they May. So, the Mail Piece Unit IDs for a mailing may be A, B, and C. For that campaign, the MPU Descriptions may be A, B, and C., or the MPU Descriptions could be RHF, RHS, and RHT, If those were meaningful codes carrying over from one job to another. The originator of the Mail.dat® file, as agreed by receiving mailing Facilities, can choose to the finest level of detail in the preceding two Fields or simply clone that which is in the Mail Piece Unit ID field.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "mpu", FieldCode = "MPU-1102", FieldName = "Mail Piece Unit Description", Start = 30, Length = 30, Required = false, Key = false, DataType = "A/N", Description = "This is a unique name or code for each specific version being created within this mailing. However, as a differentiation from the Mail Piece Unit Name, this may be a meaningful descriptor of a broader significance than just this mailing. Therefore, this field is an opportunity to have absolute, as well as of relative, information in this record. This offers information for enhanced quality assurance and reduced error. For example: A periodical has a Metro Northwest Superspot edition that is run every issue. Therefore, the Mail Piece Unit ID to drive the machine in the bindery might be B for one issue and Q a month later. However, the Mail Piece Unit Name would always be S-S NW Metro and the Mail Piece Unit Description would always be Metro Northwest Superspot A 3C campaign may not have repeating market target names; or they may. So, the Mail Piece Unit IDs for a mailing may be A, B, and C. For that campaign, the MPU Descriptions may be A, B, and C., or the MPU Descriptions could be RHF, RHS, and RHT, if those were meaningful codes carrying over from one job to another. The originator of the Mail.dat® file, as agreed by receiving mailing facilities, can choose to the finest level of detail in the preceding two fields or simply clone that which is in the Mail Piece Unit ID field.", Type = "string", Format = "leftjustify")]
 		[Column("MailPieceUnitDescription", Order = 6, TypeName = "TEXT")]
 		[MaxLength(30)]
 		[Comment("MPU-1102")]
@@ -116,9 +116,9 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Mail Piece Unit - Weight (MPU-1103)
-		/// Weight of a copy in pounds, rounded.
+		/// Weight of a copy in pounds, rounded. Presort Facilities default to 1 ounce, if Metered Mail.
 		/// </summary>
-		[MaildatField(Extension = "mpu", FieldCode = "MPU-1103", FieldName = "Mail Piece Unit - Weight", Start = 60, Length = 6, Required = true, Key = false, DataType = "N", Description = "Weight of a copy in pounds, rounded.", Type = "decimal", Format = "zfill", Precision = 4)]
+		[MaildatField(Extension = "mpu", FieldCode = "MPU-1103", FieldName = "Mail Piece Unit - Weight", Start = 60, Length = 6, Required = true, Key = false, DataType = "N", Description = "Weight of a copy in pounds, rounded. Presort Facilities default to 1 ounce, if Metered Mail.", Type = "decimal", Format = "zfill", Precision = 4)]
 		[Column("MailPieceUnitWeight", Order = 7, TypeName = "NUMERIC")]
 		[Required]
 		[Precision(4)]
@@ -253,13 +253,13 @@ namespace Mail.dat
 		/// <summary>
 		/// Co-Palletization Code (MPU-1116)
 		/// Used to differentiate carrier route mail going to the same ZIP and Route that was coded and
-		/// presorted independently, to allow Association with a subset of the Walk Sequence Records (*.wsr).
-		/// For Co-palletization, it creates an efficient means to differentiate Each of the possible job and
-		/// sub-job entities within a co-palletization Set-up. Can also be used to differentiate between
-		/// simplified and Non-simplified addressed pieces when combined in the same job. Populate with 01 for
-		/// jobs where this additional level of detail is Not needed.
+		/// presorted independently, to allow association with a subset of the Walk Sequence Records (*.wsr).
+		/// For Co-palletization, it creates an efficient means to differentiate each of the possible job and
+		/// sub-job entities within a co-palletization set-up. Can also be used to differentiate between
+		/// simplified and non-simplified addressed pieces when combined in the same job. Populate with 01 for
+		/// jobs where this additional level of detail is not needed.
 		/// </summary>
-		[MaildatField(Extension = "mpu", FieldCode = "MPU-1116", FieldName = "Co-Palletization Code", Start = 94, Length = 2, Required = true, Key = false, DataType = "A/N", Description = "Used to differentiate carrier route mail going to the same ZIP and Route that was coded and presorted independently, to allow Association with a subset of the Walk Sequence Records (*.wsr). For Co-palletization, it creates an efficient means to differentiate Each of the possible job and sub-job entities within a co-palletization Set-up. Can also be used to differentiate between simplified and Non-simplified addressed pieces when combined in the same job. Populate with 01 for jobs where this additional level of detail is Not needed.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "mpu", FieldCode = "MPU-1116", FieldName = "Co-Palletization Code", Start = 94, Length = 2, Required = true, Key = false, DataType = "A/N", Description = "Used to differentiate carrier route mail going to the same ZIP and Route that was coded and presorted independently, to allow association with a subset of the Walk Sequence Records (*.wsr). For Co-palletization, it creates an efficient means to differentiate each of the possible job and sub-job entities within a co-palletization set-up. Can also be used to differentiate between simplified and non-simplified addressed pieces when combined in the same job. Populate with 01 for jobs where this additional level of detail is not needed.", Type = "string", Format = "leftjustify")]
 		[Column("CoPalletizationCode", Order = 18, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(2)]
@@ -281,8 +281,9 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Pre-Denominated Amount (MPU-1124)
+		/// Cents.
 		/// </summary>
-		[MaildatField(Extension = "mpu", FieldCode = "MPU-1124", FieldName = "Pre-Denominated Amount", Start = 97, Length = 5, Required = false, Key = false, DataType = "N", Description = "", Type = "decimal", Format = "zfill", Precision = 1)]
+		[MaildatField(Extension = "mpu", FieldCode = "MPU-1124", FieldName = "Pre-Denominated Amount", Start = 97, Length = 5, Required = false, Key = false, DataType = "N", Description = "Cents.", Type = "decimal", Format = "zfill", Precision = 1)]
 		[Column("PreDenominatedAmount", Order = 20, TypeName = "NUMERIC")]
 		[Precision(1)]
 		[Comment("MPU-1124")]
@@ -306,7 +307,7 @@ namespace Mail.dat
 		[MaildatField(Extension = "mpu", FieldCode = "MPU-1132", FieldName = "Standard Parcel Type", Start = 103, Length = 1, Required = false, Key = false, DataType = "A/N", Description = "", Type = "enum", Format = "leftjustify")]
 		[Column("StandardParcelType", Order = 22, TypeName = "TEXT")]
 		[MaxLength(1)]
-		[AllowedValues(" ", "F", "L", "M", "S")]
+		[AllowedValues(" ", "F", "H", "L", "M", "P", "S")]
 		[Comment("MPU-1132")]
 		[TypeConverter(typeof(MaildatEnumConverter))]
 		public string StandardParcelType { get; set; }
@@ -324,10 +325,10 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Move Update Supplier CRID (MPU-1130)
-		/// This USPS-assigned id, CRID, will be used to uniquely identify the party Responsible for compliance
+		/// This USPS-assigned id, CRID, will be used to uniquely identify the party responsible for compliance
 		/// with USPS move update requirements. Only digits 0 - 9 acceptable.
 		/// </summary>
-		[MaildatField(Extension = "mpu", FieldCode = "MPU-1130", FieldName = "Move Update Supplier CRID", Start = 124, Length = 12, Required = false, Key = false, DataType = "A/N", Description = "This USPS-assigned id, CRID, will be used to uniquely identify the party Responsible for compliance with USPS move update requirements. Only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "mpu", FieldCode = "MPU-1130", FieldName = "Move Update Supplier CRID", Start = 124, Length = 12, Required = false, Key = false, DataType = "A/N", Description = "This USPS-assigned id, CRID, will be used to uniquely identify the party responsible for compliance with USPS move update requirements. Only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
 		[Column("MoveUpdateSupplierCRID", Order = 24, TypeName = "TEXT")]
 		[MaxLength(12)]
 		[Comment("MPU-1130")]
@@ -336,10 +337,10 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Piece Uniqueness Manager CRID (MPU-1131)
-		/// This USPS-assigned id, CRID, will be used to uniquely identify the party Responsible for maintaining
-		/// piece IMb® uniqueness. Left justify, space Padded to the right, only digits 0 - 9 acceptable.
+		/// This USPS-assigned id, CRID, will be used to uniquely identify the party responsible for maintaining
+		/// piece IMb® uniqueness. Left justify, space padded to the right, only digits 0 - 9 acceptable.
 		/// </summary>
-		[MaildatField(Extension = "mpu", FieldCode = "MPU-1131", FieldName = "Piece Uniqueness Manager CRID", Start = 136, Length = 12, Required = false, Key = false, DataType = "A/N", Description = "This USPS-assigned id, CRID, will be used to uniquely identify the party Responsible for maintaining piece IMb® uniqueness. Left justify, space Padded to the right, only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "mpu", FieldCode = "MPU-1131", FieldName = "Piece Uniqueness Manager CRID", Start = 136, Length = 12, Required = false, Key = false, DataType = "A/N", Description = "This USPS-assigned id, CRID, will be used to uniquely identify the party responsible for maintaining piece IMb® uniqueness. Left justify, space padded to the right, only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
 		[Column("PieceUniquenessManagerCRID", Order = 25, TypeName = "TEXT")]
 		[MaxLength(12)]
 		[Comment("MPU-1131")]
@@ -396,14 +397,14 @@ namespace Mail.dat
 		public string IMpbBarcodeConstructCode { get; set; }
 
 		/// <summary>
-		/// Reserved (MPU-1121)
+		/// Reserve (MPU-1121)
 		/// </summary>
-		[MaildatField(Extension = "mpu", FieldCode = "MPU-1121", FieldName = "Reserved", Start = 185, Length = 8, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "zfillnumeric")]
-		[Column("Reserved", Order = 30, TypeName = "TEXT")]
+		[MaildatField(Extension = "mpu", FieldCode = "MPU-1121", FieldName = "Reserve", Start = 185, Length = 8, Required = false, Key = false, DataType = "A/N", Description = "", Type = "reserve", Format = "leftjustify")]
+		[Column("ReserveMPU1121", Order = 30, TypeName = "TEXT")]
 		[MaxLength(8)]
 		[Comment("MPU-1121")]
-		[TypeConverter(typeof(MaildatStringConverter))]
-		public string Reserved { get; set; }
+		[TypeConverter(typeof(MaildatReserveConverter))]
+		public string ReserveMPU1121 { get; set; }
 
 		/// <summary>
 		/// Closing Character (MPU-9999)
@@ -453,11 +454,11 @@ namespace Mail.dat
 			this.GroupedExtraServiceType = line.ParseForImport<Mpu, string>(p => p.GroupedExtraServiceType, returnValue);
 			this.GroupedExtraServiceBarcode = line.ParseForImport<Mpu, string>(p => p.GroupedExtraServiceBarcode, returnValue);
 			this.IMpbBarcodeConstructCode = line.ParseForImport<Mpu, string>(p => p.IMpbBarcodeConstructCode, returnValue);
-			this.Reserved = line.ParseForImport<Mpu, string>(p => p.Reserved, returnValue);
+			this.ReserveMPU1121 = line.ParseForImport<Mpu, string>(p => p.ReserveMPU1121, returnValue);
 			this.ClosingCharacter = line.ParseForImport<Mpu, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>
@@ -495,7 +496,7 @@ namespace Mail.dat
 			sb.Append(this.GroupedExtraServiceType.FormatForExport<Mpu, string>(p => p.GroupedExtraServiceType));
 			sb.Append(this.GroupedExtraServiceBarcode.FormatForExport<Mpu, string>(p => p.GroupedExtraServiceBarcode));
 			sb.Append(this.IMpbBarcodeConstructCode.FormatForExport<Mpu, string>(p => p.IMpbBarcodeConstructCode));
-			sb.Append(this.Reserved.FormatForExport<Mpu, string>(p => p.Reserved));
+			sb.Append(this.ReserveMPU1121.FormatForExport<Mpu, string>(p => p.ReserveMPU1121));
 			sb.Append(this.ClosingCharacter.FormatForExport<Mpu, string>(p => p.ClosingCharacter));
 			
 			return Task.FromResult(sb.ToString());

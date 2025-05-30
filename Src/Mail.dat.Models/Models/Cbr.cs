@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +20,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Provides the bulk form information that is present on the Certificate of Mailing Forms.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "cbr", File = "Certificate of Mailing Bulk Record", Summary = "Is used to capture the bulk form information that is present on the Certificate of Mailing Forms.", Description = "Provides the bulk form information that is present on the Certificate of Mailing Forms.", LineLength = 99, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "cbr", File = "Certificate of Mailing Bulk Record", Summary = "Is used to capture the bulk form information that is present on the Certificate of Mailing Forms.", Description = "Provides the bulk form information that is present on the Certificate of Mailing Forms.", LineLength = 99, ClosingCharacter = "#")]
 	[Table("Cbr", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 26)]
@@ -29,7 +29,7 @@ namespace Mail.dat
 		/// <summary>
 		/// Job ID (CBR-1001)
 		/// </summary>
-		[MaildatField(Extension = "cbr", FieldCode = "CBR-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "", Type = "string", Format = "type", References = "HDR-1001")]
+		[MaildatField(Extension = "cbr", FieldCode = "CBR-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "", Type = "string", Format = "zfillnumeric", References = "HDR-1001")]
 		[Column("JobID", Order = 2, TypeName = "TEXT")]
 		[Required]
 		[MaildatKey]
@@ -171,11 +171,11 @@ namespace Mail.dat
 		/// <summary>
 		/// Reserve (CBR-1110)
 		/// </summary>
-		[MaildatField(Extension = "cbr", FieldCode = "CBR-1110", FieldName = "Reserve", Start = 78, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "cbr", FieldCode = "CBR-1110", FieldName = "Reserve", Start = 78, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "", Type = "reserve", Format = "leftjustify")]
 		[Column("ReserveCBR1110", Order = 14, TypeName = "TEXT")]
 		[MaxLength(20)]
 		[Comment("CBR-1110")]
-		[TypeConverter(typeof(MaildatStringConverter))]
+		[TypeConverter(typeof(MaildatReserveConverter))]
 		public string ReserveCBR1110 { get; set; }
 
 		/// <summary>
@@ -227,7 +227,7 @@ namespace Mail.dat
 			this.ClosingCharacter = line.ParseForImport<Cbr, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>

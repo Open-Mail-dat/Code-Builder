@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +20,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Provides the header information that is present on the Certificate of Mailing Forms.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "chr", File = "Certificate of Mailing Header Record", Summary = "Is used to capture the header information that is present on the Certificate of Mailing Form.", Description = "Provides the header information that is present on the Certificate of Mailing Forms.", LineLength = 386, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "chr", File = "Certificate of Mailing Header Record", Summary = "Is used to capture the header information that is present on the Certificate of Mailing Form.", Description = "Provides the header information that is present on the Certificate of Mailing Forms.", LineLength = 386, ClosingCharacter = "#")]
 	[Table("Chr", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 25)]
@@ -226,7 +226,7 @@ namespace Mail.dat
 		/// MPA ID (CHR-1116)
 		/// Identify the permit paying for the Certificate of Mailing fees.
 		/// </summary>
-		[MaildatField(Extension = "chr", FieldCode = "CHR-1116", FieldName = "MPA ID", Start = 310, Length = 10, Required = true, Key = false, DataType = "A/N", Description = "Identify the permit paying for the Certificate of Mailing fees.", Type = "string", Format = "leftjustify", References = "MPA-1002")]
+		[MaildatField(Extension = "chr", FieldCode = "CHR-1116", FieldName = "MPA ID", Start = 310, Length = 10, Required = true, Key = false, DataType = "A/N", Description = "Identify the permit paying for the Certificate of Mailing fees.", Type = "string", Format = "zfillnumeric", References = "MPA-1002")]
 		[Column("MPAID", Order = 19, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(10)]
@@ -294,11 +294,11 @@ namespace Mail.dat
 		/// Reserve (CHR-1120)
 		/// Reserved for future use.
 		/// </summary>
-		[MaildatField(Extension = "chr", FieldCode = "CHR-1120", FieldName = "Reserve", Start = 365, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "Reserved for future use.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "chr", FieldCode = "CHR-1120", FieldName = "Reserve", Start = 365, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "Reserved for future use.", Type = "reserve", Format = "leftjustify")]
 		[Column("ReserveCHR1120", Order = 25, TypeName = "TEXT")]
 		[MaxLength(20)]
 		[Comment("CHR-1120")]
-		[TypeConverter(typeof(MaildatStringConverter))]
+		[TypeConverter(typeof(MaildatReserveConverter))]
 		public string ReserveCHR1120 { get; set; }
 
 		/// <summary>
@@ -361,7 +361,7 @@ namespace Mail.dat
 			this.ClosingCharacter = line.ParseForImport<Chr, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>

@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +20,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Un-Coded Parcel Address file: records addresses for the un-coded parcels. (Links with .pdr ONLY).
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "upa", File = "Un-Coded Parcels Address Record", Summary = "Un-coded parcels address record (linked to PDR).", Description = "Un-Coded Parcel Address file: records addresses for the un-coded parcels. (Links with .pdr ONLY).", LineLength = 135, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "upa", File = "Un-Coded Parcels Address Record", Summary = "Un-coded parcels address record (linked to PDR).", Description = "Un-Coded Parcel Address file: records addresses for the un-coded parcels. (Links with .pdr ONLY).", LineLength = 135, ClosingCharacter = "#")]
 	[Table("Upa", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 20)]
@@ -98,11 +98,11 @@ namespace Mail.dat
 		/// <summary>
 		/// Reserve (UPA-1120)
 		/// </summary>
-		[MaildatField(Extension = "upa", FieldCode = "UPA-1120", FieldName = "Reserve", Start = 134, Length = 1, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "upa", FieldCode = "UPA-1120", FieldName = "Reserve", Start = 134, Length = 1, Required = false, Key = false, DataType = "A/N", Description = "", Type = "reserve", Format = "leftjustify")]
 		[Column("ReserveUPA1120", Order = 8, TypeName = "TEXT")]
 		[MaxLength(1)]
 		[Comment("UPA-1120")]
-		[TypeConverter(typeof(MaildatStringConverter))]
+		[TypeConverter(typeof(MaildatReserveConverter))]
 		public string ReserveUPA1120 { get; set; }
 
 		/// <summary>
@@ -135,7 +135,7 @@ namespace Mail.dat
 			this.ClosingCharacter = line.ParseForImport<Upa, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>

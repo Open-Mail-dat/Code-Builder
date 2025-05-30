@@ -7,10 +7,10 @@ namespace Mail.dat.Io
 		IMaildatFile SourceFile { get; set; }
 		string TemporaryDirectory { get; set; }
 		string TargetFile { get; set; }
-		bool SkipPbcFile { get; set; }
+		bool SkipPbc { get; set; }
 		ILogger<IImportOptions> Logger { get; set; }
 		CancellationToken CancellationToken { get; set; }
 		bool FavorMemoryOverPerformance { get; set; }
-		int BatchSize { get; set; }
+		int MaxRecordsInMemory { get; set; }
 	}
 }

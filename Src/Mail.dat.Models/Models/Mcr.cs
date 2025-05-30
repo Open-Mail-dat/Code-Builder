@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +20,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Table showing relationship of MPUs to Components.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "mcr", File = "Mpu / C - Relationship Record", Summary = "Table showing relationship of MPUs to Components.", Description = "Table showing relationship of MPUs to Components.", LineLength = 100, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "mcr", File = "Mpu / C - Relationship Record", Summary = "Table showing relationship of MPUs to Components.", Description = "Table showing relationship of MPUs to Components.", LineLength = 100, ClosingCharacter = "#")]
 	[Table("Mcr", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 4)]
@@ -67,15 +67,15 @@ namespace Mail.dat
 		/// <summary>
 		/// Component ID (MCR-1004)
 		/// Left justify, must have some value, even if single edition. This ID represents a specific
-		/// sub-portion (or the whole, as appropriate) of one Or more Mail Piece Unit Make-ups within the
-		/// production of the Specific mailing described by the supplied Mail.dat®  file. The originator of the
-		/// Mail.dat®  file must identify any postage Differentiating Components with their own record. However,
-		/// if no Postage affecting differentiation exists within the various parts making Up a Mail Piece Unit,
-		/// then the originator of the specific Mail.dat® May choose to, and probably should, only identify the
-		/// necessary detail And simply clone that which is in the Mail Piece Unit ID field. Therefore, there
+		/// sub-portion (or the whole, as appropriate) of one or more Mail Piece Unit Make-ups within the
+		/// production of the specific mailing described by the supplied Mail.dat®  file. The originator of the
+		/// Mail.dat®  file must identify any postage differentiating Components with their own record. However,
+		/// if no postage affecting differentiation exists within the various parts making up a Mail Piece Unit,
+		/// then the originator of the specific Mail.dat® may choose to, and probably should, only identify the
+		/// necessary detail and simply clone that which is in the Mail Piece Unit ID field. Therefore, there
 		/// will always be at least one Component within any Mail Piece Unit.
 		/// </summary>
-		[MaildatField(Extension = "mcr", FieldCode = "MCR-1004", FieldName = "Component ID", Start = 18, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "Left justify, must have some value, even if single edition. This ID represents a specific sub-portion (or the whole, as appropriate) of one Or more Mail Piece Unit Make-ups within the production of the Specific mailing described by the supplied Mail.dat®  file. The originator of the Mail.dat®  file must identify any postage Differentiating Components with their own record. However, if no Postage affecting differentiation exists within the various parts making Up a Mail Piece Unit, then the originator of the specific Mail.dat® May choose to, and probably should, only identify the necessary detail And simply clone that which is in the Mail Piece Unit ID field. Therefore, there will always be at least one Component within any Mail Piece Unit.", Type = "string", Format = "zfillnumeric")]
+		[MaildatField(Extension = "mcr", FieldCode = "MCR-1004", FieldName = "Component ID", Start = 18, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "Left justify, must have some value, even if single edition. This ID represents a specific sub-portion (or the whole, as appropriate) of one or more Mail Piece Unit Make-ups within the production of the specific mailing described by the supplied Mail.dat®  file. The originator of the Mail.dat®  file must identify any postage differentiating Components with their own record. However, if no postage affecting differentiation exists within the various parts making up a Mail Piece Unit, then the originator of the specific Mail.dat® may choose to, and probably should, only identify the necessary detail and simply clone that which is in the Mail Piece Unit ID field. Therefore, there will always be at least one Component within any Mail Piece Unit.", Type = "string", Format = "zfillnumeric")]
 		[Column("ComponentID", Order = 5, TypeName = "TEXT")]
 		[Required]
 		[MaildatKey]
@@ -88,7 +88,7 @@ namespace Mail.dat
 		/// Primary MPA ID (MCR-1102)
 		/// From MPA - Unique Sequence/Grouping ID.
 		/// </summary>
-		[MaildatField(Extension = "mcr", FieldCode = "MCR-1102", FieldName = "Primary MPA ID", Start = 26, Length = 10, Required = true, Key = false, DataType = "A/N", Description = "From MPA - Unique Sequence/Grouping ID.", Type = "string", Format = "leftjustify", References = "MPA-1002")]
+		[MaildatField(Extension = "mcr", FieldCode = "MCR-1102", FieldName = "Primary MPA ID", Start = 26, Length = 10, Required = true, Key = false, DataType = "A/N", Description = "From MPA - Unique Sequence/Grouping ID.", Type = "string", Format = "zfillnumeric", References = "MPA-1002")]
 		[Column("PrimaryMPAID", Order = 6, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(10)]
@@ -100,7 +100,7 @@ namespace Mail.dat
 		/// Additional Postage MPA ID (MCR-1103)
 		/// From MPA - Unique Sequence/Grouping ID.
 		/// </summary>
-		[MaildatField(Extension = "mcr", FieldCode = "MCR-1103", FieldName = "Additional Postage MPA ID", Start = 36, Length = 10, Required = false, Key = false, DataType = "A/N", Description = "From MPA - Unique Sequence/Grouping ID.", Type = "string", Format = "leftjustify", References = "MPA-1002")]
+		[MaildatField(Extension = "mcr", FieldCode = "MCR-1103", FieldName = "Additional Postage MPA ID", Start = 36, Length = 10, Required = false, Key = false, DataType = "A/N", Description = "From MPA - Unique Sequence/Grouping ID.", Type = "string", Format = "zfillnumeric", References = "MPA-1002")]
 		[Column("AdditionalPostageMPAID", Order = 7, TypeName = "TEXT")]
 		[MaxLength(10)]
 		[Comment("MCR-1103")]
@@ -131,11 +131,11 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Postage Adjustment MPA ID (MCR-1106)
-		/// This field would be used by anyone (printers and letter shops) Including MLOCR vendors requiring
+		/// This field would be used by anyone (printers and letter shops) including MLOCR vendors requiring
 		/// Postage Adjustments to be paid from a separate permit. Unique identifier for the respective MPA
 		/// within an MPU. Establishes the set of MPU pieces on one Postage Statement.
 		/// </summary>
-		[MaildatField(Extension = "mcr", FieldCode = "MCR-1106", FieldName = "Postage Adjustment MPA ID", Start = 55, Length = 10, Required = false, Key = false, DataType = "A/N", Description = "This field would be used by anyone (printers and letter shops) Including MLOCR vendors requiring Postage Adjustments to be paid from a separate permit. Unique identifier for the respective MPA within an MPU. Establishes the set of MPU pieces on one Postage Statement.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "mcr", FieldCode = "MCR-1106", FieldName = "Postage Adjustment MPA ID", Start = 55, Length = 10, Required = false, Key = false, DataType = "A/N", Description = "This field would be used by anyone (printers and letter shops) including MLOCR vendors requiring Postage Adjustments to be paid from a separate permit. Unique identifier for the respective MPA within an MPU. Establishes the set of MPU pieces on one Postage Statement.", Type = "string", Format = "zfillnumeric", References = "MPA-1002")]
 		[Column("PostageAdjustmentMPAID", Order = 10, TypeName = "TEXT")]
 		[MaxLength(10)]
 		[Comment("MCR-1106")]
@@ -157,11 +157,11 @@ namespace Mail.dat
 		/// <summary>
 		/// Reserve (MCR-1101)
 		/// </summary>
-		[MaildatField(Extension = "mcr", FieldCode = "MCR-1101", FieldName = "Reserve", Start = 66, Length = 34, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "mcr", FieldCode = "MCR-1101", FieldName = "Reserve", Start = 66, Length = 34, Required = false, Key = false, DataType = "A/N", Description = "", Type = "reserve", Format = "leftjustify")]
 		[Column("ReserveMCR1101", Order = 12, TypeName = "TEXT")]
 		[MaxLength(34)]
 		[Comment("MCR-1101")]
-		[TypeConverter(typeof(MaildatStringConverter))]
+		[TypeConverter(typeof(MaildatReserveConverter))]
 		public string ReserveMCR1101 { get; set; }
 
 		/// <summary>
@@ -198,7 +198,7 @@ namespace Mail.dat
 			this.ClosingCharacter = line.ParseForImport<Mcr, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>

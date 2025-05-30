@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 
 namespace Mail.dat
@@ -43,8 +43,11 @@ namespace Mail.dat
 		/// Pre-Denominated Maximum Credit Amount (CCR-1101)
 		/// Dollars/cents, rounded (decimal implied) Maximum Credit Redemption Amount to be applied towards the
 		/// postage amount. The postage amount representing the pieces associated with the component record.
-		/// Should be used in conjunction with the CCR for Credit Redemption. If left blank, then do not apply
-		/// any limit to the credit amount used.
+		/// Should be used in conjunction with the CCR for Credit Redemption. If the field is blank or zero
+		/// filled, do not apply any limit to the credit amount used. Note: multiple components may be tied to
+		/// one/same Permit in MPA record Note: if the need is to entirely remove the Credit Redemption, remove
+		/// the CCR record claiming the Credit Redemption or populate the field with the minimum value
+		/// (00000000001), as a zero filled will not limit the credit amount used.
 		/// </summary>
 		decimal? PreDenominatedMaximumCreditAmount { get; set; }
 

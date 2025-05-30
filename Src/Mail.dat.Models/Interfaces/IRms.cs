@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 
 namespace Mail.dat
@@ -43,10 +43,10 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Campaign Code (RMS-1004)
-		/// Campaign Code further identifies subsets of a Campaign and must be unique for each distinct set of
-		/// Campaign elements. The same Campaign Code may Be used across multiple jobs to update campaign Serial
-		/// ranges, as long as the Start date of campaign is In the future and campaign is in Submitted status.
-		/// When submitting across multiple jobs, all campaign Elements must match prior job submissions. Note:
+		/// Campaign Code further identifies subsets of a campaign and must be unique for each distinct set of
+		/// campaign elements. The same Campaign Code may be used across multiple jobs to update campaign serial
+		/// ranges, as long as the Start date of campaign is in the future and campaign is in Submitted status.
+		/// When submitting across multiple jobs, all campaign elements must match prior job submissions. Note:
 		/// Refer to the PostalOne! Mail.dat Tech Specifications for more information on populating this field.
 		/// </summary>
 		string CampaignCode { get; set; }
@@ -56,7 +56,7 @@ namespace Mail.dat
 		/// The below two values are supported at this time: C= IMb® in continuous serial range with
 		/// non-personalized campaigns. This supports Informed Delivery in identifying when an IMb® serial range
 		/// can be used to create a campaign. S= Saturation campaign data using ZIP11s supplied by the Mailer in
-		/// the PDR file. This type of Campaign can only be used with Saturation mailings. This supports
+		/// the PDR file. This type of campaign can only be used with Saturation mailings. This supports
 		/// Informed Delivery in identifying campaign data as Saturation campaigns.
 		/// </summary>
 		string CampaignSerialGrouping { get; set; }

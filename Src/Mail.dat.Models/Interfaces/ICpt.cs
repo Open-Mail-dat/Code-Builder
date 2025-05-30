@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 
 namespace Mail.dat
@@ -30,16 +30,16 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Component Description (CPT-1101)
-		/// This is a unique name or code for each specific sub- or whole-portion of The mail piece. This field,
-		/// if used, can carry an absolute reference to The Component in question while the Component ID is
-		/// practical shorthand For reference to the Component's role within the mailing facilities postage
-		/// Analysis. Left justify. If used, must have some value, even if single edition.
+		/// This is a unique name or code for each specific sub- or whole-portion of the mail piece. This field,
+		/// if used, can carry an absolute reference to the Component in question while the Component ID is
+		/// practical shorthand for reference to the Component's role within the mailing facilities postage
+		/// analysis. Left justify. If used, must have some value, even if single edition.
 		/// </summary>
 		string ComponentDescription { get; set; }
 
 		/// <summary>
 		/// Component - Weight (CPT-1102)
-		/// 99v9999; pounds, rounded (decimal point implied).
+		/// Pounds, rounded.
 		/// </summary>
 		decimal ComponentWeight { get; set; }
 
@@ -57,28 +57,28 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Component - Length (CPT-1105)
-		/// Length of a copy 999v9999; inches, rounded (decimal point implied).
+		/// Length of a copy; inches, rounded.
 		/// </summary>
 		decimal? ComponentLength { get; set; }
 
 		/// <summary>
 		/// Component - Width (CPT-1106)
-		/// Width of a copy 99v9999; inches, rounded (decimal point implied).
+		/// Width of a copy; inches, rounded.
 		/// </summary>
 		decimal? ComponentWidth { get; set; }
 
 		/// <summary>
 		/// Component - Thickness (CPT-1107)
-		/// Thickness of a copy 99v9999; inches, rounded (decimal point implied).
+		/// Thickness of a copy; inches, rounded.
 		/// </summary>
 		decimal? ComponentThickness { get; set; }
 
 		/// <summary>
 		/// Component - Periodical Ad Percentage (CPT-1108)
-		/// Ad percentage of a copy 999v99, rounded (decimal point implied) Example (if there is a two page
-		/// Periodical supplement having 50% Ad and the Periodical Is 48 pages having 40% Ad, then in the
-		/// mail.dat file the ad percent of the supplement is (2/50)x.5 = 2.0% and the ad percent of the
-		/// Periodical is (48/50)x.4 =38.40%. The sum is 40.40% Field is necessary for Periodicals Enclosures.
+		/// Ad percentage of a copy, rounded Example (if there is a two page Periodical supplement having 50% Ad
+		/// and the Periodical is 48 pages having 40% Ad, then in the mail.dat file the ad percent of the
+		/// supplement is (2/50)x.5 = 2.0% and the ad percent of the Periodical is (48/50)x.4 =38.40%. The sum
+		/// is 40.40% Field is necessary for Periodicals Enclosures.
 		/// </summary>
 		decimal? ComponentPeriodicalAdPercentage { get; set; }
 
@@ -146,8 +146,8 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Equivalent User License Code (CPT-1144)
-		/// User license code of a component of common weight and ad %. Used in Conjunction with Equivalent Job
-		/// ID and Equivalent Component ID to link Together components with common book weight and ad %.
+		/// User license code of a component of common weight and ad %. Used in conjunction with Equivalent Job
+		/// ID and Equivalent Component ID to link together components with common book weight and ad %.
 		/// </summary>
 		string EquivalentUserLicenseCode { get; set; }
 
@@ -171,7 +171,6 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Ad % Basis (CPT-1152)
-		/// 9999v99 implied 2 decimal places.
 		/// </summary>
 		decimal? AdBasis { get; set; }
 
@@ -195,8 +194,8 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Approved Piece Design (CPT-1158)
-		/// The CSR or PCSC ruling number approving the mailing of a specific Style/design of mail piece. These
-		/// new designs could include but not Limited to automation, non-rectangular, non-paper mail pieces.
+		/// The CSR or PCSC ruling number approving the mailing of a specific style/design of mail piece. These
+		/// new designs could include but not limited to automation, non-rectangular, non-paper mail pieces.
 		/// </summary>
 		int? ApprovedPieceDesign { get; set; }
 
@@ -213,9 +212,9 @@ namespace Mail.dat
 
 		/// <summary>
 		/// eMailpiece Sample Group ID (CPT-1159)
-		/// This USPS-assigned id, will be used to uniquely identify a group of Mailpiece samples loaded to USPS
-		/// Business Customer Gateway and Referenced here for promotion eligibility. Left Justify. Field Format
-		/// will Be validated by PostalOne!.
+		/// This USPS-assigned id, will be used to uniquely identify a group of mailpiece samples loaded to USPS
+		/// Business Customer Gateway and referenced here for promotion eligibility. Left Justify. Field Format
+		/// will be validated by PostalOne!.
 		/// </summary>
 		string EMailpieceSampleGroupID { get; set; }
 

@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 
 namespace Mail.dat
@@ -45,8 +45,8 @@ namespace Mail.dat
 
 		/// <summary>
 		/// RMR Content Type (RMR-1004)
-		/// Field to capture the type of RMR content. RMR content Can either be a URL of a media image that is
-		/// supported by Browsers or a target URL that will be placed as a Hyperlink For the media/image.
+		/// Field to capture the type of RMR content. RMR content can either be a URL of a media image that is
+		/// supported by browsers or a target URL that will be placed as a Hyperlink for the media/image.
 		/// </summary>
 		string RMRContentType { get; set; }
 
@@ -59,8 +59,8 @@ namespace Mail.dat
 
 		/// <summary>
 		/// RMR Value (RMR-1005)
-		/// Value/Content URL for the Referenceable Mail media or Target/HREF document (could be a webpage, or
-		/// image/media Driven by the RMR Content Type field); Leave BLANK if piece Wishes to be Opt out of Real
+		/// Value/Content URL for the Referenceable Mail media or target/HREF document (could be a webpage, or
+		/// image/media driven by the RMR Content Type field); Leave BLANK if piece wishes to be Opt out of Real
 		/// Mail Program with RMR Content Type of O, else the field is required.
 		/// </summary>
 		string RMRValue { get; set; }

@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +20,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Records identify a summary of campaigns that can be tied to barcode records.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "rms", File = "Referenceable Mail Summary Record", Summary = "Referenceable Mail Summary to provide digital Content.", Description = "Records identify a summary of campaigns that can be tied to barcode records.", LineLength = 235, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "rms", File = "Referenceable Mail Summary Record", Summary = "Referenceable Mail Summary to provide digital Content.", Description = "Records identify a summary of campaigns that can be tied to barcode records.", LineLength = 235, ClosingCharacter = "#")]
 	[Table("Rms", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 24)]
@@ -54,11 +54,11 @@ namespace Mail.dat
 		/// <summary>
 		/// Reserve (RMS-1009)
 		/// </summary>
-		[MaildatField(Extension = "rms", FieldCode = "RMS-1009", FieldName = "Reserve", Start = 17, Length = 22, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "rms", FieldCode = "RMS-1009", FieldName = "Reserve", Start = 17, Length = 22, Required = false, Key = false, DataType = "A/N", Description = "", Type = "reserve", Format = "leftjustify")]
 		[Column("ReserveRMS1009", Order = 4, TypeName = "TEXT")]
 		[MaxLength(22)]
 		[Comment("RMS-1009")]
-		[TypeConverter(typeof(MaildatStringConverter))]
+		[TypeConverter(typeof(MaildatReserveConverter))]
 		public string ReserveRMS1009 { get; set; }
 
 		/// <summary>
@@ -77,13 +77,13 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Campaign Code (RMS-1004)
-		/// Campaign Code further identifies subsets of a Campaign and must be unique for each distinct set of
-		/// Campaign elements. The same Campaign Code may Be used across multiple jobs to update campaign Serial
-		/// ranges, as long as the Start date of campaign is In the future and campaign is in Submitted status.
-		/// When submitting across multiple jobs, all campaign Elements must match prior job submissions. Note:
+		/// Campaign Code further identifies subsets of a campaign and must be unique for each distinct set of
+		/// campaign elements. The same Campaign Code may be used across multiple jobs to update campaign serial
+		/// ranges, as long as the Start date of campaign is in the future and campaign is in Submitted status.
+		/// When submitting across multiple jobs, all campaign elements must match prior job submissions. Note:
 		/// Refer to the PostalOne! Mail.dat Tech Specifications for more information on populating this field.
 		/// </summary>
-		[MaildatField(Extension = "rms", FieldCode = "RMS-1004", FieldName = "Campaign Code", Start = 79, Length = 40, Required = true, Key = false, DataType = "A/N", Description = "Campaign Code further identifies subsets of a Campaign and must be unique for each distinct set of Campaign elements. The same Campaign Code may Be used across multiple jobs to update campaign Serial ranges, as long as the Start date of campaign is In the future and campaign is in Submitted status. When submitting across multiple jobs, all campaign Elements must match prior job submissions. Note: Refer to the PostalOne! Mail.dat Tech Specifications for more information on populating this field.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "rms", FieldCode = "RMS-1004", FieldName = "Campaign Code", Start = 79, Length = 40, Required = true, Key = false, DataType = "A/N", Description = "Campaign Code further identifies subsets of a campaign and must be unique for each distinct set of campaign elements. The same Campaign Code may be used across multiple jobs to update campaign serial ranges, as long as the Start date of campaign is in the future and campaign is in Submitted status. When submitting across multiple jobs, all campaign elements must match prior job submissions. Note: Refer to the PostalOne! Mail.dat Tech Specifications for more information on populating this field.", Type = "string", Format = "leftjustify")]
 		[Column("CampaignCode", Order = 6, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(40)]
@@ -96,10 +96,10 @@ namespace Mail.dat
 		/// The below two values are supported at this time: C= IMb® in continuous serial range with
 		/// non-personalized campaigns. This supports Informed Delivery in identifying when an IMb® serial range
 		/// can be used to create a campaign. S= Saturation campaign data using ZIP11s supplied by the Mailer in
-		/// the PDR file. This type of Campaign can only be used with Saturation mailings. This supports
+		/// the PDR file. This type of campaign can only be used with Saturation mailings. This supports
 		/// Informed Delivery in identifying campaign data as Saturation campaigns.
 		/// </summary>
-		[MaildatField(Extension = "rms", FieldCode = "RMS-1005", FieldName = "Campaign Serial Grouping", Start = 119, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "The below two values are supported at this time: C= IMb® in continuous serial range with non-personalized campaigns. This supports Informed Delivery in identifying when an IMb® serial range can be used to create a campaign. S= Saturation campaign data using ZIP11s supplied by the Mailer in the PDR file. This type of Campaign can only be used with Saturation mailings. This supports Informed Delivery in identifying campaign data as Saturation campaigns.", Type = "enum", Format = "leftjustify")]
+		[MaildatField(Extension = "rms", FieldCode = "RMS-1005", FieldName = "Campaign Serial Grouping", Start = 119, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "The below two values are supported at this time: C= IMb® in continuous serial range with non-personalized campaigns. This supports Informed Delivery in identifying when an IMb® serial range can be used to create a campaign. S= Saturation campaign data using ZIP11s supplied by the Mailer in the PDR file. This type of campaign can only be used with Saturation mailings. This supports Informed Delivery in identifying campaign data as Saturation campaigns.", Type = "enum", Format = "leftjustify")]
 		[Column("CampaignSerialGrouping", Order = 7, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(1)]
@@ -276,11 +276,11 @@ namespace Mail.dat
 		/// <summary>
 		/// Reserve (RMS-1020)
 		/// </summary>
-		[MaildatField(Extension = "rms", FieldCode = "RMS-1020", FieldName = "Reserve", Start = 214, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "rms", FieldCode = "RMS-1020", FieldName = "Reserve", Start = 214, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "", Type = "reserve", Format = "leftjustify")]
 		[Column("ReserveRMS1020", Order = 21, TypeName = "TEXT")]
 		[MaxLength(20)]
 		[Comment("RMS-1020")]
-		[TypeConverter(typeof(MaildatStringConverter))]
+		[TypeConverter(typeof(MaildatReserveConverter))]
 		public string ReserveRMS1020 { get; set; }
 
 		/// <summary>
@@ -339,7 +339,7 @@ namespace Mail.dat
 			this.ClosingCharacter = line.ParseForImport<Rms, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>

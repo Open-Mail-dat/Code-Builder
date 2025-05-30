@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 
 namespace Mail.dat
@@ -30,7 +30,7 @@ namespace Mail.dat
 		/// <summary>
 		/// Mail Piece Unit ID (MPU-1003)
 		/// Must have some value, even if single edition. This ID will be used by the computer controlled
-		/// equipment at the mailing facility to manufacture The specific binding parts for this make-up within
+		/// equipment at the mailing facility to manufacture the specific binding parts for this make-up within
 		/// this particular mailing. Any Mail Piece Unit exists within a specific Segment. Therefore,
 		/// Segment/MPU is mutually exclusive. MPU alone is not unique.
 		/// </summary>
@@ -40,13 +40,13 @@ namespace Mail.dat
 		/// Mail Piece Unit Name (MPU-1101)
 		/// The name used to identify a specific marketing version within a list, bind and distribution
 		/// environment. This name may be on-going as a description from issue to issue, as opposed to the job
-		/// to job alpha And/or numeric Selective Bind Code that will control the binding machine.  The Mail
+		/// to job alpha and/or numeric Selective Bind Code that will control the binding machine. The Mail
 		/// Piece Unit Name, more traditionally in Periodicals, may be a meaningful identifier; such as S-S NW
 		/// Metro. Whether in Periodicals or other classes, the MPU Name field is a defined location where
-		/// downstream Users can find the MPU's meaningful Name for this job, regardless of the arbitrary MPU
+		/// downstream users can find the MPU's meaningful Name for this job, regardless of the arbitrary MPU
 		/// ID. If, as may often be the case in non-Periodical, there is no benefit derived from special naming
-		/// Then the Book Make-up Name can be the same as the MPU ID. The MPU Name will be the source for mail
-		/// owner's name on Postage Payment forms or their electronic equivalents.  Suggested convention for
+		/// then the Book Make-up Name can be the same as the MPU ID. The MPU Name will be the source for mail
+		/// owner's name on Postage Payment forms or their electronic equivalents. Suggested convention for
 		/// carrying the identity of the base book: - Example MPU Name Value:Exxxxxxx_BRO -- E (hard coded)
 		/// stands for edition; -- xxxxxxx (only as many as necessary) represents base book edition; -- _
 		/// (underline) separates edition & suffix; -- B/R/O (solo or BO or RO) --- B = Bill, R = Renewal, O=
@@ -56,26 +56,26 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Mail Piece Unit Description (MPU-1102)
-		/// This is a unique name or code for each specific version being created Within this mailing. However,
+		/// This is a unique name or code for each specific version being created within this mailing. However,
 		/// as a differentiation from the Mail Piece Unit Name, this may be a meaningful descriptor of a broader
-		/// Significance than just this mailing. Therefore, this field is an Opportunity to have absolute, as
-		/// well as of relative, information in this Record. This offers information for enhanced quality
-		/// assurance and Reduced error. For example: A periodical has a Metro Northwest Superspot edition That
-		/// is run every issue. Therefore, the Mail Piece Unit ID to drive the Machine in the bindery might be B
-		/// for one issue and Q a month Later. However, the Mail Piece Unit Name would always be S-S NW Metro
+		/// significance than just this mailing. Therefore, this field is an opportunity to have absolute, as
+		/// well as of relative, information in this record. This offers information for enhanced quality
+		/// assurance and reduced error. For example: A periodical has a Metro Northwest Superspot edition that
+		/// is run every issue. Therefore, the Mail Piece Unit ID to drive the machine in the bindery might be B
+		/// for one issue and Q a month later. However, the Mail Piece Unit Name would always be S-S NW Metro
 		/// and the Mail Piece Unit Description would always be Metro Northwest Superspot A 3C campaign may not
-		/// have repeating market target names; or they May. So, the Mail Piece Unit IDs for a mailing may be A,
+		/// have repeating market target names; or they may. So, the Mail Piece Unit IDs for a mailing may be A,
 		/// B, and C. For that campaign, the MPU Descriptions may be A, B, and C., or the MPU Descriptions could
-		/// be RHF, RHS, and RHT, If those were meaningful codes carrying over from one job to another. The
-		/// originator of the Mail.dat® file, as agreed by receiving mailing Facilities, can choose to the
-		/// finest level of detail in the preceding two Fields or simply clone that which is in the Mail Piece
+		/// be RHF, RHS, and RHT, if those were meaningful codes carrying over from one job to another. The
+		/// originator of the Mail.dat® file, as agreed by receiving mailing facilities, can choose to the
+		/// finest level of detail in the preceding two fields or simply clone that which is in the Mail Piece
 		/// Unit ID field.
 		/// </summary>
 		string MailPieceUnitDescription { get; set; }
 
 		/// <summary>
 		/// Mail Piece Unit - Weight (MPU-1103)
-		/// Weight of a copy in pounds, rounded.
+		/// Weight of a copy in pounds, rounded. Presort Facilities default to 1 ounce, if Metered Mail.
 		/// </summary>
 		decimal MailPieceUnitWeight { get; set; }
 
@@ -144,11 +144,11 @@ namespace Mail.dat
 		/// <summary>
 		/// Co-Palletization Code (MPU-1116)
 		/// Used to differentiate carrier route mail going to the same ZIP and Route that was coded and
-		/// presorted independently, to allow Association with a subset of the Walk Sequence Records (*.wsr).
-		/// For Co-palletization, it creates an efficient means to differentiate Each of the possible job and
-		/// sub-job entities within a co-palletization Set-up. Can also be used to differentiate between
-		/// simplified and Non-simplified addressed pieces when combined in the same job. Populate with 01 for
-		/// jobs where this additional level of detail is Not needed.
+		/// presorted independently, to allow association with a subset of the Walk Sequence Records (*.wsr).
+		/// For Co-palletization, it creates an efficient means to differentiate each of the possible job and
+		/// sub-job entities within a co-palletization set-up. Can also be used to differentiate between
+		/// simplified and non-simplified addressed pieces when combined in the same job. Populate with 01 for
+		/// jobs where this additional level of detail is not needed.
 		/// </summary>
 		string CoPalletizationCode { get; set; }
 
@@ -159,6 +159,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Pre-Denominated Amount (MPU-1124)
+		/// Cents.
 		/// </summary>
 		decimal? PreDenominatedAmount { get; set; }
 
@@ -180,15 +181,15 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Move Update Supplier CRID (MPU-1130)
-		/// This USPS-assigned id, CRID, will be used to uniquely identify the party Responsible for compliance
+		/// This USPS-assigned id, CRID, will be used to uniquely identify the party responsible for compliance
 		/// with USPS move update requirements. Only digits 0 - 9 acceptable.
 		/// </summary>
 		string MoveUpdateSupplierCRID { get; set; }
 
 		/// <summary>
 		/// Piece Uniqueness Manager CRID (MPU-1131)
-		/// This USPS-assigned id, CRID, will be used to uniquely identify the party Responsible for maintaining
-		/// piece IMb® uniqueness. Left justify, space Padded to the right, only digits 0 - 9 acceptable.
+		/// This USPS-assigned id, CRID, will be used to uniquely identify the party responsible for maintaining
+		/// piece IMb® uniqueness. Left justify, space padded to the right, only digits 0 - 9 acceptable.
 		/// </summary>
 		string PieceUniquenessManagerCRID { get; set; }
 
@@ -218,9 +219,9 @@ namespace Mail.dat
 		string IMpbBarcodeConstructCode { get; set; }
 
 		/// <summary>
-		/// Reserved (MPU-1121)
+		/// Reserve (MPU-1121)
 		/// </summary>
-		string Reserved { get; set; }
+		string ReserveMPU1121 { get; set; }
 
 		/// <summary>
 		/// Closing Character (MPU-9999)

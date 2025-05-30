@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 
 namespace Mail.dat
@@ -40,11 +40,10 @@ namespace Mail.dat
 		/// <summary>
 		/// 3 Digit / 5 Digit Container Division (CQT-1007)
 		/// 3 or 5 Digit representing a portion or all of the pieces within the container. The 3 or 5 Digit
-		/// represents those pieces within the container to a single 3 or 5 Digit; Not presuming this set of
+		/// represents those pieces within the container to a single 3 or 5 Digit; not presuming this set of
 		/// pieces to be all of those going to the destination of the container. For example: Carrier Route Sack
-		/// is described in one 3 Digit or 5 Digit Container Quantity Record; However, likely multiple records
-		/// required to describe a Residual tray. For First Class, Periodicals, or Standard Mail, this field
-		/// within the CQT is to be a 3-Digit since There is generally no finer Zone or Destination Entry
+		/// is described in one 3 Digit or 5 Digit Container Quantity Record; however, likely multiple records
+		/// required to describe a Residual tray. there is generally no finer Zone or Destination Entry
 		/// discrimination necessary. The exceptions for the preceding cases are when there is either: 1) A
 		/// value representing DDU in field CQT - 1105 for the respective CQT record 2) When the CQT record
 		/// represents a portion of a 5-Digit Scheme package. 3) For all Package Services CQT records. 4) A 5
@@ -53,7 +52,7 @@ namespace Mail.dat
 		/// the 3 Digit; if applicable. The user can make divisions as appropriate to meet the USPS reporting
 		/// needs. Only US Postal Service and Canada Post mail should have 3- or 5-byte values, all others see
 		/// following. 3 Digit or 5 Digit Division as necessary. Example: US = (99999_), or (888___) CANADIAN =
-		/// (A1A___), Left Justify 3 Digit (1C, 2C & 3C use 3 Digit Division; Generate additional 5 Digit
+		/// (A1A___), Left Justify 3 Digit (1C, 2C & 3C use 3 Digit Division; generate additional 5 Digit
 		/// records, if a DDU in position 49 of .CSM or if record is a 5 Digit Scheme Package or Container ) (4C
 		/// use 5 Digit Division). In the event that no postal code is available, then the following default
 		/// 2-position alphas are to be used: Default if no ZIP or Postal Code: Left Justify; Space Added: US =
@@ -64,10 +63,10 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Mail Piece Unit ID (CQT-1003)
-		/// This ID will be used by the computer controlled equipment at the mailing facility to Manufacture the
+		/// This ID will be used by the computer controlled equipment at the mailing facility to manufacture the
 		/// specific binding parts for this make-up within this particular mailing. Any Mail Piece Unit exists
-		/// within a specific Segment. Therefore, Segment/MPU is mutually exclusive. MPU alone is not unique. It
-		/// must have some value, even if single edition.
+		/// within a specific Segment. Therefore, Segment/MPU is mutually exclusive. MPU alone is not unique.
+		/// Must have some value, even if single edition.
 		/// </summary>
 		string MailPieceUnitID { get; set; }
 
@@ -128,7 +127,8 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Container Charge Allocation (CQT-1111)
-		/// This field is to be used for denoting the proportion of cost of its container that it's carrying.
+		/// Proportion, rounded This field is to be used for denoting the proportion of cost of its container
+		/// that it's carrying.
 		/// </summary>
 		decimal? ContainerChargeAllocation { get; set; }
 

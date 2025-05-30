@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +20,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Allows customers to tie or link container information between Jobs from Mail.dat and Mail.XML.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "oci", File = "Original Container Record", Summary = "Links new container with an original container.", Description = "Allows customers to tie or link container information between Jobs from Mail.dat and Mail.XML.", LineLength = 120, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "oci", File = "Original Container Record", Summary = "Links new container with an original container.", Description = "Allows customers to tie or link container information between Jobs from Mail.dat and Mail.XML.", LineLength = 120, ClosingCharacter = "#")]
 	[Table("Oci", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 19)]
@@ -167,11 +167,11 @@ namespace Mail.dat
 		/// <summary>
 		/// Reserve (OCI-1110)
 		/// </summary>
-		[MaildatField(Extension = "oci", FieldCode = "OCI-1110", FieldName = "Reserve", Start = 104, Length = 16, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "oci", FieldCode = "OCI-1110", FieldName = "Reserve", Start = 104, Length = 16, Required = false, Key = false, DataType = "A/N", Description = "", Type = "reserve", Format = "leftjustify")]
 		[Column("ReserveOCI1110", Order = 14, TypeName = "TEXT")]
 		[MaxLength(16)]
 		[Comment("OCI-1110")]
-		[TypeConverter(typeof(MaildatStringConverter))]
+		[TypeConverter(typeof(MaildatReserveConverter))]
 		public string ReserveOCI1110 { get; set; }
 
 		/// <summary>
@@ -210,7 +210,7 @@ namespace Mail.dat
 			this.ClosingCharacter = line.ParseForImport<Oci, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>

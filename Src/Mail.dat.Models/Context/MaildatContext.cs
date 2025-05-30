@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using Diamond.Core.Repository.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -168,7 +168,7 @@ namespace Mail.dat
 			modelBuilder.Entity<Cdr>().HasIndex(t => t.COMPieceID);
 			modelBuilder.Entity<Cfr>().HasIndex(t => t.JobID);
 			modelBuilder.Entity<Cfr>().HasIndex(t => t.CertificateOfMailingHeaderID);
-			modelBuilder.Entity<Cfr>().HasIndex(t => t.PieceID);
+			modelBuilder.Entity<Cfr>().HasIndex(t => t.COMPieceID);
 			modelBuilder.Entity<Cfr>().HasIndex(t => t.ServiceType);
 			modelBuilder.Entity<Chr>().HasIndex(t => t.JobID);
 			modelBuilder.Entity<Chr>().HasIndex(t => t.CertificateOfMailingHeaderID);

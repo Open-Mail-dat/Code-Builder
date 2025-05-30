@@ -142,9 +142,9 @@ namespace Mail.dat.ImportCommand
 							TemporaryDirectory = temporaryFolder.FullPath,
 							TargetFile = options.TargetFilePath.FullName,
 							CancellationToken = cancellationTokenSource.Token,
-							SkipPbcFile = options.SkipPbc,
+							SkipPbc = options.SkipPbc,
 							FavorMemoryOverPerformance = options.FavorMemoryOverPerformance,
-							BatchSize = options.MaxRecordsInMemory
+							MaxRecordsInMemory = options.MaxRecordsInMemory
 						};
 
 						//

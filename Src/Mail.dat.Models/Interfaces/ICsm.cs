@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 
 namespace Mail.dat
@@ -63,10 +63,10 @@ namespace Mail.dat
 		/// <summary>
 		/// Container Destination Zip (CSM-1103)
 		/// The 5-digit or 3-digit destination of container defined in this record. These are the same as
-		/// destination 5-digit or 3-digit sack or tray label. 99999_ or 888___ CAN = A1A9Z9 Default if no ZIP
-		/// or Postal Code: Left Justify; Space Added: US = USA, OT = Other These ZIP defaults are provided for
-		/// use in the event that no pre-identified postal code is available. Example: newsstand or bulk copy
-		/// distribution.
+		/// destination 5-digit or 3-digit sack or tray label. Left Justify. 99999_ or 888___ CAN = A1A9Z9
+		/// Default if no ZIP or Postal Code: Left Justify; Space Added: US = USA, OT = Other These ZIP defaults
+		/// are provided for use in the event that no pre-identified postal code is available. Example:
+		/// newsstand or bulk copy distribution.
 		/// </summary>
 		string ContainerDestinationZip { get; set; }
 
@@ -77,7 +77,7 @@ namespace Mail.dat
 		string ContainerLevel { get; set; }
 
 		/// <summary>
-		/// Entry Point for Entry Discount - PostalCode (CSM-1105)
+		/// Entry Point for Entry Discount - Postal Code (CSM-1105)
 		/// 99999_, or 888___ The postal code (5-digit, or 3-digit) of the facility where the specified
 		/// container is planned to enter into the Postal System. Use Labeling Lists facility's Destination
 		/// Line. This information may not be known by the list processing facility. If known, the 5 or 3
@@ -261,7 +261,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Total Weight (product only) (CSM-1122)
-		/// 99999999v9999 pounds, (decimal point implied). International = Gross Weight.
+		/// Pounds International = Gross Weight.
 		/// </summary>
 		decimal TotalWeightProductOnly { get; set; }
 
@@ -335,7 +335,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Container Gross Weight (CSM-1137)
-		/// 99999999v9999, (decimal point implied) Inclusive of mail and container.
+		/// Inclusive of mail and container.
 		/// </summary>
 		decimal? ContainerGrossWeight { get; set; }
 
@@ -387,7 +387,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Scheduled Ship Date (CSM-1172)
-		/// Date of Dispatch based upon CSA agreement. DMU verified/USPS Transported.
+		/// Date of Dispatch based upon CSA agreement. DMU verified/USPS Transported. (cannot be all zeros).
 		/// </summary>
 		DateOnly? ScheduledShipDate { get; set; }
 
@@ -415,7 +415,7 @@ namespace Mail.dat
 		string LabelIMContainerOrIMTrayBarcodeFinal { get; set; }
 
 		/// <summary>
-		/// Label: IM™ Container Or IM™ Tray Barcode- Original (CSM-1198)
+		/// Label: IM™ Container Or IM™ Tray Barcode - Original (CSM-1198)
 		/// Original IMtb or IMcb barcode provided by Preparer to a Consolidator or Logistics company. Left
 		/// justify, blank fill. If not specified, then leave field blank. Also see 'Container Barcode Required
 		/// for Sibling Containers' scenario under scenarios section. Also, if the container is 'Deleted'
@@ -458,6 +458,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Label: User Information Line 2 (CSM-1158)
+		/// User defined or client requested information.
 		/// </summary>
 		string LabelUserInformationLine2 { get; set; }
 
@@ -468,6 +469,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// User Option Field (CSM-1176)
+		/// Available for customer data for unique user application.
 		/// </summary>
 		string UserOptionField { get; set; }
 
@@ -546,32 +548,23 @@ namespace Mail.dat
 		/// blank in your CSM records. Definition 1: (For linkage between physical trays and physical parent
 		/// containers, use CSM-1006 of the physical parent container on which the physical tray resides)
 		/// Container ID of the Physical Parent Container in which this physical tray or sibling tray resides,
-		/// if such relationship exists. Blank if no such relationship This is an optional field and can be used
-		/// to associate either a physical or a sibling handling unit to the actual container that it is on but
-		/// only under specific circumstances: When the container it is on is a sibling to either a logical or
-		/// physical master container. When the container that it is on is a physical container that has at
+		/// if such relationship exists.  Blank if no such relationship This is an optional field and can be
+		/// used to associate either a physical or a sibling handling unit to the actual container that it is on
+		/// but only under specific circumstances: When the container it is on is a sibling to either a logical
+		/// or physical master container. When the container that it is on is a physical container that has at
 		/// least one sibling (as in an overflow scenario). The child-to-parent container relationship
 		/// established through the use of the Parent Container Reference ID must also be used to link the
-		/// master handling unit (not the sibling) to a parent. It is only through that relationship that pieces
-		/// can be associated to logical container groups or physical containers with siblings. Note, when used,
-		/// this describes which handling units are on which containers and does not provide any indication of
-		/// which mail pieces are in which handling units or on which containers Definition 2: This definition
-		/// is for FCM MLOCR bundle-based preparation. (For linkage between logical trays when using
+		/// master handling unit (not the sibling) to a parent. Note, when used, this describes which handling
+		/// units are on which containers and does not provide any indication of which mail pieces are in which
+		/// handling units or on which containers It is only through that relationship that pieces can be
+		/// associated to logical container groups or physical containers with siblings. Definition 2: This
+		/// definition is for FCM MLOCR bundle-based preparation. (For linkage between logical trays when using
 		/// bundle-based mail and some mail bundles are relocated between two different logical trays, use
 		/// CSM-1006 of the logical tray into which mail is being relocated) Container ID of another logical
 		/// tray into which some mail from this logical tray has been relocated, if such relationship exists.
 		/// Blank if no such relationship. This is an optional field and can be used to associate a logical tray
 		/// to another logical tray when some mail has been relocated within a bundle-based mailing. The purpose
-		/// is to identify such related trays in order to assist with the verification of a mailing. Note, when
-		/// used, this describes relocation for an indeterminate quantity of mail, and does not provide any
-		/// indication of which mail pieces are relocated into the other logical tray. Unless the original
-		/// logical tray record ceases to exist because all of its mail is relocated into a different logical
-		/// tray, the tallying for the quantity of mail will remain with the original logical tray, and
-		/// relocated mail does not add to the accumulated amount in the target logical tray for the following
-		/// fields Number of Copies (CSM-1120) Number of Pieces (CSM-1121) Total Weight (CSM-1122) Container
-		/// Gross Weight (CSM-1137) Note also that this means a target logical tray which receives such
-		/// relocations may possibly have values of zero for the aforementioned fields, if it exists solely for
-		/// the purpose of receiving such relocations.
+		/// is to identify such related trays in order to assist with the verification of a mailing.
 		/// </summary>
 		int? SupplementalPhysicalContainerID { get; set; }
 

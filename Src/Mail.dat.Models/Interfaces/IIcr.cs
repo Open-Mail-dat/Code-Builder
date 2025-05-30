@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 
 namespace Mail.dat
@@ -24,15 +24,15 @@ namespace Mail.dat
 
 		/// <summary>
 		/// File Name (ICR-1101)
-		/// The agreed file name describing the content of the single Transmitted file within which this
+		/// The agreed file name describing the content of the single transmitted file within which this
 		/// container exists.
 		/// </summary>
 		string FileName { get; set; }
 
 		/// <summary>
 		/// Tape ID (ICR-1102)
-		/// The identifying A/N string for the tape within which this Container exists. Use arbitrary sequence
-		/// number if non- Inkjet transmission.
+		/// The identifying A/N string for the tape within which this container exists. Use arbitrary sequence
+		/// number if non-inkjet transmission.
 		/// </summary>
 		string TapeID { get; set; }
 

@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 
 namespace Mail.dat
@@ -37,9 +37,9 @@ namespace Mail.dat
 
 		/// <summary>
 		/// USPS Publication Number (MPA-1102)
-		/// Left Justify, Numeric only, value in Postage Payment Method field Negates need for alpha in this
-		/// field. (Note: In the event of a Periodicals Pending, the Publication Number field will be blank and
-		/// the below Permit Number field will be used.) Should not be zero padded.
+		/// Numeric only, value in Postage Payment Method field negates need for alpha in this field. (Note: In
+		/// the event of a Periodicals Pending, the Publication Number field will be blank and the below Permit
+		/// Number field will be used.) Should not be zero padded.
 		/// </summary>
 		string USPSPublicationNumber { get; set; }
 
@@ -58,10 +58,10 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Mail Owner's Lcl Permit Ref Num/Int'l Bill Num (MPA-1107)
-		/// Number used by local USPS for client identification. This field can be used to Let the Postal
-		/// Service know what permit numbers are included in the mailing That the Mail.dat® file represents.
-		/// This field is used for identifying what Permits are being used for the entire job in an MLOCR
-		/// environment. Should Not be zero padded.
+		/// Number used by local USPS for client identification. This field can be used to let the Postal
+		/// Service know what permit numbers are included in the mailing that the Mail.dat® file represents.
+		/// This field is used for identifying what permits are being used for the entire job in an MLOCR
+		/// environment. Should not be zero padded.
 		/// </summary>
 		string MailOwnerSLclPermitRefNumIntLBillNum { get; set; }
 
@@ -72,14 +72,13 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Postage Payment Option (MPA-1109)
-		/// PostalOne! uses value of C = CPP. In this case to identify if Periodicals is used in the Centralized
+		/// PostalOne! uses value of C = CPP. In this case to identify if Periodicals is used in the centralized
 		/// processing (delayed payment).
 		/// </summary>
 		string PostagePaymentOption { get; set; }
 
 		/// <summary>
 		/// Customer Reference ID (MPA-1110)
-		/// Left justify, space added.
 		/// </summary>
 		string CustomerReferenceID { get; set; }
 
@@ -90,7 +89,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Federal Agency Cost Code (MPA-1114)
-		/// This five-digit field may include leading zeros, is optional, and displays on the postage Statements
+		/// This five-digit field may include leading zeros, is optional, and displays on the postage statements
 		/// for Official Mail (Government).
 		/// </summary>
 		string FederalAgencyCostCode { get; set; }
@@ -108,25 +107,25 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Mailer ID of Mail Owner (MPA-1121)
-		/// USPS assigned ID Left justify, space padded to the right, only digits 0 - 9 acceptable.
+		/// USPS assigned ID Only digits 0 - 9 acceptable.
 		/// </summary>
 		string MailerIDOfMailOwner { get; set; }
 
 		/// <summary>
 		/// CRID of Mail Owner (MPA-1122)
-		/// USPS assigned ID Left justify, space padded to the right, only digits 0 - 9 acceptable.
+		/// USPS assigned ID Only digits 0 - 9 acceptable.
 		/// </summary>
 		string CRIDOfMailOwner { get; set; }
 
 		/// <summary>
 		/// Mailer ID of Preparer (MPA-1123)
-		/// USPS assigned ID Left justify, space padded to the right, only digits 0 - 9 acceptable.
+		/// USPS assigned ID Only digits 0 - 9 acceptable.
 		/// </summary>
 		string MailerIDOfPreparer { get; set; }
 
 		/// <summary>
 		/// CRID of Preparer (MPA-1124)
-		/// USPS assigned ID Left justify, space padded to the right, only digits 0 - 9 acceptable.
+		/// USPS assigned ID Only digits 0 - 9 acceptable.
 		/// </summary>
 		string CRIDOfPreparer { get; set; }
 
@@ -139,8 +138,8 @@ namespace Mail.dat
 		/// <summary>
 		/// Payment Account Number (MPA-1127)
 		/// The Payment Account Number is used for Mail Anywhere and is different from the Permit Number and
-		/// will be initially used in addition to the Permit Number. In the Future, this field may replace the
-		/// Permit information. This field should not be zero Padded. This field is required for Mail Anywhere,
+		/// will be initially used in addition to the Permit Number. In the future, this field may replace the
+		/// Permit information. This field should not be zero padded. This field is required for Mail Anywhere,
 		/// otherwise it can be blank.
 		/// </summary>
 		string PaymentAccountNumber { get; set; }

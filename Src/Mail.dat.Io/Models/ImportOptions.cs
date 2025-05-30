@@ -10,8 +10,8 @@ namespace Mail.dat.Io
 		public string TemporaryDirectory { get; set; }
 		public CancellationToken CancellationToken { get; set; } = CancellationToken.None;
 		public ILogger<IImportOptions> Logger { get; set; } = new NullLogger<IImportOptions>();
-		public bool SkipPbcFile { get; set; } = false;
+		public bool SkipPbc { get; set; } = false;
 		public bool FavorMemoryOverPerformance { get; set; }
-		public int BatchSize { get; set; } = 10_000;
+		public int MaxRecordsInMemory { get; set; } = 10_000;
 	}
 }

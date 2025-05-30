@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 
 namespace Mail.dat
@@ -29,11 +29,11 @@ namespace Mail.dat
 		string CertificateOfMailingHeaderID { get; set; }
 
 		/// <summary>
-		/// Piece ID (CFR-1003)
+		/// COM Piece ID (CFR-1003)
 		/// Unique ID of individual piece within mailing. Only linked to COM Detail Record. In the future this
 		/// record may be replaced by SFR.
 		/// </summary>
-		string PieceID { get; set; }
+		string COMPieceID { get; set; }
 
 		/// <summary>
 		/// Service Type (CFR-1004)

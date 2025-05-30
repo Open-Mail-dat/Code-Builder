@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +20,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Records identify third party move update entities that should be invoiced.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "epd", File = "Extra Piece Detail Record", Summary = "CRID for Move update charges.", Description = "Records identify third party move update entities that should be invoiced.", LineLength = 45, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "epd", File = "Extra Piece Detail Record", Summary = "CRID for Move update charges.", Description = "Records identify third party move update entities that should be invoiced.", LineLength = 45, ClosingCharacter = "#")]
 	[Table("Epd", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 21)]
@@ -67,10 +67,10 @@ namespace Mail.dat
 
 		/// <summary>
 		/// CRID (EPD-1101)
-		/// This USPS-assigned id, CRID, will be used to uniquely identify the role of this party. Left justify,
-		/// space padded to the right, only digits 0 - 9 acceptable.
+		/// This USPS-assigned id, CRID, will be used to uniquely identify the role of this party. Only digits 0
+		/// - 9 acceptable.
 		/// </summary>
-		[MaildatField(Extension = "epd", FieldCode = "EPD-1101", FieldName = "CRID", Start = 32, Length = 12, Required = true, Key = false, DataType = "A/N", Description = "This USPS-assigned id, CRID, will be used to uniquely identify the role of this party. Left justify, space padded to the right, only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "epd", FieldCode = "EPD-1101", FieldName = "CRID", Start = 32, Length = 12, Required = true, Key = false, DataType = "A/N", Description = "This USPS-assigned id, CRID, will be used to uniquely identify the role of this party. Only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
 		[Column("CRID", Order = 5, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(12)]
@@ -118,7 +118,7 @@ namespace Mail.dat
 			this.ClosingCharacter = line.ParseForImport<Epd, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>

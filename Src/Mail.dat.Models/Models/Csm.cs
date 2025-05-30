@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +20,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Quantity, weights and destination per container.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "csm", File = "Container Summary Record", Summary = "Quantity, weights and destination per container.", Description = "Quantity, weights and destination per container.", LineLength = 790, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "csm", File = "Container Summary Record", Summary = "Quantity, weights and destination per container.", Description = "Quantity, weights and destination per container.", LineLength = 790, ClosingCharacter = "#")]
 	[Table("Csm", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 8)]
@@ -29,7 +29,7 @@ namespace Mail.dat
 		/// <summary>
 		/// Job ID (CSM-1001)
 		/// </summary>
-		[MaildatField(Extension = "csm", FieldCode = "CSM-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "", Type = "string", Format = "zfillnumeric")]
+		[MaildatField(Extension = "csm", FieldCode = "CSM-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "", Type = "string", Format = "zfillnumeric", References = "HDR-1001")]
 		[Column("JobID", Order = 2, TypeName = "TEXT")]
 		[Required]
 		[MaildatKey]
@@ -42,7 +42,7 @@ namespace Mail.dat
 		/// Segment ID (CSM-1002)
 		/// See Segment File's Segment ID definition.
 		/// </summary>
-		[MaildatField(Extension = "csm", FieldCode = "CSM-1002", FieldName = "Segment ID", Start = 9, Length = 4, Required = true, Key = false, DataType = "A/N", Description = "See Segment File's Segment ID definition.", Type = "string", Format = "zfillnumeric")]
+		[MaildatField(Extension = "csm", FieldCode = "CSM-1002", FieldName = "Segment ID", Start = 9, Length = 4, Required = true, Key = false, DataType = "A/N", Description = "See Segment File's Segment ID definition.", Type = "string", Format = "zfillnumeric", References = "SEG-1002")]
 		[Column("SegmentID", Order = 3, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(4)]
@@ -86,11 +86,12 @@ namespace Mail.dat
 		/// Meaningful (external to Mail.dat) container ID as defined by specific production application; the
 		/// Postal container label.
 		/// </summary>
-		[MaildatField(Extension = "csm", FieldCode = "CSM-1101", FieldName = "Display Container ID", Start = 21, Length = 6, Required = true, Key = false, DataType = "A/N", Description = "Meaningful (external to Mail.dat) container ID as defined by specific production application; the Postal container label.", Type = "integer", Format = "zfillnumeric")]
+		[MaildatField(Extension = "csm", FieldCode = "CSM-1101", FieldName = "Display Container ID", Start = 21, Length = 6, Required = true, Key = false, DataType = "A/N", Description = "Meaningful (external to Mail.dat) container ID as defined by specific production application; the Postal container label.", Type = "string", Format = "zfillnumeric")]
 		[Column("DisplayContainerID", Order = 6, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(6)]
 		[Comment("CSM-1101")]
+		[TypeConverter(typeof(MaildatStringConverter))]
 		public string DisplayContainerID { get; set; }
 
 		/// <summary>
@@ -108,12 +109,12 @@ namespace Mail.dat
 		/// <summary>
 		/// Container Destination Zip (CSM-1103)
 		/// The 5-digit or 3-digit destination of container defined in this record. These are the same as
-		/// destination 5-digit or 3-digit sack or tray label. 99999_ or 888___ CAN = A1A9Z9 Default if no ZIP
-		/// or Postal Code: Left Justify; Space Added: US = USA, OT = Other These ZIP defaults are provided for
-		/// use in the event that no pre-identified postal code is available. Example: newsstand or bulk copy
-		/// distribution.
+		/// destination 5-digit or 3-digit sack or tray label. Left Justify. 99999_ or 888___ CAN = A1A9Z9
+		/// Default if no ZIP or Postal Code: Left Justify; Space Added: US = USA, OT = Other These ZIP defaults
+		/// are provided for use in the event that no pre-identified postal code is available. Example:
+		/// newsstand or bulk copy distribution.
 		/// </summary>
-		[MaildatField(Extension = "csm", FieldCode = "CSM-1103", FieldName = "Container Destination Zip", Start = 36, Length = 6, Required = true, Key = false, DataType = "A/N", Description = "The 5-digit or 3-digit destination of container defined in this record. These are the same as destination 5-digit or 3-digit sack or tray label. 99999_ or 888___ CAN = A1A9Z9 Default if no ZIP or Postal Code: Left Justify; Space Added: US = USA, OT = Other These ZIP defaults are provided for use in the event that no pre-identified postal code is available. Example: newsstand or bulk copy distribution.", Type = "zipcode", Format = "leftjustify")]
+		[MaildatField(Extension = "csm", FieldCode = "CSM-1103", FieldName = "Container Destination Zip", Start = 36, Length = 6, Required = true, Key = false, DataType = "A/N", Description = "The 5-digit or 3-digit destination of container defined in this record. These are the same as destination 5-digit or 3-digit sack or tray label. Left Justify. 99999_ or 888___ CAN = A1A9Z9 Default if no ZIP or Postal Code: Left Justify; Space Added: US = USA, OT = Other These ZIP defaults are provided for use in the event that no pre-identified postal code is available. Example: newsstand or bulk copy distribution.", Type = "zipcode", Format = "leftjustify")]
 		[Column("ContainerDestinationZip", Order = 8, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(6)]
@@ -135,7 +136,7 @@ namespace Mail.dat
 		public string ContainerLevel { get; set; }
 
 		/// <summary>
-		/// Entry Point for Entry Discount - PostalCode (CSM-1105)
+		/// Entry Point for Entry Discount - Postal Code (CSM-1105)
 		/// 99999_, or 888___ The postal code (5-digit, or 3-digit) of the facility where the specified
 		/// container is planned to enter into the Postal System. Use Labeling Lists facility's Destination
 		/// Line. This information may not be known by the list processing facility. If known, the 5 or 3
@@ -145,7 +146,7 @@ namespace Mail.dat
 		/// Entry pool), then the Origin Zip (as indicated on the Entry Point Line of the Container Label) would
 		/// be used for this field.
 		/// </summary>
-		[MaildatField(Extension = "csm", FieldCode = "CSM-1105", FieldName = "Entry Point for Entry Discount - PostalCode", Start = 44, Length = 6, Required = true, Key = false, DataType = "A/N", Description = "99999_, or 888___ The postal code (5-digit, or 3-digit) of the facility where the specified container is planned to enter into the Postal System. Use Labeling Lists facility's Destination Line. This information may not be known by the list processing facility. If known, the 5 or 3 position value is to be left justified with space added. Default if no Code: Left Justify; Space Added: US = USA, OT = Other If the ultimate planned Entry Point is not known (example, as would be the case with a list supplier of a Standard Mail (A) job which will be included in a Destination Entry pool), then the Origin Zip (as indicated on the Entry Point Line of the Container Label) would be used for this field.", Type = "zipcode", Format = "leftjustify")]
+		[MaildatField(Extension = "csm", FieldCode = "CSM-1105", FieldName = "Entry Point for Entry Discount - Postal Code", Start = 44, Length = 6, Required = true, Key = false, DataType = "A/N", Description = "99999_, or 888___ The postal code (5-digit, or 3-digit) of the facility where the specified container is planned to enter into the Postal System. Use Labeling Lists facility's Destination Line. This information may not be known by the list processing facility. If known, the 5 or 3 position value is to be left justified with space added. Default if no Code: Left Justify; Space Added: US = USA, OT = Other If the ultimate planned Entry Point is not known (example, as would be the case with a list supplier of a Standard Mail (A) job which will be included in a Destination Entry pool), then the Origin Zip (as indicated on the Entry Point Line of the Container Label) would be used for this field.", Type = "zipcode", Format = "leftjustify")]
 		[Column("EntryPointForEntryDiscountPostalCode", Order = 10, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(6)]
@@ -429,9 +430,9 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Total Weight (product only) (CSM-1122)
-		/// 99999999v9999 pounds, (decimal point implied). International = Gross Weight.
+		/// Pounds International = Gross Weight.
 		/// </summary>
-		[MaildatField(Extension = "csm", FieldCode = "CSM-1122", FieldName = "Total Weight (product only)", Start = 216, Length = 12, Required = true, Key = false, DataType = "N", Description = "99999999v9999 pounds, (decimal point implied). International = Gross Weight.", Type = "decimal", Format = "zfill", Precision = 4)]
+		[MaildatField(Extension = "csm", FieldCode = "CSM-1122", FieldName = "Total Weight (product only)", Start = 216, Length = 12, Required = true, Key = false, DataType = "N", Description = "Pounds International = Gross Weight.", Type = "decimal", Format = "zfill", Precision = 4)]
 		[Column("TotalWeightProductOnly", Order = 34, TypeName = "NUMERIC")]
 		[Required]
 		[Precision(4)]
@@ -442,10 +443,11 @@ namespace Mail.dat
 		/// <summary>
 		/// User Container ID (CSM-1123)
 		/// </summary>
-		[MaildatField(Extension = "csm", FieldCode = "CSM-1123", FieldName = "User Container ID", Start = 228, Length = 12, Required = false, Key = false, DataType = "A/N", Description = "", Type = "integer", Format = "zfillnumeric")]
+		[MaildatField(Extension = "csm", FieldCode = "CSM-1123", FieldName = "User Container ID", Start = 228, Length = 12, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "zfillnumeric")]
 		[Column("UserContainerID", Order = 35, TypeName = "TEXT")]
 		[MaxLength(12)]
 		[Comment("CSM-1123")]
+		[TypeConverter(typeof(MaildatStringConverter))]
 		public string UserContainerID { get; set; }
 
 		/// <summary>
@@ -552,9 +554,9 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Container Gross Weight (CSM-1137)
-		/// 99999999v9999, (decimal point implied) Inclusive of mail and container.
+		/// Inclusive of mail and container.
 		/// </summary>
-		[MaildatField(Extension = "csm", FieldCode = "CSM-1137", FieldName = "Container Gross Weight", Start = 268, Length = 12, Required = false, Key = false, DataType = "N", Description = "99999999v9999, (decimal point implied) Inclusive of mail and container.", Type = "decimal", Format = "zfill", Precision = 4)]
+		[MaildatField(Extension = "csm", FieldCode = "CSM-1137", FieldName = "Container Gross Weight", Start = 268, Length = 12, Required = false, Key = false, DataType = "N", Description = "Inclusive of mail and container.", Type = "decimal", Format = "zfill", Precision = 4)]
 		[Column("ContainerGrossWeight", Order = 43, TypeName = "NUMERIC")]
 		[Precision(4)]
 		[Comment("CSM-1137")]
@@ -642,9 +644,9 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Scheduled Ship Date (CSM-1172)
-		/// Date of Dispatch based upon CSA agreement. DMU verified/USPS Transported.
+		/// Date of Dispatch based upon CSA agreement. DMU verified/USPS Transported. (cannot be all zeros).
 		/// </summary>
-		[MaildatField(Extension = "csm", FieldCode = "CSM-1172", FieldName = "Scheduled Ship Date", Start = 343, Length = 8, Required = false, Key = false, DataType = "N", Description = "Date of Dispatch based upon CSA agreement. DMU verified/USPS Transported.", Type = "date", Format = "YYYYMMDD")]
+		[MaildatField(Extension = "csm", FieldCode = "CSM-1172", FieldName = "Scheduled Ship Date", Start = 343, Length = 8, Required = false, Key = false, DataType = "N", Description = "Date of Dispatch based upon CSA agreement. DMU verified/USPS Transported. (cannot be all zeros).", Type = "date", Format = "YYYYMMDD")]
 		[Column("ScheduledShipDate", Order = 51, TypeName = "TEXT")]
 		[Comment("CSM-1172")]
 		[TypeConverter(typeof(MaildatDateConverter))]
@@ -688,14 +690,14 @@ namespace Mail.dat
 		public string LabelIMContainerOrIMTrayBarcodeFinal { get; set; }
 
 		/// <summary>
-		/// Label: IM™ Container Or IM™ Tray Barcode- Original (CSM-1198)
+		/// Label: IM™ Container Or IM™ Tray Barcode - Original (CSM-1198)
 		/// Original IMtb or IMcb barcode provided by Preparer to a Consolidator or Logistics company. Left
 		/// justify, blank fill. If not specified, then leave field blank. Also see 'Container Barcode Required
 		/// for Sibling Containers' scenario under scenarios section. Also, if the container is 'Deleted'
 		/// through a Container Status of 'D', then the Container barcode shall not be used/re-used for 45 days
 		/// after a 'D' flag has been sent to USPS.
 		/// </summary>
-		[MaildatField(Extension = "csm", FieldCode = "CSM-1198", FieldName = "Label: IM™ Container Or IM™ Tray Barcode- Original", Start = 392, Length = 24, Required = false, Key = false, DataType = "A/N", Description = "Original IMtb or IMcb barcode provided by Preparer to a Consolidator or Logistics company. Left justify, blank fill. If not specified, then leave field blank. Also see 'Container Barcode Required for Sibling Containers' scenario under scenarios section. Also, if the container is 'Deleted' through a Container Status of 'D', then the Container barcode shall not be used/re-used for 45 days after a 'D' flag has been sent to USPS.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "csm", FieldCode = "CSM-1198", FieldName = "Label: IM™ Container Or IM™ Tray Barcode - Original", Start = 392, Length = 24, Required = false, Key = false, DataType = "A/N", Description = "Original IMtb or IMcb barcode provided by Preparer to a Consolidator or Logistics company. Left justify, blank fill. If not specified, then leave field blank. Also see 'Container Barcode Required for Sibling Containers' scenario under scenarios section. Also, if the container is 'Deleted' through a Container Status of 'D', then the Container barcode shall not be used/re-used for 45 days after a 'D' flag has been sent to USPS.", Type = "string", Format = "leftjustify")]
 		[Column("LabelIMContainerOrIMTrayBarcodeOriginal", Order = 55, TypeName = "TEXT")]
 		[MaxLength(24)]
 		[Comment("CSM-1198")]
@@ -766,8 +768,9 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Label: User Information Line 2 (CSM-1158)
+		/// User defined or client requested information.
 		/// </summary>
-		[MaildatField(Extension = "csm", FieldCode = "CSM-1158", FieldName = "Label: User Information Line 2", Start = 596, Length = 40, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "csm", FieldCode = "CSM-1158", FieldName = "Label: User Information Line 2", Start = 596, Length = 40, Required = false, Key = false, DataType = "A/N", Description = "User defined or client requested information.", Type = "string", Format = "leftjustify")]
 		[Column("LabelUserInformationLine2", Order = 62, TypeName = "TEXT")]
 		[MaxLength(40)]
 		[Comment("CSM-1158")]
@@ -786,8 +789,9 @@ namespace Mail.dat
 
 		/// <summary>
 		/// User Option Field (CSM-1176)
+		/// Available for customer data for unique user application.
 		/// </summary>
-		[MaildatField(Extension = "csm", FieldCode = "CSM-1176", FieldName = "User Option Field", Start = 640, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "csm", FieldCode = "CSM-1176", FieldName = "User Option Field", Start = 640, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "Available for customer data for unique user application.", Type = "string", Format = "leftjustify")]
 		[Column("UserOptionField", Order = 64, TypeName = "TEXT")]
 		[MaxLength(20)]
 		[Comment("CSM-1176")]
@@ -915,34 +919,25 @@ namespace Mail.dat
 		/// blank in your CSM records. Definition 1: (For linkage between physical trays and physical parent
 		/// containers, use CSM-1006 of the physical parent container on which the physical tray resides)
 		/// Container ID of the Physical Parent Container in which this physical tray or sibling tray resides,
-		/// if such relationship exists. Blank if no such relationship This is an optional field and can be used
-		/// to associate either a physical or a sibling handling unit to the actual container that it is on but
-		/// only under specific circumstances: When the container it is on is a sibling to either a logical or
-		/// physical master container. When the container that it is on is a physical container that has at
+		/// if such relationship exists.  Blank if no such relationship This is an optional field and can be
+		/// used to associate either a physical or a sibling handling unit to the actual container that it is on
+		/// but only under specific circumstances: When the container it is on is a sibling to either a logical
+		/// or physical master container. When the container that it is on is a physical container that has at
 		/// least one sibling (as in an overflow scenario). The child-to-parent container relationship
 		/// established through the use of the Parent Container Reference ID must also be used to link the
-		/// master handling unit (not the sibling) to a parent. It is only through that relationship that pieces
-		/// can be associated to logical container groups or physical containers with siblings. Note, when used,
-		/// this describes which handling units are on which containers and does not provide any indication of
-		/// which mail pieces are in which handling units or on which containers Definition 2: This definition
-		/// is for FCM MLOCR bundle-based preparation. (For linkage between logical trays when using
+		/// master handling unit (not the sibling) to a parent. Note, when used, this describes which handling
+		/// units are on which containers and does not provide any indication of which mail pieces are in which
+		/// handling units or on which containers It is only through that relationship that pieces can be
+		/// associated to logical container groups or physical containers with siblings. Definition 2: This
+		/// definition is for FCM MLOCR bundle-based preparation. (For linkage between logical trays when using
 		/// bundle-based mail and some mail bundles are relocated between two different logical trays, use
 		/// CSM-1006 of the logical tray into which mail is being relocated) Container ID of another logical
 		/// tray into which some mail from this logical tray has been relocated, if such relationship exists.
 		/// Blank if no such relationship. This is an optional field and can be used to associate a logical tray
 		/// to another logical tray when some mail has been relocated within a bundle-based mailing. The purpose
-		/// is to identify such related trays in order to assist with the verification of a mailing. Note, when
-		/// used, this describes relocation for an indeterminate quantity of mail, and does not provide any
-		/// indication of which mail pieces are relocated into the other logical tray. Unless the original
-		/// logical tray record ceases to exist because all of its mail is relocated into a different logical
-		/// tray, the tallying for the quantity of mail will remain with the original logical tray, and
-		/// relocated mail does not add to the accumulated amount in the target logical tray for the following
-		/// fields Number of Copies (CSM-1120) Number of Pieces (CSM-1121) Total Weight (CSM-1122) Container
-		/// Gross Weight (CSM-1137) Note also that this means a target logical tray which receives such
-		/// relocations may possibly have values of zero for the aforementioned fields, if it exists solely for
-		/// the purpose of receiving such relocations.
+		/// is to identify such related trays in order to assist with the verification of a mailing.
 		/// </summary>
-		[MaildatField(Extension = "csm", FieldCode = "CSM-1196", FieldName = "Supplemental Physical Container ID", Start = 727, Length = 6, Required = false, Key = false, DataType = "N", Description = "(use CSM-1006 of Physical Parent record) This field can be used in two ways, both of which are optional. The first definition is meant for use in logical tray scenarios or overflow scenarios, where the field can be used to describe the relationship between a physical tray and its physical parent container. The second definition is meant for use with logical bundle-based mailings, where the field can be used to describe the relationship between logical trays when bundles of mail are relocated. These two models of usage do not conflict with each other because the first definition can only be used for a physical or sibling tray, and the second definition can only be used for a logical tray. If neither of these usage models applies for your mailing, the field should remain blank in your CSM records. Definition 1: (For linkage between physical trays and physical parent containers, use CSM-1006 of the physical parent container on which the physical tray resides) Container ID of the Physical Parent Container in which this physical tray or sibling tray resides, if such relationship exists. Blank if no such relationship This is an optional field and can be used to associate either a physical or a sibling handling unit to the actual container that it is on but only under specific circumstances: When the container it is on is a sibling to either a logical or physical master container. When the container that it is on is a physical container that has at least one sibling (as in an overflow scenario). The child-to-parent container relationship established through the use of the Parent Container Reference ID must also be used to link the master handling unit (not the sibling) to a parent. It is only through that relationship that pieces can be associated to logical container groups or physical containers with siblings. Note, when used, this describes which handling units are on which containers and does not provide any indication of which mail pieces are in which handling units or on which containers Definition 2: This definition is for FCM MLOCR bundle-based preparation. (For linkage between logical trays when using bundle-based mail and some mail bundles are relocated between two different logical trays, use CSM-1006 of the logical tray into which mail is being relocated) Container ID of another logical tray into which some mail from this logical tray has been relocated, if such relationship exists. Blank if no such relationship. This is an optional field and can be used to associate a logical tray to another logical tray when some mail has been relocated within a bundle-based mailing. The purpose is to identify such related trays in order to assist with the verification of a mailing. Note, when used, this describes relocation for an indeterminate quantity of mail, and does not provide any indication of which mail pieces are relocated into the other logical tray. Unless the original logical tray record ceases to exist because all of its mail is relocated into a different logical tray, the tallying for the quantity of mail will remain with the original logical tray, and relocated mail does not add to the accumulated amount in the target logical tray for the following fields Number of Copies (CSM-1120) Number of Pieces (CSM-1121) Total Weight (CSM-1122) Container Gross Weight (CSM-1137) Note also that this means a target logical tray which receives such relocations may possibly have values of zero for the aforementioned fields, if it exists solely for the purpose of receiving such relocations.", Type = "integer", Format = "zfill")]
+		[MaildatField(Extension = "csm", FieldCode = "CSM-1196", FieldName = "Supplemental Physical Container ID", Start = 727, Length = 6, Required = false, Key = false, DataType = "N", Description = "(use CSM-1006 of Physical Parent record) This field can be used in two ways, both of which are optional. The first definition is meant for use in logical tray scenarios or overflow scenarios, where the field can be used to describe the relationship between a physical tray and its physical parent container. The second definition is meant for use with logical bundle-based mailings, where the field can be used to describe the relationship between logical trays when bundles of mail are relocated. These two models of usage do not conflict with each other because the first definition can only be used for a physical or sibling tray, and the second definition can only be used for a logical tray. If neither of these usage models applies for your mailing, the field should remain blank in your CSM records. Definition 1: (For linkage between physical trays and physical parent containers, use CSM-1006 of the physical parent container on which the physical tray resides) Container ID of the Physical Parent Container in which this physical tray or sibling tray resides, if such relationship exists.  Blank if no such relationship This is an optional field and can be used to associate either a physical or a sibling handling unit to the actual container that it is on but only under specific circumstances: When the container it is on is a sibling to either a logical or physical master container. When the container that it is on is a physical container that has at least one sibling (as in an overflow scenario). The child-to-parent container relationship established through the use of the Parent Container Reference ID must also be used to link the master handling unit (not the sibling) to a parent. Note, when used, this describes which handling units are on which containers and does not provide any indication of which mail pieces are in which handling units or on which containers It is only through that relationship that pieces can be associated to logical container groups or physical containers with siblings. Definition 2: This definition is for FCM MLOCR bundle-based preparation. (For linkage between logical trays when using bundle-based mail and some mail bundles are relocated between two different logical trays, use CSM-1006 of the logical tray into which mail is being relocated) Container ID of another logical tray into which some mail from this logical tray has been relocated, if such relationship exists. Blank if no such relationship. This is an optional field and can be used to associate a logical tray to another logical tray when some mail has been relocated within a bundle-based mailing. The purpose is to identify such related trays in order to assist with the verification of a mailing.", Type = "integer", Format = "zfill")]
 		[Column("SupplementalPhysicalContainerID", Order = 74, TypeName = "INTEGER")]
 		[Comment("CSM-1196")]
 		[TypeConverter(typeof(MaildatIntegerConverter))]
@@ -1105,7 +1100,7 @@ namespace Mail.dat
 			this.ClosingCharacter = line.ParseForImport<Csm, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>

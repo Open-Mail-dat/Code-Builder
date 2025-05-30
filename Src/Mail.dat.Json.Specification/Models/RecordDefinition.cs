@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Mail.dat.Specification
+namespace Mail.dat.Json.Specification
 {
 	public class RecordDefinition
 	{

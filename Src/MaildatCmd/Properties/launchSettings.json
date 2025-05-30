@@ -2,7 +2,7 @@
   "profiles": {
     "Import": {
       "commandName": "Project",
-      "commandLineArgs": "import --source-file-path \"Z:/Downloads/52850001-25-1.zip\" --target-file-path \"Z:/Desktop/MD0000000001.db\" --skip-pbc false --favor-memory-over-performance true --max-records-in-memory 5000",
+      "commandLineArgs": "import --source-file-path \"Z:/Downloads/52850001-25-1.zip\" --target-file-path \"Z:/Desktop/MD0000000001.db\" --skip-pbc false --favor-memory-over-performance true --max-records-in-memory 10000",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }
@@ -16,7 +16,7 @@
     },
     "Build": {
       "commandName": "Project",
-      "commandLineArgs": "build --specification-file \"./Specification/mail-dat.json\" --class-output-directory \"../../../../Mail.dat.Models/Models\" --interface-output-directory \"../../../../Mail.dat.Models/Interfaces\" --context-output-directory \"../../../../Mail.dat.Models/Context\"",
+      "commandLineArgs": "build --specification-file \"./Specification/25-1/Maildat- JSON- V7.json\" --class-output-directory \"../../../../Mail.dat.Models/Models\" --interface-output-directory \"../../../../Mail.dat.Models/Interfaces\" --context-output-directory \"../../../../Mail.dat.Models/Context\"",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       }

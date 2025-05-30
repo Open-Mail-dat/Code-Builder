@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 
 namespace Mail.dat
@@ -45,7 +45,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Date (PAR-1101)
-		/// Adjustment Date.
+		/// Adjustment Date (cannot be all zeros).
 		/// </summary>
 		DateOnly Date { get; set; }
 
@@ -84,6 +84,8 @@ namespace Mail.dat
 
 		/// <summary>
 		/// MPA - Unique Sequence/Grouping ID (PAR-1109)
+		/// Unique identifier for the respective MPA within an MPU. Establishes the set of MPU pieces on one
+		/// Postage Statement.
 		/// </summary>
 		string MPAUniqueSequenceGroupingID { get; set; }
 

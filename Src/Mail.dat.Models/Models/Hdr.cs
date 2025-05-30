@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +20,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Who, what and when of this job.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "hdr", File = "Header Record", Summary = "Who, what and when of this job.", Description = "Who, what and when of this job.", LineLength = 2000, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "hdr", File = "Header Record", Summary = "Who, what and when of this job.", Description = "Who, what and when of this job.", LineLength = 2000, ClosingCharacter = "#")]
 	[Table("Hdr", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 1)]
@@ -28,13 +28,12 @@ namespace Mail.dat
 	{
 		/// <summary>
 		/// Job ID (HDR-1001)
-		/// A Job ID (the Mail.dat® serial number) should be unique Compared to all other supplied Job IDs
-		/// provided by the Same source. The Job ID assigned to any new Mail.dat® is Also to be applied to any
-		/// Historical Header Record part of That transmission; it is the Historical Job ID that retains The
-		/// initial ID throughout its existence. Job IDs are user Managed, but must remain unique within one
-		/// User License Code.
+		/// A Job ID (the Mail.dat® serial number) should be unique compared to all other supplied Job IDs
+		/// provided by the same source. The Job ID assigned to any new Mail.dat® is that transmission; it is
+		/// the Historical Job ID that retains the initial ID throughout its existence. Job IDs are user
+		/// managed, but must remain unique within one User License Code.
 		/// </summary>
-		[MaildatField(Extension = "hdr", FieldCode = "HDR-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "A Job ID (the Mail.dat® serial number) should be unique Compared to all other supplied Job IDs provided by the Same source. The Job ID assigned to any new Mail.dat® is Also to be applied to any Historical Header Record part of That transmission; it is the Historical Job ID that retains The initial ID throughout its existence. Job IDs are user Managed, but must remain unique within one User License Code.", Type = "string", Format = "zfillnumeric")]
+		[MaildatField(Extension = "hdr", FieldCode = "HDR-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "A Job ID (the Mail.dat® serial number) should be unique compared to all other supplied Job IDs provided by the same source. The Job ID assigned to any new Mail.dat® is that transmission; it is the Historical Job ID that retains the initial ID throughout its existence. Job IDs are user managed, but must remain unique within one User License Code.", Type = "string", Format = "zfillnumeric")]
 		[Column("JobID", Order = 2, TypeName = "TEXT")]
 		[Required]
 		[MaildatKey]
@@ -58,29 +57,28 @@ namespace Mail.dat
 		/// <summary>
 		/// Header History Sequence Number (HDR-1025)
 		/// First Header created with initial iteration of this Mail.dat® = 9999, next iteration of this
-		/// Mail.dat® as it is successively Processed would have a Header with a History Sequence Number = 9998,
-		/// etc. Current Active Header would be next in The series, hence the record with the lowest History
-		/// Sequence Value. Header History Status field (see next) also denotes Current active header.
+		/// Mail.dat® as it is successively processed would have a Header with a History Sequence number = 9998,
+		/// etc. Current Active Header would be next in the series, hence the record with the lowest History
+		/// Sequence value. Header History Status field (see next) also denotes current active header.
 		/// </summary>
-		[MaildatField(Extension = "hdr", FieldCode = "HDR-1025", FieldName = "Header History Sequence Number", Start = 13, Length = 4, Required = true, Key = true, DataType = "N", Description = "First Header created with initial iteration of this Mail.dat® = 9999, next iteration of this Mail.dat® as it is successively Processed would have a Header with a History Sequence Number = 9998, etc. Current Active Header would be next in The series, hence the record with the lowest History Sequence Value. Header History Status field (see next) also denotes Current active header.", Type = "string", Format = "zfill")]
-		[Column("HeaderHistorySequenceNumber", Order = 4, TypeName = "TEXT")]
+		[MaildatField(Extension = "hdr", FieldCode = "HDR-1025", FieldName = "Header History Sequence Number", Start = 13, Length = 4, Required = true, Key = true, DataType = "N", Description = "First Header created with initial iteration of this Mail.dat® = 9999, next iteration of this Mail.dat® as it is successively processed would have a Header with a History Sequence number = 9998, etc. Current Active Header would be next in the series, hence the record with the lowest History Sequence value. Header History Status field (see next) also denotes current active header.", Type = "integer", Format = "zfill")]
+		[Column("HeaderHistorySequenceNumber", Order = 4, TypeName = "INTEGER")]
 		[Required]
 		[MaildatKey]
-		[MaxLength(4)]
 		[Comment("HDR-1025")]
-		[TypeConverter(typeof(MaildatStringConverter))]
-		public string HeaderHistorySequenceNumber { get; set; }
+		[TypeConverter(typeof(MaildatIntegerConverter))]
+		public int HeaderHistorySequenceNumber { get; set; }
 
 		/// <summary>
 		/// Header History Status (HDR-1148)
 		/// Transmit all history records with subsequent transmissions. C = Current (this .hdr record is
-		/// applicable to current Transmission) H = History (this .hdr record predates and is Associated with,
+		/// applicable to current transmission) H = History (this .hdr record predates and is associated with,
 		/// but not specifically applicable to, current Mail.dat® transmission) All .HDR records received for a
-		/// Specific Mail.dat® must be forwarded with that Mail.dat, or Portion thereof, if such transmission
-		/// occurs. As applicable, the Received Header is updated by the Mail.dat® processor with an H in this
+		/// specific Mail.dat® must be forwarded with that Mail.dat, or portion thereof, if such transmission
+		/// occurs. As applicable, the received Header is updated by the Mail.dat® processor with an H in this
 		/// field as it is passed along with the new Current Active Header to next recipient.
 		/// </summary>
-		[MaildatField(Extension = "hdr", FieldCode = "HDR-1148", FieldName = "Header History Status", Start = 17, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "Transmit all history records with subsequent transmissions. C = Current (this .hdr record is applicable to current Transmission) H = History (this .hdr record predates and is Associated with, but not specifically applicable to, current Mail.dat® transmission) All .HDR records received for a Specific Mail.dat® must be forwarded with that Mail.dat, or Portion thereof, if such transmission occurs. As applicable, the Received Header is updated by the Mail.dat® processor with an H in this field as it is passed along with the new Current Active Header to next recipient.", Type = "enum", Format = "leftjustify")]
+		[MaildatField(Extension = "hdr", FieldCode = "HDR-1148", FieldName = "Header History Status", Start = 17, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "Transmit all history records with subsequent transmissions. C = Current (this .hdr record is applicable to current transmission) H = History (this .hdr record predates and is associated with, but not specifically applicable to, current Mail.dat® transmission) All .HDR records received for a specific Mail.dat® must be forwarded with that Mail.dat, or portion thereof, if such transmission occurs. As applicable, the received Header is updated by the Mail.dat® processor with an H in this field as it is passed along with the new Current Active Header to next recipient.", Type = "enum", Format = "leftjustify")]
 		[Column("HeaderHistoryStatus", Order = 5, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(1)]
@@ -141,9 +139,9 @@ namespace Mail.dat
 		/// <summary>
 		/// User License Code (HDR-1105)
 		/// ULC of party creating this iteration of Mail.dat Must - begin with an alpha, be four characters,
-		/// have no Spaces, have no special characters, not be case sensitive.
+		/// have no spaces, have no special characters, not be case sensitive.
 		/// </summary>
-		[MaildatField(Extension = "hdr", FieldCode = "HDR-1105", FieldName = "User License Code", Start = 111, Length = 4, Required = false, Key = false, DataType = "A/N", Description = "ULC of party creating this iteration of Mail.dat Must - begin with an alpha, be four characters, have no Spaces, have no special characters, not be case sensitive.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "hdr", FieldCode = "HDR-1105", FieldName = "User License Code", Start = 111, Length = 4, Required = false, Key = false, DataType = "A/N", Description = "ULC of party creating this iteration of Mail.dat Must - begin with an alpha, be four characters, have no spaces, have no special characters, not be case sensitive.", Type = "string", Format = "leftjustify")]
 		[Column("UserLicenseCode", Order = 10, TypeName = "TEXT")]
 		[MaxLength(4)]
 		[Comment("HDR-1105")]
@@ -215,7 +213,7 @@ namespace Mail.dat
 		[Column("MailDatRevision", Order = 16, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(5)]
-		[AllowedValues("0.2")]
+		[AllowedValues("0.3")]
 		[Comment("HDR-1192")]
 		[TypeConverter(typeof(MaildatEnumConverter))]
 		public string MailDatRevision { get; set; }
@@ -223,9 +221,9 @@ namespace Mail.dat
 		/// <summary>
 		/// Segment Record Count (HDR-1111)
 		/// The number of Segment records in this Mail.dat. Transmitting multiple Segments within one Mail.dat®
-		/// is an Expected behavior within this specification.
+		/// is an expected behavior within this specification.
 		/// </summary>
-		[MaildatField(Extension = "hdr", FieldCode = "HDR-1111", FieldName = "Segment Record Count", Start = 233, Length = 6, Required = true, Key = false, DataType = "N", Description = "The number of Segment records in this Mail.dat. Transmitting multiple Segments within one Mail.dat® is an Expected behavior within this specification.", Type = "integer", Format = "zfill")]
+		[MaildatField(Extension = "hdr", FieldCode = "HDR-1111", FieldName = "Segment Record Count", Start = 233, Length = 6, Required = true, Key = false, DataType = "N", Description = "The number of Segment records in this Mail.dat. Transmitting multiple Segments within one Mail.dat® is an expected behavior within this specification.", Type = "integer", Format = "zfill")]
 		[Column("SegmentRecordCount", Order = 17, TypeName = "INTEGER")]
 		[Required]
 		[Comment("HDR-1111")]
@@ -234,10 +232,10 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Segment File Status (HDR-1112)
-		/// In this field, and all following Status fields, O, D, R and N Describe action upon an entire file. C
-		/// and U indicate that only Individual records are modified.
+		/// In this field, and all following Status fields, O, D, R and N describe action upon an entire file. C
+		/// and U indicate that only individual records are modified.
 		/// </summary>
-		[MaildatField(Extension = "hdr", FieldCode = "HDR-1112", FieldName = "Segment File Status", Start = 239, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "In this field, and all following Status fields, O, D, R and N Describe action upon an entire file. C and U indicate that only Individual records are modified.", Type = "enum", Format = "leftjustify")]
+		[MaildatField(Extension = "hdr", FieldCode = "HDR-1112", FieldName = "Segment File Status", Start = 239, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "In this field, and all following Status fields, O, D, R and N describe action upon an entire file. C and U indicate that only individual records are modified.", Type = "enum", Format = "leftjustify")]
 		[Column("SegmentFileStatus", Order = 18, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(1)]
@@ -906,11 +904,11 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Mail.dat Software Vendor Name (HDR-1150)
-		/// May be name of in-house proprietary software. Name of Author of software creating the Mail.dat® as
-		/// appended to this Respective .hdr record. This may be the name of the transmitting Agent, if they
+		/// May be name of in-house proprietary software. Name of author of software creating the Mail.dat® as
+		/// appended to this respective .hdr record. This may be the name of the transmitting agent, if they
 		/// wrote their own proprietary home-grown software.
 		/// </summary>
-		[MaildatField(Extension = "hdr", FieldCode = "HDR-1150", FieldName = "Mail.dat Software Vendor Name", Start = 607, Length = 30, Required = true, Key = false, DataType = "A/N", Description = "May be name of in-house proprietary software. Name of Author of software creating the Mail.dat® as appended to this Respective .hdr record. This may be the name of the transmitting Agent, if they wrote their own proprietary home-grown software.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "hdr", FieldCode = "HDR-1150", FieldName = "Mail.dat Software Vendor Name", Start = 607, Length = 30, Required = true, Key = false, DataType = "A/N", Description = "May be name of in-house proprietary software. Name of author of software creating the Mail.dat® as appended to this respective .hdr record. This may be the name of the transmitting agent, if they wrote their own proprietary home-grown software.", Type = "string", Format = "leftjustify")]
 		[Column("MailDatSoftwareVendorName", Order = 76, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(30)]
@@ -956,22 +954,22 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Zone Matrix Date (HDR-1160)
+		/// (cannot be all zeros).
 		/// </summary>
-		[MaildatField(Extension = "hdr", FieldCode = "HDR-1160", FieldName = "Zone Matrix Date", Start = 737, Length = 8, Required = false, Key = false, DataType = "N", Description = "", Type = "string", Format = "YYYYMMDD")]
+		[MaildatField(Extension = "hdr", FieldCode = "HDR-1160", FieldName = "Zone Matrix Date", Start = 737, Length = 8, Required = false, Key = false, DataType = "N", Description = "(cannot be all zeros).", Type = "date", Format = "YYYYMMDD")]
 		[Column("ZoneMatrixDate", Order = 80, TypeName = "TEXT")]
-		[MaxLength(8)]
 		[Comment("HDR-1160")]
-		[TypeConverter(typeof(MaildatStringConverter))]
-		public string ZoneMatrixDate { get; set; }
+		[TypeConverter(typeof(MaildatDateConverter))]
+		public DateOnly? ZoneMatrixDate { get; set; }
 
 		/// <summary>
 		/// eDoc Sender CRID (HDR-1183)
-		/// This USPS-assigned id, CRID, will be used by the USPS to Uniquely identify the submitter of
+		/// This USPS-assigned id, CRID, will be used by the USPS to uniquely identify the submitter of
 		/// electronic documentation to the PostalOne! system. This field will be used to identify a new
-		/// Business role, called the eDoc submitter, which may be different From the mail preparer, mail owner,
-		/// mail transporter, and Scheduler roles.  Only digits 0 - 9 acceptable.
+		/// business role, called the eDoc submitter, which may be different from the mail preparer, mail owner,
+		/// mail transporter, and scheduler roles. Only digits 0-9 acceptable.
 		/// </summary>
-		[MaildatField(Extension = "hdr", FieldCode = "HDR-1183", FieldName = "EDoc Sender CRID", Start = 745, Length = 12, Required = false, Key = false, DataType = "A/N", Description = "This USPS-assigned id, CRID, will be used by the USPS to Uniquely identify the submitter of electronic documentation to the PostalOne! system. This field will be used to identify a new Business role, called the eDoc submitter, which may be different From the mail preparer, mail owner, mail transporter, and Scheduler roles.  Only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "hdr", FieldCode = "HDR-1183", FieldName = "EDoc Sender CRID", Start = 745, Length = 12, Required = false, Key = false, DataType = "A/N", Description = "This USPS-assigned id, CRID, will be used by the USPS to uniquely identify the submitter of electronic documentation to the PostalOne! system. This field will be used to identify a new business role, called the eDoc submitter, which may be different from the mail preparer, mail owner, mail transporter, and scheduler roles. Only digits 0-9 acceptable.", Type = "string", Format = "leftjustify")]
 		[Column("EDocSenderCRID", Order = 81, TypeName = "TEXT")]
 		[MaxLength(12)]
 		[Comment("HDR-1183")]
@@ -1022,7 +1020,7 @@ namespace Mail.dat
 			
 			this.JobID = line.ParseForImport<Hdr, string>(p => p.JobID, returnValue);
 			this.MailDatVersion = line.ParseForImport<Hdr, string>(p => p.MailDatVersion, returnValue);
-			this.HeaderHistorySequenceNumber = line.ParseForImport<Hdr, string>(p => p.HeaderHistorySequenceNumber, returnValue);
+			this.HeaderHistorySequenceNumber = line.ParseForImport<Hdr, int>(p => p.HeaderHistorySequenceNumber, returnValue);
 			this.HeaderHistoryStatus = line.ParseForImport<Hdr, string>(p => p.HeaderHistoryStatus, returnValue);
 			this.HistoricalJobID = line.ParseForImport<Hdr, string>(p => p.HistoricalJobID, returnValue);
 			this.LicensedUserSJobNumber = line.ParseForImport<Hdr, string>(p => p.LicensedUserSJobNumber, returnValue);
@@ -1098,14 +1096,14 @@ namespace Mail.dat
 			this.MailDatSoftwareProductSName = line.ParseForImport<Hdr, string>(p => p.MailDatSoftwareProductSName, returnValue);
 			this.MailDatSoftwareVersion = line.ParseForImport<Hdr, string>(p => p.MailDatSoftwareVersion, returnValue);
 			this.MailDatSoftwareVendorSEmail = line.ParseForImport<Hdr, string>(p => p.MailDatSoftwareVendorSEmail, returnValue);
-			this.ZoneMatrixDate = line.ParseForImport<Hdr, string>(p => p.ZoneMatrixDate, returnValue);
+			this.ZoneMatrixDate = line.ParseForImport<Hdr, DateOnly?>(p => p.ZoneMatrixDate, returnValue);
 			this.EDocSenderCRID = line.ParseForImport<Hdr, string>(p => p.EDocSenderCRID, returnValue);
 			this.InformationExchange = line.ParseForImport<Hdr, string>(p => p.InformationExchange, returnValue);
 			this.UserOptionField = line.ParseForImport<Hdr, string>(p => p.UserOptionField, returnValue);
 			this.ClosingCharacter = line.ParseForImport<Hdr, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>
@@ -1117,7 +1115,7 @@ namespace Mail.dat
 			
 			sb.Append(this.JobID.FormatForExport<Hdr, string>(p => p.JobID));
 			sb.Append(this.MailDatVersion.FormatForExport<Hdr, string>(p => p.MailDatVersion));
-			sb.Append(this.HeaderHistorySequenceNumber.FormatForExport<Hdr, string>(p => p.HeaderHistorySequenceNumber));
+			sb.Append(this.HeaderHistorySequenceNumber.FormatForExport<Hdr, int>(p => p.HeaderHistorySequenceNumber));
 			sb.Append(this.HeaderHistoryStatus.FormatForExport<Hdr, string>(p => p.HeaderHistoryStatus));
 			sb.Append(this.HistoricalJobID.FormatForExport<Hdr, string>(p => p.HistoricalJobID));
 			sb.Append(this.LicensedUserSJobNumber.FormatForExport<Hdr, string>(p => p.LicensedUserSJobNumber));
@@ -1193,7 +1191,7 @@ namespace Mail.dat
 			sb.Append(this.MailDatSoftwareProductSName.FormatForExport<Hdr, string>(p => p.MailDatSoftwareProductSName));
 			sb.Append(this.MailDatSoftwareVersion.FormatForExport<Hdr, string>(p => p.MailDatSoftwareVersion));
 			sb.Append(this.MailDatSoftwareVendorSEmail.FormatForExport<Hdr, string>(p => p.MailDatSoftwareVendorSEmail));
-			sb.Append(this.ZoneMatrixDate.FormatForExport<Hdr, string>(p => p.ZoneMatrixDate));
+			sb.Append(this.ZoneMatrixDate.FormatForExport<Hdr, DateOnly?>(p => p.ZoneMatrixDate));
 			sb.Append(this.EDocSenderCRID.FormatForExport<Hdr, string>(p => p.EDocSenderCRID));
 			sb.Append(this.InformationExchange.FormatForExport<Hdr, string>(p => p.InformationExchange));
 			sb.Append(this.UserOptionField.FormatForExport<Hdr, string>(p => p.UserOptionField));

@@ -1,7 +1,7 @@
 {
     "version": {
-        "major": "25-1",
-        "revision": "0.2"
+        "major": "24-1",
+        "revision": "0.1"
     },
     "files": [
         {
@@ -380,12 +380,12 @@
                             "MM": "Marriage Mail",
                             "NF": "Contents NOT required to be mailed FCM",
                             "NP": "PACT act",
-							"P1": "Cylindrical Tubes or Rolls",
-							"P2": "A Can, or Wooden or Metal box",
-							"P3": "A Parcel Containing More Than 24 Ounces of Liquid in Glass Containers, or 1 Gallon or More of Liquid in Metal or Plasti Ccontainers (see DMM 601.3.4)",
-                            "P4": "An Insecurely Wrapped or Prepared Parcel as Provided Under DMM 601.3.0 and DMM 601.4.0",
-							"P5": "Reserve",
-							"PI": "Informed Delivery Campaign",
+							              "P1": "Cylindrical Tubes or Rolls",
+							              "P2": "A Can, or Wooden or Metal box",
+							              "P3": "A Parcel Containing More Than 24 Ounces of Liquid in Glass Containers, or 1 Gallon or More of Liquid in Metal or Plasti Ccontainers (see DMM 601.3.4)",
+                                          "P4": "An Insecurely Wrapped or Prepared Parcel as Provided Under DMM 601.3.0 and DMM 601.4.0",
+							              "P5": "Reserve",
+							              "PI": "Informed Delivery Campaign",
                             "PM": "Political Mail",
                             "PP": "Picture Permit Indicia",
                             "RR": "Reply Envelope or Reply Card",
@@ -6660,7 +6660,7 @@
                     "fieldCode": "MPA-1110",
                     "fieldName": "Customer Reference ID",
                     "start": 85,
-                    "length": 40,
+                    "length": 80,
                     "required": false,
                     "key": false,
                     "dataType": "A/N",
@@ -6675,7 +6675,7 @@
                 {
                     "fieldCode": "MPA-1111",
                     "fieldName": "Postage Payment Method",
-                    "start": 125,
+                    "start": 165,
                     "length": 1,
                     "required": true,
                     "key": false,
@@ -6703,7 +6703,7 @@
                 {
                     "fieldCode": "MPA-1114",
                     "fieldName": "Federal Agency Cost Code",
-                    "start": 126,
+                    "start": 166,
                     "length": 5,
                     "required": false,
                     "key": false,
@@ -6720,7 +6720,7 @@
                 {
                     "fieldCode": "MPA-1115",
                     "fieldName": "Non-Profit Authorization Number",
-                    "start": 131,
+                    "start": 171,
                     "length": 10,
                     "required": false,
                     "key": false,
@@ -6736,7 +6736,7 @@
                 {
                     "fieldCode": "MPA-1117",
                     "fieldName": "Title",
-                    "start": 141,
+                    "start": 181,
                     "length": 30,
                     "required": false,
                     "key": false,
@@ -6752,7 +6752,7 @@
                 {
                     "fieldCode": "MPA-1121",
                     "fieldName": "Mailer ID of Mail Owner",
-                    "start": 171,
+                    "start": 211,
                     "length": 9,
                     "required": false,
                     "key": false,
@@ -6769,7 +6769,7 @@
                 {
                     "fieldCode": "MPA-1122",
                     "fieldName": "CRID of Mail Owner",
-                    "start": 180,
+                    "start": 220,
                     "length": 12,
                     "required": false,
                     "key": false,
@@ -6786,7 +6786,7 @@
                 {
                     "fieldCode": "MPA-1123",
                     "fieldName": "Mailer ID of Preparer",
-                    "start": 192,
+                    "start": 232,
                     "length": 9,
                     "required": false,
                     "key": false,
@@ -6803,7 +6803,7 @@
                 {
                     "fieldCode": "MPA-1124",
                     "fieldName": "CRID of Preparer",
-                    "start": 201,
+                    "start": 241,
                     "length": 12,
                     "required": false,
                     "key": false,
@@ -6820,7 +6820,7 @@
                 {
                     "fieldCode": "MPA-1126",
                     "fieldName": "User Option Field",
-                    "start": 213,
+                    "start": 253,
                     "length": 20,
                     "required": false,
                     "key": false,
@@ -6836,7 +6836,7 @@
                 {
                     "fieldCode": "MPA-1127",
                     "fieldName": "Payment Account Number",
-                    "start": 233,
+                    "start": 273,
                     "length": 20,
                     "required": false,
                     "key": false,
@@ -6855,7 +6855,7 @@
                 {
                     "fieldCode": "MPA-2000",
                     "fieldName": "MPA Record Status",
-                    "start": 253,
+                    "start": 293,
                     "length": 1,
                     "required": true,
                     "key": false,
@@ -6877,8 +6877,8 @@
                 {
                     "fieldCode": "MPA-1116",
                     "fieldName": "Reserve",
-                    "start": 254,
-                    "length": 44,
+                    "start": 294,
+                    "length": 4,
                     "required": false,
                     "key": false,
                     "dataType": "A/N",

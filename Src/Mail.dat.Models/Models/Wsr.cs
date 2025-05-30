@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +20,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Provide detail to verify Saturation or High Density mailings.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "wsr", File = "Walk Sequence Record", Summary = "Detail for each Walk Sequence prepared Carrier Route.", Description = "Provide detail to verify Saturation or High Density mailings.", LineLength = 50, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "wsr", File = "Walk Sequence Record", Summary = "Detail for each Walk Sequence prepared Carrier Route.", Description = "Provide detail to verify Saturation or High Density mailings.", LineLength = 50, ClosingCharacter = "#")]
 	[Table("Wsr", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 11)]
@@ -53,10 +53,10 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Package ZIP Code (WSR-1013)
-		/// The 5-digit, 3-digit, 6-character or 6-alpha destination of The package defined in the record. Left
+		/// The 5-digit, 3-digit, 6-character or 6-alpha destination of the package defined in the record. Left
 		/// Justify. See package Quantity File's Package Zip Code field's definition.
 		/// </summary>
-		[MaildatField(Extension = "wsr", FieldCode = "WSR-1013", FieldName = "Package ZIP Code", Start = 13, Length = 6, Required = true, Key = true, DataType = "A/N", Description = "The 5-digit, 3-digit, 6-character or 6-alpha destination of The package defined in the record. Left Justify. See package Quantity File's Package Zip Code field's definition.", Type = "string", Format = "leftjustify", References = "PQT-1013")]
+		[MaildatField(Extension = "wsr", FieldCode = "WSR-1013", FieldName = "Package ZIP Code", Start = 13, Length = 6, Required = true, Key = true, DataType = "A/N", Description = "The 5-digit, 3-digit, 6-character or 6-alpha destination of the package defined in the record. Left Justify. See package Quantity File's Package Zip Code field's definition.", Type = "string", Format = "leftjustify", References = "PQT-1013")]
 		[Column("PackageZIPCode", Order = 4, TypeName = "TEXT")]
 		[Required]
 		[MaildatKey]
@@ -81,13 +81,13 @@ namespace Mail.dat
 		/// <summary>
 		/// Co-Palletization Code (WSR-1015)
 		/// Used to differentiate carrier route mail going to the same ZIP and Route that was coded and
-		/// presorted independently, to Allow association of Walk Sequence records with particular MPU Records
-		/// (*.mpu). For Co-palletization, it creates an efficient Means to differentiate each of the possible
-		/// job and sub-job Entities within a co-palletization set-up. Can also be used to Differentiate between
-		/// simplified and non-simplified addressed Pieces when combined in the same job. Populate with 01 for
-		/// jobs Where this additional level of detail is not needed.
+		/// presorted independently, to allow association of Walk Sequence records with particular MPU records
+		/// (*.mpu). For Co-palletization, it creates an efficient means to differentiate each of the possible
+		/// job and sub-job entities within a co-palletization set-up. Can also be used to differentiate between
+		/// simplified and non-simplified addressed pieces when combined in the same job. Populate with 01 for
+		/// job swhere this additional level of detail is not needed.
 		/// </summary>
-		[MaildatField(Extension = "wsr", FieldCode = "WSR-1015", FieldName = "Co-Palletization Code", Start = 23, Length = 2, Required = true, Key = true, DataType = "A/N", Description = "Used to differentiate carrier route mail going to the same ZIP and Route that was coded and presorted independently, to Allow association of Walk Sequence records with particular MPU Records (*.mpu). For Co-palletization, it creates an efficient Means to differentiate each of the possible job and sub-job Entities within a co-palletization set-up. Can also be used to Differentiate between simplified and non-simplified addressed Pieces when combined in the same job. Populate with 01 for jobs Where this additional level of detail is not needed.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "wsr", FieldCode = "WSR-1015", FieldName = "Co-Palletization Code", Start = 23, Length = 2, Required = true, Key = true, DataType = "A/N", Description = "Used to differentiate carrier route mail going to the same ZIP and Route that was coded and presorted independently, to allow association of Walk Sequence records with particular MPU records (*.mpu). For Co-palletization, it creates an efficient means to differentiate each of the possible job and sub-job entities within a co-palletization set-up. Can also be used to differentiate between simplified and non-simplified addressed pieces when combined in the same job. Populate with 01 for job swhere this additional level of detail is not needed.", Type = "string", Format = "leftjustify")]
 		[Column("CoPalletizationCode", Order = 6, TypeName = "TEXT")]
 		[Required]
 		[MaildatKey]
@@ -98,10 +98,10 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Walk Sequence Type (WSR-1101)
-		/// This field indicates whether the calculation of Saturation Walk Sequence Eligibility is based upon
+		/// This field indicates whether the calculation of Saturation Walk Sequence eligibility is based upon
 		/// the number of Total addresses or Residential Only addresses within the route.
 		/// </summary>
-		[MaildatField(Extension = "wsr", FieldCode = "WSR-1101", FieldName = "Walk Sequence Type", Start = 25, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "This field indicates whether the calculation of Saturation Walk Sequence Eligibility is based upon the number of Total addresses or Residential Only addresses within the route.", Type = "enum", Format = "leftjustify")]
+		[MaildatField(Extension = "wsr", FieldCode = "WSR-1101", FieldName = "Walk Sequence Type", Start = 25, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "This field indicates whether the calculation of Saturation Walk Sequence eligibility is based upon the number of Total addresses or Residential Only addresses within the route.", Type = "enum", Format = "leftjustify")]
 		[Column("WalkSequenceType", Order = 7, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(1)]
@@ -112,12 +112,12 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Walk Sequence Stops (WSR-1102)
-		/// The number of unique addresses (not pieces delivered) for the carrier When delivering this specific
+		/// The number of unique addresses (not pieces delivered) for the carrier when delivering this specific
 		/// route within the saturation eligible mailing. This value represents the total stops incurred while
-		/// the applicable carrier Route within this package is delivered. Walk Sequence Stops for this Carrier
+		/// the applicable carrier route within this package is delivered. Walk Sequence Stops for this Carrier
 		/// Route.
 		/// </summary>
-		[MaildatField(Extension = "wsr", FieldCode = "WSR-1102", FieldName = "Walk Sequence Stops", Start = 26, Length = 4, Required = true, Key = false, DataType = "N", Description = "The number of unique addresses (not pieces delivered) for the carrier When delivering this specific route within the saturation eligible mailing. This value represents the total stops incurred while the applicable carrier Route within this package is delivered. Walk Sequence Stops for this Carrier Route.", Type = "integer", Format = "zfill")]
+		[MaildatField(Extension = "wsr", FieldCode = "WSR-1102", FieldName = "Walk Sequence Stops", Start = 26, Length = 4, Required = true, Key = false, DataType = "N", Description = "The number of unique addresses (not pieces delivered) for the carrier when delivering this specific route within the saturation eligible mailing. This value represents the total stops incurred while the applicable carrier route within this package is delivered. Walk Sequence Stops for this Carrier Route.", Type = "integer", Format = "zfill")]
 		[Column("WalkSequenceStops", Order = 8, TypeName = "INTEGER")]
 		[Required]
 		[Comment("WSR-1102")]
@@ -138,15 +138,14 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Walk Sequence Database Date (WSR-1104)
-		/// The date of the database from which the walk sequence was secured. YYYYMMDD (cannot be all zeros).
+		/// The date of the database from which the walk sequence was secured.
 		/// </summary>
-		[MaildatField(Extension = "wsr", FieldCode = "WSR-1104", FieldName = "Walk Sequence Database Date", Start = 34, Length = 8, Required = true, Key = false, DataType = "N", Description = "The date of the database from which the walk sequence was secured. YYYYMMDD (cannot be all zeros).", Type = "string", Format = "YYYYMMDD")]
+		[MaildatField(Extension = "wsr", FieldCode = "WSR-1104", FieldName = "Walk Sequence Database Date", Start = 34, Length = 8, Required = true, Key = false, DataType = "N", Description = "The date of the database from which the walk sequence was secured.", Type = "date", Format = "YYYYMMDD")]
 		[Column("WalkSequenceDatabaseDate", Order = 10, TypeName = "TEXT")]
 		[Required]
-		[MaxLength(8)]
 		[Comment("WSR-1104")]
-		[TypeConverter(typeof(MaildatStringConverter))]
-		public string WalkSequenceDatabaseDate { get; set; }
+		[TypeConverter(typeof(MaildatDateConverter))]
+		public DateOnly WalkSequenceDatabaseDate { get; set; }
 
 		/// <summary>
 		/// WSR Record Status (WSR-2000)
@@ -163,11 +162,11 @@ namespace Mail.dat
 		/// <summary>
 		/// Reserve (WSR-1105)
 		/// </summary>
-		[MaildatField(Extension = "wsr", FieldCode = "WSR-1105", FieldName = "Reserve", Start = 43, Length = 7, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "wsr", FieldCode = "WSR-1105", FieldName = "Reserve", Start = 43, Length = 7, Required = false, Key = false, DataType = "A/N", Description = "", Type = "reserve", Format = "leftjustify")]
 		[Column("ReserveWSR1105", Order = 12, TypeName = "TEXT")]
 		[MaxLength(7)]
 		[Comment("WSR-1105")]
-		[TypeConverter(typeof(MaildatStringConverter))]
+		[TypeConverter(typeof(MaildatReserveConverter))]
 		public string ReserveWSR1105 { get; set; }
 
 		/// <summary>
@@ -198,13 +197,13 @@ namespace Mail.dat
 			this.WalkSequenceType = line.ParseForImport<Wsr, string>(p => p.WalkSequenceType, returnValue);
 			this.WalkSequenceStops = line.ParseForImport<Wsr, int>(p => p.WalkSequenceStops, returnValue);
 			this.WalkSequenceDenominator = line.ParseForImport<Wsr, int>(p => p.WalkSequenceDenominator, returnValue);
-			this.WalkSequenceDatabaseDate = line.ParseForImport<Wsr, string>(p => p.WalkSequenceDatabaseDate, returnValue);
+			this.WalkSequenceDatabaseDate = line.ParseForImport<Wsr, DateOnly>(p => p.WalkSequenceDatabaseDate, returnValue);
 			this.WSRRecordStatus = line.ParseForImport<Wsr, string>(p => p.WSRRecordStatus, returnValue);
 			this.ReserveWSR1105 = line.ParseForImport<Wsr, string>(p => p.ReserveWSR1105, returnValue);
 			this.ClosingCharacter = line.ParseForImport<Wsr, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>
@@ -222,7 +221,7 @@ namespace Mail.dat
 			sb.Append(this.WalkSequenceType.FormatForExport<Wsr, string>(p => p.WalkSequenceType));
 			sb.Append(this.WalkSequenceStops.FormatForExport<Wsr, int>(p => p.WalkSequenceStops));
 			sb.Append(this.WalkSequenceDenominator.FormatForExport<Wsr, int>(p => p.WalkSequenceDenominator));
-			sb.Append(this.WalkSequenceDatabaseDate.FormatForExport<Wsr, string>(p => p.WalkSequenceDatabaseDate));
+			sb.Append(this.WalkSequenceDatabaseDate.FormatForExport<Wsr, DateOnly>(p => p.WalkSequenceDatabaseDate));
 			sb.Append(this.WSRRecordStatus.FormatForExport<Wsr, string>(p => p.WSRRecordStatus));
 			sb.Append(this.ReserveWSR1105.FormatForExport<Wsr, string>(p => p.ReserveWSR1105));
 			sb.Append(this.ClosingCharacter.FormatForExport<Wsr, string>(p => p.ClosingCharacter));

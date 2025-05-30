@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +20,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Records identify digital campaigns and enhances capabilities of the USPS Informed Delivery program.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "rmr", File = "Referenceable Mail Record", Summary = "Reference-able Mail to provide digital content at the piece or version level.", Description = "Records identify digital campaigns and enhances capabilities of the USPS Informed Delivery program.", LineLength = 311, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "rmr", File = "Referenceable Mail Record", Summary = "Reference-able Mail to provide digital content at the piece or version level.", Description = "Records identify digital campaigns and enhances capabilities of the USPS Informed Delivery program.", LineLength = 311, ClosingCharacter = "#")]
 	[Table("Rmr", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 22)]
@@ -82,10 +82,10 @@ namespace Mail.dat
 
 		/// <summary>
 		/// RMR Content Type (RMR-1004)
-		/// Field to capture the type of RMR content. RMR content Can either be a URL of a media image that is
-		/// supported by Browsers or a target URL that will be placed as a Hyperlink For the media/image.
+		/// Field to capture the type of RMR content. RMR content can either be a URL of a media image that is
+		/// supported by browsers or a target URL that will be placed as a Hyperlink for the media/image.
 		/// </summary>
-		[MaildatField(Extension = "rmr", FieldCode = "RMR-1004", FieldName = "RMR Content Type", Start = 40, Length = 1, Required = true, Key = true, DataType = "A/N", Description = "Field to capture the type of RMR content. RMR content Can either be a URL of a media image that is supported by Browsers or a target URL that will be placed as a Hyperlink For the media/image.", Type = "enum", Format = "leftjustify")]
+		[MaildatField(Extension = "rmr", FieldCode = "RMR-1004", FieldName = "RMR Content Type", Start = 40, Length = 1, Required = true, Key = true, DataType = "A/N", Description = "Field to capture the type of RMR content. RMR content can either be a URL of a media image that is supported by browsers or a target URL that will be placed as a Hyperlink for the media/image.", Type = "enum", Format = "leftjustify")]
 		[Column("RMRContentType", Order = 6, TypeName = "TEXT")]
 		[Required]
 		[MaildatKey]
@@ -108,11 +108,11 @@ namespace Mail.dat
 
 		/// <summary>
 		/// RMR Value (RMR-1005)
-		/// Value/Content URL for the Referenceable Mail media or Target/HREF document (could be a webpage, or
-		/// image/media Driven by the RMR Content Type field); Leave BLANK if piece Wishes to be Opt out of Real
+		/// Value/Content URL for the Referenceable Mail media or target/HREF document (could be a webpage, or
+		/// image/media driven by the RMR Content Type field); Leave BLANK if piece wishes to be Opt out of Real
 		/// Mail Program with RMR Content Type of O, else the field is required.
 		/// </summary>
-		[MaildatField(Extension = "rmr", FieldCode = "RMR-1005", FieldName = "RMR Value", Start = 49, Length = 250, Required = false, Key = false, DataType = "A/N", Description = "Value/Content URL for the Referenceable Mail media or Target/HREF document (could be a webpage, or image/media Driven by the RMR Content Type field); Leave BLANK if piece Wishes to be Opt out of Real Mail Program with RMR Content Type of O, else the field is required.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "rmr", FieldCode = "RMR-1005", FieldName = "RMR Value", Start = 49, Length = 250, Required = false, Key = false, DataType = "A/N", Description = "Value/Content URL for the Referenceable Mail media or target/HREF document (could be a webpage, or image/media driven by the RMR Content Type field); Leave BLANK if piece wishes to be Opt out of Real Mail Program with RMR Content Type of O, else the field is required.", Type = "string", Format = "leftjustify")]
 		[Column("RMRValue", Order = 8, TypeName = "TEXT")]
 		[MaxLength(250)]
 		[Comment("RMR-1005")]
@@ -134,11 +134,11 @@ namespace Mail.dat
 		/// <summary>
 		/// Reserve (RMR-1011)
 		/// </summary>
-		[MaildatField(Extension = "rmr", FieldCode = "RMR-1011", FieldName = "Reserve", Start = 300, Length = 10, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "rmr", FieldCode = "RMR-1011", FieldName = "Reserve", Start = 300, Length = 10, Required = false, Key = false, DataType = "A/N", Description = "", Type = "reserve", Format = "leftjustify")]
 		[Column("ReserveRMR1011", Order = 10, TypeName = "TEXT")]
 		[MaxLength(10)]
 		[Comment("RMR-1011")]
-		[TypeConverter(typeof(MaildatStringConverter))]
+		[TypeConverter(typeof(MaildatReserveConverter))]
 		public string ReserveRMR1011 { get; set; }
 
 		/// <summary>
@@ -186,7 +186,7 @@ namespace Mail.dat
 			this.ClosingCharacter = line.ParseForImport<Rmr, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>

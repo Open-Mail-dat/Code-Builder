@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +20,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Records specific ancillary fees (linked to the .PDR or .PBC). To be only used for extra services.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "sfr", File = "Special Fees/Charges Record", Summary = "Special fees and charges (linked to .PDR).", Description = "Records specific ancillary fees (linked to the .PDR or .PBC). To be only used for extra services.", LineLength = 93, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "sfr", File = "Special Fees/Charges Record", Summary = "Special fees and charges (linked to .PDR).", Description = "Records specific ancillary fees (linked to the .PDR or .PBC). To be only used for extra services.", LineLength = 93, ClosingCharacter = "#")]
 	[Table("Sfr", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 16)]
@@ -53,22 +53,21 @@ namespace Mail.dat
 		/// Piece ID (SFR-1018)
 		/// Unique ID of individual piece within a mailing.
 		/// </summary>
-		[MaildatField(Extension = "sfr", FieldCode = "SFR-1018", FieldName = "Piece ID", Start = 17, Length = 22, Required = true, Key = true, DataType = "A/N", Description = "Unique ID of individual piece within a mailing.", Type = "enum", Format = "leftjustify")]
+		[MaildatField(Extension = "sfr", FieldCode = "SFR-1018", FieldName = "Piece ID", Start = 17, Length = 22, Required = true, Key = true, DataType = "A/N", Description = "Unique ID of individual piece within a mailing.", Type = "string", Format = "zfillnumeric", References = "PDR-1018,PBC-1002")]
 		[Column("PieceID", Order = 4, TypeName = "TEXT")]
 		[Required]
 		[MaildatKey]
 		[MaxLength(22)]
-		[AllowedValues("PBC", "PDR")]
 		[Comment("SFR-1018")]
-		[TypeConverter(typeof(MaildatEnumConverter))]
+		[TypeConverter(typeof(MaildatStringConverter))]
 		public string PieceID { get; set; }
 
 		/// <summary>
 		/// Service Type (SFR-1019)
 		/// If, applicable; Left Justify; Space Added Multiple records can be added per piece in PDR or PBC each
-		/// Representing an Extra Service associated to the mailpiece.
+		/// representing an Extra Service associated to the mailpiece.
 		/// </summary>
-		[MaildatField(Extension = "sfr", FieldCode = "SFR-1019", FieldName = "Service Type", Start = 39, Length = 2, Required = true, Key = true, DataType = "A/N", Description = "If, applicable; Left Justify; Space Added Multiple records can be added per piece in PDR or PBC each Representing an Extra Service associated to the mailpiece.", Type = "enum", Format = "leftjustify")]
+		[MaildatField(Extension = "sfr", FieldCode = "SFR-1019", FieldName = "Service Type", Start = 39, Length = 2, Required = true, Key = true, DataType = "A/N", Description = "If, applicable; Left Justify; Space Added Multiple records can be added per piece in PDR or PBC each representing an Extra Service associated to the mailpiece.", Type = "enum", Format = "leftjustify")]
 		[Column("ServiceType", Order = 5, TypeName = "TEXT")]
 		[Required]
 		[MaildatKey]
@@ -92,10 +91,9 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Service Stated Value (SFR-1101)
-		/// 99999999v99; dollars/cents, rounded (decimal implied). The Value of the single piece noted when
-		/// applying for the Special Service.
+		/// Dollars/cents, rounded. The value of the single piece noted when applying for the Special Service.
 		/// </summary>
-		[MaildatField(Extension = "sfr", FieldCode = "SFR-1101", FieldName = "Service Stated Value", Start = 42, Length = 10, Required = false, Key = false, DataType = "N", Description = "99999999v99; dollars/cents, rounded (decimal implied). The Value of the single piece noted when applying for the Special Service.", Type = "decimal", Format = "zfill", Precision = 2)]
+		[MaildatField(Extension = "sfr", FieldCode = "SFR-1101", FieldName = "Service Stated Value", Start = 42, Length = 10, Required = false, Key = false, DataType = "N", Description = "Dollars/cents, rounded. The value of the single piece noted when applying for the Special Service.", Type = "decimal", Format = "zfill", Precision = 2)]
 		[Column("ServiceStatedValue", Order = 7, TypeName = "NUMERIC")]
 		[Precision(2)]
 		[Comment("SFR-1101")]
@@ -104,10 +102,10 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Service Fee (SFR-1102)
-		/// 99999v99; dollars/cents, rounded (decimal implied). Actual Postal dollars & cents incurred in costs
-		/// for the specific Piece for one or more fees or charges noted above.
+		/// Dollars/cents, rounded. Actual Postal dollars & cents incurred in costs for the specific piece for
+		/// one or more fees or charges noted above.
 		/// </summary>
-		[MaildatField(Extension = "sfr", FieldCode = "SFR-1102", FieldName = "Service Fee", Start = 52, Length = 7, Required = false, Key = false, DataType = "N", Description = "99999v99; dollars/cents, rounded (decimal implied). Actual Postal dollars & cents incurred in costs for the specific Piece for one or more fees or charges noted above.", Type = "decimal", Format = "zfill", Precision = 2)]
+		[MaildatField(Extension = "sfr", FieldCode = "SFR-1102", FieldName = "Service Fee", Start = 52, Length = 7, Required = false, Key = false, DataType = "N", Description = "Dollars/cents, rounded. Actual Postal dollars & cents incurred in costs for the specific piece for one or more fees or charges noted above.", Type = "decimal", Format = "zfill", Precision = 2)]
 		[Column("ServiceFee", Order = 8, TypeName = "NUMERIC")]
 		[Precision(2)]
 		[Comment("SFR-1102")]
@@ -116,10 +114,10 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Special Fees/Charges Services ID (SFR-1103)
-		/// Long Number unique for this set of services within the Job And Segment. Cannot mix services of two
-		/// different IDs Within the same record.
+		/// Long Number unique for this set of services within the Job and Segment. Cannot mix services of two
+		/// different IDs within the same record.
 		/// </summary>
-		[MaildatField(Extension = "sfr", FieldCode = "SFR-1103", FieldName = "Special Fees/Charges Services ID", Start = 59, Length = 22, Required = true, Key = false, DataType = "A/N", Description = "Long Number unique for this set of services within the Job And Segment. Cannot mix services of two different IDs Within the same record.", Type = "string", Format = "zfillnumeric")]
+		[MaildatField(Extension = "sfr", FieldCode = "SFR-1103", FieldName = "Special Fees/Charges Services ID", Start = 59, Length = 22, Required = true, Key = false, DataType = "A/N", Description = "Long Number unique for this set of services within the Job and Segment. Cannot mix services of two different IDs within the same record.", Type = "string", Format = "zfillnumeric")]
 		[Column("SpecialFeesChargesServicesID", Order = 9, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(22)]
@@ -129,10 +127,10 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Amount Due (SFR-1120)
-		/// 99999v99; dollars/cents, rounded (decimal implied). Actual Postal dollars & cents to be collected
-		/// for the COD service For specific piece upon delivery.
+		/// Dollars/cents, rounded. Actual Postal dollars & cents to be collected for the COD service for
+		/// specific piece upon delivery.
 		/// </summary>
-		[MaildatField(Extension = "sfr", FieldCode = "SFR-1120", FieldName = "Amount Due", Start = 81, Length = 7, Required = false, Key = false, DataType = "N", Description = "99999v99; dollars/cents, rounded (decimal implied). Actual Postal dollars & cents to be collected for the COD service For specific piece upon delivery.", Type = "decimal", Format = "zfill", Precision = 2)]
+		[MaildatField(Extension = "sfr", FieldCode = "SFR-1120", FieldName = "Amount Due", Start = 81, Length = 7, Required = false, Key = false, DataType = "N", Description = "Dollars/cents, rounded. Actual Postal dollars & cents to be collected for the COD service for specific piece upon delivery.", Type = "decimal", Format = "zfill", Precision = 2)]
 		[Column("AmountDue", Order = 10, TypeName = "NUMERIC")]
 		[Precision(2)]
 		[Comment("SFR-1120")]
@@ -154,11 +152,11 @@ namespace Mail.dat
 		/// <summary>
 		/// Reserve (SFR-1104)
 		/// </summary>
-		[MaildatField(Extension = "sfr", FieldCode = "SFR-1104", FieldName = "Reserve", Start = 89, Length = 4, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "sfr", FieldCode = "SFR-1104", FieldName = "Reserve", Start = 89, Length = 4, Required = false, Key = false, DataType = "A/N", Description = "", Type = "reserve", Format = "leftjustify")]
 		[Column("ReserveSFR1104", Order = 12, TypeName = "TEXT")]
 		[MaxLength(4)]
 		[Comment("SFR-1104")]
-		[TypeConverter(typeof(MaildatStringConverter))]
+		[TypeConverter(typeof(MaildatReserveConverter))]
 		public string ReserveSFR1104 { get; set; }
 
 		/// <summary>
@@ -195,7 +193,7 @@ namespace Mail.dat
 			this.ClosingCharacter = line.ParseForImport<Sfr, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>

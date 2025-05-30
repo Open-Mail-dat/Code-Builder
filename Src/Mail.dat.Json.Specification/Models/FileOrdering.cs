@@ -1,4 +1,4 @@
-﻿namespace Mail.dat.Specification.Models
+﻿namespace Mail.dat.Json.Specification.Models
 {
 	public class FileOrdering : List<FileOrder>
 	{

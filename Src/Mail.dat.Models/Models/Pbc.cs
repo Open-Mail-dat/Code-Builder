@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -21,7 +21,7 @@ namespace Mail.dat
 	/// Provides piece level detail required of full service mailings; when used instead of the Piece Detail
 	/// file, acts as an extension of the PQT file.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "pbc", File = "Piece Barcode Record", Summary = "Piece barcode details.", Description = "Provides piece level detail required of full service mailings; when used instead of the Piece Detail file, acts as an extension of the PQT file.", LineLength = 70, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "pbc", File = "Piece Barcode Record", Summary = "Piece barcode details.", Description = "Provides piece level detail required of full service mailings; when used instead of the Piece Detail file, acts as an extension of the PQT file.", LineLength = 70, ClosingCharacter = "#")]
 	[Table("Pbc", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 15)]
@@ -164,7 +164,7 @@ namespace Mail.dat
 			this.ClosingCharacter = line.ParseForImport<Pbc, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>

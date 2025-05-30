@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -21,7 +21,7 @@ namespace Mail.dat
 	/// Allows mailers to identify surcharges, incentive and specific contents that are part of the mail
 	/// piece.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "ccr", File = "Component Characteristics Record", Summary = "Characteristics of a component.", Description = "Allows mailers to identify surcharges, incentive and specific contents that are part of the mail piece.", LineLength = 52, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "ccr", File = "Component Characteristics Record", Summary = "Characteristics of a component.", Description = "Allows mailers to identify surcharges, incentive and specific contents that are part of the mail piece.", LineLength = 52, ClosingCharacter = "#")]
 	[Table("Ccr", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 7)]
@@ -82,10 +82,13 @@ namespace Mail.dat
 		/// Pre-Denominated Maximum Credit Amount (CCR-1101)
 		/// Dollars/cents, rounded (decimal implied) Maximum Credit Redemption Amount to be applied towards the
 		/// postage amount. The postage amount representing the pieces associated with the component record.
-		/// Should be used in conjunction with the CCR for Credit Redemption. If left blank, then do not apply
-		/// any limit to the credit amount used.
+		/// Should be used in conjunction with the CCR for Credit Redemption. If the field is blank or zero
+		/// filled, do not apply any limit to the credit amount used. Note: multiple components may be tied to
+		/// one/same Permit in MPA record Note: if the need is to entirely remove the Credit Redemption, remove
+		/// the CCR record claiming the Credit Redemption or populate the field with the minimum value
+		/// (00000000001), as a zero filled will not limit the credit amount used.
 		/// </summary>
-		[MaildatField(Extension = "ccr", FieldCode = "CCR-1101", FieldName = "Pre-Denominated Maximum Credit Amount", Start = 20, Length = 11, Required = false, Key = false, DataType = "N", Description = "Dollars/cents, rounded (decimal implied) Maximum Credit Redemption Amount to be applied towards the postage amount. The postage amount representing the pieces associated with the component record. Should be used in conjunction with the CCR for Credit Redemption. If left blank, then do not apply any limit to the credit amount used.", Type = "decimal", Format = "zfill", Precision = 3)]
+		[MaildatField(Extension = "ccr", FieldCode = "CCR-1101", FieldName = "Pre-Denominated Maximum Credit Amount", Start = 20, Length = 11, Required = false, Key = false, DataType = "N", Description = "Dollars/cents, rounded (decimal implied) Maximum Credit Redemption Amount to be applied towards the postage amount. The postage amount representing the pieces associated with the component record. Should be used in conjunction with the CCR for Credit Redemption. If the field is blank or zero filled, do not apply any limit to the credit amount used. Note: multiple components may be tied to one/same Permit in MPA record Note: if the need is to entirely remove the Credit Redemption, remove the CCR record claiming the Credit Redemption or populate the field with the minimum value (00000000001), as a zero filled will not limit the credit amount used.", Type = "decimal", Format = "zfill", Precision = 3)]
 		[Column("PreDenominatedMaximumCreditAmount", Order = 6, TypeName = "NUMERIC")]
 		[Precision(3)]
 		[Comment("CCR-1101")]
@@ -96,11 +99,11 @@ namespace Mail.dat
 		/// Reserve (CCR-1102)
 		/// Reserved for future use.
 		/// </summary>
-		[MaildatField(Extension = "ccr", FieldCode = "CCR-1102", FieldName = "Reserve", Start = 31, Length = 20, Required = false, Key = false, DataType = "", Description = "Reserved for future use.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "ccr", FieldCode = "CCR-1102", FieldName = "Reserve", Start = 31, Length = 20, Required = false, Key = false, DataType = "", Description = "Reserved for future use.", Type = "reserve", Format = "leftjustify")]
 		[Column("ReserveCCR1102", Order = 7, TypeName = "TEXT")]
 		[MaxLength(20)]
 		[Comment("CCR-1102")]
-		[TypeConverter(typeof(MaildatStringConverter))]
+		[TypeConverter(typeof(MaildatReserveConverter))]
 		public string ReserveCCR1102 { get; set; }
 
 		/// <summary>
@@ -145,7 +148,7 @@ namespace Mail.dat
 			this.ClosingCharacter = line.ParseForImport<Ccr, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>

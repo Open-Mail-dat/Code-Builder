@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 
 namespace Mail.dat
@@ -19,11 +19,10 @@ namespace Mail.dat
 	{
 		/// <summary>
 		/// Job ID (HDR-1001)
-		/// A Job ID (the Mail.dat® serial number) should be unique Compared to all other supplied Job IDs
-		/// provided by the Same source. The Job ID assigned to any new Mail.dat® is Also to be applied to any
-		/// Historical Header Record part of That transmission; it is the Historical Job ID that retains The
-		/// initial ID throughout its existence. Job IDs are user Managed, but must remain unique within one
-		/// User License Code.
+		/// A Job ID (the Mail.dat® serial number) should be unique compared to all other supplied Job IDs
+		/// provided by the same source. The Job ID assigned to any new Mail.dat® is that transmission; it is
+		/// the Historical Job ID that retains the initial ID throughout its existence. Job IDs are user
+		/// managed, but must remain unique within one User License Code.
 		/// </summary>
 		string JobID { get; set; }
 
@@ -35,19 +34,19 @@ namespace Mail.dat
 		/// <summary>
 		/// Header History Sequence Number (HDR-1025)
 		/// First Header created with initial iteration of this Mail.dat® = 9999, next iteration of this
-		/// Mail.dat® as it is successively Processed would have a Header with a History Sequence Number = 9998,
-		/// etc. Current Active Header would be next in The series, hence the record with the lowest History
-		/// Sequence Value. Header History Status field (see next) also denotes Current active header.
+		/// Mail.dat® as it is successively processed would have a Header with a History Sequence number = 9998,
+		/// etc. Current Active Header would be next in the series, hence the record with the lowest History
+		/// Sequence value. Header History Status field (see next) also denotes current active header.
 		/// </summary>
-		string HeaderHistorySequenceNumber { get; set; }
+		int HeaderHistorySequenceNumber { get; set; }
 
 		/// <summary>
 		/// Header History Status (HDR-1148)
 		/// Transmit all history records with subsequent transmissions. C = Current (this .hdr record is
-		/// applicable to current Transmission) H = History (this .hdr record predates and is Associated with,
+		/// applicable to current transmission) H = History (this .hdr record predates and is associated with,
 		/// but not specifically applicable to, current Mail.dat® transmission) All .HDR records received for a
-		/// Specific Mail.dat® must be forwarded with that Mail.dat, or Portion thereof, if such transmission
-		/// occurs. As applicable, the Received Header is updated by the Mail.dat® processor with an H in this
+		/// specific Mail.dat® must be forwarded with that Mail.dat, or portion thereof, if such transmission
+		/// occurs. As applicable, the received Header is updated by the Mail.dat® processor with an H in this
 		/// field as it is passed along with the new Current Active Header to next recipient.
 		/// </summary>
 		string HeaderHistoryStatus { get; set; }
@@ -81,7 +80,7 @@ namespace Mail.dat
 		/// <summary>
 		/// User License Code (HDR-1105)
 		/// ULC of party creating this iteration of Mail.dat Must - begin with an alpha, be four characters,
-		/// have no Spaces, have no special characters, not be case sensitive.
+		/// have no spaces, have no special characters, not be case sensitive.
 		/// </summary>
 		string UserLicenseCode { get; set; }
 
@@ -123,14 +122,14 @@ namespace Mail.dat
 		/// <summary>
 		/// Segment Record Count (HDR-1111)
 		/// The number of Segment records in this Mail.dat. Transmitting multiple Segments within one Mail.dat®
-		/// is an Expected behavior within this specification.
+		/// is an expected behavior within this specification.
 		/// </summary>
 		int SegmentRecordCount { get; set; }
 
 		/// <summary>
 		/// Segment File Status (HDR-1112)
-		/// In this field, and all following Status fields, O, D, R and N Describe action upon an entire file. C
-		/// and U indicate that only Individual records are modified.
+		/// In this field, and all following Status fields, O, D, R and N describe action upon an entire file. C
+		/// and U indicate that only individual records are modified.
 		/// </summary>
 		string SegmentFileStatus { get; set; }
 
@@ -451,8 +450,8 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Mail.dat Software Vendor Name (HDR-1150)
-		/// May be name of in-house proprietary software. Name of Author of software creating the Mail.dat® as
-		/// appended to this Respective .hdr record. This may be the name of the transmitting Agent, if they
+		/// May be name of in-house proprietary software. Name of author of software creating the Mail.dat® as
+		/// appended to this respective .hdr record. This may be the name of the transmitting agent, if they
 		/// wrote their own proprietary home-grown software.
 		/// </summary>
 		string MailDatSoftwareVendorName { get; set; }
@@ -477,15 +476,16 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Zone Matrix Date (HDR-1160)
+		/// (cannot be all zeros).
 		/// </summary>
-		string ZoneMatrixDate { get; set; }
+		DateOnly? ZoneMatrixDate { get; set; }
 
 		/// <summary>
 		/// eDoc Sender CRID (HDR-1183)
-		/// This USPS-assigned id, CRID, will be used by the USPS to Uniquely identify the submitter of
+		/// This USPS-assigned id, CRID, will be used by the USPS to uniquely identify the submitter of
 		/// electronic documentation to the PostalOne! system. This field will be used to identify a new
-		/// Business role, called the eDoc submitter, which may be different From the mail preparer, mail owner,
-		/// mail transporter, and Scheduler roles.  Only digits 0 - 9 acceptable.
+		/// business role, called the eDoc submitter, which may be different from the mail preparer, mail owner,
+		/// mail transporter, and scheduler roles. Only digits 0-9 acceptable.
 		/// </summary>
 		string EDocSenderCRID { get; set; }
 

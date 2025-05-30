@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +20,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Quantity/rates per 3 or 5 digit in each container.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "cqt", File = "Container Quantity Record", Summary = "Quantity/rates per 3 or 5 digit in each container.", Description = "Quantity/rates per 3 or 5 digit in each container.", LineLength = 86, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "cqt", File = "Container Quantity Record", Summary = "Quantity/rates per 3 or 5 digit in each container.", Description = "Quantity/rates per 3 or 5 digit in each container.", LineLength = 86, ClosingCharacter = "#")]
 	[Table("Cqt", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 9)]
@@ -67,11 +67,10 @@ namespace Mail.dat
 		/// <summary>
 		/// 3 Digit / 5 Digit Container Division (CQT-1007)
 		/// 3 or 5 Digit representing a portion or all of the pieces within the container. The 3 or 5 Digit
-		/// represents those pieces within the container to a single 3 or 5 Digit; Not presuming this set of
+		/// represents those pieces within the container to a single 3 or 5 Digit; not presuming this set of
 		/// pieces to be all of those going to the destination of the container. For example: Carrier Route Sack
-		/// is described in one 3 Digit or 5 Digit Container Quantity Record; However, likely multiple records
-		/// required to describe a Residual tray. For First Class, Periodicals, or Standard Mail, this field
-		/// within the CQT is to be a 3-Digit since There is generally no finer Zone or Destination Entry
+		/// is described in one 3 Digit or 5 Digit Container Quantity Record; however, likely multiple records
+		/// required to describe a Residual tray. there is generally no finer Zone or Destination Entry
 		/// discrimination necessary. The exceptions for the preceding cases are when there is either: 1) A
 		/// value representing DDU in field CQT - 1105 for the respective CQT record 2) When the CQT record
 		/// represents a portion of a 5-Digit Scheme package. 3) For all Package Services CQT records. 4) A 5
@@ -80,14 +79,14 @@ namespace Mail.dat
 		/// the 3 Digit; if applicable. The user can make divisions as appropriate to meet the USPS reporting
 		/// needs. Only US Postal Service and Canada Post mail should have 3- or 5-byte values, all others see
 		/// following. 3 Digit or 5 Digit Division as necessary. Example: US = (99999_), or (888___) CANADIAN =
-		/// (A1A___), Left Justify 3 Digit (1C, 2C & 3C use 3 Digit Division; Generate additional 5 Digit
+		/// (A1A___), Left Justify 3 Digit (1C, 2C & 3C use 3 Digit Division; generate additional 5 Digit
 		/// records, if a DDU in position 49 of .CSM or if record is a 5 Digit Scheme Package or Container ) (4C
 		/// use 5 Digit Division). In the event that no postal code is available, then the following default
 		/// 2-position alphas are to be used: Default if no ZIP or Postal Code: Left Justify; Space Added: US =
 		/// USA CA = Canada MX = Mexico FOR = Foreign Mail: use ISO3166 (2 position alpha Country Code)
 		/// International: Use ISO3166 (2 position alpha Country Code).
 		/// </summary>
-		[MaildatField(Extension = "cqt", FieldCode = "CQT-1007", FieldName = "3 Digit / 5 Digit Container Division", Start = 23, Length = 5, Required = true, Key = false, DataType = "A/N", Description = "3 or 5 Digit representing a portion or all of the pieces within the container. The 3 or 5 Digit represents those pieces within the container to a single 3 or 5 Digit; Not presuming this set of pieces to be all of those going to the destination of the container. For example: Carrier Route Sack is described in one 3 Digit or 5 Digit Container Quantity Record; However, likely multiple records required to describe a Residual tray. For First Class, Periodicals, or Standard Mail, this field within the CQT is to be a 3-Digit since There is generally no finer Zone or Destination Entry discrimination necessary. The exceptions for the preceding cases are when there is either: 1) A value representing DDU in field CQT - 1105 for the respective CQT record 2) When the CQT record represents a portion of a 5-Digit Scheme package. 3) For all Package Services CQT records. 4) A 5 Digit ZIP Code is required for products where zoning is determined at a 5-Digit level. In those cited cases, the 3 Digit / 5 Digit field for that container must have 5-Digit detail. Left Justify the 3 Digit; if applicable. The user can make divisions as appropriate to meet the USPS reporting needs. Only US Postal Service and Canada Post mail should have 3- or 5-byte values, all others see following. 3 Digit or 5 Digit Division as necessary. Example: US = (99999_), or (888___) CANADIAN = (A1A___), Left Justify 3 Digit (1C, 2C & 3C use 3 Digit Division; Generate additional 5 Digit records, if a DDU in position 49 of .CSM or if record is a 5 Digit Scheme Package or Container ) (4C use 5 Digit Division). In the event that no postal code is available, then the following default 2-position alphas are to be used: Default if no ZIP or Postal Code: Left Justify; Space Added: US = USA CA = Canada MX = Mexico FOR = Foreign Mail: use ISO3166 (2 position alpha Country Code) International: Use ISO3166 (2 position alpha Country Code).", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "cqt", FieldCode = "CQT-1007", FieldName = "3 Digit / 5 Digit Container Division", Start = 23, Length = 5, Required = true, Key = false, DataType = "A/N", Description = "3 or 5 Digit representing a portion or all of the pieces within the container. The 3 or 5 Digit represents those pieces within the container to a single 3 or 5 Digit; not presuming this set of pieces to be all of those going to the destination of the container. For example: Carrier Route Sack is described in one 3 Digit or 5 Digit Container Quantity Record; however, likely multiple records required to describe a Residual tray. there is generally no finer Zone or Destination Entry discrimination necessary. The exceptions for the preceding cases are when there is either: 1) A value representing DDU in field CQT - 1105 for the respective CQT record 2) When the CQT record represents a portion of a 5-Digit Scheme package. 3) For all Package Services CQT records. 4) A 5 Digit ZIP Code is required for products where zoning is determined at a 5-Digit level. In those cited cases, the 3 Digit / 5 Digit field for that container must have 5-Digit detail. Left Justify the 3 Digit; if applicable. The user can make divisions as appropriate to meet the USPS reporting needs. Only US Postal Service and Canada Post mail should have 3- or 5-byte values, all others see following. 3 Digit or 5 Digit Division as necessary. Example: US = (99999_), or (888___) CANADIAN = (A1A___), Left Justify 3 Digit (1C, 2C & 3C use 3 Digit Division; generate additional 5 Digit records, if a DDU in position 49 of .CSM or if record is a 5 Digit Scheme Package or Container ) (4C use 5 Digit Division). In the event that no postal code is available, then the following default 2-position alphas are to be used: Default if no ZIP or Postal Code: Left Justify; Space Added: US = USA CA = Canada MX = Mexico FOR = Foreign Mail: use ISO3166 (2 position alpha Country Code) International: Use ISO3166 (2 position alpha Country Code).", Type = "string", Format = "leftjustify")]
 		[Column("ThreeDigit5DigitContainerDivision", Order = 5, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(5)]
@@ -97,12 +96,12 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Mail Piece Unit ID (CQT-1003)
-		/// This ID will be used by the computer controlled equipment at the mailing facility to Manufacture the
+		/// This ID will be used by the computer controlled equipment at the mailing facility to manufacture the
 		/// specific binding parts for this make-up within this particular mailing. Any Mail Piece Unit exists
-		/// within a specific Segment. Therefore, Segment/MPU is mutually exclusive. MPU alone is not unique. It
-		/// must have some value, even if single edition.
+		/// within a specific Segment. Therefore, Segment/MPU is mutually exclusive. MPU alone is not unique.
+		/// Must have some value, even if single edition.
 		/// </summary>
-		[MaildatField(Extension = "cqt", FieldCode = "CQT-1003", FieldName = "Mail Piece Unit ID", Start = 28, Length = 5, Required = true, Key = false, DataType = "A/N", Description = "This ID will be used by the computer controlled equipment at the mailing facility to Manufacture the specific binding parts for this make-up within this particular mailing. Any Mail Piece Unit exists within a specific Segment. Therefore, Segment/MPU is mutually exclusive. MPU alone is not unique. It must have some value, even if single edition.", Type = "string", Format = "zfillnumeric", References = "MPU-1003")]
+		[MaildatField(Extension = "cqt", FieldCode = "CQT-1003", FieldName = "Mail Piece Unit ID", Start = 28, Length = 5, Required = true, Key = false, DataType = "A/N", Description = "This ID will be used by the computer controlled equipment at the mailing facility to manufacture the specific binding parts for this make-up within this particular mailing. Any Mail Piece Unit exists within a specific Segment. Therefore, Segment/MPU is mutually exclusive. MPU alone is not unique. Must have some value, even if single edition.", Type = "string", Format = "zfillnumeric", References = "MPU-1003")]
 		[Column("MailPieceUnitID", Order = 6, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(5)]
@@ -226,9 +225,10 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Container Charge Allocation (CQT-1111)
-		/// This field is to be used for denoting the proportion of cost of its container that it's carrying.
+		/// Proportion, rounded This field is to be used for denoting the proportion of cost of its container
+		/// that it's carrying.
 		/// </summary>
-		[MaildatField(Extension = "cqt", FieldCode = "CQT-1111", FieldName = "Container Charge Allocation", Start = 57, Length = 7, Required = false, Key = false, DataType = "N", Description = "This field is to be used for denoting the proportion of cost of its container that it's carrying.", Type = "decimal", Format = "zfill", Precision = 6)]
+		[MaildatField(Extension = "cqt", FieldCode = "CQT-1111", FieldName = "Container Charge Allocation", Start = 57, Length = 7, Required = false, Key = false, DataType = "N", Description = "Proportion, rounded This field is to be used for denoting the proportion of cost of its container that it's carrying.", Type = "decimal", Format = "zfill", Precision = 6)]
 		[Column("ContainerChargeAllocation", Order = 16, TypeName = "NUMERIC")]
 		[Precision(6)]
 		[Comment("CQT-1111")]
@@ -272,11 +272,11 @@ namespace Mail.dat
 		/// <summary>
 		/// Reserve (CQT-1106)
 		/// </summary>
-		[MaildatField(Extension = "cqt", FieldCode = "CQT-1106", FieldName = "Reserve", Start = 67, Length = 19, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "cqt", FieldCode = "CQT-1106", FieldName = "Reserve", Start = 67, Length = 19, Required = false, Key = false, DataType = "A/N", Description = "", Type = "reserve", Format = "leftjustify")]
 		[Column("ReserveCQT1106", Order = 20, TypeName = "TEXT")]
 		[MaxLength(19)]
 		[Comment("CQT-1106")]
-		[TypeConverter(typeof(MaildatStringConverter))]
+		[TypeConverter(typeof(MaildatReserveConverter))]
 		public string ReserveCQT1106 { get; set; }
 
 		/// <summary>
@@ -321,7 +321,7 @@ namespace Mail.dat
 			this.ClosingCharacter = line.ParseForImport<Cqt, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>

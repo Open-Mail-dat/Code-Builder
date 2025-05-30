@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +20,7 @@ namespace Mail.dat
 	/// <summary>
 	/// A description of the applicable component.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "cpt", File = "Component Record", Summary = "A description of the applicable component.", Description = "A description of the applicable component.", LineLength = 264, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "cpt", File = "Component Record", Summary = "A description of the applicable component.", Description = "A description of the applicable component.", LineLength = 264, ClosingCharacter = "#")]
 	[Table("Cpt", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 6)]
@@ -53,12 +53,12 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Component Description (CPT-1101)
-		/// This is a unique name or code for each specific sub- or whole-portion of The mail piece. This field,
-		/// if used, can carry an absolute reference to The Component in question while the Component ID is
-		/// practical shorthand For reference to the Component's role within the mailing facilities postage
-		/// Analysis. Left justify. If used, must have some value, even if single edition.
+		/// This is a unique name or code for each specific sub- or whole-portion of the mail piece. This field,
+		/// if used, can carry an absolute reference to the Component in question while the Component ID is
+		/// practical shorthand for reference to the Component's role within the mailing facilities postage
+		/// analysis. Left justify. If used, must have some value, even if single edition.
 		/// </summary>
-		[MaildatField(Extension = "cpt", FieldCode = "CPT-1101", FieldName = "Component Description", Start = 17, Length = 30, Required = false, Key = false, DataType = "A/N", Description = "This is a unique name or code for each specific sub- or whole-portion of The mail piece. This field, if used, can carry an absolute reference to The Component in question while the Component ID is practical shorthand For reference to the Component's role within the mailing facilities postage Analysis. Left justify. If used, must have some value, even if single edition.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "cpt", FieldCode = "CPT-1101", FieldName = "Component Description", Start = 17, Length = 30, Required = false, Key = false, DataType = "A/N", Description = "This is a unique name or code for each specific sub- or whole-portion of the mail piece. This field, if used, can carry an absolute reference to the Component in question while the Component ID is practical shorthand for reference to the Component's role within the mailing facilities postage analysis. Left justify. If used, must have some value, even if single edition.", Type = "string", Format = "leftjustify")]
 		[Column("ComponentDescription", Order = 4, TypeName = "TEXT")]
 		[MaxLength(30)]
 		[Comment("CPT-1101")]
@@ -67,9 +67,9 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Component - Weight (CPT-1102)
-		/// 99v9999; pounds, rounded (decimal point implied).
+		/// Pounds, rounded.
 		/// </summary>
-		[MaildatField(Extension = "cpt", FieldCode = "CPT-1102", FieldName = "Component - Weight", Start = 47, Length = 6, Required = true, Key = false, DataType = "N", Description = "99v9999; pounds, rounded (decimal point implied).", Type = "decimal", Format = "zfill", Precision = 4)]
+		[MaildatField(Extension = "cpt", FieldCode = "CPT-1102", FieldName = "Component - Weight", Start = 47, Length = 6, Required = true, Key = false, DataType = "N", Description = "Pounds, rounded.", Type = "decimal", Format = "zfill", Precision = 4)]
 		[Column("ComponentWeight", Order = 5, TypeName = "NUMERIC")]
 		[Required]
 		[Precision(4)]
@@ -104,9 +104,9 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Component - Length (CPT-1105)
-		/// Length of a copy 999v9999; inches, rounded (decimal point implied).
+		/// Length of a copy; inches, rounded.
 		/// </summary>
-		[MaildatField(Extension = "cpt", FieldCode = "CPT-1105", FieldName = "Component - Length", Start = 55, Length = 7, Required = false, Key = false, DataType = "N", Description = "Length of a copy 999v9999; inches, rounded (decimal point implied).", Type = "decimal", Format = "zfill", Precision = 4)]
+		[MaildatField(Extension = "cpt", FieldCode = "CPT-1105", FieldName = "Component - Length", Start = 55, Length = 7, Required = false, Key = false, DataType = "N", Description = "Length of a copy; inches, rounded.", Type = "decimal", Format = "zfill", Precision = 4)]
 		[Column("ComponentLength", Order = 8, TypeName = "NUMERIC")]
 		[Precision(4)]
 		[Comment("CPT-1105")]
@@ -115,9 +115,9 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Component - Width (CPT-1106)
-		/// Width of a copy 99v9999; inches, rounded (decimal point implied).
+		/// Width of a copy; inches, rounded.
 		/// </summary>
-		[MaildatField(Extension = "cpt", FieldCode = "CPT-1106", FieldName = "Component - Width", Start = 62, Length = 6, Required = false, Key = false, DataType = "N", Description = "Width of a copy 99v9999; inches, rounded (decimal point implied).", Type = "decimal", Format = "zfill", Precision = 4)]
+		[MaildatField(Extension = "cpt", FieldCode = "CPT-1106", FieldName = "Component - Width", Start = 62, Length = 6, Required = false, Key = false, DataType = "N", Description = "Width of a copy; inches, rounded.", Type = "decimal", Format = "zfill", Precision = 4)]
 		[Column("ComponentWidth", Order = 9, TypeName = "NUMERIC")]
 		[Precision(4)]
 		[Comment("CPT-1106")]
@@ -126,9 +126,9 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Component - Thickness (CPT-1107)
-		/// Thickness of a copy 99v9999; inches, rounded (decimal point implied).
+		/// Thickness of a copy; inches, rounded.
 		/// </summary>
-		[MaildatField(Extension = "cpt", FieldCode = "CPT-1107", FieldName = "Component - Thickness", Start = 68, Length = 6, Required = false, Key = false, DataType = "N", Description = "Thickness of a copy 99v9999; inches, rounded (decimal point implied).", Type = "decimal", Format = "zfill", Precision = 4)]
+		[MaildatField(Extension = "cpt", FieldCode = "CPT-1107", FieldName = "Component - Thickness", Start = 68, Length = 6, Required = false, Key = false, DataType = "N", Description = "Thickness of a copy; inches, rounded.", Type = "decimal", Format = "zfill", Precision = 4)]
 		[Column("ComponentThickness", Order = 10, TypeName = "NUMERIC")]
 		[Precision(4)]
 		[Comment("CPT-1107")]
@@ -137,12 +137,12 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Component - Periodical Ad Percentage (CPT-1108)
-		/// Ad percentage of a copy 999v99, rounded (decimal point implied) Example (if there is a two page
-		/// Periodical supplement having 50% Ad and the Periodical Is 48 pages having 40% Ad, then in the
-		/// mail.dat file the ad percent of the supplement is (2/50)x.5 = 2.0% and the ad percent of the
-		/// Periodical is (48/50)x.4 =38.40%. The sum is 40.40% Field is necessary for Periodicals Enclosures.
+		/// Ad percentage of a copy, rounded Example (if there is a two page Periodical supplement having 50% Ad
+		/// and the Periodical is 48 pages having 40% Ad, then in the mail.dat file the ad percent of the
+		/// supplement is (2/50)x.5 = 2.0% and the ad percent of the Periodical is (48/50)x.4 =38.40%. The sum
+		/// is 40.40% Field is necessary for Periodicals Enclosures.
 		/// </summary>
-		[MaildatField(Extension = "cpt", FieldCode = "CPT-1108", FieldName = "Component - Periodical Ad Percentage", Start = 74, Length = 5, Required = false, Key = false, DataType = "N", Description = "Ad percentage of a copy 999v99, rounded (decimal point implied) Example (if there is a two page Periodical supplement having 50% Ad and the Periodical Is 48 pages having 40% Ad, then in the mail.dat file the ad percent of the supplement is (2/50)x.5 = 2.0% and the ad percent of the Periodical is (48/50)x.4 =38.40%. The sum is 40.40% Field is necessary for Periodicals Enclosures.", Type = "decimal", Format = "zfill", Precision = 2)]
+		[MaildatField(Extension = "cpt", FieldCode = "CPT-1108", FieldName = "Component - Periodical Ad Percentage", Start = 74, Length = 5, Required = false, Key = false, DataType = "N", Description = "Ad percentage of a copy, rounded Example (if there is a two page Periodical supplement having 50% Ad and the Periodical is 48 pages having 40% Ad, then in the mail.dat file the ad percent of the supplement is (2/50)x.5 = 2.0% and the ad percent of the Periodical is (48/50)x.4 =38.40%. The sum is 40.40% Field is necessary for Periodicals Enclosures.", Type = "decimal", Format = "zfill", Precision = 2)]
 		[Column("ComponentPeriodicalAdPercentage", Order = 11, TypeName = "NUMERIC")]
 		[Precision(2)]
 		[Comment("CPT-1108")]
@@ -204,20 +204,22 @@ namespace Mail.dat
 		/// Mailer ID of Mail Owner (CPT-1148)
 		/// USPS ID Left justify, space padded to the right, only digits 0 - 9 acceptable.
 		/// </summary>
-		[MaildatField(Extension = "cpt", FieldCode = "CPT-1148", FieldName = "Mailer ID of Mail Owner", Start = 85, Length = 9, Required = false, Key = false, DataType = "A/N", Description = "USPS ID Left justify, space padded to the right, only digits 0 - 9 acceptable.", Type = "integer", Format = "leftjustify")]
+		[MaildatField(Extension = "cpt", FieldCode = "CPT-1148", FieldName = "Mailer ID of Mail Owner", Start = 85, Length = 9, Required = false, Key = false, DataType = "A/N", Description = "USPS ID Left justify, space padded to the right, only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
 		[Column("MailerIDOfMailOwner", Order = 16, TypeName = "TEXT")]
 		[MaxLength(9)]
 		[Comment("CPT-1148")]
+		[TypeConverter(typeof(MaildatStringConverter))]
 		public string MailerIDOfMailOwner { get; set; }
 
 		/// <summary>
 		/// CRID of Mail Owner (CPT-1149)
 		/// USPS ID Left justify, space padded to the right, only digits 0 - 9 acceptable.
 		/// </summary>
-		[MaildatField(Extension = "cpt", FieldCode = "CPT-1149", FieldName = "CRID of Mail Owner", Start = 94, Length = 12, Required = false, Key = false, DataType = "A/N", Description = "USPS ID Left justify, space padded to the right, only digits 0 - 9 acceptable.", Type = "integer", Format = "leftjustify")]
+		[MaildatField(Extension = "cpt", FieldCode = "CPT-1149", FieldName = "CRID of Mail Owner", Start = 94, Length = 12, Required = false, Key = false, DataType = "A/N", Description = "USPS ID Left justify, space padded to the right, only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
 		[Column("CRIDOfMailOwner", Order = 17, TypeName = "TEXT")]
 		[MaxLength(12)]
 		[Comment("CPT-1149")]
+		[TypeConverter(typeof(MaildatStringConverter))]
 		public string CRIDOfMailOwner { get; set; }
 
 		/// <summary>
@@ -273,10 +275,10 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Equivalent User License Code (CPT-1144)
-		/// User license code of a component of common weight and ad %. Used in Conjunction with Equivalent Job
-		/// ID and Equivalent Component ID to link Together components with common book weight and ad %.
+		/// User license code of a component of common weight and ad %. Used in conjunction with Equivalent Job
+		/// ID and Equivalent Component ID to link together components with common book weight and ad %.
 		/// </summary>
-		[MaildatField(Extension = "cpt", FieldCode = "CPT-1144", FieldName = "Equivalent User License Code", Start = 129, Length = 4, Required = false, Key = false, DataType = "A/N", Description = "User license code of a component of common weight and ad %. Used in Conjunction with Equivalent Job ID and Equivalent Component ID to link Together components with common book weight and ad %.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "cpt", FieldCode = "CPT-1144", FieldName = "Equivalent User License Code", Start = 129, Length = 4, Required = false, Key = false, DataType = "A/N", Description = "User license code of a component of common weight and ad %. Used in conjunction with Equivalent Job ID and Equivalent Component ID to link together components with common book weight and ad %.", Type = "string", Format = "leftjustify")]
 		[Column("EquivalentUserLicenseCode", Order = 23, TypeName = "TEXT")]
 		[MaxLength(4)]
 		[Comment("CPT-1144")]
@@ -319,9 +321,8 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Ad % Basis (CPT-1152)
-		/// 9999v99 implied 2 decimal places.
 		/// </summary>
-		[MaildatField(Extension = "cpt", FieldCode = "CPT-1152", FieldName = "Ad % Basis", Start = 150, Length = 6, Required = false, Key = false, DataType = "N", Description = "9999v99 implied 2 decimal places.", Type = "decimal", Format = "zfill", Precision = 2)]
+		[MaildatField(Extension = "cpt", FieldCode = "CPT-1152", FieldName = "Ad % Basis", Start = 150, Length = 6, Required = false, Key = false, DataType = "N", Description = "", Type = "decimal", Format = "zfill", Precision = 2)]
 		[Column("AdBasis", Order = 27, TypeName = "NUMERIC")]
 		[Precision(2)]
 		[Comment("CPT-1152")]
@@ -346,7 +347,7 @@ namespace Mail.dat
 		[MaildatField(Extension = "cpt", FieldCode = "CPT-1156", FieldName = "Standard Parcel Type", Start = 186, Length = 1, Required = false, Key = false, DataType = "A/N", Description = "See definition in MPU.", Type = "enum", Format = "leftjustify")]
 		[Column("StandardParcelType", Order = 29, TypeName = "TEXT")]
 		[MaxLength(1)]
-		[AllowedValues(" ", "F", "L", "M", "S")]
+		[AllowedValues(" ", "F", "H", "L", "M", "P", "S")]
 		[Comment("CPT-1156")]
 		[TypeConverter(typeof(MaildatEnumConverter))]
 		public string StandardParcelType { get; set; }
@@ -365,10 +366,10 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Approved Piece Design (CPT-1158)
-		/// The CSR or PCSC ruling number approving the mailing of a specific Style/design of mail piece. These
-		/// new designs could include but not Limited to automation, non-rectangular, non-paper mail pieces.
+		/// The CSR or PCSC ruling number approving the mailing of a specific style/design of mail piece. These
+		/// new designs could include but not limited to automation, non-rectangular, non-paper mail pieces.
 		/// </summary>
-		[MaildatField(Extension = "cpt", FieldCode = "CPT-1158", FieldName = "Approved Piece Design", Start = 188, Length = 7, Required = false, Key = false, DataType = "N", Description = "The CSR or PCSC ruling number approving the mailing of a specific Style/design of mail piece. These new designs could include but not Limited to automation, non-rectangular, non-paper mail pieces.", Type = "integer", Format = "zfill")]
+		[MaildatField(Extension = "cpt", FieldCode = "CPT-1158", FieldName = "Approved Piece Design", Start = 188, Length = 7, Required = false, Key = false, DataType = "N", Description = "The CSR or PCSC ruling number approving the mailing of a specific style/design of mail piece. These new designs could include but not limited to automation, non-rectangular, non-paper mail pieces.", Type = "integer", Format = "zfill")]
 		[Column("ApprovedPieceDesign", Order = 31, TypeName = "INTEGER")]
 		[Comment("CPT-1158")]
 		[TypeConverter(typeof(MaildatIntegerConverter))]
@@ -399,11 +400,11 @@ namespace Mail.dat
 
 		/// <summary>
 		/// eMailpiece Sample Group ID (CPT-1159)
-		/// This USPS-assigned id, will be used to uniquely identify a group of Mailpiece samples loaded to USPS
-		/// Business Customer Gateway and Referenced here for promotion eligibility. Left Justify. Field Format
-		/// will Be validated by PostalOne!.
+		/// This USPS-assigned id, will be used to uniquely identify a group of mailpiece samples loaded to USPS
+		/// Business Customer Gateway and referenced here for promotion eligibility. Left Justify. Field Format
+		/// will be validated by PostalOne!.
 		/// </summary>
-		[MaildatField(Extension = "cpt", FieldCode = "CPT-1159", FieldName = "EMailpiece Sample Group ID", Start = 216, Length = 24, Required = false, Key = false, DataType = "A/N", Description = "This USPS-assigned id, will be used to uniquely identify a group of Mailpiece samples loaded to USPS Business Customer Gateway and Referenced here for promotion eligibility. Left Justify. Field Format will Be validated by PostalOne!.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "cpt", FieldCode = "CPT-1159", FieldName = "EMailpiece Sample Group ID", Start = 216, Length = 24, Required = false, Key = false, DataType = "A/N", Description = "This USPS-assigned id, will be used to uniquely identify a group of mailpiece samples loaded to USPS Business Customer Gateway and referenced here for promotion eligibility. Left Justify. Field Format will be validated by PostalOne!.", Type = "string", Format = "leftjustify")]
 		[Column("EMailpieceSampleGroupID", Order = 34, TypeName = "TEXT")]
 		[MaxLength(24)]
 		[Comment("CPT-1159")]
@@ -477,7 +478,7 @@ namespace Mail.dat
 			this.ClosingCharacter = line.ParseForImport<Cpt, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>

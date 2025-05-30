@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +20,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Provides the fee information that is present on the Certificate of Mail Forms.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "cfr", File = "Certification of Mailing Services Fee Record", Summary = "Is used to capture the service fee information.", Description = "Provides the fee information that is present on the Certificate of Mail Forms.", LineLength = 115, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "cfr", File = "Certification of Mailing Services Fee Record", Summary = "Is used to capture the service fee information.", Description = "Provides the fee information that is present on the Certificate of Mail Forms.", LineLength = 115, ClosingCharacter = "#")]
 	[Table("Cfr", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 28)]
@@ -52,18 +52,18 @@ namespace Mail.dat
 		public string CertificateOfMailingHeaderID { get; set; }
 
 		/// <summary>
-		/// Piece ID (CFR-1003)
+		/// COM Piece ID (CFR-1003)
 		/// Unique ID of individual piece within mailing. Only linked to COM Detail Record. In the future this
 		/// record may be replaced by SFR.
 		/// </summary>
-		[MaildatField(Extension = "cfr", FieldCode = "CFR-1003", FieldName = "Piece ID", Start = 17, Length = 22, Required = true, Key = true, DataType = "A/N", Description = "Unique ID of individual piece within mailing. Only linked to COM Detail Record. In the future this record may be replaced by SFR.", Type = "string", Format = "zfillnumeric", References = "CDR-1003")]
-		[Column("PieceID", Order = 4, TypeName = "TEXT")]
+		[MaildatField(Extension = "cfr", FieldCode = "CFR-1003", FieldName = "COM Piece ID", Start = 17, Length = 22, Required = true, Key = true, DataType = "A/N", Description = "Unique ID of individual piece within mailing. Only linked to COM Detail Record. In the future this record may be replaced by SFR.", Type = "string", Format = "zfillnumeric", References = "CDR-1003")]
+		[Column("COMPieceID", Order = 4, TypeName = "TEXT")]
 		[Required]
 		[MaildatKey]
 		[MaxLength(22)]
 		[Comment("CFR-1003")]
 		[TypeConverter(typeof(MaildatStringConverter))]
-		public string PieceID { get; set; }
+		public string COMPieceID { get; set; }
 
 		/// <summary>
 		/// Service Type (CFR-1004)
@@ -176,11 +176,11 @@ namespace Mail.dat
 		/// <summary>
 		/// Reserve (CFR-1109)
 		/// </summary>
-		[MaildatField(Extension = "cfr", FieldCode = "CFR-1109", FieldName = "Reserve", Start = 94, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "cfr", FieldCode = "CFR-1109", FieldName = "Reserve", Start = 94, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "", Type = "reserve", Format = "leftjustify")]
 		[Column("ReserveCFR1109", Order = 14, TypeName = "TEXT")]
 		[MaxLength(20)]
 		[Comment("CFR-1109")]
-		[TypeConverter(typeof(MaildatStringConverter))]
+		[TypeConverter(typeof(MaildatReserveConverter))]
 		public string ReserveCFR1109 { get; set; }
 
 		/// <summary>
@@ -217,7 +217,7 @@ namespace Mail.dat
 			
 			this.JobID = line.ParseForImport<Cfr, string>(p => p.JobID, returnValue);
 			this.CertificateOfMailingHeaderID = line.ParseForImport<Cfr, string>(p => p.CertificateOfMailingHeaderID, returnValue);
-			this.PieceID = line.ParseForImport<Cfr, string>(p => p.PieceID, returnValue);
+			this.COMPieceID = line.ParseForImport<Cfr, string>(p => p.COMPieceID, returnValue);
 			this.ServiceType = line.ParseForImport<Cfr, string>(p => p.ServiceType, returnValue);
 			this.ServiceAdditionalType = line.ParseForImport<Cfr, string>(p => p.ServiceAdditionalType, returnValue);
 			this.ServiceStatedValue = line.ParseForImport<Cfr, decimal?>(p => p.ServiceStatedValue, returnValue);
@@ -232,7 +232,7 @@ namespace Mail.dat
 			this.ClosingCharacter = line.ParseForImport<Cfr, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>
@@ -244,7 +244,7 @@ namespace Mail.dat
 			
 			sb.Append(this.JobID.FormatForExport<Cfr, string>(p => p.JobID));
 			sb.Append(this.CertificateOfMailingHeaderID.FormatForExport<Cfr, string>(p => p.CertificateOfMailingHeaderID));
-			sb.Append(this.PieceID.FormatForExport<Cfr, string>(p => p.PieceID));
+			sb.Append(this.COMPieceID.FormatForExport<Cfr, string>(p => p.COMPieceID));
 			sb.Append(this.ServiceType.FormatForExport<Cfr, string>(p => p.ServiceType));
 			sb.Append(this.ServiceAdditionalType.FormatForExport<Cfr, string>(p => p.ServiceAdditionalType));
 			sb.Append(this.ServiceStatedValue.FormatForExport<Cfr, decimal?>(p => p.ServiceStatedValue));

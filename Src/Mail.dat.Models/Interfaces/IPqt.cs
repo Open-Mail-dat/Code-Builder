@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 
 namespace Mail.dat
@@ -30,14 +30,14 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Package ID (PQT-1012)
-		/// Unique identifier for the package within the container.
+		/// The unique code for this package within this container.
 		/// </summary>
 		string PackageID { get; set; }
 
 		/// <summary>
 		/// Package ZIP Code (PQT-1013)
-		/// The 5-digit, 3-digit, 6-character or 6-alpha destination of the package Defined in the record. Left
-		/// Justify. For a Package Service parcel presort the Parcel Piece is the package; Therefore, populate
+		/// The 5-digit, 3-digit, 6-character or 6-alpha destination of the package defined in the record. Left
+		/// Justify. For a Package Service parcel presort the Parcel Piece is the package; therefore, populate
 		/// with the 5-digit of the parcel. US = 99999_, or 888___ CAN = A1A9Z9 Default for packages with no ZIP
 		/// or Postal Code: CANADA = if Canadian AOFRGN = if all other foreign MEXICO = if for Mexico USA = if
 		/// for U.S. Domestic International: (ex: FRCDGA = FR CDG A).
@@ -64,8 +64,8 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Number of Pieces (PQT-1104)
-		/// Number of pieces within this specific package. Note: First record Within Firm Package or Multi-Piece
-		/// Parcel has Piece Count = 1 Subsequent records within same Package the piece count = 0 (see Scenarios
+		/// Number of pieces within this specific package. Note: First record within Firm Package or Multi-Piece
+		/// Parcel has Piece Count = 1 subsequent records within same Package the piece count = 0 (see Scenarios
 		/// for Firm Packages and Standard Mail combined in Fourth Class bundles) (Pieces may be less than
 		/// copies in some Periodical or 4C mailings).
 		/// </summary>
@@ -73,8 +73,8 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Bundle Charge Allocation (PQT-1113)
-		/// 9v999999 - proportion, rounded, (decimal point implied) This field is to be used for denoting the
-		/// proportion of cost of its bundle that it's carrying.
+		/// Proportion, rounded This field is to be used for denoting the proportion of cost of its bundle that
+		/// it's carrying.
 		/// </summary>
 		decimal? BundleChargeAllocation { get; set; }
 

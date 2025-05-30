@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 
 namespace Mail.dat
@@ -37,12 +37,12 @@ namespace Mail.dat
 		/// <summary>
 		/// Component ID (MCR-1004)
 		/// Left justify, must have some value, even if single edition. This ID represents a specific
-		/// sub-portion (or the whole, as appropriate) of one Or more Mail Piece Unit Make-ups within the
-		/// production of the Specific mailing described by the supplied Mail.dat®  file. The originator of the
-		/// Mail.dat®  file must identify any postage Differentiating Components with their own record. However,
-		/// if no Postage affecting differentiation exists within the various parts making Up a Mail Piece Unit,
-		/// then the originator of the specific Mail.dat® May choose to, and probably should, only identify the
-		/// necessary detail And simply clone that which is in the Mail Piece Unit ID field. Therefore, there
+		/// sub-portion (or the whole, as appropriate) of one or more Mail Piece Unit Make-ups within the
+		/// production of the specific mailing described by the supplied Mail.dat®  file. The originator of the
+		/// Mail.dat®  file must identify any postage differentiating Components with their own record. However,
+		/// if no postage affecting differentiation exists within the various parts making up a Mail Piece Unit,
+		/// then the originator of the specific Mail.dat® may choose to, and probably should, only identify the
+		/// necessary detail and simply clone that which is in the Mail Piece Unit ID field. Therefore, there
 		/// will always be at least one Component within any Mail Piece Unit.
 		/// </summary>
 		string ComponentID { get; set; }
@@ -72,7 +72,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Postage Adjustment MPA ID (MCR-1106)
-		/// This field would be used by anyone (printers and letter shops) Including MLOCR vendors requiring
+		/// This field would be used by anyone (printers and letter shops) including MLOCR vendors requiring
 		/// Postage Adjustments to be paid from a separate permit. Unique identifier for the respective MPA
 		/// within an MPU. Establishes the set of MPU pieces on one Postage Statement.
 		/// </summary>

@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +20,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Descriptions of the mailer's permit and account information.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "mpa", File = "Mailer Postage Account Record", Summary = "Descriptions of the mailer's permit and account information.", Description = "Descriptions of the mailer's permit and account information.", LineLength = 298, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "mpa", File = "Mailer Postage Account Record", Summary = "Descriptions of the mailer's permit and account information.", Description = "Descriptions of the mailer's permit and account information.", LineLength = 298, ClosingCharacter = "#")]
 	[Table("Mpa", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 5)]
@@ -43,7 +43,7 @@ namespace Mail.dat
 		/// Unique identifier for the respective MPA within an MPU Establishes the set of MPU pieces on one
 		/// Postage Statement.
 		/// </summary>
-		[MaildatField(Extension = "mpa", FieldCode = "MPA-1002", FieldName = "MPA Unique Sequence/Grouping ID", Start = 9, Length = 10, Required = true, Key = true, DataType = "A/N", Description = "Unique identifier for the respective MPA within an MPU Establishes the set of MPU pieces on one Postage Statement.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "mpa", FieldCode = "MPA-1002", FieldName = "MPA Unique Sequence/Grouping ID", Start = 9, Length = 10, Required = true, Key = true, DataType = "A/N", Description = "Unique identifier for the respective MPA within an MPU Establishes the set of MPU pieces on one Postage Statement.", Type = "string", Format = "zfillnumeric")]
 		[Column("MPAUniqueSequenceGroupingID", Order = 3, TypeName = "TEXT")]
 		[Required]
 		[MaildatKey]
@@ -65,11 +65,11 @@ namespace Mail.dat
 
 		/// <summary>
 		/// USPS Publication Number (MPA-1102)
-		/// Left Justify, Numeric only, value in Postage Payment Method field Negates need for alpha in this
-		/// field. (Note: In the event of a Periodicals Pending, the Publication Number field will be blank and
-		/// the below Permit Number field will be used.) Should not be zero padded.
+		/// Numeric only, value in Postage Payment Method field negates need for alpha in this field. (Note: In
+		/// the event of a Periodicals Pending, the Publication Number field will be blank and the below Permit
+		/// Number field will be used.) Should not be zero padded.
 		/// </summary>
-		[MaildatField(Extension = "mpa", FieldCode = "MPA-1102", FieldName = "USPS Publication Number", Start = 49, Length = 9, Required = false, Key = false, DataType = "A/N", Description = "Left Justify, Numeric only, value in Postage Payment Method field Negates need for alpha in this field. (Note: In the event of a Periodicals Pending, the Publication Number field will be blank and the below Permit Number field will be used.) Should not be zero padded.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "mpa", FieldCode = "MPA-1102", FieldName = "USPS Publication Number", Start = 49, Length = 9, Required = false, Key = false, DataType = "A/N", Description = "Numeric only, value in Postage Payment Method field negates need for alpha in this field. (Note: In the event of a Periodicals Pending, the Publication Number field will be blank and the below Permit Number field will be used.) Should not be zero padded.", Type = "string", Format = "leftjustify")]
 		[Column("USPSPublicationNumber", Order = 5, TypeName = "TEXT")]
 		[MaxLength(9)]
 		[Comment("MPA-1102")]
@@ -101,12 +101,12 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Mail Owner's Lcl Permit Ref Num/Int'l Bill Num (MPA-1107)
-		/// Number used by local USPS for client identification. This field can be used to Let the Postal
-		/// Service know what permit numbers are included in the mailing That the Mail.dat® file represents.
-		/// This field is used for identifying what Permits are being used for the entire job in an MLOCR
-		/// environment. Should Not be zero padded.
+		/// Number used by local USPS for client identification. This field can be used to let the Postal
+		/// Service know what permit numbers are included in the mailing that the Mail.dat® file represents.
+		/// This field is used for identifying what permits are being used for the entire job in an MLOCR
+		/// environment. Should not be zero padded.
 		/// </summary>
-		[MaildatField(Extension = "mpa", FieldCode = "MPA-1107", FieldName = "Mail Owner's Lcl Permit Ref Num/Int'l Bill Num", Start = 75, Length = 8, Required = false, Key = false, DataType = "A/N", Description = "Number used by local USPS for client identification. This field can be used to Let the Postal Service know what permit numbers are included in the mailing That the Mail.dat® file represents. This field is used for identifying what Permits are being used for the entire job in an MLOCR environment. Should Not be zero padded.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "mpa", FieldCode = "MPA-1107", FieldName = "Mail Owner's Lcl Permit Ref Num/Int'l Bill Num", Start = 75, Length = 8, Required = false, Key = false, DataType = "A/N", Description = "Number used by local USPS for client identification. This field can be used to let the Postal Service know what permit numbers are included in the mailing that the Mail.dat® file represents. This field is used for identifying what permits are being used for the entire job in an MLOCR environment. Should not be zero padded.", Type = "string", Format = "leftjustify")]
 		[Column("MailOwnerSLclPermitRefNumIntLBillNum", Order = 8, TypeName = "TEXT")]
 		[MaxLength(8)]
 		[Comment("MPA-1107")]
@@ -126,10 +126,10 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Postage Payment Option (MPA-1109)
-		/// PostalOne! uses value of C = CPP. In this case to identify if Periodicals is used in the Centralized
+		/// PostalOne! uses value of C = CPP. In this case to identify if Periodicals is used in the centralized
 		/// processing (delayed payment).
 		/// </summary>
-		[MaildatField(Extension = "mpa", FieldCode = "MPA-1109", FieldName = "Postage Payment Option", Start = 84, Length = 1, Required = false, Key = false, DataType = "A/N", Description = "PostalOne! uses value of C = CPP. In this case to identify if Periodicals is used in the Centralized processing (delayed payment).", Type = "enum", Format = "leftjustify")]
+		[MaildatField(Extension = "mpa", FieldCode = "MPA-1109", FieldName = "Postage Payment Option", Start = 84, Length = 1, Required = false, Key = false, DataType = "A/N", Description = "PostalOne! uses value of C = CPP. In this case to identify if Periodicals is used in the centralized processing (delayed payment).", Type = "enum", Format = "leftjustify")]
 		[Column("PostagePaymentOption", Order = 10, TypeName = "TEXT")]
 		[MaxLength(1)]
 		[AllowedValues("B", "C", "D", "O", "T", "V")]
@@ -139,9 +139,8 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Customer Reference ID (MPA-1110)
-		/// Left justify, space added.
 		/// </summary>
-		[MaildatField(Extension = "mpa", FieldCode = "MPA-1110", FieldName = "Customer Reference ID", Start = 85, Length = 40, Required = false, Key = false, DataType = "A/N", Description = "Left justify, space added.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "mpa", FieldCode = "MPA-1110", FieldName = "Customer Reference ID", Start = 85, Length = 40, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "leftjustify")]
 		[Column("CustomerReferenceID", Order = 11, TypeName = "TEXT")]
 		[MaxLength(40)]
 		[Comment("MPA-1110")]
@@ -162,10 +161,10 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Federal Agency Cost Code (MPA-1114)
-		/// This five-digit field may include leading zeros, is optional, and displays on the postage Statements
+		/// This five-digit field may include leading zeros, is optional, and displays on the postage statements
 		/// for Official Mail (Government).
 		/// </summary>
-		[MaildatField(Extension = "mpa", FieldCode = "MPA-1114", FieldName = "Federal Agency Cost Code", Start = 126, Length = 5, Required = false, Key = false, DataType = "A/N", Description = "This five-digit field may include leading zeros, is optional, and displays on the postage Statements for Official Mail (Government).", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "mpa", FieldCode = "MPA-1114", FieldName = "Federal Agency Cost Code", Start = 126, Length = 5, Required = false, Key = false, DataType = "A/N", Description = "This five-digit field may include leading zeros, is optional, and displays on the postage statements for Official Mail (Government).", Type = "string", Format = "leftjustify")]
 		[Column("FederalAgencyCostCode", Order = 13, TypeName = "TEXT")]
 		[MaxLength(5)]
 		[Comment("MPA-1114")]
@@ -195,9 +194,9 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Mailer ID of Mail Owner (MPA-1121)
-		/// USPS assigned ID Left justify, space padded to the right, only digits 0 - 9 acceptable.
+		/// USPS assigned ID Only digits 0 - 9 acceptable.
 		/// </summary>
-		[MaildatField(Extension = "mpa", FieldCode = "MPA-1121", FieldName = "Mailer ID of Mail Owner", Start = 171, Length = 9, Required = false, Key = false, DataType = "A/N", Description = "USPS assigned ID Left justify, space padded to the right, only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "mpa", FieldCode = "MPA-1121", FieldName = "Mailer ID of Mail Owner", Start = 171, Length = 9, Required = false, Key = false, DataType = "A/N", Description = "USPS assigned ID Only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
 		[Column("MailerIDOfMailOwner", Order = 16, TypeName = "TEXT")]
 		[MaxLength(9)]
 		[Comment("MPA-1121")]
@@ -206,9 +205,9 @@ namespace Mail.dat
 
 		/// <summary>
 		/// CRID of Mail Owner (MPA-1122)
-		/// USPS assigned ID Left justify, space padded to the right, only digits 0 - 9 acceptable.
+		/// USPS assigned ID Only digits 0 - 9 acceptable.
 		/// </summary>
-		[MaildatField(Extension = "mpa", FieldCode = "MPA-1122", FieldName = "CRID of Mail Owner", Start = 180, Length = 12, Required = false, Key = false, DataType = "A/N", Description = "USPS assigned ID Left justify, space padded to the right, only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "mpa", FieldCode = "MPA-1122", FieldName = "CRID of Mail Owner", Start = 180, Length = 12, Required = false, Key = false, DataType = "A/N", Description = "USPS assigned ID Only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
 		[Column("CRIDOfMailOwner", Order = 17, TypeName = "TEXT")]
 		[MaxLength(12)]
 		[Comment("MPA-1122")]
@@ -217,9 +216,9 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Mailer ID of Preparer (MPA-1123)
-		/// USPS assigned ID Left justify, space padded to the right, only digits 0 - 9 acceptable.
+		/// USPS assigned ID Only digits 0 - 9 acceptable.
 		/// </summary>
-		[MaildatField(Extension = "mpa", FieldCode = "MPA-1123", FieldName = "Mailer ID of Preparer", Start = 192, Length = 9, Required = false, Key = false, DataType = "A/N", Description = "USPS assigned ID Left justify, space padded to the right, only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "mpa", FieldCode = "MPA-1123", FieldName = "Mailer ID of Preparer", Start = 192, Length = 9, Required = false, Key = false, DataType = "A/N", Description = "USPS assigned ID Only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
 		[Column("MailerIDOfPreparer", Order = 18, TypeName = "TEXT")]
 		[MaxLength(9)]
 		[Comment("MPA-1123")]
@@ -228,9 +227,9 @@ namespace Mail.dat
 
 		/// <summary>
 		/// CRID of Preparer (MPA-1124)
-		/// USPS assigned ID Left justify, space padded to the right, only digits 0 - 9 acceptable.
+		/// USPS assigned ID Only digits 0 - 9 acceptable.
 		/// </summary>
-		[MaildatField(Extension = "mpa", FieldCode = "MPA-1124", FieldName = "CRID of Preparer", Start = 201, Length = 12, Required = false, Key = false, DataType = "A/N", Description = "USPS assigned ID Left justify, space padded to the right, only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "mpa", FieldCode = "MPA-1124", FieldName = "CRID of Preparer", Start = 201, Length = 12, Required = false, Key = false, DataType = "A/N", Description = "USPS assigned ID Only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
 		[Column("CRIDOfPreparer", Order = 19, TypeName = "TEXT")]
 		[MaxLength(12)]
 		[Comment("MPA-1124")]
@@ -251,11 +250,11 @@ namespace Mail.dat
 		/// <summary>
 		/// Payment Account Number (MPA-1127)
 		/// The Payment Account Number is used for Mail Anywhere and is different from the Permit Number and
-		/// will be initially used in addition to the Permit Number. In the Future, this field may replace the
-		/// Permit information. This field should not be zero Padded. This field is required for Mail Anywhere,
+		/// will be initially used in addition to the Permit Number. In the future, this field may replace the
+		/// Permit information. This field should not be zero padded. This field is required for Mail Anywhere,
 		/// otherwise it can be blank.
 		/// </summary>
-		[MaildatField(Extension = "mpa", FieldCode = "MPA-1127", FieldName = "Payment Account Number", Start = 233, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "The Payment Account Number is used for Mail Anywhere and is different from the Permit Number and will be initially used in addition to the Permit Number. In the Future, this field may replace the Permit information. This field should not be zero Padded. This field is required for Mail Anywhere, otherwise it can be blank.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "mpa", FieldCode = "MPA-1127", FieldName = "Payment Account Number", Start = 233, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "The Payment Account Number is used for Mail Anywhere and is different from the Permit Number and will be initially used in addition to the Permit Number. In the future, this field may replace the Permit information. This field should not be zero padded. This field is required for Mail Anywhere, otherwise it can be blank.", Type = "string", Format = "leftjustify")]
 		[Column("PaymentAccountNumber", Order = 21, TypeName = "TEXT")]
 		[MaxLength(20)]
 		[Comment("MPA-1127")]
@@ -277,11 +276,11 @@ namespace Mail.dat
 		/// <summary>
 		/// Reserve (MPA-1116)
 		/// </summary>
-		[MaildatField(Extension = "mpa", FieldCode = "MPA-1116", FieldName = "Reserve", Start = 254, Length = 44, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "mpa", FieldCode = "MPA-1116", FieldName = "Reserve", Start = 254, Length = 44, Required = false, Key = false, DataType = "A/N", Description = "", Type = "reserve", Format = "leftjustify")]
 		[Column("ReserveMPA1116", Order = 23, TypeName = "TEXT")]
 		[MaxLength(44)]
 		[Comment("MPA-1116")]
-		[TypeConverter(typeof(MaildatStringConverter))]
+		[TypeConverter(typeof(MaildatReserveConverter))]
 		public string ReserveMPA1116 { get; set; }
 
 		/// <summary>
@@ -329,7 +328,7 @@ namespace Mail.dat
 			this.ClosingCharacter = line.ParseForImport<Mpa, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>

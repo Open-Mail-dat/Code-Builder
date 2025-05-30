@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 
 namespace Mail.dat
@@ -38,8 +38,8 @@ namespace Mail.dat
 		/// <summary>
 		/// RMB Content Type (RMB-1004)
 		/// Field to capture the type of RMB content. RMB content can either be a URL of a media image that is
-		/// supported by Browsers or a target URL that will be placed as a Hyperlink For the media/image.
-		/// Details of the codes will be available In the USPS Technical Guide for Mail.dat.
+		/// supported by browsers or a target URL that will be placed as a Hyperlink for the media/image.
+		/// Details of the codes will be available in the USPS Technical Guide for Mail.dat.
 		/// </summary>
 		string RMBContentType { get; set; }
 

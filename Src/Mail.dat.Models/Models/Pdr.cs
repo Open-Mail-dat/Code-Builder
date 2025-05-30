@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -22,7 +22,7 @@ namespace Mail.dat
 	/// the Piece Barcode file; when used instead of the Piece Barcode file, acts as an extension of the PQT
 	/// file.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "pdr", File = "Piece Detail Record", Summary = "Quantity, rate, weight, and destination per piece (manifest).", Description = "Provides piece level detail required of full service mailings; has additional capabilities beyond the Piece Barcode file; when used instead of the Piece Barcode file, acts as an extension of the PQT file.", LineLength = 138, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "pdr", File = "Piece Detail Record", Summary = "Quantity, rate, weight, and destination per piece (manifest).", Description = "Provides piece level detail required of full service mailings; has additional capabilities beyond the Piece Barcode file; when used instead of the Piece Barcode file, acts as an extension of the PQT file.", LineLength = 138, ClosingCharacter = "#")]
 	[Table("Pdr", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 14)]
@@ -281,7 +281,7 @@ namespace Mail.dat
 			this.ClosingCharacter = line.ParseForImport<Pdr, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>

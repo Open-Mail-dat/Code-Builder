@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +20,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Relates containers to associated ink jet output tapes/files.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "icr", File = "Ij/C Relationship Record", Summary = "Relates containers to associated ink jet output tapes/files.", Description = "Relates containers to associated ink jet output tapes/files.", LineLength = 82, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "icr", File = "Ij/C Relationship Record", Summary = "Relates containers to associated ink jet output tapes/files.", Description = "Relates containers to associated ink jet output tapes/files.", LineLength = 82, ClosingCharacter = "#")]
 	[Table("Icr", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 13)]
@@ -40,10 +40,10 @@ namespace Mail.dat
 
 		/// <summary>
 		/// File Name (ICR-1101)
-		/// The agreed file name describing the content of the single Transmitted file within which this
+		/// The agreed file name describing the content of the single transmitted file within which this
 		/// container exists.
 		/// </summary>
-		[MaildatField(Extension = "icr", FieldCode = "ICR-1101", FieldName = "File Name", Start = 9, Length = 30, Required = true, Key = false, DataType = "A/N", Description = "The agreed file name describing the content of the single Transmitted file within which this container exists.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "icr", FieldCode = "ICR-1101", FieldName = "File Name", Start = 9, Length = 30, Required = true, Key = false, DataType = "A/N", Description = "The agreed file name describing the content of the single transmitted file within which this container exists.", Type = "string", Format = "leftjustify")]
 		[Column("FileName", Order = 3, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(30)]
@@ -53,10 +53,10 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Tape ID (ICR-1102)
-		/// The identifying A/N string for the tape within which this Container exists. Use arbitrary sequence
-		/// number if non- Inkjet transmission.
+		/// The identifying A/N string for the tape within which this container exists. Use arbitrary sequence
+		/// number if non-inkjet transmission.
 		/// </summary>
-		[MaildatField(Extension = "icr", FieldCode = "ICR-1102", FieldName = "Tape ID", Start = 39, Length = 6, Required = true, Key = false, DataType = "A/N", Description = "The identifying A/N string for the tape within which this Container exists. Use arbitrary sequence number if non- Inkjet transmission.", Type = "string", Format = "zfillnumeric")]
+		[MaildatField(Extension = "icr", FieldCode = "ICR-1102", FieldName = "Tape ID", Start = 39, Length = 6, Required = true, Key = false, DataType = "A/N", Description = "The identifying A/N string for the tape within which this container exists. Use arbitrary sequence number if non-inkjet transmission.", Type = "string", Format = "zfillnumeric")]
 		[Column("TapeID", Order = 4, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(6)]
@@ -114,11 +114,11 @@ namespace Mail.dat
 		/// Reserve (ICR-1105)
 		/// Reserved for future use.
 		/// </summary>
-		[MaildatField(Extension = "icr", FieldCode = "ICR-1105", FieldName = "Reserve", Start = 68, Length = 14, Required = false, Key = false, DataType = "A/N", Description = "Reserved for future use.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "icr", FieldCode = "ICR-1105", FieldName = "Reserve", Start = 68, Length = 14, Required = false, Key = false, DataType = "A/N", Description = "Reserved for future use.", Type = "reserve", Format = "leftjustify")]
 		[Column("ReserveICR1105", Order = 9, TypeName = "TEXT")]
 		[MaxLength(14)]
 		[Comment("ICR-1105")]
-		[TypeConverter(typeof(MaildatStringConverter))]
+		[TypeConverter(typeof(MaildatReserveConverter))]
 		public string ReserveICR1105 { get; set; }
 
 		/// <summary>
@@ -152,7 +152,7 @@ namespace Mail.dat
 			this.ClosingCharacter = line.ParseForImport<Icr, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>

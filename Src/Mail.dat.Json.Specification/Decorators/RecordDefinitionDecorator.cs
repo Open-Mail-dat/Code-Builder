@@ -1,4 +1,4 @@
-﻿namespace Mail.dat.Specification
+﻿namespace Mail.dat.Json.Specification
 {
 	public static class RecordDefinitionDecorator
 	{

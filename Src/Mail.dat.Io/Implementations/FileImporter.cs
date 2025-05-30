@@ -17,7 +17,7 @@ namespace Mail.dat.Io
 			//
 			MaildatFileAttribute classAttribute = typeof(T).GetAttribute<MaildatFileAttribute>();
 
-			if (classAttribute != null && !(classAttribute.Extension == "pbc" && options.SkipPbcFile))
+			if (classAttribute != null && !(classAttribute.Extension == "pbc" && options.SkipPbc))
 			{
 				//
 				// Get the header file
@@ -50,7 +50,7 @@ namespace Mail.dat.Io
 					//
 					BulkConfig bc = new()
 					{
-						PreserveInsertOrder = false
+						PreserveInsertOrder = false			
 					};
 
 					//
@@ -121,7 +121,7 @@ namespace Mail.dat.Io
 									{
 										lock (modelBuffer)
 										{
-											if (modelBuffer.Count() > options.BatchSize)
+											if (modelBuffer.Count() > options.MaxRecordsInMemory)
 											{
 												context.BulkInsert(modelBuffer, bulkConfig: bc);
 												modelBuffer.Clear();

@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +20,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Notes technique and reports postage adjustment per container.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "par", File = "Postage Adjustment Record", Summary = "Technique and amount for adjustment per container.", Description = "Notes technique and reports postage adjustment per container.", LineLength = 128, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "par", File = "Postage Adjustment Record", Summary = "Technique and amount for adjustment per container.", Description = "Notes technique and reports postage adjustment per container.", LineLength = 128, ClosingCharacter = "#")]
 	[Table("Par", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 18)]
@@ -88,9 +88,9 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Date (PAR-1101)
-		/// Adjustment Date.
+		/// Adjustment Date (cannot be all zeros).
 		/// </summary>
-		[MaildatField(Extension = "par", FieldCode = "PAR-1101", FieldName = "Date", Start = 29, Length = 8, Required = true, Key = false, DataType = "N", Description = "Adjustment Date.", Type = "date", Format = "YYYYMMDD")]
+		[MaildatField(Extension = "par", FieldCode = "PAR-1101", FieldName = "Date", Start = 29, Length = 8, Required = true, Key = false, DataType = "N", Description = "Adjustment Date (cannot be all zeros).", Type = "date", Format = "YYYYMMDD")]
 		[Column("Date", Order = 7, TypeName = "TEXT")]
 		[Required]
 		[Comment("PAR-1101")]
@@ -167,8 +167,10 @@ namespace Mail.dat
 
 		/// <summary>
 		/// MPA - Unique Sequence/Grouping ID (PAR-1109)
+		/// Unique identifier for the respective MPA within an MPU. Establishes the set of MPU pieces on one
+		/// Postage Statement.
 		/// </summary>
-		[MaildatField(Extension = "par", FieldCode = "PAR-1109", FieldName = "MPA - Unique Sequence/Grouping ID", Start = 77, Length = 10, Required = true, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "zfillnumeric")]
+		[MaildatField(Extension = "par", FieldCode = "PAR-1109", FieldName = "MPA - Unique Sequence/Grouping ID", Start = 77, Length = 10, Required = true, Key = false, DataType = "A/N", Description = "Unique identifier for the respective MPA within an MPU. Establishes the set of MPU pieces on one Postage Statement.", Type = "string", Format = "zfillnumeric")]
 		[Column("MPAUniqueSequenceGroupingID", Order = 14, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(10)]
@@ -202,11 +204,11 @@ namespace Mail.dat
 		/// <summary>
 		/// Reserve (PAR-1107)
 		/// </summary>
-		[MaildatField(Extension = "par", FieldCode = "PAR-1107", FieldName = "Reserve", Start = 108, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "par", FieldCode = "PAR-1107", FieldName = "Reserve", Start = 108, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "", Type = "reserve", Format = "leftjustify")]
 		[Column("ReservePAR1107", Order = 17, TypeName = "TEXT")]
 		[MaxLength(20)]
 		[Comment("PAR-1107")]
-		[TypeConverter(typeof(MaildatStringConverter))]
+		[TypeConverter(typeof(MaildatReserveConverter))]
 		public string ReservePAR1107 { get; set; }
 
 		/// <summary>
@@ -248,7 +250,7 @@ namespace Mail.dat
 			this.ClosingCharacter = line.ParseForImport<Par, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>

@@ -3,11 +3,11 @@
 // 
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
 // 
-// This code was auto-generated on May 29th, 2025.
+// This code was auto-generated on May 30th, 2025.
 // by the Open Mail.dat Code Generator.
 // 
 // Author: Daniel M porrey
-// Version 25.1.0.2
+// Version 25.1.0.3
 // 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +20,7 @@ namespace Mail.dat
 	/// <summary>
 	/// Identifies package/container of seed names within the presort.
 	/// </summary>
-	[MaildatFile(Version = "25-1", Revision = "0.2", Extension = "snr", File = "Seed Name Record", Summary = "Detail for each tracking program address.", Description = "Identifies package/container of seed names within the presort.", LineLength = 160, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "snr", File = "Seed Name Record", Summary = "Detail for each tracking program address.", Description = "Identifies package/container of seed names within the presort.", LineLength = 160, ClosingCharacter = "#")]
 	[Table("Snr", Schema = "Maildat")]
 	[PrimaryKey("Id")]
 	[MaildatImport(Order = 12)]
@@ -189,11 +189,11 @@ namespace Mail.dat
 		/// <summary>
 		/// Reserve (SNR-1103)
 		/// </summary>
-		[MaildatField(Extension = "snr", FieldCode = "SNR-1103", FieldName = "Reserve", Start = 142, Length = 18, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "leftjustify")]
+		[MaildatField(Extension = "snr", FieldCode = "SNR-1103", FieldName = "Reserve", Start = 142, Length = 18, Required = false, Key = false, DataType = "A/N", Description = "", Type = "reserve", Format = "leftjustify")]
 		[Column("ReserveSNR1103", Order = 15, TypeName = "TEXT")]
 		[MaxLength(18)]
 		[Comment("SNR-1103")]
-		[TypeConverter(typeof(MaildatStringConverter))]
+		[TypeConverter(typeof(MaildatReserveConverter))]
 		public string ReserveSNR1103 { get; set; }
 
 		/// <summary>
@@ -233,7 +233,7 @@ namespace Mail.dat
 			this.ClosingCharacter = line.ParseForImport<Snr, string>(p => p.ClosingCharacter, returnValue);
 			this.FileLineNumber = fileLineNumber;
 			
-			return Task.FromResult<ILoadError[]>(returnValue.ToArray());
+			return Task.FromResult(returnValue.ToArray());
 		}
 
 		/// <summary>
