@@ -6,11 +6,6 @@ namespace Mail.dat
 	{
 		int FileLineNumber { get; set; }
 
-		string CreatedBy { get; set; }
-		DateTimeOffset CreatedDateTime { get; set; }
-		string ModifiedBy { get; set; }
-		DateTimeOffset ModifiedDateTime { get; set; }
-
 		Task<ILoadError[]> ImportDataAsync(int lineNumber, ReadOnlySpan<byte> line);
 		Task<string> ExportDataAsync();
 	}

@@ -2,6 +2,7 @@
 using Diamond.Core.CommandLine.Model;
 using Diamond.Core.System.TemporaryFolder;
 using Humanizer;
+using Humanizer.Localisation;
 using Mail.dat.Io;
 using Microsoft.Extensions.Logging;
 using Spectre.Console;
@@ -155,7 +156,7 @@ namespace Mail.dat.ImportCommand
 						(bool result, MaildatContext context) = await import.ImportAsync(importOptions);
 						stopwatch.Stop();
 
-						AnsiConsole.MarkupLine($"Import completed in [yellow]{stopwatch.Elapsed.Humanize()}[/].");
+						AnsiConsole.MarkupLine($"Import completed in [yellow]{stopwatch.Elapsed.Humanize(minUnit: TimeUnit.Second)}[/].");
 
 						//
 						// Check for errors.

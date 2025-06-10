@@ -121,7 +121,7 @@ namespace Mail.dat.Io
 									{
 										lock (modelBuffer)
 										{
-											if (modelBuffer.Count() > options.MaxRecordsInMemory)
+											if (modelBuffer.Count > options.MaxRecordsInMemory)
 											{
 												context.BulkInsert(modelBuffer, bulkConfig: bc);
 												modelBuffer.Clear();
@@ -165,7 +165,7 @@ namespace Mail.dat.Io
 																  Value = tbl.Value,
 																  ErrorMessage = tbl.ErrorMessage,
 																  LineNumber = lineNumber
-															  }).Select(m => m.Touch()));
+															  }).Select(m => m));
 									}
 
 									//
