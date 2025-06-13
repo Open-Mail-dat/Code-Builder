@@ -177,6 +177,23 @@ namespace Mail.dat.ImportCommand
 						else
 						{
 							AnsiConsole.MarkupLine($"[green]No errors during import.[/]");
+							AnsiConsole.MarkupLine($"Header count: {context.Hdr.Count()}.");
+
+							Hdr current = context.Hdr.Where(t => t.HeaderHistoryStatus == "C").SingleOrDefault();
+
+							if (current != null)
+							{
+								AnsiConsole.MarkupLine($"SEG count: Expected: {current.SegmentRecordCount:#,###}, Actual {context.Seg.Count():#,###}.");
+								AnsiConsole.MarkupLine($"MCR count: Expected: {current.MPUCRelationshipRecordCount:#,###}, Actual {context.Mcr.Count():#,###}.");
+								AnsiConsole.MarkupLine($"CPT count: Expected: {current.ComponentRecordCount:#,###}, Actual {context.Cpt.Count():#,###}.");
+								AnsiConsole.MarkupLine($"MPU count: Expected: {current.MailPieceUnitRecordCount:#,###}, Actual {context.Mpu.Count():#,###}.");
+								AnsiConsole.MarkupLine($"MPA count: Expected: {current.MailerPostageAccountRecordCount:#,###}, Actual {context.Mpa.Count():#,###}.");
+								AnsiConsole.MarkupLine($"PQT count: Expected: {current.PackageQuantityRecordCount:#,###}, Actual {context.Pqt.Count():#,###}.");
+								AnsiConsole.MarkupLine($"CSM count: Expected: {current.ContainerSummaryRecordCount:#,###}, Actual {context.Csm.Count():#,###}.");
+								AnsiConsole.MarkupLine($"CQT count: Expected: {current.ContainerQuantityRecordCount:#,###}, Actual {context.Cqt.Count():#,###}.");			
+								AnsiConsole.MarkupLine($"PBC count: Expected: {current.PieceBarcodeRecordCount:#,###}, Actual {context.Pbc.Count():#,###}.");
+								AnsiConsole.MarkupLine($"OCI count: Expected: {current.OriginalContainerIdentificationRecordCount:#,###}, Actual {context.Oci.Count():#,###}.");
+							}
 						}
 
 						//

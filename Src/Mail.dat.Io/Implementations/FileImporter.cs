@@ -137,10 +137,13 @@ namespace Mail.dat.Io
 									}
 									else
 									{
-										//
-										// Add the model to the context.
-										//
-										modelBuffer.Add(model);
+										lock (modelBuffer)
+										{
+											//
+											// Add the model to the context.
+											//
+											modelBuffer.Add(model);
+										}
 									}
 
 									//
@@ -181,7 +184,10 @@ namespace Mail.dat.Io
 					// Using the EFCore.BulkExtensions.Sqlite package to perform a bulk insert
 					// to improve performacne.
 					//
-					await context.BulkInsertAsync(modelBuffer, bulkConfig: bc, cancellationToken: cancellationToken);
+					if (modelBuffer.Count > 0)
+					{
+						await context.BulkInsertAsync(modelBuffer, bulkConfig: bc, cancellationToken: cancellationToken);
+					}
 
 					//
 					// Check for errors and insert them into the context.
