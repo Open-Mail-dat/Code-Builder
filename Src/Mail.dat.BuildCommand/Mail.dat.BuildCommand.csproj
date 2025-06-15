@@ -32,7 +32,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Mail.dat.Json.Specification\Mail.dat.Json.Specification.csproj" />
-		<ProjectReference Include="..\Mail.dat.DataTypes\Mail.dat.Abstractions.csproj" />
+		<ProjectReference Include="..\Mail.dat.Abstractions\Mail.dat.Abstractions.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

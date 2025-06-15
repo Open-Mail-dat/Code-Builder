@@ -19,7 +19,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Mail.dat.DataTypes\Mail.dat.Abstractions.csproj" />
+		<ProjectReference Include="..\Mail.dat.Abstractions\Mail.dat.Abstractions.csproj" />
 	</ItemGroup>
 
 </Project>

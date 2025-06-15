@@ -44,8 +44,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Mail.dat.BuildCommand\Mail.dat.BuildCommand.csproj" />
-		<ProjectReference Include="..\Mail.dat.ExportCommand\Mail.dat.ExportCommand.csproj" />
-		<ProjectReference Include="..\Mail.dat.ImportCommand\Mail.dat.ImportCommand.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

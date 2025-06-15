@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mail.dat.Abstractions", "Mail.dat.DataTypes\Mail.dat.Abstractions.csproj", "{B9CC77EA-95E2-42C9-BA70-5466AD9FA1CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mail.dat.Abstractions", "Mail.dat.Abstractions\Mail.dat.Abstractions.csproj", "{B9CC77EA-95E2-42C9-BA70-5466AD9FA1CA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mail.dat.Models", "Mail.dat.Models\Mail.dat.Models.csproj", "{565D3190-CFF2-4083-B748-060CB3F29DD5}"
 EndProject
