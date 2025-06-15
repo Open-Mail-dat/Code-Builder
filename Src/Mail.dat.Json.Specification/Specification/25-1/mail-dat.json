@@ -6630,7 +6630,7 @@
 			]
 		},
 		{
-			"file": "PACKAGE QUANTITY RECORD",
+			"file": "Package Quantity Record",
 			"fileExtension": "pqt",
 			"fileSummary": "quantity and destination per package",
 			"fileDescription": "",
