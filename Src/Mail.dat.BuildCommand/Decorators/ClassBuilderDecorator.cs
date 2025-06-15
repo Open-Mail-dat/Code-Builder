@@ -13,9 +13,9 @@
 // GNU LESSER GENERAL PUBLIC LICENSE for more details.
 // You should have received three files as part of the license agreemen for Open Mail.dat.
 //
-// LICENSE (GNU Lesser General Public License)
-// LICENSE-GPL3 (GNU General Public License)
-// LICENSE-ADDENDUM.MD (Attribution and Public Use Addendum to the GNU Lesser General Public License v3.0 (LGPL-3.0))
+// LICENSE.md (GNU Lesser General Public License)
+// LICENSE-GPL3.md (GNU General Public License)
+// LICENSE-ADDENDUM.md (Attribution and Public Use Addendum to the GNU Lesser General Public License v3.0 (LGPL-3.0))
 //
 // If not, see <https://www.gnu.org/licenses/>.
 // ************************************************************************************************************************
@@ -87,9 +87,9 @@ namespace Mail.dat.BuildCommand
 				"GNU LESSER GENERAL PUBLIC LICENSE for more details.",
 				"You should have received three files as part of the license agreemen for Open Mail.dat. ",
 				"",
-				"LICENSE (GNU Lesser General Public License)",
-				"LICENSE-GPL3 (GNU General Public License)",
-				"LICENSE-ADDENDUM.MD (Attribution and Public Use Addendum to the GNU Lesser General Public License v3.0 (LGPL-3.0))",
+				"LICENSE.md (GNU Lesser General Public License)",
+				"LICENSE-GPL3.md (GNU General Public License)",
+				"LICENSE-ADDENDUM.md (Attribution and Public Use Addendum to the GNU Lesser General Public License v3.0 (LGPL-3.0))",
 				"",
 				"If not, see <https://www.gnu.org/licenses/>.",
 				"************************************************************************************************************************",
