@@ -1,6 +1,6 @@
 ﻿//
 // This file is part of Open Mail.dat.
-// Copyright (c) 2025 Open Mail.dat
+// Copyright (c) 2025 Open Mail.dat. All rights reserved.
 //
 // ************************************************************************************************************************
 // License Agreement:
@@ -74,7 +74,7 @@ namespace Mail.dat.BuildCommand
 			classBuilder.HeaderComments.AddComments(
 				"",
 				"This file is part of Open Mail.dat.",
-				$"Copyright (c) {(DateTime.Now.Year > 2025 ? $"2025-{DateTime.Now.Year}" : "2025")} Open Mail.dat", 
+				$"Copyright (c) {(DateTime.Now.Year > 2025 ? $"2025-{DateTime.Now.Year}" : "2025")} Open Mail.dat. All rights reserved.", 
 				"",
 				"************************************************************************************************************************",
 				"License Agreement:",

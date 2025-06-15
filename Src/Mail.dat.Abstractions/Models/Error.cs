@@ -1,6 +1,6 @@
 //
 // This file is part of Open Mail.dat.
-// Copyright (c) 2025 Open Mail.dat
+// Copyright (c) 2025 Open Mail.dat. All rights reserved.
 //
 // ************************************************************************************************************************
 // License Agreement:
