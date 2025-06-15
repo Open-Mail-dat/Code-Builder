@@ -1,7 +1,7 @@
 {
 	"version": {
 		"major": "24-1",
-		"revision": "1.3"
+		"revision": "1.5"
 	},
 	"files": [
 		{
@@ -394,7 +394,7 @@
 							"P1": "Cylindrical Tubes or Rolls",
 							"P2": "A Can, or Wooden or Metal box",
 							"P3": "A Parcel Containing More Than 24 Ounces of Liquid in Glass Containers, or 1 Gallon or More of Liquid in Metal or Plasti Ccontainers (see DMM 601.3.4)",
-							"P4": "An Insecurely Wrapped or Prepared Parcel as Provided Under DMM 601.3.0 and DMM 601.4.0",
+							"P4": "Other characteristics such as parcels prepared under DMM sections 601.3.0 and 601.4.0 with contents that may cause the parcel to roll or not maintain the integrity of the packaging during processing are considered nonstandard.",
 							"P5": "Reserve",
 							"PI": "Informed Delivery Campaign",
 							"PM": "Political Mail",
@@ -4694,7 +4694,7 @@
 						"type": "enum",
 						"format": "leftjustify",
 						"values": {
-							"1.3": ""
+							"1.5": ""
 						}
 					}
 				},
@@ -7365,8 +7365,10 @@
 						"values": {
 							" ": "Not a Standard Parcel",
 							"F": "Not a Marketing parcel",
+							"H": "Heavy Printed Matter with IMb",
 							"L": "Reserved",
 							"M": "Marketing;",
+							"P": "Heavy Printed Matter with IMpb/IMmb",
 							"S": "Reserved"
 						}
 					}
@@ -10904,7 +10906,7 @@
 						"type": "enum",
 						"format": "leftjustify",
 						"values": {
-							"A": "Reserve",
+							"A": "Live Animal and Perishables Handling Fee",
 							"B": "USPS Tracking",
 							"B2": "USPS Tracking Plus - Scan Retention",
 							"B3": "USPS Tracking Plus - Scan + Signature Retention",
