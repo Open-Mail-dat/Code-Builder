@@ -21,7 +21,7 @@
 // ************************************************************************************************************************
 //
 // Author: Daniel M porrey
-//namespace Mail.dat
+namespace Mail.dat
 {
 	public class LoadError : ILoadError
 	{
