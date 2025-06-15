@@ -1,6 +1,6 @@
-# Open-Mail-dat
+# Open Mail.dat
 
-Open-Mail-dat is an open source library providing libraries and utilities to manage Mail.dat files.
+Open Mail.dat is an open source library providing libraries and utilities to manage Mail.dat files.
 
 ## License
 
@@ -19,5 +19,5 @@ By using this library, you agree to comply with both the LGPL-3.0 and the terms 
 
 ## Acknowledgments
 
-This software uses the Open-Mail-dat library, available under the LGPL-3.0 license with additional terms.  
+This software uses the Open Mail.dat library, available under the LGPL-3.0 license with additional terms.  
 See [LICENSE-ADDENDUM.md](./LICENSE-ADDENDUM.md) for details.
