@@ -1,9 +1,9 @@
 # Attribution and Public Use Addendum to the GNU Lesser General Public License v3.0 (LGPL-3.0)
 
 **Addendum Version 1.0**  
-**Effective Date:** [Insert Date]
+**Effective Date:** June 1st, 2025
 
-This Addendum applies to the software package known as **[Library Name]** (hereafter, “the Library”) and supplements the terms of the **GNU Lesser General Public License v3.0 (LGPL-3.0)** under which the Library is licensed.
+This Addendum applies to the software platform known as **Open Mail.dat** (hereafter, “the Library”) and supplements the terms of the **GNU Lesser General Public License v3.0 (LGPL-3.0)** under which the Library is licensed.
 
 ## 1. Public Attribution Requirement
 
@@ -16,7 +16,7 @@ If the Library, or a derivative work of the Library, is used as part of any appl
 
 - The attribution must state:
 
-  > “This software uses [Library Name], available under the LGPL-3.0 license with additional terms. See [Link to Repository or License Location] for details.”
+  > “This software uses Open Mail.dat, available under the LGPL-3.0 license with additional terms. See [https://https://github.com/Open-Mail-dat](https://github.com/Open-Mail-dat) for details.”
 
 ## 2. Modification Disclosure Requirement
 
