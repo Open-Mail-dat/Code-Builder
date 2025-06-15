@@ -6,6 +6,7 @@ namespace Mail.dat.Io
 	public interface IExportOptions
 	{
 		IMaildatFile TargetFile { get; set; }
+		string TaregtVersion { get; set; }
 		string SourceFile { get; set; }
 		Encoding Encoding { get; set; }
 		string LineTerminator { get; set; }

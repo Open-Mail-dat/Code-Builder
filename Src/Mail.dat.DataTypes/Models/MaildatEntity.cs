@@ -17,22 +17,22 @@ namespace Mail.dat
 		[Column("FileLineNumber", Order = 1)]
 		public int FileLineNumber { get; set; }
 
-		public virtual Task<ILoadError[]> ImportDataAsync(int lineNumber, ReadOnlySpan<byte> line)
+		public virtual Task<ILoadError[]> ImportDataAsync(string version,int lineNumber, ReadOnlySpan<byte> line)
 		{
-			return this.OnImportDataAsync(lineNumber, line);
+			return this.OnImportDataAsync(version, lineNumber, line);
 		}
 
-		public virtual Task<string> ExportDataAsync()
+		public virtual Task<string> ExportDataAsync(string version)
 		{
-			return this.OnExportDataAsync();
+			return this.OnExportDataAsync(version);
 		}
 
-		protected virtual Task<ILoadError[]> OnImportDataAsync(int lineNumber, ReadOnlySpan<byte> line)
+		protected virtual Task<ILoadError[]> OnImportDataAsync(string version, int lineNumber, ReadOnlySpan<byte> line)
 		{
 			return Task.FromResult<ILoadError[]>([]);
 		}
 
-		protected virtual Task<string> OnExportDataAsync()
+		protected virtual Task<string> OnExportDataAsync(string version)
 		{
 			return Task.FromResult<string>(null);
 		}

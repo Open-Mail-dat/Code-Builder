@@ -1,7 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Microsoft.Extensions.Primitives;
-
-namespace Mail.dat
+﻿namespace Mail.dat
 {
 	public static class StringDecorator
 	{

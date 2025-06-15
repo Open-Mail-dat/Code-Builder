@@ -1,26 +1,26 @@
-// 
+//
 // Copyright (c) 2025 Open Mail.dat
-// 
+//
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
-// 
-// This code was auto-generated on May 30th, 2025.
+//
+// This code was auto-generated on June 14th, 2025.
 // by the Open Mail.dat Code Generator.
-// 
+//
 // Author: Daniel M porrey
-// Version 25.1.0.3
-// 
-
+//
 namespace Mail.dat
 {
 	/// <summary>
-	/// Records identify digital campaigns and enhances capabilities of the USPS Informed Delivery program.
+	/// Reference-able Mail to provide digital content at the piece or version level. Records identify
+	/// digital campaigns and enhances capabilities of the USPS Informed Delivery program.
 	/// </summary>
 	public interface IRmr : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (RMR-1001)
+		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		string JobID { get; set; }
+		string JobId { get; set; }
 
 		/// <summary>
 		/// RMR ID (RMR-1002)
@@ -28,34 +28,34 @@ namespace Mail.dat
 		/// should be linked to. One of the following three values can be used: PBC - PBC Unique ID, right
 		/// justify and zero fill; PDR - Piece ID; CPT - Component ID.
 		/// </summary>
-		string RMRID { get; set; }
+		string RmrId { get; set; }
 
 		/// <summary>
 		/// RMR ID Type (RMR-1003)
 		/// Field to link to a piece through PDR or PBC or to link to a version through CPT. Type of the record
 		/// (CPT, PDR/PBC) that the RMR ID (this record) represents.
 		/// </summary>
-		string RMRIDType { get; set; }
+		string RmrIdType { get; set; }
 
 		/// <summary>
 		/// RMS ID (RMR-1009)
 		/// RMS ID of the Campaign Summary record.
 		/// </summary>
-		string RMSID { get; set; }
+		string RmsId { get; set; }
 
 		/// <summary>
 		/// RMR Content Type (RMR-1004)
 		/// Field to capture the type of RMR content. RMR content can either be a URL of a media image that is
 		/// supported by browsers or a target URL that will be placed as a Hyperlink for the media/image.
 		/// </summary>
-		string RMRContentType { get; set; }
+		string RmrContentType { get; set; }
 
 		/// <summary>
 		/// CQT Database ID (RMR-1010)
 		/// See Container Quantity File's CQT Database ID definition. Required for RMR ID type of PBC and PDR.
 		/// Field must be blank for RMR ID type of Component.
 		/// </summary>
-		int? CQTDatabaseID { get; set; }
+		int? CqtDatabaseId { get; set; }
 
 		/// <summary>
 		/// RMR Value (RMR-1005)
@@ -63,24 +63,25 @@ namespace Mail.dat
 		/// image/media driven by the RMR Content Type field); Leave BLANK if piece wishes to be Opt out of Real
 		/// Mail Program with RMR Content Type of O, else the field is required.
 		/// </summary>
-		string RMRValue { get; set; }
+		string RmrValue { get; set; }
 
 		/// <summary>
 		/// RMR Template Code (RMR-1008)
 		/// RMR Template Code, one of many templates provided by Postal Service, Possible values can be A
 		/// through Z.
 		/// </summary>
-		string RMRTemplateCode { get; set; }
+		string RmrTemplateCode { get; set; }
 
 		/// <summary>
 		/// Reserve (RMR-1011)
+		/// Reserved for future use.
 		/// </summary>
-		string ReserveRMR1011 { get; set; }
+		string ReserveRmr1011 { get; set; }
 
 		/// <summary>
 		/// RMR Record Status (RMR-2000)
 		/// </summary>
-		string RMRRecordStatus { get; set; }
+		string RmrRecordStatus { get; set; }
 
 		/// <summary>
 		/// Closing Character (RMR-9999)

@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.Serialization;
 using Mail.dat.Io.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -52,9 +51,15 @@ namespace Mail.dat.Io
 						.Options;
 
 					//
-					// Get a local onl context.
+					// Get a local only context.
 					//
 					using MaildatContext localContext = new(new NullLogger<MaildatContext>(), contextOption);
+
+					//
+					// Get the Mail.dat version.
+					//
+					string version = options.TaregtVersion;
+					version ??= localContext.Hdr.Where(t=>t.HeaderHistoryStatus=="C").Single().MailDatVersion;
 
 					//
 					// Get all of the model entities.
@@ -64,7 +69,7 @@ namespace Mail.dat.Io
 					//
 					// Forward the progress events.
 					//
-					FileExporter fileExporter = new()
+					SingleFileExporter fileExporter = new()
 					{
 						ProgressUpdateAsync = async (item) =>
 						{
@@ -75,7 +80,7 @@ namespace Mail.dat.Io
 					//
 					// Get the ExportAsync method from the FileExporter class.
 					//
-					MethodInfo exportMethod = typeof(FileExporter).GetMethod("ExportAsync");
+					MethodInfo exportMethod = typeof(SingleFileExporter).GetMethod("ExportAsync");
 
 					//
 					// Get all of the properties of the context.
@@ -131,7 +136,7 @@ namespace Mail.dat.Io
 							//
 							// Invoke the generic method with the fileExporter instance and the options.
 							//
-							genericMethod.Invoke(fileExporter, [options, entityType, queryable.Cast<IMaildatEntity>().AsQueryable(), options.CancellationToken]);
+							genericMethod.Invoke(fileExporter, [options, version, entityType, queryable.Cast<IMaildatEntity>().AsQueryable(), options.CancellationToken]);
 						}
 					});
 

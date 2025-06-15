@@ -1,34 +1,39 @@
 ﻿namespace Mail.dat
 {
-    /// <summary>
-    /// Enumeration to specify the alignment of data in a field.
-    /// </summary>
-    public enum DataAlignment
-    {
-        /// <summary>
-        /// Align data to the left.
-        /// </summary>
-        Left,
-        /// <summary>
-        /// Align data to the right.
-        /// </summary>
-        Right
-    }
+	/// <summary>
+	/// Enumeration to specify the alignment of data in a field.
+	/// </summary>
+	public enum DataAlignment
+	{
+		/// <summary>
+		/// Align data to the left.
+		/// </summary>
+		Left,
+		/// <summary>
+		/// Align data to the right.
+		/// </summary>
+		Right
+	}
 
-    /// <summary>
-    /// Attribute to specify the characteristics of a Maildat field.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Property)]
-    public class MaildatFieldAttribute : Attribute
-    {
-        public MaildatFieldAttribute()
-        {
-        }
+	/// <summary>
+	/// Attribute to specify the characteristics of a Maildat field.
+	/// </summary>
+	[AttributeUsage(AttributeTargets.Property, AllowMultiple = true, Inherited = true)]
+	public class MaildatFieldAttribute : Attribute
+	{
+		public MaildatFieldAttribute()
+		{
+		}
 
-        /// <summary>
-        /// The extension of the file this field is.
-        /// </summary>
-        public string Extension { get; set; }
+		/// <summary>
+		/// The version this attribute originated from. This can be used to select the attribute.
+		/// </summary>
+		public string Version { get; set; }
+
+		/// <summary>
+		/// The extension of the file this field is.
+		/// </summary>
+		public string Extension { get; set; }
 
 		/// <summary>
 		/// The unique identifier for the field.  The characters in front of the hyphen signify the file and the 
@@ -78,10 +83,10 @@
 		/// </summary>
 		public string Description { get; set; }
 
-        /// <summary>
-        /// The scalar data type.
-        /// </summary>
-        public string Type { get; set; }
+		/// <summary>
+		/// The scalar data type.
+		/// </summary>
+		public string Type { get; set; }
 
 		/// <summary>
 		/// If a date or time format other than YYYYMMDD or HH:MM are needed, they must be added to this enum.

@@ -1,15 +1,13 @@
-// 
+//
 // Copyright (c) 2025 Open Mail.dat
-// 
+//
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
-// 
-// This code was auto-generated on May 30th, 2025.
+//
+// This code was auto-generated on June 14th, 2025.
 // by the Open Mail.dat Code Generator.
-// 
+//
 // Author: Daniel M porrey
-// Version 25.1.0.3
-// 
-
+//
 namespace Mail.dat
 {
 	/// <summary>
@@ -19,14 +17,15 @@ namespace Mail.dat
 	{
 		/// <summary>
 		/// Job ID (CPT-1001)
+		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		string JobID { get; set; }
+		string JobId { get; set; }
 
 		/// <summary>
 		/// Component ID (CPT-1004)
 		/// See MPU/C Component ID definition.
 		/// </summary>
-		string ComponentID { get; set; }
+		string ComponentId { get; set; }
 
 		/// <summary>
 		/// Component Description (CPT-1101)
@@ -39,7 +38,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Component - Weight (CPT-1102)
-		/// Pounds, rounded.
+		/// 99v9999; pounds, rounded (decimal point implied).
 		/// </summary>
 		decimal ComponentWeight { get; set; }
 
@@ -57,19 +56,19 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Component - Length (CPT-1105)
-		/// Length of a copy; inches, rounded.
+		/// Length of a copy; inches, rounded 999v9999; inches, rounded (decimal point implied).
 		/// </summary>
 		decimal? ComponentLength { get; set; }
 
 		/// <summary>
 		/// Component - Width (CPT-1106)
-		/// Width of a copy; inches, rounded.
+		/// Width of a copy; inches, rounded 999v9999; inches, rounded (decimal point implied).
 		/// </summary>
 		decimal? ComponentWidth { get; set; }
 
 		/// <summary>
 		/// Component - Thickness (CPT-1107)
-		/// Thickness of a copy; inches, rounded.
+		/// Thickness of a copy; inches, rounded 99v9999; inches, rounded (decimal point implied).
 		/// </summary>
 		decimal? ComponentThickness { get; set; }
 
@@ -109,13 +108,13 @@ namespace Mail.dat
 		/// Mailer ID of Mail Owner (CPT-1148)
 		/// USPS ID Left justify, space padded to the right, only digits 0 - 9 acceptable.
 		/// </summary>
-		string MailerIDOfMailOwner { get; set; }
+		string MailerIdOfMailOwner { get; set; }
 
 		/// <summary>
 		/// CRID of Mail Owner (CPT-1149)
 		/// USPS ID Left justify, space padded to the right, only digits 0 - 9 acceptable.
 		/// </summary>
-		string CRIDOfMailOwner { get; set; }
+		string CridOfMailOwner { get; set; }
 
 		/// <summary>
 		/// Periodical Ad% Treatment (CPT-1138)
@@ -155,13 +154,13 @@ namespace Mail.dat
 		/// Equivalent Mail.dat Job ID (CPT-1145)
 		/// See above note.
 		/// </summary>
-		string EquivalentMailDatJobID { get; set; }
+		string EquivalentMailDatJobId { get; set; }
 
 		/// <summary>
 		/// Equivalent Component ID (CPT-1146)
 		/// See note for Equivalent User License Code field.
 		/// </summary>
-		string EquivalentComponentID { get; set; }
+		string EquivalentComponentId { get; set; }
 
 		/// <summary>
 		/// Equivalent Component Type (CPT-1151)
@@ -171,6 +170,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Ad % Basis (CPT-1152)
+		/// 9999v99 implied 2 decimal places.
 		/// </summary>
 		decimal? AdBasis { get; set; }
 
@@ -207,8 +207,9 @@ namespace Mail.dat
 
 		/// <summary>
 		/// CPT Record Status (CPT-2000)
+		/// O, D, I, U.
 		/// </summary>
-		string CPTRecordStatus { get; set; }
+		string CptRecordStatus { get; set; }
 
 		/// <summary>
 		/// eMailpiece Sample Group ID (CPT-1159)
@@ -216,12 +217,13 @@ namespace Mail.dat
 		/// Business Customer Gateway and referenced here for promotion eligibility. Left Justify. Field Format
 		/// will be validated by PostalOne!.
 		/// </summary>
-		string EMailpieceSampleGroupID { get; set; }
+		string EMailpieceSampleGroupId { get; set; }
 
 		/// <summary>
 		/// Reserve (CPT-1130)
+		/// Reserved for future use.
 		/// </summary>
-		string ReserveCPT1130 { get; set; }
+		string ReserveCpt1130 { get; set; }
 
 		/// <summary>
 		/// Closing Character (CPT-9999)

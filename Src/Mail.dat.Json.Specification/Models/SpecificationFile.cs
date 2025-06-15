@@ -8,6 +8,17 @@ namespace Mail.dat.Json.Specification
 		public VersionInfo Version { get; set; }
 
 		[JsonProperty("files")]
-		public List<FileDefinition> Files { get; set; }
+		private List<FileDefinition> _files = [];
+		public List<FileDefinition> Files
+		{
+			get
+			{
+				return _files.OrderBy(t=>t.FileExtension).ToList();
+			}
+			set
+			{
+				_files = value;
+			}
+		}
 	}
 }

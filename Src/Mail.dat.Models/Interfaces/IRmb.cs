@@ -1,33 +1,33 @@
-// 
+//
 // Copyright (c) 2025 Open Mail.dat
-// 
+//
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
-// 
-// This code was auto-generated on May 30th, 2025.
+//
+// This code was auto-generated on June 14th, 2025.
 // by the Open Mail.dat Code Generator.
-// 
+//
 // Author: Daniel M porrey
-// Version 25.1.0.3
-// 
-
+//
 namespace Mail.dat
 {
 	/// <summary>
-	/// Records identify digital campaigns and enhance capabilities of the USPS Informed Delivery  program
-	/// separate from the required file structure.
+	/// Reference-able Mail Barcode to provide digital content at the piece level outside of the Mail.dat
+	/// required files and structure. Records identify digital campaigns and enhance capabilities of the
+	/// USPS Informed Delivery  program separate from the required file structure.
 	/// </summary>
 	public interface IRmb : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (RMB-1001)
+		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		string JobID { get; set; }
+		string JobId { get; set; }
 
 		/// <summary>
 		/// RMS ID (RMB-1002)
 		/// Unique ID of individual Campaign.
 		/// </summary>
-		string RMSID { get; set; }
+		string RmsId { get; set; }
 
 		/// <summary>
 		/// Barcode (RMB-1003)
@@ -41,13 +41,13 @@ namespace Mail.dat
 		/// supported by browsers or a target URL that will be placed as a Hyperlink for the media/image.
 		/// Details of the codes will be available in the USPS Technical Guide for Mail.dat.
 		/// </summary>
-		string RMBContentType { get; set; }
+		string RmbContentType { get; set; }
 
 		/// <summary>
 		/// Original Job ID (RMB-1005)
 		/// Job ID provided in another mailing job.
 		/// </summary>
-		string OriginalJobID { get; set; }
+		string OriginalJobId { get; set; }
 
 		/// <summary>
 		/// Original User License Code (RMB-1006)
@@ -61,18 +61,18 @@ namespace Mail.dat
 		/// image/media driven by the RMR Content Type field); Leave BLANK if piece wishes to be Opt out of Real
 		/// Mail Program with RMR Content Type of O, else the field is required.
 		/// </summary>
-		string RMBValue { get; set; }
+		string RmbValue { get; set; }
 
 		/// <summary>
 		/// RMB Template Code (RMB-1008)
 		/// RMB Template Code, one of many templates provided by Postal Service. Possible values A through Z.
 		/// </summary>
-		string RMBTemplateCode { get; set; }
+		string RmbTemplateCode { get; set; }
 
 		/// <summary>
 		/// RMB Record Status (RMB-2000)
 		/// </summary>
-		string RMBRecordStatus { get; set; }
+		string RmbRecordStatus { get; set; }
 
 		/// <summary>
 		/// Closing Character (RMB-9999)

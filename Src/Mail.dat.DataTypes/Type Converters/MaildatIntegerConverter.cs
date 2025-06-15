@@ -12,7 +12,7 @@ namespace Mail.dat
 
 		public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
 		{
-			int? returnValue = null;
+			object returnValue = null;
 
 			if (value is string s && s.Trim().Length > 0)
 			{

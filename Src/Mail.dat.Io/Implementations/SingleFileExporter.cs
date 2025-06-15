@@ -2,11 +2,11 @@
 
 namespace Mail.dat.Io
 {
-	internal class FileExporter
+	internal class SingleFileExporter
 	{
 		public ProgressAsyncDelegate ProgressUpdateAsync { get; set; }
 
-		public async Task<bool> ExportAsync<T>(IExportOptions options, Type entityType, IQueryable<IMaildatEntity> items, CancellationToken cancellationToken) where T : class, IMaildatEntity, new()
+		public async Task<bool> ExportAsync<T>(IExportOptions options, string version, Type entityType, IQueryable<IMaildatEntity> items, CancellationToken cancellationToken) where T : class, IMaildatEntity, new()
 		{
 			bool returnValue = true;
 
@@ -57,7 +57,7 @@ namespace Mail.dat.Io
 
 						foreach (IMaildatEntity item in items.OrderBy(t => t.FileLineNumber))
 						{
-							string line = await item.ExportDataAsync() + options.LineTerminator;
+							string line = await item.ExportDataAsync(version) + options.LineTerminator;
 							writer.Write(line);
 
 							//

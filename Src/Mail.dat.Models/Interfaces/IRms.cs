@@ -1,37 +1,38 @@
-// 
+//
 // Copyright (c) 2025 Open Mail.dat
-// 
+//
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
-// 
-// This code was auto-generated on May 30th, 2025.
+//
+// This code was auto-generated on June 14th, 2025.
 // by the Open Mail.dat Code Generator.
-// 
+//
 // Author: Daniel M porrey
-// Version 25.1.0.3
-// 
-
+//
 namespace Mail.dat
 {
 	/// <summary>
-	/// Records identify a summary of campaigns that can be tied to barcode records.
+	/// Referenceable Mail Summary to provide digital Content. Records identify a summary of campaigns that
+	/// can be tied to barcode records.
 	/// </summary>
 	public interface IRms : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (RMS-1001)
+		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		string JobID { get; set; }
+		string JobId { get; set; }
 
 		/// <summary>
 		/// RMS ID (RMS-1002)
 		/// Unique ID of individual Campaign.
 		/// </summary>
-		string RMSID { get; set; }
+		string RmsId { get; set; }
 
 		/// <summary>
 		/// Reserve (RMS-1009)
+		/// Reserved for future use.
 		/// </summary>
-		string ReserveRMS1009 { get; set; }
+		string ReserveRms1009 { get; set; }
 
 		/// <summary>
 		/// Campaign Title (RMS-1003)
@@ -93,21 +94,21 @@ namespace Mail.dat
 		/// Enables the mailer to determine whether to add tracking parameters to the Informed Delivery
 		/// campaign's target URL.
 		/// </summary>
-		string CampaignTargetURLParametersIndicator { get; set; }
+		string CampaignTargetUrlParametersIndicator { get; set; }
 
 		/// <summary>
 		/// Campaign Mail Owner CRID (RMS-1012)
 		/// Populate with the CRID of the Mail Owner linked to the mailpieces for which the campaign is being
 		/// created.
 		/// </summary>
-		string CampaignMailOwnerCRID { get; set; }
+		string CampaignMailOwnerCrid { get; set; }
 
 		/// <summary>
 		/// Campaign Mail Preparer CRID (RMS-1013)
 		/// Populate with the CRID of the Mail Preparer linked to the mailpieces for which the campaign is being
 		/// created.
 		/// </summary>
-		string CampaignMailPreparerCRID { get; set; }
+		string CampaignMailPreparerCrid { get; set; }
 
 		/// <summary>
 		/// Campaign Processing Category (RMS-1014)
@@ -157,13 +158,14 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Reserve (RMS-1020)
+		/// Reserved for future use.
 		/// </summary>
-		string ReserveRMS1020 { get; set; }
+		string ReserveRms1020 { get; set; }
 
 		/// <summary>
 		/// RMS Record Status (RMS-2000)
 		/// </summary>
-		string RMSRecordStatus { get; set; }
+		string RmsRecordStatus { get; set; }
 
 		/// <summary>
 		/// Closing Character (RMS-9999)

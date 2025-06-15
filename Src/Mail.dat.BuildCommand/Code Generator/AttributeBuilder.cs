@@ -25,6 +25,16 @@ namespace Mail.dat.BuildCommand
 			};
 		}
 
+		public static AttributeParameter Create(string name, object value, bool quoted)
+		{
+			return new AttributeParameter()
+			{
+				Name = name,
+				Value = value,
+				Quoted = quoted
+			};
+		}
+
 		public string Name { get; set; }
 		public object Value { get; set; }
 		public bool Quoted { get; set; }
@@ -60,6 +70,12 @@ namespace Mail.dat.BuildCommand
 		public AttributeBuilder AddParameter(string name, object value)
 		{
 			this.Parameters.Add(AttributeParameter.Create(name, value));
+			return this;
+		}
+
+		public AttributeBuilder AddParameter(string name, object value, bool quoted)
+		{
+			this.Parameters.Add(AttributeParameter.Create(name, value, quoted));
 			return this;
 		}
 

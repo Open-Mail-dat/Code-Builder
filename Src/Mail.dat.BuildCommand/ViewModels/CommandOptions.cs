@@ -5,19 +5,11 @@ namespace Mail.dat.BuildCommand
 	internal class CommandOptions
 	{
 		[Required]
-		[Display(Order = 1, Name = "specification-file", ShortName = "s", Description = "The full or relative path to the Mail.dat JSON specification file.")]
-		public FileInfo SpecificationFile { get; set; }
-
+		[Display(Order = 1, Name = "specification-files", ShortName = "s", Description = "A list of specification comma delimited files each containing the full or relative path to the Mail.dat JSON specification file.")]
+		public string SpecificationFiles { get; set; }
+		
 		[Required]
-		[Display(Order = 2, Name = "class-output-directory", ShortName = "c", Description = "The directory where class files are written.")]
-		public DirectoryInfo ClassOutputDirectory { get; set; }
-
-		[Required]
-		[Display(Order = 3, Name = "interface-output-directory", ShortName = "i", Description = "The directory where interface files are written.")]
-		public DirectoryInfo InterfaceOutputDirectory { get; set; }
-
-		[Required]
-		[Display(Order = 4, Name = "context-output-directory", ShortName = "x", Description = "The directory where the context file is written.")]
-		public DirectoryInfo ContextOutputDirectory { get; set; }
+		[Display(Order = 2, Name = "output-directory", ShortName = "c", Description = "The output directory where files are written.")]
+		public DirectoryInfo OutputDirectory { get; set; }
 	}
 }

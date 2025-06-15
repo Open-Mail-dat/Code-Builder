@@ -1,4 +1,5 @@
 ﻿using Humanizer;
+using Mail.dat.BuildCommand;
 
 namespace Mail.dat.BuildCommand
 {
@@ -6,7 +7,7 @@ namespace Mail.dat.BuildCommand
 	{
 		public static string ToClassName(this string value)
 		{
-			return value.Pascalize();
+			return value.TruePascalize();
 		}
 
 		public static string ToInterfaceName(this string value)
@@ -16,7 +17,7 @@ namespace Mail.dat.BuildCommand
 
 		public static string ToClassFileName(this string value)
 		{
-			return $"{value.Pascalize()}.cs";
+			return $"{value.TruePascalize()}.cs";
 		}
 
 		public static string ToPropertyName(this object value, object fieldCode)
@@ -28,11 +29,11 @@ namespace Mail.dat.BuildCommand
 				throw new ArgumentNullException(nameof(value), "Field name cannot be null.");
 			}
 
-			returnValue = value.ToString().Dehumanize().Pascalize().KeywordSanitize();
+			returnValue = value.ToString().Dehumanize().TruePascalize().KeywordSanitize();
 
 			if (returnValue == "Reserve")
 			{
-				returnValue = $"{returnValue}{fieldCode.ToString().Dehumanize().Pascalize().KeywordSanitize()}";
+				returnValue = $"{returnValue}{fieldCode.ToString().Dehumanize().TruePascalize().KeywordSanitize()}";
 			}
 
 			return returnValue;

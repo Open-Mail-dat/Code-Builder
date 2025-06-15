@@ -2,7 +2,7 @@
 {
 	public class CommentBuilder : ICodeBuilder<CommentBuilder>
 	{
-		public List<string> Lines { get; internal set; }
+		public List<string> Lines { get; internal set; } = new();
 		public int MaximumLineLength { get; internal set; } = 100;
 
 		public static CommentBuilder Create(params List<string> lines)
@@ -32,12 +32,7 @@
 		{
 			foreach (string line in this.Lines)
 			{
-				//IEnumerable<string> subLines = comment.Split(this.MaximumLineLength);
-
-				//foreach (string subLine in subLines)
-				//{
-					File.AppendAllLines(filePath, [$"{Tabs.Create(indentLevel)}// {line.Trim()}"]);
-				//}
+				File.AppendAllLines(filePath, [$"{Tabs.Create(indentLevel)}// {line.Trim()}".Trim()]);
 			}
 
 			return this;

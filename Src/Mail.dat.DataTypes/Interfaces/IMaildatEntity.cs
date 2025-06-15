@@ -6,7 +6,7 @@ namespace Mail.dat
 	{
 		int FileLineNumber { get; set; }
 
-		Task<ILoadError[]> ImportDataAsync(int lineNumber, ReadOnlySpan<byte> line);
-		Task<string> ExportDataAsync();
+		Task<ILoadError[]> ImportDataAsync(string version, int lineNumber, ReadOnlySpan<byte> line);
+		Task<string> ExportDataAsync(string version);
 	}
 }

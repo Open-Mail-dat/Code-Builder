@@ -1,4 +1,8 @@
-﻿namespace Mail.dat.BuildCommand
+﻿using Humanizer;
+using Mail.dat.Json.Specification;
+using Microsoft.Extensions.Options;
+
+namespace Mail.dat.BuildCommand
 {
 	public class PropertyBuilder : ICodeBuilder<PropertyBuilder>
 	{
@@ -52,6 +56,12 @@
 			return this;
 		}
 
+		public PropertyBuilder AddAttributes(params IEnumerable<IEnumerable<AttributeBuilder>> attributes)
+		{
+			this.Attributes.AddRange(attributes.SelectMany(t => t));
+			return this;
+		}
+
 		public PropertyBuilder SetPrecision(int? precision)
 		{
 			this.Precision = precision;
@@ -85,6 +95,52 @@
 			else
 			{
 				File.AppendAllText(filePath, $" {{ get;{(!this.ReadOnly ? " set;" : null)} }}");
+			}
+
+			return this;
+		}
+
+		public PropertyBuilder CreateValuesClass(string filePath, string propertyName, string nameSpace, FileGroup fileGroup, string fieldCode)
+		{
+			IEnumerable<AllowedValue> values = fileGroup.AllowedValues(fieldCode);
+
+			if (values.Count() > 0)
+			{
+				DirectoryInfo dir = new(Path.GetDirectoryName(filePath));
+				dir.Create();
+
+				ClassBuilder.Create(propertyName.Pluralize())
+						.SetFileHeaderComments()
+						.SetNameSpace(nameSpace)
+						.AddUsing("Mail.dat.Abstractions")
+						.SetSummary($"These are the allowed values for the property {propertyName} ({fieldCode}).")
+						.SetObjectType("class")
+						.SetScope("public")
+						.SetPartial(false)
+						.AddImplements("MaildatValues")
+						.AddAttributes(
+							fileGroup.MaildatVersionsAttribute(),
+							AttributeBuilder.Create("MaildatFieldLink")
+								.AddParameter("File", fileGroup.FileExtension)
+								.AddParameter("FieldCode", fieldCode)
+						)
+						.AddMethod(MethodBuilder.Create("OnGetFieldCode")
+							.SetScope("protected override")
+							.SetReturnType("string")
+							.SetSummary("Returns the Mail.dat file this set of values is lined to.")
+							.AddCode($"return \"{fileGroup.FileExtension}\";"))
+						.AddMethod(MethodBuilder.Create("OnGetFile")
+							.SetScope("protected override")
+							.SetReturnType("string")
+							.SetSummary("Returns the field code that this set of values is linked to.")
+							.AddCode($"return \"{fieldCode}\";"))
+						.AddMethod(MethodBuilder.Create("OnInitializeValues")
+							.SetScope("protected override")
+							.SetReturnType("void")
+							.SetSummary("Initializes the values.")
+							.AddCode([.. (from tbl in values
+								select $"this.Add(new MaildatValue() {{ Version = \"{tbl.Version.Major}\", Key = \"{tbl.Key}\", FileExtension = \"{fileGroup.FileExtension}\", Description = \"{tbl.Value.Sanitize()}\", FieldCode = \"{fieldCode}\", FieldName = \"{propertyName}\" }});")]))
+						.Build(filePath, 1);
 			}
 
 			return this;

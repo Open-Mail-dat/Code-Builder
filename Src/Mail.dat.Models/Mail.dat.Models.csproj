@@ -5,16 +5,17 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 		<Version>0.0.1</Version>
+		<AssemblyVersion>0.0.1</AssemblyVersion>
+		<FileVersion>0.0.1</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<Folder Include="Interfaces\" />
-		<Folder Include="Models\" />
 		<Folder Include="Context\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.6" />
 	</ItemGroup>
 
 	<ItemGroup>

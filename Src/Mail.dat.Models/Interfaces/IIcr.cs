@@ -1,15 +1,13 @@
-// 
+//
 // Copyright (c) 2025 Open Mail.dat
-// 
+//
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
-// 
-// This code was auto-generated on May 30th, 2025.
+//
+// This code was auto-generated on June 14th, 2025.
 // by the Open Mail.dat Code Generator.
-// 
+//
 // Author: Daniel M porrey
-// Version 25.1.0.3
-// 
-
+//
 namespace Mail.dat
 {
 	/// <summary>
@@ -19,8 +17,9 @@ namespace Mail.dat
 	{
 		/// <summary>
 		/// Job ID (ICR-1001)
+		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		string JobID { get; set; }
+		string JobId { get; set; }
 
 		/// <summary>
 		/// File Name (ICR-1101)
@@ -34,13 +33,13 @@ namespace Mail.dat
 		/// The identifying A/N string for the tape within which this container exists. Use arbitrary sequence
 		/// number if non-inkjet transmission.
 		/// </summary>
-		string TapeID { get; set; }
+		string TapeId { get; set; }
 
 		/// <summary>
 		/// Container ID (ICR-1006)
 		/// See Container Summary File's Container ID definition.
 		/// </summary>
-		int ContainerID { get; set; }
+		int ContainerId { get; set; }
 
 		/// <summary>
 		/// Beginning Record (ICR-1103)
@@ -59,13 +58,13 @@ namespace Mail.dat
 		/// <summary>
 		/// ICR Record Status (ICR-2000)
 		/// </summary>
-		string ICRRecordStatus { get; set; }
+		string IcrRecordStatus { get; set; }
 
 		/// <summary>
 		/// Reserve (ICR-1105)
 		/// Reserved for future use.
 		/// </summary>
-		string ReserveICR1105 { get; set; }
+		string ReserveIcr1105 { get; set; }
 
 		/// <summary>
 		/// Closing Character (ICR-9999)

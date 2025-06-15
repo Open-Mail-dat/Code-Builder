@@ -7,12 +7,14 @@
 		<Nullable>disable</Nullable>
 		<RootNamespace>Mail.dat.BuildCommand</RootNamespace>
 		<Version>0.0.1</Version>
+		<AssemblyVersion>0.0.1</AssemblyVersion>
+		<FileVersion>0.0.1</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Content Include="Services\Mail.dat.BuildCommand.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
+		<Content Include="Services\Mail.dat.BuildCommand.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -25,7 +27,7 @@
 		<PackageReference Include="Diamond.Core.Extensions.DependencyInjection.Abstractions" Version="9.0.1" />
 		<PackageReference Include="Diamond.Core.Extensions.Hosting.Abstractions" Version="9.0.1" />
 		<PackageReference Include="Diamond.Core.System.TemporaryFolder" Version="9.0.1" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.5" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.6" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -34,9 +36,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Update="C:\Users\Danie\.nuget\packages\diamond.core.commandline.abstractions\9.0.1\contentFiles\any\net9.0\Services\Diamond.Core.CommandLine.Abstractions.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
+		<Content Update="C:\Users\Danie\.nuget\packages\diamond.core.commandline.abstractions\9.0.1\contentFiles\any\net9.0\Services\Diamond.Core.CommandLine.Abstractions.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
 
 </Project>

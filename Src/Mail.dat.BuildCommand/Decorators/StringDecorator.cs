@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Text.RegularExpressions;
 using Humanizer;
 
 namespace Mail.dat.BuildCommand
@@ -137,7 +138,7 @@ namespace Mail.dat.BuildCommand
 			switch (type)
 			{
 				case "decimal":
-					if(required)
+					if (required)
 					{
 						returnValue = "decimal";
 					}
@@ -252,6 +253,66 @@ namespace Mail.dat.BuildCommand
 			}
 
 			return returnValue;
+		}
+
+		private static readonly Dictionary<string, string> AcronymFixes = new()
+		{
+			{ "CBR", "Cbr" },
+			{ "CCR", "Ccr" },
+			{ "CDR", "Cdr" },
+			{ "CFR", "Cfr" },
+			{ "CHR", "Chr" },
+			{ "CPT", "Cpt" },
+			{ "CQT", "Cqt" },
+			{ "CSM", "Csm" },
+			{ "EPD", "Epd" },
+			{ "HDR", "Hdr" },
+			{ "ICR", "Icr" },
+			{ "MCR", "Mcr" },
+			{ "MPA", "Mpa" },
+			{ "MPU", "Mpu" },
+			{ "OCI", "Oci" },
+			{ "PAR", "Par" },
+			{ "PBC", "Pbc" },
+			{ "PDR", "Pdr" },
+			{ "PQT", "Pqt" },
+			{ "RMB", "Rmb" },
+			{ "RMR", "Rmr" },
+			{ "RMS", "Rms" },
+			{ "SEG", "Seg" },
+			{ "SFB", "Sfb" },
+			{ "SFR", "Sfr" },
+			{ "SNR", "Snr" },
+			{ "UPA", "Upa" },
+			{ "WSR", "Wsr" },
+			{ "EMD", "Emd"  },
+			{ "CSA", "Csa"  },
+			{ "ASN", "Asn"  },
+			{ "DMM", "Dmm"  },
+			{ "CIN", "Cin"  },
+			{ "IM", "Im"  },
+			{ "FAST", "Fast"  },
+			{ "FCM", "Fcm"  },
+			{ "CRID", "Crid" },
+			{ "MID", "Mid" },
+			{ "COM", "Com" },
+			{ "ZIP", "Zip" },
+			{ "ID", "Id" },
+			{ "URL", "Url" },
+			{ "HTTP", "Http" },
+			{ "XML", "Xml"  }
+		};
+
+		public static string TruePascalize(this string input)
+		{
+			string result = input.Pascalize();
+
+			foreach (KeyValuePair<string, string> kvp in AcronymFixes)
+			{
+				result = result.Replace(kvp.Key, kvp.Value);
+			}
+
+			return result;
 		}
 	}
 }

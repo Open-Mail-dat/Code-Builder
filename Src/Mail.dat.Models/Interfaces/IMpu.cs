@@ -1,15 +1,13 @@
-// 
+//
 // Copyright (c) 2025 Open Mail.dat
-// 
+//
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
-// 
-// This code was auto-generated on May 30th, 2025.
+//
+// This code was auto-generated on June 14th, 2025.
 // by the Open Mail.dat Code Generator.
-// 
+//
 // Author: Daniel M porrey
-// Version 25.1.0.3
-// 
-
+//
 namespace Mail.dat
 {
 	/// <summary>
@@ -19,13 +17,14 @@ namespace Mail.dat
 	{
 		/// <summary>
 		/// Job ID (MPU-1001)
+		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		string JobID { get; set; }
+		string JobId { get; set; }
 
 		/// <summary>
 		/// Segment ID (MPU-1002)
 		/// </summary>
-		string SegmentID { get; set; }
+		string SegmentId { get; set; }
 
 		/// <summary>
 		/// Mail Piece Unit ID (MPU-1003)
@@ -34,7 +33,7 @@ namespace Mail.dat
 		/// this particular mailing. Any Mail Piece Unit exists within a specific Segment. Therefore,
 		/// Segment/MPU is mutually exclusive. MPU alone is not unique.
 		/// </summary>
-		string MailPieceUnitID { get; set; }
+		string MailPieceUnitId { get; set; }
 
 		/// <summary>
 		/// Mail Piece Unit Name (MPU-1101)
@@ -83,13 +82,13 @@ namespace Mail.dat
 		/// MPU - Weight: Source (MPU-1104)
 		/// Source of Piece Weight.
 		/// </summary>
-		string MPUWeightSource { get; set; }
+		string MpuWeightSource { get; set; }
 
 		/// <summary>
 		/// MPU - Weight: Status (MPU-1105)
 		/// Status of weight data.
 		/// </summary>
-		string MPUWeightStatus { get; set; }
+		string MpuWeightStatus { get; set; }
 
 		/// <summary>
 		/// Mail Piece Unit - Length (MPU-1106)
@@ -139,7 +138,7 @@ namespace Mail.dat
 		/// piece's physical characteristics. - Two MPUs (and associated CPTs) may be necessary to communicate a
 		/// mailing, not just CPTs.
 		/// </summary>
-		string MPUSurcharge { get; set; }
+		string MpuSurcharge { get; set; }
 
 		/// <summary>
 		/// Co-Palletization Code (MPU-1116)
@@ -184,19 +183,19 @@ namespace Mail.dat
 		/// This USPS-assigned id, CRID, will be used to uniquely identify the party responsible for compliance
 		/// with USPS move update requirements. Only digits 0 - 9 acceptable.
 		/// </summary>
-		string MoveUpdateSupplierCRID { get; set; }
+		string MoveUpdateSupplierCrid { get; set; }
 
 		/// <summary>
 		/// Piece Uniqueness Manager CRID (MPU-1131)
 		/// This USPS-assigned id, CRID, will be used to uniquely identify the party responsible for maintaining
 		/// piece IMb® uniqueness. Left justify, space padded to the right, only digits 0 - 9 acceptable.
 		/// </summary>
-		string PieceUniquenessManagerCRID { get; set; }
+		string PieceUniquenessManagerCrid { get; set; }
 
 		/// <summary>
 		/// MPU Record Status (MPU-2000)
 		/// </summary>
-		string MPURecordStatus { get; set; }
+		string MpuRecordStatus { get; set; }
 
 		/// <summary>
 		/// Grouped Extra Service Type (MPU-1133)
@@ -216,12 +215,13 @@ namespace Mail.dat
 		/// is used in the IMpb®. Industry has agreed that for IMpb®, only PDR is the viable option because it
 		/// provides the 11 digit Zip code in the Piece Barcode field.
 		/// </summary>
-		string IMpbBarcodeConstructCode { get; set; }
+		string ImpbBarcodeConstructCode { get; set; }
 
 		/// <summary>
 		/// Reserve (MPU-1121)
+		/// Reserved for future use.
 		/// </summary>
-		string ReserveMPU1121 { get; set; }
+		string ReserveMpu1121 { get; set; }
 
 		/// <summary>
 		/// Closing Character (MPU-9999)

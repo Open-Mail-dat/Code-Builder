@@ -1,15 +1,13 @@
-// 
+//
 // Copyright (c) 2025 Open Mail.dat
-// 
+//
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
-// 
-// This code was auto-generated on May 30th, 2025.
+//
+// This code was auto-generated on June 14th, 2025.
 // by the Open Mail.dat Code Generator.
-// 
+//
 // Author: Daniel M porrey
-// Version 25.1.0.3
-// 
-
+//
 namespace Mail.dat
 {
 	/// <summary>
@@ -19,14 +17,15 @@ namespace Mail.dat
 	{
 		/// <summary>
 		/// Job ID (CSM-1001)
+		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		string JobID { get; set; }
+		string JobId { get; set; }
 
 		/// <summary>
 		/// Segment ID (CSM-1002)
 		/// See Segment File's Segment ID definition.
 		/// </summary>
-		string SegmentID { get; set; }
+		string SegmentId { get; set; }
 
 		/// <summary>
 		/// Container Type (CSM-1005)
@@ -44,14 +43,14 @@ namespace Mail.dat
 		/// within Job. Repetitive Display Container IDs are at the discretion of the production facility
 		/// receiving the respective Mail.dat.
 		/// </summary>
-		int ContainerID { get; set; }
+		int ContainerId { get; set; }
 
 		/// <summary>
 		/// Display Container ID (CSM-1101)
 		/// Meaningful (external to Mail.dat) container ID as defined by specific production application; the
 		/// Postal container label.
 		/// </summary>
-		string DisplayContainerID { get; set; }
+		string DisplayContainerId { get; set; }
 
 		/// <summary>
 		/// Container Grouping Description (CSM-1102)
@@ -131,7 +130,7 @@ namespace Mail.dat
 		/// Populated ONLY for those child containers linked to a parent container; if container is parent only,
 		/// then field is blank.
 		/// </summary>
-		int? ParentContainerReferenceID { get; set; }
+		int? ParentContainerReferenceId { get; set; }
 
 		/// <summary>
 		/// Truck or Dispatch Number (CSM-1110)
@@ -261,14 +260,14 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Total Weight (product only) (CSM-1122)
-		/// Pounds International = Gross Weight.
+		/// 99999999v9999 pounds, (decimal point implied). International = Gross Weight.
 		/// </summary>
 		decimal TotalWeightProductOnly { get; set; }
 
 		/// <summary>
 		/// User Container ID (CSM-1123)
 		/// </summary>
-		string UserContainerID { get; set; }
+		string UserContainerId { get; set; }
 
 		/// <summary>
 		/// Container Status (CSM-1124)
@@ -325,17 +324,17 @@ namespace Mail.dat
 		/// Identifies the original container with which this Sibling Container is associated, if such
 		/// relationship exists. Blank if no such relationship.
 		/// </summary>
-		int? SiblingContainerReferenceID { get; set; }
+		int? SiblingContainerReferenceId { get; set; }
 
 		/// <summary>
 		/// Postage Grouping ID (CSM-1136)
 		/// Identifies that group of containers for which a single Postage Payment was made.
 		/// </summary>
-		string PostageGroupingID { get; set; }
+		string PostageGroupingId { get; set; }
 
 		/// <summary>
 		/// Container Gross Weight (CSM-1137)
-		/// Inclusive of mail and container.
+		/// 99999999v9999, (decimal point implied) Inclusive of mail and container.
 		/// </summary>
 		decimal? ContainerGrossWeight { get; set; }
 
@@ -349,20 +348,20 @@ namespace Mail.dat
 		/// EMD - 8125 ASN Barcode (CSM-1141)
 		/// See EMD Scenario.
 		/// </summary>
-		string EMD8125ASNBarcode { get; set; }
+		string Emd8125AsnBarcode { get; set; }
 
 		/// <summary>
 		/// Transportation Carrier ID (CSM-1142)
 		/// USPS CRID identifying the transporter of mail. Left justify, space padded to the right, only digits
 		/// 0 - 9 acceptable.
 		/// </summary>
-		string TransportationCarrierID { get; set; }
+		string TransportationCarrierId { get; set; }
 
 		/// <summary>
 		/// FAST Content ID (CSM-1162)
 		/// USPS FAST CONTENT ID. This ID identifies the contents (one or more IMcbs) going to an entry point.
 		/// </summary>
-		string FASTContentID { get; set; }
+		string FastContentId { get; set; }
 
 		/// <summary>
 		/// FAST Scheduler ID (CSM-1163)
@@ -371,7 +370,7 @@ namespace Mail.dat
 		/// CRID for eInduction errors invoicing on mis-shipped errors in excess of scorecard thresholds. Left
 		/// justify, space padded to the right, only digits 0 - 9 acceptable.
 		/// </summary>
-		int? FASTSchedulerID { get; set; }
+		int? FastSchedulerId { get; set; }
 
 		/// <summary>
 		/// USPS Pick Up (CSM-1171)
@@ -383,7 +382,7 @@ namespace Mail.dat
 		/// The CSA Separation ID is the separation number as defined in the USPS Guide to Customer/Supplier
 		/// Agreements.
 		/// </summary>
-		int? CSASeparationID { get; set; }
+		int? CsaSeparationId { get; set; }
 
 		/// <summary>
 		/// Scheduled Ship Date (CSM-1172)
@@ -402,7 +401,7 @@ namespace Mail.dat
 		/// Full DMM applicable reference including subsections Example: DMM 300 section 705.8 could be
 		/// represented as 705.8 Section 711.2.1 would be 711.2.1. Minimum value is 3 bytes; example 702.
 		/// </summary>
-		string DMMSectionDefiningContainerPreparation { get; set; }
+		string DmmSectionDefiningContainerPreparation { get; set; }
 
 		/// <summary>
 		/// Label: IM™ Container Or IM™ Tray Barcode - Final (CSM-1150)
@@ -412,7 +411,7 @@ namespace Mail.dat
 		/// scenarios section. Also, if the container is 'Deleted' through a Container Status of 'D', then the
 		/// Container barcode shall not be used/re-used for 45 days after a 'D' flag has been sent to USPS.
 		/// </summary>
-		string LabelIMContainerOrIMTrayBarcodeFinal { get; set; }
+		string LabelImContainerOrImTrayBarcodeFinal { get; set; }
 
 		/// <summary>
 		/// Label: IM™ Container Or IM™ Tray Barcode - Original (CSM-1198)
@@ -422,7 +421,7 @@ namespace Mail.dat
 		/// through a Container Status of 'D', then the Container barcode shall not be used/re-used for 45 days
 		/// after a 'D' flag has been sent to USPS.
 		/// </summary>
-		string LabelIMContainerOrIMTrayBarcodeOriginal { get; set; }
+		string LabelImContainerOrImTrayBarcodeOriginal { get; set; }
 
 		/// <summary>
 		/// Label: Destination Line 1 (CSM-1152)
@@ -465,7 +464,7 @@ namespace Mail.dat
 		/// <summary>
 		/// Label: Container Label CIN Code (CSM-1159)
 		/// </summary>
-		string LabelContainerLabelCINCode { get; set; }
+		string LabelContainerLabelCinCode { get; set; }
 
 		/// <summary>
 		/// User Option Field (CSM-1176)
@@ -484,7 +483,7 @@ namespace Mail.dat
 		/// CSA Agreement ID (CSM-1187)
 		/// Agreement Number generated by the USPS.
 		/// </summary>
-		string CSAAgreementID { get; set; }
+		string CsaAgreementId { get; set; }
 
 		/// <summary>
 		/// Presort Labeling List Effective Date (CSM-1189)
@@ -566,7 +565,7 @@ namespace Mail.dat
 		/// to another logical tray when some mail has been relocated within a bundle-based mailing. The purpose
 		/// is to identify such related trays in order to assist with the verification of a mailing.
 		/// </summary>
-		int? SupplementalPhysicalContainerID { get; set; }
+		int? SupplementalPhysicalContainerId { get; set; }
 
 		/// <summary>
 		/// Accept Misshipped (CSM-1188)
@@ -590,13 +589,15 @@ namespace Mail.dat
 
 		/// <summary>
 		/// CSM Record Status (CSM-2000)
+		/// O, D, I, U.
 		/// </summary>
-		string CSMRecordStatus { get; set; }
+		string CsmRecordStatus { get; set; }
 
 		/// <summary>
 		/// Reserve (CSM-1134)
+		/// Reserved for future use.
 		/// </summary>
-		string ReserveCSM1134 { get; set; }
+		string ReserveCsm1134 { get; set; }
 
 		/// <summary>
 		/// Closing Character (CSM-9999)

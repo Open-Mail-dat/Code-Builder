@@ -1,15 +1,13 @@
-// 
+//
 // Copyright (c) 2025 Open Mail.dat
-// 
+//
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
-// 
-// This code was auto-generated on May 30th, 2025.
+//
+// This code was auto-generated on June 14th, 2025.
 // by the Open Mail.dat Code Generator.
-// 
+//
 // Author: Daniel M porrey
-// Version 25.1.0.3
-// 
-
+//
 namespace Mail.dat
 {
 	/// <summary>
@@ -19,8 +17,9 @@ namespace Mail.dat
 	{
 		/// <summary>
 		/// Job ID (SEG-1001)
+		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		string JobID { get; set; }
+		string JobId { get; set; }
 
 		/// <summary>
 		/// Segment ID (SEG-1002)
@@ -38,7 +37,7 @@ namespace Mail.dat
 		/// available in the Mail.dat. A good example of proper Segmentation would be one segment for domestic
 		/// mail and one segment for USPS International, not a separate Segment for each entry point.
 		/// </summary>
-		string SegmentID { get; set; }
+		string SegmentId { get; set; }
 
 		/// <summary>
 		/// Segment Description (SEG-1101)
@@ -116,7 +115,7 @@ namespace Mail.dat
 		/// ZIP Code of Post Office where postage statement will be finalized (the associated BMEU, not the
 		/// DMU).
 		/// </summary>
-		string VerificationFacilityZIPCode { get; set; }
+		string VerificationFacilityZipCode { get; set; }
 
 		/// <summary>
 		/// L.O.T. Direction Indicator (SEG-1122)
@@ -175,7 +174,7 @@ namespace Mail.dat
 		/// This USPS-assigned id, CRID, will be used by the industry to identify the originator of the Segment.
 		/// Only digits 0 - 9 acceptable.
 		/// </summary>
-		string EDocSenderCRID { get; set; }
+		string EDocSenderCrid { get; set; }
 
 		/// <summary>
 		/// Container and Bundle Charge Method (SEG-1141)
@@ -190,7 +189,7 @@ namespace Mail.dat
 		/// Charge Method is 1 or 2 Unique identifier for the respective MPA within an MPU. Establishes the set
 		/// of MPU copies on one Postage Statement.
 		/// </summary>
-		string MPAIDForContainerAndBundleChargeMethod { get; set; }
+		string MpaIdForContainerAndBundleChargeMethod { get; set; }
 
 		/// <summary>
 		/// Less Than a Presort Segment Presentation (SEG-1145)
@@ -268,31 +267,32 @@ namespace Mail.dat
 		/// than or equal to 3.5 oz then they are separated in containers/trays; otherwise this field is not
 		/// applicable.
 		/// </summary>
-		string FCMLetterResidualPreparationIndicator { get; set; }
+		string FcmLetterResidualPreparationIndicator { get; set; }
 
 		/// <summary>
 		/// Handling Unit Uniqueness Manager CRID (SEG-1184)
 		/// This USPS-assigned id, CRID, will be used to uniquely identify the party responsible for maintaining
 		/// handling unit uniqueness. Left justify, space padded to the right, only digits 0 - 9 acceptable.
 		/// </summary>
-		string HandlingUnitUniquenessManagerCRID { get; set; }
+		string HandlingUnitUniquenessManagerCrid { get; set; }
 
 		/// <summary>
 		/// Container Uniqueness Manager CRID (SEG-1185)
 		/// This USPS-assigned id, CRID, will be used to uniquely identify the party responsible for maintaining
 		/// handling unit uniqueness. Left justify, space padded to the right, only digits 0 - 9 acceptable.
 		/// </summary>
-		string ContainerUniquenessManagerCRID { get; set; }
+		string ContainerUniquenessManagerCrid { get; set; }
 
 		/// <summary>
 		/// SEG Record Status (SEG-2000)
 		/// </summary>
-		string SEGRecordStatus { get; set; }
+		string SegRecordStatus { get; set; }
 
 		/// <summary>
 		/// Reserve (SEG-1127)
+		/// Reserved for future use.
 		/// </summary>
-		string ReserveSEG1127 { get; set; }
+		string ReserveSeg1127 { get; set; }
 
 		/// <summary>
 		/// Closing Character (SEG-9999)

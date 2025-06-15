@@ -184,7 +184,7 @@ namespace Mail.dat.ImportCommand
 							if (current != null)
 							{
 								AnsiConsole.MarkupLine($"SEG count: Expected: {current.SegmentRecordCount:#,###}, Actual {context.Seg.Count():#,###}.");
-								AnsiConsole.MarkupLine($"MCR count: Expected: {current.MPUCRelationshipRecordCount:#,###}, Actual {context.Mcr.Count():#,###}.");
+								AnsiConsole.MarkupLine($"MCR count: Expected: {current.MpuCRelationshipRecordCount:#,###}, Actual {context.Mcr.Count():#,###}.");
 								AnsiConsole.MarkupLine($"CPT count: Expected: {current.ComponentRecordCount:#,###}, Actual {context.Cpt.Count():#,###}.");
 								AnsiConsole.MarkupLine($"MPU count: Expected: {current.MailPieceUnitRecordCount:#,###}, Actual {context.Mpu.Count():#,###}.");
 								AnsiConsole.MarkupLine($"MPA count: Expected: {current.MailerPostageAccountRecordCount:#,###}, Actual {context.Mpa.Count():#,###}.");

@@ -1,39 +1,39 @@
-// 
+//
 // Copyright (c) 2025 Open Mail.dat
-// 
+//
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
-// 
-// This code was auto-generated on May 30th, 2025.
+//
+// This code was auto-generated on June 14th, 2025.
 // by the Open Mail.dat Code Generator.
-// 
+//
 // Author: Daniel M porrey
-// Version 25.1.0.3
-// 
-
+//
 namespace Mail.dat
 {
 	/// <summary>
-	/// Provide detail to verify Saturation or High Density mailings.
+	/// Detail for each Walk Sequence prepared Carrier Route. Provide detail to verify Saturation or High
+	/// Density mailings.
 	/// </summary>
 	public interface IWsr : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (WSR-1001)
+		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		string JobID { get; set; }
+		string JobId { get; set; }
 
 		/// <summary>
 		/// Segment ID (WSR-1002)
 		/// See Segment File's Segment ID definition.
 		/// </summary>
-		string SegmentID { get; set; }
+		string SegmentId { get; set; }
 
 		/// <summary>
 		/// Package ZIP Code (WSR-1013)
 		/// The 5-digit, 3-digit, 6-character or 6-alpha destination of the package defined in the record. Left
 		/// Justify. See package Quantity File's Package Zip Code field's definition.
 		/// </summary>
-		string PackageZIPCode { get; set; }
+		string PackageZipCode { get; set; }
 
 		/// <summary>
 		/// Package CR Number (WSR-1014)
@@ -79,17 +79,18 @@ namespace Mail.dat
 		/// Walk Sequence Database Date (WSR-1104)
 		/// The date of the database from which the walk sequence was secured.
 		/// </summary>
-		DateOnly WalkSequenceDatabaseDate { get; set; }
+		string WalkSequenceDatabaseDate { get; set; }
 
 		/// <summary>
 		/// WSR Record Status (WSR-2000)
 		/// </summary>
-		string WSRRecordStatus { get; set; }
+		string WsrRecordStatus { get; set; }
 
 		/// <summary>
 		/// Reserve (WSR-1105)
+		/// Reserved for future use.
 		/// </summary>
-		string ReserveWSR1105 { get; set; }
+		string ReserveWsr1105 { get; set; }
 
 		/// <summary>
 		/// Closing Character (WSR-9999)

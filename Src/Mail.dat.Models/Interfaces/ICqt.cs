@@ -1,15 +1,13 @@
-// 
+//
 // Copyright (c) 2025 Open Mail.dat
-// 
+//
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
-// 
-// This code was auto-generated on May 30th, 2025.
+//
+// This code was auto-generated on June 14th, 2025.
 // by the Open Mail.dat Code Generator.
-// 
+//
 // Author: Daniel M porrey
-// Version 25.1.0.3
-// 
-
+//
 namespace Mail.dat
 {
 	/// <summary>
@@ -19,8 +17,9 @@ namespace Mail.dat
 	{
 		/// <summary>
 		/// Job ID (CQT-1001)
+		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		string JobID { get; set; }
+		string JobId { get; set; }
 
 		/// <summary>
 		/// CQT Database ID (CQT-1034)
@@ -30,12 +29,12 @@ namespace Mail.dat
 		/// fields the same (except the CQT Database ID). It is also permitted to merge records when their
 		/// fields are the same.
 		/// </summary>
-		int CQTDatabaseID { get; set; }
+		int CqtDatabaseId { get; set; }
 
 		/// <summary>
 		/// Container ID (CQT-1006)
 		/// </summary>
-		int ContainerID { get; set; }
+		int ContainerId { get; set; }
 
 		/// <summary>
 		/// 3 Digit / 5 Digit Container Division (CQT-1007)
@@ -68,7 +67,7 @@ namespace Mail.dat
 		/// within a specific Segment. Therefore, Segment/MPU is mutually exclusive. MPU alone is not unique.
 		/// Must have some value, even if single edition.
 		/// </summary>
-		string MailPieceUnitID { get; set; }
+		string MailPieceUnitId { get; set; }
 
 		/// <summary>
 		/// Zone (CQT-1101)
@@ -145,12 +144,13 @@ namespace Mail.dat
 		/// <summary>
 		/// CQT Record Status (CQT-2000)
 		/// </summary>
-		string CQTRecordStatus { get; set; }
+		string CqtRecordStatus { get; set; }
 
 		/// <summary>
 		/// Reserve (CQT-1106)
+		/// Reserved for future use.
 		/// </summary>
-		string ReserveCQT1106 { get; set; }
+		string ReserveCqt1106 { get; set; }
 
 		/// <summary>
 		/// Closing Character (CQT-9999)

@@ -1,14 +1,13 @@
-// 
+//
 // Copyright (c) 2025 Open Mail.dat
-// 
+//
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
-// 
-// This code was auto-generated on May 30th, 2025.
+//
+// This code was auto-generated on June 14th, 2025.
 // by the Open Mail.dat Code Generator.
-// 
+//
 // Author: Daniel M porrey
-// Version 25.1.0.3
-// 
+//
 using Diamond.Core.Repository.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -20,12 +19,12 @@ namespace Mail.dat
 	/// </summary>
 	public partial class MaildatContext : RepositoryContext<MaildatContext> 
 	{
-		public MaildatContext()
+		public  MaildatContext()
 			 : base()
 		{
 		}
 
-		public MaildatContext(ILogger<MaildatContext> logger, DbContextOptions<MaildatContext> options)
+		public  MaildatContext(ILogger<MaildatContext> logger, DbContextOptions<MaildatContext> options)
 			 : base(logger, options)
 		{
 			logger.LogDebug("Created {context}.", nameof(MaildatContext));
@@ -156,86 +155,86 @@ namespace Mail.dat
 			//
 			// Add indices for the Key properties.
 			//
-			modelBuilder.Entity<Cbr>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Cbr>().HasIndex(t => t.CertificateOfMailingHeaderID);
-			modelBuilder.Entity<Cbr>().HasIndex(t => t.BulkRecordID);
-			modelBuilder.Entity<Ccr>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Ccr>().HasIndex(t => t.ComponentID);
+			modelBuilder.Entity<Cbr>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Cbr>().HasIndex(t => t.CertificateOfMailingHeaderId);
+			modelBuilder.Entity<Cbr>().HasIndex(t => t.BulkRecordId);
+			modelBuilder.Entity<Ccr>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Ccr>().HasIndex(t => t.ComponentId);
 			modelBuilder.Entity<Ccr>().HasIndex(t => t.CharacteristicType);
 			modelBuilder.Entity<Ccr>().HasIndex(t => t.Characteristic);
-			modelBuilder.Entity<Cdr>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Cdr>().HasIndex(t => t.CertificateOfMailingHeaderID);
-			modelBuilder.Entity<Cdr>().HasIndex(t => t.COMPieceID);
-			modelBuilder.Entity<Cfr>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Cfr>().HasIndex(t => t.CertificateOfMailingHeaderID);
-			modelBuilder.Entity<Cfr>().HasIndex(t => t.COMPieceID);
+			modelBuilder.Entity<Cdr>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Cdr>().HasIndex(t => t.CertificateOfMailingHeaderId);
+			modelBuilder.Entity<Cdr>().HasIndex(t => t.ComPieceId);
+			modelBuilder.Entity<Cfr>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Cfr>().HasIndex(t => t.CertificateOfMailingHeaderId);
+			modelBuilder.Entity<Cfr>().HasIndex(t => t.ComPieceId);
 			modelBuilder.Entity<Cfr>().HasIndex(t => t.ServiceType);
-			modelBuilder.Entity<Chr>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Chr>().HasIndex(t => t.CertificateOfMailingHeaderID);
-			modelBuilder.Entity<Cpt>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Cpt>().HasIndex(t => t.ComponentID);
-			modelBuilder.Entity<Cqt>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Cqt>().HasIndex(t => t.CQTDatabaseID);
-			modelBuilder.Entity<Csm>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Csm>().HasIndex(t => t.ContainerID);
-			modelBuilder.Entity<Epd>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Epd>().HasIndex(t => t.PieceID);
-			modelBuilder.Entity<Epd>().HasIndex(t => t.CRIDType);
-			modelBuilder.Entity<Hdr>().HasIndex(t => t.JobID);
+			modelBuilder.Entity<Chr>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Chr>().HasIndex(t => t.CertificateOfMailingHeaderId);
+			modelBuilder.Entity<Cpt>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Cpt>().HasIndex(t => t.ComponentId);
+			modelBuilder.Entity<Cqt>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Cqt>().HasIndex(t => t.CqtDatabaseId);
+			modelBuilder.Entity<Csm>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Csm>().HasIndex(t => t.ContainerId);
+			modelBuilder.Entity<Epd>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Epd>().HasIndex(t => t.PieceId);
+			modelBuilder.Entity<Epd>().HasIndex(t => t.CridType);
+			modelBuilder.Entity<Hdr>().HasIndex(t => t.JobId);
 			modelBuilder.Entity<Hdr>().HasIndex(t => t.HeaderHistorySequenceNumber);
-			modelBuilder.Entity<Icr>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Icr>().HasIndex(t => t.ContainerID);
-			modelBuilder.Entity<Mcr>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Mcr>().HasIndex(t => t.SegmentID);
-			modelBuilder.Entity<Mcr>().HasIndex(t => t.MailPieceUnitID);
-			modelBuilder.Entity<Mcr>().HasIndex(t => t.ComponentID);
-			modelBuilder.Entity<Mpa>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Mpa>().HasIndex(t => t.MPAUniqueSequenceGroupingID);
-			modelBuilder.Entity<Mpu>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Mpu>().HasIndex(t => t.SegmentID);
-			modelBuilder.Entity<Mpu>().HasIndex(t => t.MailPieceUnitID);
-			modelBuilder.Entity<Oci>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Oci>().HasIndex(t => t.ContainerID);
-			modelBuilder.Entity<Par>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Par>().HasIndex(t => t.SegmentID);
-			modelBuilder.Entity<Par>().HasIndex(t => t.MailPieceUnitID);
-			modelBuilder.Entity<Par>().HasIndex(t => t.ComponentID);
+			modelBuilder.Entity<Icr>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Icr>().HasIndex(t => t.ContainerId);
+			modelBuilder.Entity<Mcr>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Mcr>().HasIndex(t => t.SegmentId);
+			modelBuilder.Entity<Mcr>().HasIndex(t => t.MailPieceUnitId);
+			modelBuilder.Entity<Mcr>().HasIndex(t => t.ComponentId);
+			modelBuilder.Entity<Mpa>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Mpa>().HasIndex(t => t.MpaUniqueSequenceGroupingId);
+			modelBuilder.Entity<Mpu>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Mpu>().HasIndex(t => t.SegmentId);
+			modelBuilder.Entity<Mpu>().HasIndex(t => t.MailPieceUnitId);
+			modelBuilder.Entity<Oci>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Oci>().HasIndex(t => t.ContainerId);
+			modelBuilder.Entity<Par>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Par>().HasIndex(t => t.SegmentId);
+			modelBuilder.Entity<Par>().HasIndex(t => t.MailPieceUnitId);
+			modelBuilder.Entity<Par>().HasIndex(t => t.ComponentId);
 			modelBuilder.Entity<Par>().HasIndex(t => t.SequenceNumber);
-			modelBuilder.Entity<Pbc>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Pbc>().HasIndex(t => t.PBCUniqueID);
-			modelBuilder.Entity<Pdr>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Pdr>().HasIndex(t => t.PieceID);
-			modelBuilder.Entity<Pqt>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Pqt>().HasIndex(t => t.CQTDatabaseID);
-			modelBuilder.Entity<Pqt>().HasIndex(t => t.PackageID);
-			modelBuilder.Entity<Rmb>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Rmb>().HasIndex(t => t.RMSID);
+			modelBuilder.Entity<Pbc>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Pbc>().HasIndex(t => t.PbcUniqueId);
+			modelBuilder.Entity<Pdr>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Pdr>().HasIndex(t => t.PieceId);
+			modelBuilder.Entity<Pqt>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Pqt>().HasIndex(t => t.CqtDatabaseId);
+			modelBuilder.Entity<Pqt>().HasIndex(t => t.PackageId);
+			modelBuilder.Entity<Rmb>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Rmb>().HasIndex(t => t.RmsId);
 			modelBuilder.Entity<Rmb>().HasIndex(t => t.Barcode);
-			modelBuilder.Entity<Rmb>().HasIndex(t => t.RMBContentType);
-			modelBuilder.Entity<Rmr>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Rmr>().HasIndex(t => t.RMRID);
-			modelBuilder.Entity<Rmr>().HasIndex(t => t.RMRIDType);
-			modelBuilder.Entity<Rmr>().HasIndex(t => t.RMRContentType);
-			modelBuilder.Entity<Rms>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Rms>().HasIndex(t => t.RMSID);
-			modelBuilder.Entity<Seg>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Seg>().HasIndex(t => t.SegmentID);
-			modelBuilder.Entity<Sfb>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Sfb>().HasIndex(t => t.PieceID);
-			modelBuilder.Entity<Sfr>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Sfr>().HasIndex(t => t.PieceID);
+			modelBuilder.Entity<Rmb>().HasIndex(t => t.RmbContentType);
+			modelBuilder.Entity<Rmr>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Rmr>().HasIndex(t => t.RmrId);
+			modelBuilder.Entity<Rmr>().HasIndex(t => t.RmrIdType);
+			modelBuilder.Entity<Rmr>().HasIndex(t => t.RmrContentType);
+			modelBuilder.Entity<Rms>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Rms>().HasIndex(t => t.RmsId);
+			modelBuilder.Entity<Seg>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Seg>().HasIndex(t => t.SegmentId);
+			modelBuilder.Entity<Sfb>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Sfb>().HasIndex(t => t.PieceId);
+			modelBuilder.Entity<Sfr>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Sfr>().HasIndex(t => t.PieceId);
 			modelBuilder.Entity<Sfr>().HasIndex(t => t.ServiceType);
-			modelBuilder.Entity<Snr>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Snr>().HasIndex(t => t.ContainerID);
-			modelBuilder.Entity<Snr>().HasIndex(t => t.PackageID);
-			modelBuilder.Entity<Snr>().HasIndex(t => t.MailPieceUnitID);
-			modelBuilder.Entity<Snr>().HasIndex(t => t.SeedNameID);
+			modelBuilder.Entity<Snr>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Snr>().HasIndex(t => t.ContainerId);
+			modelBuilder.Entity<Snr>().HasIndex(t => t.PackageId);
+			modelBuilder.Entity<Snr>().HasIndex(t => t.MailPieceUnitId);
+			modelBuilder.Entity<Snr>().HasIndex(t => t.SeedNameId);
 			modelBuilder.Entity<Snr>().HasIndex(t => t.VersionKeyCode);
-			modelBuilder.Entity<Upa>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Upa>().HasIndex(t => t.PieceID);
-			modelBuilder.Entity<Wsr>().HasIndex(t => t.JobID);
-			modelBuilder.Entity<Wsr>().HasIndex(t => t.SegmentID);
-			modelBuilder.Entity<Wsr>().HasIndex(t => t.PackageZIPCode);
+			modelBuilder.Entity<Upa>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Upa>().HasIndex(t => t.PieceId);
+			modelBuilder.Entity<Wsr>().HasIndex(t => t.JobId);
+			modelBuilder.Entity<Wsr>().HasIndex(t => t.SegmentId);
+			modelBuilder.Entity<Wsr>().HasIndex(t => t.PackageZipCode);
 			modelBuilder.Entity<Wsr>().HasIndex(t => t.PackageCRNumber);
 			modelBuilder.Entity<Wsr>().HasIndex(t => t.CoPalletizationCode);
 		}

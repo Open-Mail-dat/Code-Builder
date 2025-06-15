@@ -4,11 +4,8 @@ namespace Mail.dat.Json.Specification
 {
 	public class FileDefinition
 	{
-		[JsonIgnore]
-		public int Ordinal { get; set; }
-
 		[JsonProperty("file")]
-		public string File { get; set; }
+		public string FileName { get; set; }
 
 		[JsonProperty("fileExtension")]
 		public string FileExtension { get; set; }
@@ -20,6 +17,6 @@ namespace Mail.dat.Json.Specification
 		public string FileDescription { get; set; }
 
 		[JsonProperty("recordDefinitions")]
-		public List<RecordDefinition> RecordDefinitions { get; set; }
+		public List<RecordDefinition> RecordDefinitions { get; set; } = [];
 	}
 }

@@ -1,15 +1,13 @@
-// 
+//
 // Copyright (c) 2025 Open Mail.dat
-// 
+//
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
-// 
-// This code was auto-generated on May 30th, 2025.
+//
+// This code was auto-generated on June 14th, 2025.
 // by the Open Mail.dat Code Generator.
-// 
+//
 // Author: Daniel M porrey
-// Version 25.1.0.3
-// 
-
+//
 namespace Mail.dat
 {
 	/// <summary>
@@ -24,7 +22,7 @@ namespace Mail.dat
 		/// the Historical Job ID that retains the initial ID throughout its existence. Job IDs are user
 		/// managed, but must remain unique within one User License Code.
 		/// </summary>
-		string JobID { get; set; }
+		string JobId { get; set; }
 
 		/// <summary>
 		/// Mail.dat Version (HDR-1101)
@@ -38,7 +36,7 @@ namespace Mail.dat
 		/// etc. Current Active Header would be next in the series, hence the record with the lowest History
 		/// Sequence value. Header History Status field (see next) also denotes current active header.
 		/// </summary>
-		int HeaderHistorySequenceNumber { get; set; }
+		string HeaderHistorySequenceNumber { get; set; }
 
 		/// <summary>
 		/// Header History Status (HDR-1148)
@@ -57,7 +55,7 @@ namespace Mail.dat
 		/// processors do not disturb this field. Successive processors will only change the Header History
 		/// Status field in this record from C to H.
 		/// </summary>
-		string HistoricalJobID { get; set; }
+		string HistoricalJobId { get; set; }
 
 		/// <summary>
 		/// Licensed User's Job Number (HDR-1102)
@@ -148,12 +146,12 @@ namespace Mail.dat
 		/// MPU / C Relationship Record Count (HDR-1115)
 		/// The number of MPU / C Relationship records in this Mail.dat.
 		/// </summary>
-		int MPUCRelationshipRecordCount { get; set; }
+		int MpuCRelationshipRecordCount { get; set; }
 
 		/// <summary>
 		/// MPU / C Relationship File Status (HDR-1116)
 		/// </summary>
-		string MPUCRelationshipFileStatus { get; set; }
+		string MpuCRelationshipFileStatus { get; set; }
 
 		/// <summary>
 		/// Mailer Postage Account Record Count (HDR-1158)
@@ -478,7 +476,7 @@ namespace Mail.dat
 		/// Zone Matrix Date (HDR-1160)
 		/// (cannot be all zeros).
 		/// </summary>
-		DateOnly? ZoneMatrixDate { get; set; }
+		string ZoneMatrixDate { get; set; }
 
 		/// <summary>
 		/// eDoc Sender CRID (HDR-1183)
@@ -487,7 +485,7 @@ namespace Mail.dat
 		/// business role, called the eDoc submitter, which may be different from the mail preparer, mail owner,
 		/// mail transporter, and scheduler roles. Only digits 0-9 acceptable.
 		/// </summary>
-		string EDocSenderCRID { get; set; }
+		string EDocSenderCrid { get; set; }
 
 		/// <summary>
 		/// Information Exchange (HDR-1182)

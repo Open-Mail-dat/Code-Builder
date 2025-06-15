@@ -33,7 +33,7 @@ namespace Mail.dat.Io
 			(bool returnValue, MaildatContext context) = (true, null);
 
 			await this.FireProgressUpdateAsync(new ProgressMessage() { ItemName = "Import", ItemAction = ProgressMessageType.Start, Message = "Import" });
-			
+
 			try
 			{
 				//
@@ -46,6 +46,15 @@ namespace Mail.dat.Io
 						throw new Exception($"The file '{options.SourceFile.FilePath}' could not be unzipped.");
 					}
 				}
+
+				//
+				// Get the version.
+				//
+				string version = (from tbl in File.ReadAllLines(options.SourceFile.HeaderFilePath)
+								  let ver = tbl.Substring(8, 4)
+								  let status = tbl.Substring(16, 1)
+								  where status == "C"
+								  select ver).SingleOrDefault();
 
 				//
 				// Generate a connection string using the database
@@ -91,7 +100,7 @@ namespace Mail.dat.Io
 				//
 				// Forward the progress events.
 				//
-				FileImporter fileImporter = new()
+				SingleFileImporter fileImporter = new()
 				{
 					ProgressUpdateAsync = async (item) =>
 					{
@@ -102,7 +111,7 @@ namespace Mail.dat.Io
 				//
 				// Get the ImportAsync method from the FileImporter class.
 				//
-				MethodInfo method = typeof(FileImporter).GetMethod("ImportAsync");
+				MethodInfo method = typeof(SingleFileImporter).GetMethod("ImportAsync");
 
 				//
 				// Using a transaction boosts performance.
@@ -131,7 +140,7 @@ namespace Mail.dat.Io
 							//
 							// Invoke the generic method with the fileImporter instance and the options.
 							//
-							genericMethod.Invoke(fileImporter, [options, context, options.CancellationToken]);
+							genericMethod.Invoke(fileImporter, [options, version, context, options.CancellationToken]);
 						}
 					});
 				}

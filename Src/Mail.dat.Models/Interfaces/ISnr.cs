@@ -1,42 +1,42 @@
-// 
+//
 // Copyright (c) 2025 Open Mail.dat
-// 
+//
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
-// 
-// This code was auto-generated on May 30th, 2025.
+//
+// This code was auto-generated on June 14th, 2025.
 // by the Open Mail.dat Code Generator.
-// 
+//
 // Author: Daniel M porrey
-// Version 25.1.0.3
-// 
-
+//
 namespace Mail.dat
 {
 	/// <summary>
-	/// Identifies package/container of seed names within the presort.
+	/// Detail for each tracking program address. Identifies package/container of seed names within the
+	/// presort.
 	/// </summary>
 	public interface ISnr : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (SNR-1001)
+		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		string JobID { get; set; }
+		string JobId { get; set; }
 
 		/// <summary>
 		/// Container ID (SNR-1006)
 		/// </summary>
-		int ContainerID { get; set; }
+		int ContainerId { get; set; }
 
 		/// <summary>
 		/// Package ID (SNR-1012)
 		/// The unique code for this package within this container.
 		/// </summary>
-		string PackageID { get; set; }
+		string PackageId { get; set; }
 
 		/// <summary>
 		/// Mail Piece Unit ID (SNR-1003)
 		/// </summary>
-		string MailPieceUnitID { get; set; }
+		string MailPieceUnitId { get; set; }
 
 		/// <summary>
 		/// Seed Name ID (SNR-1016)
@@ -46,7 +46,7 @@ namespace Mail.dat
 		/// tracked. General seed lists (example: all managers at the catalog) will not require feedback of this
 		/// nature from the list house.
 		/// </summary>
-		string SeedNameID { get; set; }
+		string SeedNameId { get; set; }
 
 		/// <summary>
 		/// Version Key Code (SNR-1017)
@@ -84,7 +84,7 @@ namespace Mail.dat
 		/// the Piece Barcode field identified above for routing ZIP barcode alone. The IM™ Barcode shall remain
 		/// unique for 45 days.
 		/// </summary>
-		string IMBarcode { get; set; }
+		string ImBarcode { get; set; }
 
 		/// <summary>
 		/// User Option Field (SNR-1110)
@@ -95,12 +95,13 @@ namespace Mail.dat
 		/// <summary>
 		/// SNR Record Status (SNR-2000)
 		/// </summary>
-		string SNRRecordStatus { get; set; }
+		string SnrRecordStatus { get; set; }
 
 		/// <summary>
 		/// Reserve (SNR-1103)
+		/// Reserved for future use.
 		/// </summary>
-		string ReserveSNR1103 { get; set; }
+		string ReserveSnr1103 { get; set; }
 
 		/// <summary>
 		/// Closing Character (SNR-9999)

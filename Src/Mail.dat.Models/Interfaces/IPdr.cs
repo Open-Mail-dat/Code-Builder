@@ -1,46 +1,45 @@
-// 
+//
 // Copyright (c) 2025 Open Mail.dat
-// 
+//
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
-// 
-// This code was auto-generated on May 30th, 2025.
+//
+// This code was auto-generated on June 14th, 2025.
 // by the Open Mail.dat Code Generator.
-// 
+//
 // Author: Daniel M porrey
-// Version 25.1.0.3
-// 
-
+//
 namespace Mail.dat
 {
 	/// <summary>
-	/// Provides piece level detail required of full service mailings; has additional capabilities beyond
-	/// the Piece Barcode file; when used instead of the Piece Barcode file, acts as an extension of the PQT
-	/// file.
+	/// Quantity, rate, weight, and destination per piece (manifest). Provides piece level detail required
+	/// of full service mailings; has additional capabilities beyond the Piece Barcode file; when used
+	/// instead of the Piece Barcode file, acts as an extension of the PQT file.
 	/// </summary>
 	public interface IPdr : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (PDR-1001)
+		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		string JobID { get; set; }
+		string JobId { get; set; }
 
 		/// <summary>
 		/// CQT Database ID (PDR-1034)
 		/// </summary>
-		int CQTDatabaseID { get; set; }
+		int CqtDatabaseId { get; set; }
 
 		/// <summary>
 		/// Package ID (PDR-1012)
 		/// The unique code for this package within this container. note: may use XXXXXX, if no packages
 		/// created.).
 		/// </summary>
-		string PackageID { get; set; }
+		string PackageId { get; set; }
 
 		/// <summary>
 		/// Piece ID (PDR-1018)
 		/// Unique ID of individual piece within mailing.
 		/// </summary>
-		string PieceID { get; set; }
+		string PieceId { get; set; }
 
 		/// <summary>
 		/// Piece Barcode (PDR-1108)
@@ -77,7 +76,7 @@ namespace Mail.dat
 		/// To be used for IM™ barcode only. This field not to be used to specify routing ZIP Barcode alone; use
 		/// the Piece Barcode field identified above for routing ZIP barcode alone.
 		/// </summary>
-		string IMBarcode { get; set; }
+		string ImBarcode { get; set; }
 
 		/// <summary>
 		/// Machine ID (PDR-1124)
@@ -86,7 +85,7 @@ namespace Mail.dat
 		/// completed, this field will allow attribution of barcode quality to a single machine during the
 		/// Seamless Acceptance postage assessment process.
 		/// </summary>
-		string MachineID { get; set; }
+		string MachineId { get; set; }
 
 		/// <summary>
 		/// Mailer ID of Barcode Applicator (PDR-1126)
@@ -94,7 +93,7 @@ namespace Mail.dat
 		/// each mail piece (e.g. Mail Owner, Mailing Agent, etc) . Completion of this field provides additional
 		/// information used to attribute barcode  quality. Only digits 0 - 9 acceptable.
 		/// </summary>
-		string MailerIDOfBarcodeApplicator { get; set; }
+		string MailerIdOfBarcodeApplicator { get; set; }
 
 		/// <summary>
 		/// Move Update Method (PDR-1127)
@@ -119,17 +118,17 @@ namespace Mail.dat
 		/// Populate when IMpb® is used.  This code identifies which combination of ZIP, MID, and serial number
 		/// is used in the IMpb®.
 		/// </summary>
-		string IMpbBarcodeConstructCode { get; set; }
+		string ImpbBarcodeConstructCode { get; set; }
 
 		/// <summary>
 		/// MID in IMb® is Move Update Supplier (PDR-1132)
 		/// </summary>
-		string MIDInIMbIsMoveUpdateSupplier { get; set; }
+		string MidInImbIsMoveUpdateSupplier { get; set; }
 
 		/// <summary>
 		/// PDR Record Status (PDR-2000)
 		/// </summary>
-		string PDRRecordStatus { get; set; }
+		string PdrRecordStatus { get; set; }
 
 		/// <summary>
 		/// Closing Character (PDR-9999)

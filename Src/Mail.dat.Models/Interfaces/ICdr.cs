@@ -1,44 +1,44 @@
-// 
+//
 // Copyright (c) 2025 Open Mail.dat
-// 
+//
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
-// 
-// This code was auto-generated on May 30th, 2025.
+//
+// This code was auto-generated on June 14th, 2025.
 // by the Open Mail.dat Code Generator.
-// 
+//
 // Author: Daniel M porrey
-// Version 25.1.0.3
-// 
-
+//
 namespace Mail.dat
 {
 	/// <summary>
-	/// Provide the detailed information that is present on the Certificate of Mail Forms.
+	/// Is used to capture the Detail information that is present on the Certificate of Mail Forms. Provide
+	/// the detailed information that is present on the Certificate of Mail Forms.
 	/// </summary>
 	public interface ICdr : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (CDR-1001)
+		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		string JobID { get; set; }
+		string JobId { get; set; }
 
 		/// <summary>
 		/// Certificate Of Mailing Header ID (CDR-1002)
 		/// Unique ID of the Certificate of Mailing Header Record.
 		/// </summary>
-		string CertificateOfMailingHeaderID { get; set; }
+		string CertificateOfMailingHeaderId { get; set; }
 
 		/// <summary>
 		/// COM Piece ID (CDR-1003)
 		/// Unique ID of individual piece within mailing.
 		/// </summary>
-		string COMPieceID { get; set; }
+		string ComPieceId { get; set; }
 
 		/// <summary>
 		/// Firm Specific ID (CDR-1101)
 		/// Submitter's unique ID of the record.
 		/// </summary>
-		string FirmSpecificID { get; set; }
+		string FirmSpecificId { get; set; }
 
 		/// <summary>
 		/// USPS Tracking Number (CDR-1102)
@@ -126,7 +126,7 @@ namespace Mail.dat
 		/// Piece ID (CDR-1115)
 		/// Set for Future Use - Unique ID of individual piece within a mailing.
 		/// </summary>
-		string PieceID { get; set; }
+		string PieceId { get; set; }
 
 		/// <summary>
 		/// Flex Option A (CDR-1116)
@@ -150,12 +150,12 @@ namespace Mail.dat
 		/// Reserve (CDR-1119)
 		/// Reserved for future use.
 		/// </summary>
-		string ReserveCDR1119 { get; set; }
+		string ReserveCdr1119 { get; set; }
 
 		/// <summary>
 		/// CDR Record Status (CDR-2000)
 		/// </summary>
-		string CDRRecordStatus { get; set; }
+		string CdrRecordStatus { get; set; }
 
 		/// <summary>
 		/// Closing Character (CDR-9999)

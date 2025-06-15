@@ -1,15 +1,13 @@
-// 
+//
 // Copyright (c) 2025 Open Mail.dat
-// 
+//
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
-// 
-// This code was auto-generated on May 30th, 2025.
+//
+// This code was auto-generated on June 14th, 2025.
 // by the Open Mail.dat Code Generator.
-// 
+//
 // Author: Daniel M porrey
-// Version 25.1.0.3
-// 
-
+//
 namespace Mail.dat
 {
 	/// <summary>
@@ -19,20 +17,21 @@ namespace Mail.dat
 	{
 		/// <summary>
 		/// Job ID (PQT-1001)
+		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		string JobID { get; set; }
+		string JobId { get; set; }
 
 		/// <summary>
 		/// CQT Database ID (PQT-1034)
 		/// See Container Quantity File's CQT Database ID definition.
 		/// </summary>
-		int CQTDatabaseID { get; set; }
+		int CqtDatabaseId { get; set; }
 
 		/// <summary>
 		/// Package ID (PQT-1012)
 		/// The unique code for this package within this container.
 		/// </summary>
-		string PackageID { get; set; }
+		string PackageId { get; set; }
 
 		/// <summary>
 		/// Package ZIP Code (PQT-1013)
@@ -42,7 +41,7 @@ namespace Mail.dat
 		/// or Postal Code: CANADA = if Canadian AOFRGN = if all other foreign MEXICO = if for Mexico USA = if
 		/// for U.S. Domestic International: (ex: FRCDGA = FR CDG A).
 		/// </summary>
-		string PackageZIPCode { get; set; }
+		string PackageZipCode { get; set; }
 
 		/// <summary>
 		/// Package Carrier Route (PQT-1101)
@@ -55,6 +54,12 @@ namespace Mail.dat
 		/// See Below.
 		/// </summary>
 		string PackageLevel { get; set; }
+
+		/// <summary>
+		/// Package Preparation Type (PQT-1115)
+		/// Populate in the scenario when CSM Tray Preparation Type is set to M = Mixed).
+		/// </summary>
+		string PackagePreparationType { get; set; }
 
 		/// <summary>
 		/// Number of Copies (PQT-1103)
@@ -73,8 +78,8 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Bundle Charge Allocation (PQT-1113)
-		/// Proportion, rounded This field is to be used for denoting the proportion of cost of its bundle that
-		/// it's carrying.
+		/// 9v999999 - proportion, rounded, (decimal point implied) This field is to be used for denoting the
+		/// proportion of cost of its bundle that it's carrying.
 		/// </summary>
 		decimal? BundleChargeAllocation { get; set; }
 
@@ -82,17 +87,18 @@ namespace Mail.dat
 		/// Combo-Pack ID (PQT-1114)
 		/// The unique code for this combo-pack within this package.
 		/// </summary>
-		string ComboPackID { get; set; }
+		string ComboPackId { get; set; }
 
 		/// <summary>
 		/// PQT Record Status (PQT-2000)
 		/// </summary>
-		string PQTRecordStatus { get; set; }
+		string PqtRecordStatus { get; set; }
 
 		/// <summary>
 		/// Reserve (PQT-1105)
+		/// Reserved for future use.
 		/// </summary>
-		string ReservePQT1105 { get; set; }
+		string ReservePqt1105 { get; set; }
 
 		/// <summary>
 		/// Closing Character (PQT-9999)

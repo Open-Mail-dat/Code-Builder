@@ -95,7 +95,7 @@
 			//
 			// Write the method name
 			//
-			File.AppendAllText(filePath, $"{Tabs.Create(indentLevel)}{(this.Scope ?? "")}{(this.ReturnType ?? "")} {this.Name}(");
+			File.AppendAllText(filePath, $"{Tabs.Create(indentLevel)}{(this.Scope ?? "")} {(this.ReturnType ?? "")} {this.Name}(");
 
 			if (this.Parameters != null)
 			{

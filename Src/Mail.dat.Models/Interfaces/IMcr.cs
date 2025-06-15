@@ -1,15 +1,13 @@
-// 
+//
 // Copyright (c) 2025 Open Mail.dat
-// 
+//
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
-// 
-// This code was auto-generated on May 30th, 2025.
+//
+// This code was auto-generated on June 14th, 2025.
 // by the Open Mail.dat Code Generator.
-// 
+//
 // Author: Daniel M porrey
-// Version 25.1.0.3
-// 
-
+//
 namespace Mail.dat
 {
 	/// <summary>
@@ -19,20 +17,21 @@ namespace Mail.dat
 	{
 		/// <summary>
 		/// Job ID (MCR-1001)
+		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		string JobID { get; set; }
+		string JobId { get; set; }
 
 		/// <summary>
 		/// Segment ID (MCR-1002)
 		/// See Segment File's Segment ID definition.
 		/// </summary>
-		string SegmentID { get; set; }
+		string SegmentId { get; set; }
 
 		/// <summary>
 		/// Mail Piece Unit ID (MCR-1003)
 		/// Left justify, must have some value, even if single edition.See MPU File's MPU ID definition.
 		/// </summary>
-		string MailPieceUnitID { get; set; }
+		string MailPieceUnitId { get; set; }
 
 		/// <summary>
 		/// Component ID (MCR-1004)
@@ -45,25 +44,25 @@ namespace Mail.dat
 		/// necessary detail and simply clone that which is in the Mail Piece Unit ID field. Therefore, there
 		/// will always be at least one Component within any Mail Piece Unit.
 		/// </summary>
-		string ComponentID { get; set; }
+		string ComponentId { get; set; }
 
 		/// <summary>
 		/// Primary MPA ID (MCR-1102)
 		/// From MPA - Unique Sequence/Grouping ID.
 		/// </summary>
-		string PrimaryMPAID { get; set; }
+		string PrimaryMpaId { get; set; }
 
 		/// <summary>
 		/// Additional Postage MPA ID (MCR-1103)
 		/// From MPA - Unique Sequence/Grouping ID.
 		/// </summary>
-		string AdditionalPostageMPAID { get; set; }
+		string AdditionalPostageMpaId { get; set; }
 
 		/// <summary>
 		/// Host Statement Component ID (MCR-1104)
 		/// List Code.
 		/// </summary>
-		string HostStatementComponentID { get; set; }
+		string HostStatementComponentId { get; set; }
 
 		/// <summary>
 		/// Host Indicator of Ad Computation (MCR-1105)
@@ -76,17 +75,18 @@ namespace Mail.dat
 		/// Postage Adjustments to be paid from a separate permit. Unique identifier for the respective MPA
 		/// within an MPU. Establishes the set of MPU pieces on one Postage Statement.
 		/// </summary>
-		string PostageAdjustmentMPAID { get; set; }
+		string PostageAdjustmentMpaId { get; set; }
 
 		/// <summary>
 		/// MCR Record Status (MCR-2000)
 		/// </summary>
-		string MCRRecordStatus { get; set; }
+		string McrRecordStatus { get; set; }
 
 		/// <summary>
 		/// Reserve (MCR-1101)
+		/// Reserved for future use.
 		/// </summary>
-		string ReserveMCR1101 { get; set; }
+		string ReserveMcr1101 { get; set; }
 
 		/// <summary>
 		/// Closing Character (MCR-9999)

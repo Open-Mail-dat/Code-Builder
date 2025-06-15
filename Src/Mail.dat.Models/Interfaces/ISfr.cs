@@ -1,38 +1,38 @@
-// 
+//
 // Copyright (c) 2025 Open Mail.dat
-// 
+//
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
-// 
-// This code was auto-generated on May 30th, 2025.
+//
+// This code was auto-generated on June 14th, 2025.
 // by the Open Mail.dat Code Generator.
-// 
+//
 // Author: Daniel M porrey
-// Version 25.1.0.3
-// 
-
+//
 namespace Mail.dat
 {
 	/// <summary>
-	/// Records specific ancillary fees (linked to the .PDR or .PBC). To be only used for extra services.
+	/// Special fees and charges (linked to .PDR). Records specific ancillary fees (linked to the .PDR or
+	/// .PBC). To be only used for extra services.
 	/// </summary>
 	public interface ISfr : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (SFR-1001)
+		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		string JobID { get; set; }
+		string JobId { get; set; }
 
 		/// <summary>
 		/// CQT Database ID (SFR-1006)
 		/// See Container Quantity File's CQT Database ID definition.
 		/// </summary>
-		int CQTDatabaseID { get; set; }
+		int CqtDatabaseId { get; set; }
 
 		/// <summary>
 		/// Piece ID (SFR-1018)
 		/// Unique ID of individual piece within a mailing.
 		/// </summary>
-		string PieceID { get; set; }
+		string PieceId { get; set; }
 
 		/// <summary>
 		/// Service Type (SFR-1019)
@@ -58,14 +58,14 @@ namespace Mail.dat
 		/// Dollars/cents, rounded. Actual Postal dollars & cents incurred in costs for the specific piece for
 		/// one or more fees or charges noted above.
 		/// </summary>
-		decimal? ServiceFee { get; set; }
+		decimal ServiceFee { get; set; }
 
 		/// <summary>
 		/// Special Fees/Charges Services ID (SFR-1103)
 		/// Long Number unique for this set of services within the Job and Segment. Cannot mix services of two
 		/// different IDs within the same record.
 		/// </summary>
-		string SpecialFeesChargesServicesID { get; set; }
+		string SpecialFeesChargesServicesId { get; set; }
 
 		/// <summary>
 		/// Amount Due (SFR-1120)
@@ -77,12 +77,13 @@ namespace Mail.dat
 		/// <summary>
 		/// SFR Record Status (SFR-2000)
 		/// </summary>
-		string SFRRecordStatus { get; set; }
+		string SfrRecordStatus { get; set; }
 
 		/// <summary>
 		/// Reserve (SFR-1104)
+		/// Reserved for future use.
 		/// </summary>
-		string ReserveSFR1104 { get; set; }
+		string ReserveSfr1104 { get; set; }
 
 		/// <summary>
 		/// Closing Character (SFR-9999)

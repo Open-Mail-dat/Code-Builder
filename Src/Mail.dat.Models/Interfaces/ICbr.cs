@@ -1,38 +1,38 @@
-// 
+//
 // Copyright (c) 2025 Open Mail.dat
-// 
+//
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
-// 
-// This code was auto-generated on May 30th, 2025.
+//
+// This code was auto-generated on June 14th, 2025.
 // by the Open Mail.dat Code Generator.
-// 
+//
 // Author: Daniel M porrey
-// Version 25.1.0.3
-// 
-
+//
 namespace Mail.dat
 {
 	/// <summary>
+	/// Is used to capture the bulk form information that is present on the Certificate of Mailing Forms.
 	/// Provides the bulk form information that is present on the Certificate of Mailing Forms.
 	/// </summary>
 	public interface ICbr : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (CBR-1001)
+		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		string JobID { get; set; }
+		string JobId { get; set; }
 
 		/// <summary>
 		/// Certificate Of Mailing Header ID (CBR-1002)
 		/// Unique ID of the Certificate of Mailing Header Record.
 		/// </summary>
-		string CertificateOfMailingHeaderID { get; set; }
+		string CertificateOfMailingHeaderId { get; set; }
 
 		/// <summary>
 		/// Bulk Record ID (CBR-1003)
 		/// Unique ID of the Certificate of Mailing Bulk Record.
 		/// </summary>
-		string BulkRecordID { get; set; }
+		string BulkRecordId { get; set; }
 
 		/// <summary>
 		/// Number of Identical Pieces (CBR-1101)
@@ -90,13 +90,14 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Reserve (CBR-1110)
+		/// Reserved for future use.
 		/// </summary>
-		string ReserveCBR1110 { get; set; }
+		string ReserveCbr1110 { get; set; }
 
 		/// <summary>
 		/// CBR Record Status (CBR-2000)
 		/// </summary>
-		string CBRRecordStatus { get; set; }
+		string CbrRecordStatus { get; set; }
 
 		/// <summary>
 		/// Closing Character (CBR-9999)

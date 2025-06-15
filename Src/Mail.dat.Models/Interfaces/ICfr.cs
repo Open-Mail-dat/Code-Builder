@@ -1,39 +1,39 @@
-// 
+//
 // Copyright (c) 2025 Open Mail.dat
-// 
+//
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
-// 
-// This code was auto-generated on May 30th, 2025.
+//
+// This code was auto-generated on June 14th, 2025.
 // by the Open Mail.dat Code Generator.
-// 
+//
 // Author: Daniel M porrey
-// Version 25.1.0.3
-// 
-
+//
 namespace Mail.dat
 {
 	/// <summary>
-	/// Provides the fee information that is present on the Certificate of Mail Forms.
+	/// Is used to capture the service fee information. Provides the fee information that is present on the
+	/// Certificate of Mail Forms.
 	/// </summary>
 	public interface ICfr : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (CFR-1001)
+		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		string JobID { get; set; }
+		string JobId { get; set; }
 
 		/// <summary>
 		/// Certificate Of Mailing Header ID (CFR-1002)
 		/// Unique ID of the Certificate of Mailing Header Record.
 		/// </summary>
-		string CertificateOfMailingHeaderID { get; set; }
+		string CertificateOfMailingHeaderId { get; set; }
 
 		/// <summary>
 		/// COM Piece ID (CFR-1003)
 		/// Unique ID of individual piece within mailing. Only linked to COM Detail Record. In the future this
 		/// record may be replaced by SFR.
 		/// </summary>
-		string COMPieceID { get; set; }
+		string ComPieceId { get; set; }
 
 		/// <summary>
 		/// Service Type (CFR-1004)
@@ -66,7 +66,7 @@ namespace Mail.dat
 		/// Long Number unique for this set of services within the Job and Segment. Cannot mix services of two
 		/// different IDs within the same record.
 		/// </summary>
-		string SpecialFeesChargesServicesID { get; set; }
+		string SpecialFeesChargesServicesId { get; set; }
 
 		/// <summary>
 		/// Amount Due (CFR-1105)
@@ -95,13 +95,14 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Reserve (CFR-1109)
+		/// Reserved for future use.
 		/// </summary>
-		string ReserveCFR1109 { get; set; }
+		string ReserveCfr1109 { get; set; }
 
 		/// <summary>
 		/// CFR Record Status (CFR-2000)
 		/// </summary>
-		string CFRRecordStatus { get; set; }
+		string CfrRecordStatus { get; set; }
 
 		/// <summary>
 		/// Closing Character (CFR-9999)

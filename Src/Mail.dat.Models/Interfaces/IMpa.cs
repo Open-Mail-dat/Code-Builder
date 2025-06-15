@@ -1,15 +1,13 @@
-// 
+//
 // Copyright (c) 2025 Open Mail.dat
-// 
+//
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
-// 
-// This code was auto-generated on May 30th, 2025.
+//
+// This code was auto-generated on June 14th, 2025.
 // by the Open Mail.dat Code Generator.
-// 
+//
 // Author: Daniel M porrey
-// Version 25.1.0.3
-// 
-
+//
 namespace Mail.dat
 {
 	/// <summary>
@@ -19,21 +17,22 @@ namespace Mail.dat
 	{
 		/// <summary>
 		/// Job ID (MPA-1001)
+		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		string JobID { get; set; }
+		string JobId { get; set; }
 
 		/// <summary>
 		/// MPA Unique Sequence/Grouping ID (MPA-1002)
 		/// Unique identifier for the respective MPA within an MPU Establishes the set of MPU pieces on one
 		/// Postage Statement.
 		/// </summary>
-		string MPAUniqueSequenceGroupingID { get; set; }
+		string MpaUniqueSequenceGroupingId { get; set; }
 
 		/// <summary>
 		/// MPA Description (MPA-1101)
 		/// Describes the MPA.
 		/// </summary>
-		string MPADescription { get; set; }
+		string MpaDescription { get; set; }
 
 		/// <summary>
 		/// USPS Publication Number (MPA-1102)
@@ -54,7 +53,7 @@ namespace Mail.dat
 		/// Permit ZIP+4 (MPA-1106)
 		/// (ex: 543219876 or A1A1A1___) (International: left justify, blank pad: 54321----).
 		/// </summary>
-		string PermitZIP4 { get; set; }
+		string PermitZip4 { get; set; }
 
 		/// <summary>
 		/// Mail Owner's Lcl Permit Ref Num/Int'l Bill Num (MPA-1107)
@@ -79,8 +78,9 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Customer Reference ID (MPA-1110)
+		/// Left justify, space added.
 		/// </summary>
-		string CustomerReferenceID { get; set; }
+		string CustomerReferenceId { get; set; }
 
 		/// <summary>
 		/// Postage Payment Method (MPA-1111)
@@ -109,25 +109,25 @@ namespace Mail.dat
 		/// Mailer ID of Mail Owner (MPA-1121)
 		/// USPS assigned ID Only digits 0 - 9 acceptable.
 		/// </summary>
-		string MailerIDOfMailOwner { get; set; }
+		string MailerIdOfMailOwner { get; set; }
 
 		/// <summary>
 		/// CRID of Mail Owner (MPA-1122)
-		/// USPS assigned ID Only digits 0 - 9 acceptable.
+		/// USPS assigned ID Left justify, space padded to the right, only digits 0 - 9 acceptable.
 		/// </summary>
-		string CRIDOfMailOwner { get; set; }
+		string CridOfMailOwner { get; set; }
 
 		/// <summary>
 		/// Mailer ID of Preparer (MPA-1123)
 		/// USPS assigned ID Only digits 0 - 9 acceptable.
 		/// </summary>
-		string MailerIDOfPreparer { get; set; }
+		string MailerIdOfPreparer { get; set; }
 
 		/// <summary>
 		/// CRID of Preparer (MPA-1124)
-		/// USPS assigned ID Only digits 0 - 9 acceptable.
+		/// USPS assigned ID Left justify, space padded to the right, only digits 0 - 9 acceptable.
 		/// </summary>
-		string CRIDOfPreparer { get; set; }
+		string CridOfPreparer { get; set; }
 
 		/// <summary>
 		/// User Option Field (MPA-1126)
@@ -147,12 +147,13 @@ namespace Mail.dat
 		/// <summary>
 		/// MPA Record Status (MPA-2000)
 		/// </summary>
-		string MPARecordStatus { get; set; }
+		string MpaRecordStatus { get; set; }
 
 		/// <summary>
 		/// Reserve (MPA-1116)
+		/// Reserved for future use.
 		/// </summary>
-		string ReserveMPA1116 { get; set; }
+		string ReserveMpa1116 { get; set; }
 
 		/// <summary>
 		/// Closing Character (MPA-9999)

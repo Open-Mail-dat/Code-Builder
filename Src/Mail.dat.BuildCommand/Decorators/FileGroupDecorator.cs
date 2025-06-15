@@ -1,0 +1,219 @@
+﻿using Humanizer;
+using Mail.dat.Json.Specification;
+
+namespace Mail.dat.BuildCommand
+{
+	public static class FileGroupDecorator
+	{
+		public static FileDefinition FileDefinition(this FileGroup fileGroup, string version)
+		{
+			return fileGroup.Items.Where(t => t.Version.Major == version).Single().FileDefinition;
+		}
+
+		public static string Name(this FileGroup fileGroup, string version)
+		{
+			return fileGroup.FileDefinition(version).FileName.Transform(To.LowerCase).Sanitize().Transform(To.TitleCase).AddRecord();
+		}
+
+		public static string FileExtension(this FileGroup fileGroup, string version)
+		{
+			return fileGroup.FileDefinition(version).FileExtension.ToLower();
+		}
+
+		public static string Summary(this FileGroup fileGroup, string version)
+		{
+			return fileGroup.FileDefinition(version).FileSummary.Sanitize().Transform(To.SentenceCase).EndSentence();
+		}
+
+		public static string Description(this FileGroup fileGroup, string version)
+		{
+			string summary = fileGroup.Summary(version);
+			string description = fileGroup.FileDefinition(version).FileDescription.Sanitize().Transform(To.SentenceCase).EndSentence();
+
+			return $"{summary} {description}".Trim();
+		}
+
+		public static int Length(this FileGroup fileGroup, string fieldCode)
+		{
+			return fileGroup.Items.SelectMany(t => t.FileDefinition.RecordDefinitions)
+								  .Where(t => t.FieldCode == fieldCode)
+								  .Max(t => t.Length);
+		}
+
+		public static string ReturnType(this FileGroup fileGroup, string fieldCode)
+		{
+			string returnValue = null;
+
+			IEnumerable<string> types = fileGroup.Items.SelectMany(t => t.FileDefinition.RecordDefinitions)
+														.Where(t => t.FieldCode == fieldCode)
+														.Select(t => t.Data.Type)
+														.GroupBy(g => g)
+														.OrderBy(g => g.Key)
+														.Select(g => g.Key);
+
+			IEnumerable<bool> required = fileGroup.Items.SelectMany(t => t.FileDefinition.RecordDefinitions)
+														.Where(t => t.FieldCode == fieldCode && t.Required)
+														.Select(t => t.Required)
+														.GroupBy(g => g)
+														.OrderBy(g => g.Key)
+														.Select(g => g.Key);
+
+			IEnumerable<string> dataType = fileGroup.Items.SelectMany(t => t.FileDefinition.RecordDefinitions)
+														.Where(t => t.FieldCode == fieldCode)
+														.Select(t => t.DataType)
+														.GroupBy(g => g)
+														.OrderBy(g => g.Key)
+														.Select(g => g.Key);
+
+			if (types.Count() > 1)
+			{
+				returnValue = "string".ToDotNetType("A/N", required.Any());
+			}
+			else
+			{
+				returnValue = types.Single().ToDotNetType(dataType.FirstOrDefault(), required.Any());
+			}
+
+			return returnValue;
+		}
+
+		public static IEnumerable<AttributeBuilder> AddMaildatFileAttributes(this FileGroup fileGroup)
+		{
+			IList<AttributeBuilder> returnValue = [];
+
+			foreach (FileDefinitionList item in fileGroup.Items)
+			{
+				returnValue.Add(AttributeBuilder.Create("MaildatFile")
+								.AddParameter("Version", item.Version.Major)
+								.AddParameter("Revision", item.Version.Revision)
+								.AddParameter("Extension", item.FileDefinition.FileExtension)
+								.AddParameter("File", item.FileDefinition.FileName)
+								.AddParameter("Summary", fileGroup.Summary(item.Version.Major))
+								.AddParameter("Description", fileGroup.Description(item.Version.Major))
+								.AddParameter("LineLength", item.FileDefinition.RecordDefinitions.TotalLineLength())
+								.AddParameter("ClosingCharacter", "#"));
+			}
+
+			return returnValue;
+		}
+
+		public static IEnumerable<AttributeBuilder> AddMaildatImportAttributes(this FileGroup fileGroup)
+		{
+			IList<AttributeBuilder> returnValue = [];
+
+			foreach (FileDefinitionList item in fileGroup.Items)
+			{
+				returnValue.Add(AttributeBuilder.Create("MaildatImport")
+							.AddParameter("Order", fileGroup.Ordinal)
+							.AddParameter("Version", item.Version.Major));
+			}
+
+			return returnValue;
+		}
+
+		public static IEnumerable<AttributeBuilder> AddMaildatFieldAttributes(this FileGroup fileGroup, string fieldCode)
+		{
+			IList<AttributeBuilder> returnValue = [];
+
+			foreach (FileDefinitionList item in fileGroup.Items)
+			{
+				RecordDefinition field = item.FileDefinition.RecordDefinitions.Where(t => t.FieldCode == fieldCode).FirstOrDefault();
+
+				if (field != null)
+				{
+					//
+					// Add the Mail.dat attribute to preserve the specification values
+					// and make them available to developers.
+					//
+					returnValue.Add(AttributeBuilder.Create("MaildatField")
+						.AddParameter("Version", item.Version.Major)
+						.AddParameter("Extension", fileGroup.FileExtension)
+						.AddParameter("FieldCode", field.FieldCode)
+						.AddParameter("FieldName", field.FieldName.Sanitize().Transform(To.SentenceCase))
+						.AddParameter("Start", field.Start)
+						.AddParameter("Length", field.Length)
+						.AddParameter("Required", field.Required)
+						.AddParameter("Key", field.Key)
+						.AddParameter("DataType", field.DataType)
+						.AddParameter("Default", field.Default)
+						.AddParameter("Description", field.Description())
+						.AddParameter("Type", field.Data.Type)
+						.AddParameter("Format", field.Data.Format)
+						.AddConditionalParameter(field.Data.Precision.HasValue, "Precision", field.Data.Precision)
+						.AddConditionalParameter(field.Data.References != null && field.Data.References.Count != 0, "References", string.Join(",", field.Data.References)));
+				}
+			}
+
+			return returnValue;
+		}
+
+		public static IEnumerable<RecordDefinition> RecordDefinitions(this FileGroup fileGroup)
+		{
+			IList<RecordDefinition> returnValue = [];
+
+			returnValue = fileGroup.Items
+								.SelectMany(f => f.FileDefinition.RecordDefinitions.Select(rd => new
+								{
+									Record = rd,
+									f.Version,
+									rd.FieldCode
+								}))
+								.GroupBy(x => x.FieldCode)
+								.Select(g => g
+									.OrderByDescending(x => x.Version, new VersionInfoComparer())
+									.First().Record)
+								.ToList();
+
+			return returnValue;
+		}
+
+		public static IEnumerable<string> AllowedValueKeys(this FileGroup fileGroup, string fieldCode)
+		{
+			IEnumerable<string> returnValue = [];
+
+			returnValue = fileGroup.Items.SelectMany(t => t.FileDefinition.RecordDefinitions)
+										 .Where(t => t.FieldCode == fieldCode)
+										 .SelectMany(t => t.Data.Values.Keys)
+										 .GroupBy(g => g)
+										 .OrderBy(g => g.Key)
+										 .Select(g => g.Key);
+
+			return returnValue;
+		}
+
+		public static IEnumerable<AllowedValue> AllowedValues(this FileGroup fileGroup, string fieldCode)
+		{
+			IEnumerable<AllowedValue> returnValue = [];
+
+			returnValue = fileGroup.Items.SelectMany(t => t.FileDefinition.RecordDefinitions.Select(s => new { t.Version, RecordDefinition = s }))
+										 .Where(t => t.RecordDefinition.FieldCode == fieldCode)
+										 .SelectMany(t => t.RecordDefinition.Data.Values.Select(s => new { t.Version, s.Key, s.Value }))
+										 .OrderBy(g => g.Key)
+										 .ThenBy(g => g.Version.Major)
+										 .Select(g => new AllowedValue() { Version = g.Version, Key = g.Key, Value = g.Value })
+										 .ToArray();
+
+			return returnValue;
+		}
+
+		public static AttributeBuilder MaildatVersionsAttribute(this FileGroup fileGroup)
+		{
+			string[] versions = fileGroup.Items.Select(t => t.Version.Major).ToArray();
+			string parameter = string.Join(", ", versions.Select(t => $"\"{t}\""));
+			return AttributeBuilder.Create("MaildatVersions").AddParameter("", parameter, false);
+		}
+
+		public static AttributeBuilder MaildatVersionsAttribute(this FileGroup fileGroup, string fieldCode)
+		{
+			string[] versions = fileGroup.Items.SelectMany(t => t.FileDefinition.RecordDefinitions.Select(s => new { t.Version, RecordDefinition = s }))
+										 .Where(t => t.RecordDefinition.FieldCode == fieldCode)
+										 .Select(t => t.Version)
+										 .GroupBy(g => g.Major)
+										 .Select(g => g.Key)
+										 .ToArray();
+
+			string parameter = string.Join(", ", versions.Select(t => $"\"{t}\""));
+			return AttributeBuilder.Create("MaildatVersions").AddParameter("", parameter, false);
+		}
+	}
+}

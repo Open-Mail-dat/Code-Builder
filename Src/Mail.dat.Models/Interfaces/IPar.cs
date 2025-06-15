@@ -1,41 +1,41 @@
-// 
+//
 // Copyright (c) 2025 Open Mail.dat
-// 
+//
 // This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
-// 
-// This code was auto-generated on May 30th, 2025.
+//
+// This code was auto-generated on June 14th, 2025.
 // by the Open Mail.dat Code Generator.
-// 
+//
 // Author: Daniel M porrey
-// Version 25.1.0.3
-// 
-
+//
 namespace Mail.dat
 {
 	/// <summary>
-	/// Notes technique and reports postage adjustment per container.
+	/// Technique and amount for adjustment per container. Notes technique and reports postage adjustment
+	/// per container.
 	/// </summary>
 	public interface IPar : IMaildatEntity 
 	{
 		/// <summary>
 		/// Job ID (PAR-1001)
+		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		string JobID { get; set; }
+		string JobId { get; set; }
 
 		/// <summary>
 		/// Segment ID (PAR-1002)
 		/// </summary>
-		string SegmentID { get; set; }
+		string SegmentId { get; set; }
 
 		/// <summary>
 		/// Mail Piece Unit ID (PAR-1003)
 		/// </summary>
-		string MailPieceUnitID { get; set; }
+		string MailPieceUnitId { get; set; }
 
 		/// <summary>
 		/// Component ID (PAR-1004)
 		/// </summary>
-		string ComponentID { get; set; }
+		string ComponentId { get; set; }
 
 		/// <summary>
 		/// Sequence Number (PAR-1024)
@@ -87,7 +87,7 @@ namespace Mail.dat
 		/// Unique identifier for the respective MPA within an MPU. Establishes the set of MPU pieces on one
 		/// Postage Statement.
 		/// </summary>
-		string MPAUniqueSequenceGroupingID { get; set; }
+		string MpaUniqueSequenceGroupingId { get; set; }
 
 		/// <summary>
 		/// User Option Field (PAR-1129)
@@ -98,12 +98,13 @@ namespace Mail.dat
 		/// <summary>
 		/// PAR Record Status (PAR-2000)
 		/// </summary>
-		string PARRecordStatus { get; set; }
+		string ParRecordStatus { get; set; }
 
 		/// <summary>
 		/// Reserve (PAR-1107)
+		/// Reserved for future use.
 		/// </summary>
-		string ReservePAR1107 { get; set; }
+		string ReservePar1107 { get; set; }
 
 		/// <summary>
 		/// Closing Character (PAR-9999)

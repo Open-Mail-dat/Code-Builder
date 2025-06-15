@@ -4,11 +4,11 @@ using Mail.dat.Io.Models;
 
 namespace Mail.dat.Io
 {
-	internal class FileImporter
+	internal class SingleFileImporter
 	{
 		public ProgressAsyncDelegate ProgressUpdateAsync { get; set; }
 
-		public async Task<bool> ImportAsync<T>(IImportOptions options, MaildatContext context, CancellationToken cancellationToken) where T : class, IMaildatEntity, new()
+		public async Task<bool> ImportAsync<T>(IImportOptions options, string version, MaildatContext context, CancellationToken cancellationToken) where T : class, IMaildatEntity, new()
 		{
 			bool returnValue = true;
 
@@ -50,7 +50,7 @@ namespace Mail.dat.Io
 					//
 					BulkConfig bc = new()
 					{
-						PreserveInsertOrder = false			
+						PreserveInsertOrder = false
 					};
 
 					//
@@ -115,7 +115,7 @@ namespace Mail.dat.Io
 									//
 									// Load the data into the model.
 									//
-									ILoadError[] loadErrors = await model.ImportDataAsync(lineNumber + 1, buffer.AsSpan());
+									ILoadError[] loadErrors = await model.ImportDataAsync(version, lineNumber + 1, buffer.AsSpan());
 
 									if (options.FavorMemoryOverPerformance)
 									{
@@ -123,6 +123,7 @@ namespace Mail.dat.Io
 										{
 											if (modelBuffer.Count > options.MaxRecordsInMemory)
 											{
+												modelBuffer.Add(model);
 												context.BulkInsert(modelBuffer, bulkConfig: bc);
 												modelBuffer.Clear();
 											}

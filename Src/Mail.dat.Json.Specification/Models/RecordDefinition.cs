@@ -26,10 +26,10 @@ namespace Mail.dat.Json.Specification
 		public string DataType { get; set; }
 
 		[JsonProperty("description")]
-		public List<string> Description { get; set; }
+		public List<string> Description { get; set; } = [];
 
 		[JsonProperty("data")]
-		public FieldData Data { get; set; }
+		public FieldData Data { get; set; } = new();
 
 		[JsonProperty("default")]
 		public string Default { get; set; }

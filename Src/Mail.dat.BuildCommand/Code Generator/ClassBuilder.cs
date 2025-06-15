@@ -11,7 +11,7 @@
 		public string ObjectType { get; internal set; }
 		public string Scope { get; internal set; }
 		public SummaryBuilder Summary { get; internal set; }
-		public CommentBuilder HeaderComments { get; internal set; }
+		public CommentBuilder HeaderComments { get; internal set; } = new();
 		public List<PropertyBuilder> Properties { get; } = [];
 		public List<MethodBuilder> Methods { get; } = [];
 		public bool IsPartial { get; internal set; } = false;
@@ -24,6 +24,12 @@
 		public ClassBuilder AddAttributes(params IEnumerable<AttributeBuilder> attributes)
 		{
 			this.Attributes.AddRange(attributes);
+			return this;
+		}
+
+		public ClassBuilder AddAttributes(params IEnumerable<IEnumerable<AttributeBuilder>> attributes)
+		{
+			this.Attributes.AddRange(attributes.SelectMany(t => t));
 			return this;
 		}
 
@@ -103,7 +109,7 @@
 		{
 			this.Methods.Add(method);
 			return this;
-		}	
+		}
 
 		public ClassBuilder Build(string filePath, int indentLevel = 0)
 		{
@@ -129,7 +135,10 @@
 			//
 			// Write the namespace.
 			//
-			File.AppendAllLines(filePath, [""]);
+			if (this.Using.Count != 0)
+			{
+				File.AppendAllLines(filePath, [""]);
+			}
 			File.AppendAllLines(filePath, [$"namespace {this.NameSpace}"]);
 			File.AppendAllLines(filePath, ["{"]);
 

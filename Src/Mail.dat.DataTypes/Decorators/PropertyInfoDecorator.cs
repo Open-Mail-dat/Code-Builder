@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -47,7 +46,12 @@ namespace Mail.dat
 			return returnValue;
 		}
 
-		public static TValue ParseForImport<TModel, TValue>(this ReadOnlySpan<byte> line, Expression<Func<TModel, TValue>> propertyExpression, IList<ILoadError> errors)
+		public static MaildatFieldAttribute GetMaildatFieldAttribute(this PropertyInfo propertyInfo, string version)
+		{
+			return propertyInfo.GetCustomAttributes<MaildatFieldAttribute>().Where(t => t.Version == version).SingleOrDefault();
+		}
+
+		public static TValue ParseForImport<TModel, TValue>(this ReadOnlySpan<byte> line, string version, Expression<Func<TModel, TValue>> propertyExpression, IList<ILoadError> errors)
 		{
 			TValue returnValue = default;
 
@@ -59,39 +63,58 @@ namespace Mail.dat
 				//
 				// Get attribute from the property.
 				//
-				MaildatFieldAttribute attribute = propInfo.GetCustomAttribute<MaildatFieldAttribute>();
+				MaildatFieldAttribute attribute = propInfo.GetMaildatFieldAttribute(version);
 
-				//
-				// Get the type converter defined in the property attribute.
-				//
-				TypeConverter typeConverter = propInfo.GetTypeConverter();
-
-				//
-				// Convert the string value to the property type using the type converter.
-				//
-				string value = Encoding.ASCII.GetString(line.Slice(attribute.Start - 1, attribute.Length)).Trim(); 
-				// Encoding.UTF8.GetString(line, attribute.Start - 1, attribute.Length);
-
-				try
+				if (attribute != null)
 				{
 					//
-					// try to convert.
+					// Get the type converter defined in the property attribute.
 					//
-					returnValue = (TValue)typeConverter.ConvertFrom(new ConverterContext(value, propInfo.GetCustomAttribute<MaildatFieldAttribute>()), CultureInfo.CurrentCulture, value);
-				}
-				catch (Exception ex)
-				{
+					TypeConverter typeConverter = propInfo.GetTypeConverter();
+
 					//
-					// If the conversion fails, set the load error.
+					// Convert the string value to the property type using the type converter.
 					//
-					lock (errors)
+					string value = Encoding.ASCII.GetString(line.Slice(attribute.Start - 1, attribute.Length)).Trim();
+
+					try
 					{
-						errors.Add(new LoadError()
+						//
+						// Try to convert to an object.
+						//
+						object convertedValue = typeConverter.ConvertFrom(new ConverterContext(value, attribute), CultureInfo.CurrentCulture, value);
+
+						//
+						// If a field was defined as a string due to multiple specifications
+						// with differing return types, we will convert the result to a string.
+						//
+						if (typeof(TValue) == typeof(string))
 						{
-							Attribute = attribute,
-							Value = value,
-							ErrorMessage = ex.Message
-						});
+							//
+							// Convert the value to a string.
+							//
+							convertedValue = Convert.ToString(convertedValue);
+						}
+
+						//
+						// Cast the object value to the return type.
+						//
+						returnValue = (TValue)convertedValue;
+					}
+					catch (Exception ex)
+					{
+						//
+						// If the conversion fails, set the load error.
+						//
+						lock (errors)
+						{
+							errors.Add(new LoadError()
+							{
+								Attribute = attribute,
+								Value = value,
+								ErrorMessage = ex.Message
+							});
+						}
 					}
 				}
 			}
@@ -99,7 +122,7 @@ namespace Mail.dat
 			return returnValue;
 		}
 
-		public static string FormatForExport<TModel, TValue>(this TValue value, Expression<Func<TModel, TValue>> propertyExpression)
+		public static string FormatForExport<TModel, TValue>(this TValue value, string version, Expression<Func<TModel, TValue>> propertyExpression)
 		{
 			string returnValue = null;
 
@@ -108,21 +131,26 @@ namespace Mail.dat
 			//
 			if (propertyExpression.Body is MemberExpression memberExpr && memberExpr.Member is PropertyInfo propInfo)
 			{
-				//
-				// Get the type converter defined in the property attribute.
-				//
-				TypeConverter typeConverter = propInfo.GetTypeConverter();
+				MaildatFieldAttribute attribute = propInfo.GetMaildatFieldAttribute(version);
 
-				try
+				if (attribute != null)
 				{
 					//
-					// Try to convert.
+					// Get the type converter defined in the property attribute.
 					//
-					returnValue = typeConverter.ConvertToString(new ConverterContext(value, propInfo.GetCustomAttribute<MaildatFieldAttribute>()), value);
-				}
-				catch
-				{
+					TypeConverter typeConverter = propInfo.GetTypeConverter();
 
+					try
+					{
+						//
+						// Try to convert.
+						//
+						returnValue = typeConverter.ConvertToString(new ConverterContext(value, attribute), value);
+					}
+					catch
+					{
+
+					}
 				}
 			}
 

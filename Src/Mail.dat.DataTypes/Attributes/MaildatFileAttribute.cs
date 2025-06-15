@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Attribute to specify the characteristics of a Maildat fle.
 	/// </summary>
-	[AttributeUsage(AttributeTargets.Class)]
+	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
     public class MaildatFileAttribute : Attribute
     {
         public MaildatFileAttribute()
