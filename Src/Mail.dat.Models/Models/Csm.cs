@@ -1,12 +1,27 @@
 //
-// Copyright (c) 2025 Open Mail.dat
+// This file is part of Open Mail.dat.
+// Copyright (c) 2025 Open Mail.dat. All rights reserved.
 //
-// This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
+// ************************************************************************************************************************
+// License Agreement:
 //
-// This code was auto-generated on June 14th, 2025.
-// by the Open Mail.dat Code Generator.
+// Open Mail.dat is free software: you can redistribute it and/or modify it under the terms of the
+// GNU LESSER GENERAL PUBLIC LICENSE as published by the Free Software Foundation, either version 3
+// of the License, or (at your option) any later version.
+// Open Mail.dat is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+// even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU LESSER GENERAL PUBLIC LICENSE for more details.
+// You should have received three files as part of the license agreemen for Open Mail.dat.
 //
-// Author: Daniel M porrey
+// LICENSE.md (GNU Lesser General Public License)
+// LICENSE-GPL3.md (GNU General Public License)
+// LICENSE-ADDENDUM.md (Attribution and Public Use Addendum to the GNU Lesser General Public License v3.0 (LGPL-3.0))
+//
+// If not, see <https://www.gnu.org/licenses/>.
+// ************************************************************************************************************************
+//
+// This code was auto-generated on June 15th, 2025 by the Open Mail.dat Code Generator.
+// Code Generator Author: Daniel M porrey
 //
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +35,7 @@ namespace Mail.dat
 	/// Quantity, weights and destination per container.
 	/// </summary>
 	[MaildatFile(Version = "23-1", Revision = "0.5", Extension = "csm", File = "Container Summary Record", Summary = "Quantity, weights and destination per container.", Description = "Quantity, weights and destination per container.", LineLength = 790, ClosingCharacter = "#")]
-	[MaildatFile(Version = "24-1", Revision = "1.3", Extension = "csm", File = "Container Summary Record", Summary = "Quantity, weights and destination per container.", Description = "Quantity, weights and destination per container.", LineLength = 790, ClosingCharacter = "#")]
+	[MaildatFile(Version = "24-1", Revision = "1.5", Extension = "csm", File = "Container Summary Record", Summary = "Quantity, weights and destination per container.", Description = "Quantity, weights and destination per container.", LineLength = 790, ClosingCharacter = "#")]
 	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "csm", File = "Container Summary Record", Summary = "Quantity, weights and destination per container.", Description = "Quantity, weights and destination per container.", LineLength = 790, ClosingCharacter = "#")]
 	[MaildatImport(Order = 8, Version = "23-1")]
 	[MaildatImport(Order = 8, Version = "24-1")]
@@ -34,7 +49,7 @@ namespace Mail.dat
 		/// Job ID (CSM-1001)
 		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "csm", FieldCode = "CSM-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "See header file's Job ID definition.", Type = "string", Format = "zfillnumeric")]
+		[MaildatField(Version = "23-1", Extension = "csm", FieldCode = "CSM-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "(Zero fill prior to numeric, if numeric only). See Header File’s Job Id.", Type = "string", Format = "zfillnumeric", References = "HDR-1001")]
 		[MaildatField(Version = "24-1", Extension = "csm", FieldCode = "CSM-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "(Zero fill prior to numeric, if numeric only). See Header File’s Job Id.", Type = "string", Format = "zfillnumeric", References = "HDR-1001")]
 		[MaildatField(Version = "25-1", Extension = "csm", FieldCode = "CSM-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "(Zero fill prior to numeric, if numeric only). See Header File’s Job Id.", Type = "string", Format = "zfillnumeric", References = "HDR-1001")]
 		[Column("JobId", Order = 2, TypeName = "TEXT")]
@@ -50,7 +65,7 @@ namespace Mail.dat
 		/// Segment ID (CSM-1002)
 		/// See Segment File's Segment ID definition.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "csm", FieldCode = "CSM-1002", FieldName = "Segment ID", Start = 9, Length = 4, Required = true, Key = false, DataType = "A/N", Description = "See Segment File's Segment ID definition.", Type = "string", Format = "zfillnumeric")]
+		[MaildatField(Version = "23-1", Extension = "csm", FieldCode = "CSM-1002", FieldName = "Segment ID", Start = 9, Length = 4, Required = true, Key = false, DataType = "A/N", Description = "See Segment File's Segment ID definition.", Type = "string", Format = "zfillnumeric", References = "SEG-1002")]
 		[MaildatField(Version = "24-1", Extension = "csm", FieldCode = "CSM-1002", FieldName = "Segment ID", Start = 9, Length = 4, Required = true, Key = false, DataType = "A/N", Description = "See Segment File's Segment ID definition.", Type = "string", Format = "zfillnumeric", References = "SEG-1002")]
 		[MaildatField(Version = "25-1", Extension = "csm", FieldCode = "CSM-1002", FieldName = "Segment ID", Start = 9, Length = 4, Required = true, Key = false, DataType = "A/N", Description = "See Segment File's Segment ID definition.", Type = "string", Format = "zfillnumeric", References = "SEG-1002")]
 		[Column("SegmentId", Order = 3, TypeName = "TEXT")]
@@ -104,7 +119,7 @@ namespace Mail.dat
 		/// Meaningful (external to Mail.dat) container ID as defined by specific production application; the
 		/// Postal container label.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "csm", FieldCode = "CSM-1101", FieldName = "Display Container ID", Start = 21, Length = 6, Required = true, Key = false, DataType = "A/N", Description = "Meaningful (external to Mail.dat) container ID as defined by specific production application; the Postal container label.", Type = "integer", Format = "zfillnumeric")]
+		[MaildatField(Version = "23-1", Extension = "csm", FieldCode = "CSM-1101", FieldName = "Display Container ID", Start = 21, Length = 6, Required = true, Key = false, DataType = "A/N", Description = "Meaningful (external to Mail.dat) container ID as defined by specific production application; the Postal container label.", Type = "string", Format = "zfillnumeric")]
 		[MaildatField(Version = "24-1", Extension = "csm", FieldCode = "CSM-1101", FieldName = "Display Container ID", Start = 21, Length = 6, Required = true, Key = false, DataType = "A/N", Description = "Meaningful (external to Mail.dat) container ID as defined by specific production application; the Postal container label.", Type = "string", Format = "zfillnumeric")]
 		[MaildatField(Version = "25-1", Extension = "csm", FieldCode = "CSM-1101", FieldName = "Display Container ID", Start = 21, Length = 6, Required = true, Key = false, DataType = "A/N", Description = "Meaningful (external to Mail.dat) container ID as defined by specific production application; the Postal container label.", Type = "string", Format = "zfillnumeric")]
 		[Column("DisplayContainerId", Order = 6, TypeName = "TEXT")]
@@ -159,7 +174,7 @@ namespace Mail.dat
 		[Column("ContainerLevel", Order = 9, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(2)]
-		[AllowedValues("A", "AA", "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ", "AK", "AL", "AM", "AN", "AO", "AP", "AQ", "AR", "AS", "AT", "AU", "AV", "AW", "B", "C", "D", "G", "H", "I", "J", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "X", "Y", "Z")]
+		[AllowedValues("A", "AA", "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ", "AK", "AL", "AM", "AN", "AO", "AP", "AQ", "AR", "AS", "AT", "AU", "AV", "AW", "B", "C", "D", "G", "H", "I", "J", "K", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "X", "Y", "Z")]
 		[Comment("CSM-1104")]
 		[TypeConverter(typeof(MaildatEnumConverter))]
 		[MaildatValues(typeof(ContainerLevels))]
@@ -177,7 +192,7 @@ namespace Mail.dat
 		/// Entry pool), then the Origin Zip (as indicated on the Entry Point Line of the Container Label) would
 		/// be used for this field.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "csm", FieldCode = "CSM-1105", FieldName = "Entry Point for Entry Discount - PostalCode", Start = 44, Length = 6, Required = true, Key = false, DataType = "A/N", Description = "99999_, or 888___ The postal code (5-digit, or 3-digit) of the facility where the specified container is planned to enter into the Postal System. Use Labeling Lists facility's Destination Line. This information may not be known by the list processing facility. If known, the 5 or 3 position value is to be left justified with space added. Default if no Code: Left Justify; Space Added: US = USA, OT = Other If the ultimate planned Entry Point is not known (example, as would be the case with a list supplier of a Standard Mail (A) job which will be included in a Destination Entry pool), then the Origin Zip (as indicated on the Entry Point Line of the Container Label) would be used for this field.", Type = "zipcode", Format = "leftjustify")]
+		[MaildatField(Version = "23-1", Extension = "csm", FieldCode = "CSM-1105", FieldName = "Entry Point for Entry Discount - Postal Code", Start = 44, Length = 6, Required = true, Key = false, DataType = "A/N", Description = "99999_, or 888___ The postal code (5-digit, or 3-digit) of the facility where the specified container is planned to enter into the Postal System. Use Labeling Lists facility's Destination Line. This information may not be known by the list processing facility. If known, the 5 or 3 position value is to be left justified with space added. Default if no Code: Left Justify; Space Added: US = USA, OT = Other If the ultimate planned Entry Point is not known (example, as would be the case with a list supplier of a Standard Mail (A) job which will be included in a Destination Entry pool), then the Origin Zip (as indicated on the Entry Point Line of the Container Label) would be used for this field.", Type = "zipcode", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "csm", FieldCode = "CSM-1105", FieldName = "Entry Point for Entry Discount - Postal Code", Start = 44, Length = 6, Required = true, Key = false, DataType = "A/N", Description = "99999_, or 888___ The postal code (5-digit, or 3-digit) of the facility where the specified container is planned to enter into the Postal System. Use Labeling Lists facility's Destination Line. This information may not be known by the list processing facility. If known, the 5 or 3 position value is to be left justified with space added. Default if no Code: Left Justify; Space Added: US = USA, OT = Other If the ultimate planned Entry Point is not known (example, as would be the case with a list supplier of a Standard Mail (A) job which will be included in a Destination Entry pool), then the Origin Zip (as indicated on the Entry Point Line of the Container Label) would be used for this field.", Type = "zipcode", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "csm", FieldCode = "CSM-1105", FieldName = "Entry Point for Entry Discount - Postal Code", Start = 44, Length = 6, Required = true, Key = false, DataType = "A/N", Description = "99999_, or 888___ The postal code (5-digit, or 3-digit) of the facility where the specified container is planned to enter into the Postal System. Use Labeling Lists facility's Destination Line. This information may not be known by the list processing facility. If known, the 5 or 3 position value is to be left justified with space added. Default if no Code: Left Justify; Space Added: US = USA, OT = Other If the ultimate planned Entry Point is not known (example, as would be the case with a list supplier of a Standard Mail (A) job which will be included in a Destination Entry pool), then the Origin Zip (as indicated on the Entry Point Line of the Container Label) would be used for this field.", Type = "zipcode", Format = "leftjustify")]
 		[Column("EntryPointForEntryDiscountPostalCode", Order = 10, TypeName = "TEXT")]
@@ -550,7 +565,7 @@ namespace Mail.dat
 		/// <summary>
 		/// User Container ID (CSM-1123)
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "csm", FieldCode = "CSM-1123", FieldName = "User Container ID", Start = 228, Length = 12, Required = false, Key = false, DataType = "A/N", Description = "", Type = "integer", Format = "zfillnumeric")]
+		[MaildatField(Version = "23-1", Extension = "csm", FieldCode = "CSM-1123", FieldName = "User Container ID", Start = 228, Length = 12, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "zfillnumeric")]
 		[MaildatField(Version = "24-1", Extension = "csm", FieldCode = "CSM-1123", FieldName = "User Container ID", Start = 228, Length = 12, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "zfillnumeric")]
 		[MaildatField(Version = "25-1", Extension = "csm", FieldCode = "CSM-1123", FieldName = "User Container ID", Start = 228, Length = 12, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "zfillnumeric")]
 		[Column("UserContainerId", Order = 35, TypeName = "TEXT")]
@@ -963,7 +978,7 @@ namespace Mail.dat
 		/// Label: User Information Line 2 (CSM-1158)
 		/// User defined or client requested information.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "csm", FieldCode = "CSM-1158", FieldName = "Label: User Information Line 2", Start = 596, Length = 40, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "leftjustify")]
+		[MaildatField(Version = "23-1", Extension = "csm", FieldCode = "CSM-1158", FieldName = "Label: User Information Line 2", Start = 596, Length = 40, Required = false, Key = false, DataType = "A/N", Description = "User defined or client requested information.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "csm", FieldCode = "CSM-1158", FieldName = "Label: User Information Line 2", Start = 596, Length = 40, Required = false, Key = false, DataType = "A/N", Description = "User defined or client requested information.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "csm", FieldCode = "CSM-1158", FieldName = "Label: User Information Line 2", Start = 596, Length = 40, Required = false, Key = false, DataType = "A/N", Description = "User defined or client requested information.", Type = "string", Format = "leftjustify")]
 		[Column("LabelUserInformationLine2", Order = 62, TypeName = "TEXT")]
@@ -990,7 +1005,7 @@ namespace Mail.dat
 		/// User Option Field (CSM-1176)
 		/// Available for customer data for unique user application.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "csm", FieldCode = "CSM-1176", FieldName = "User Option Field", Start = 640, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "leftjustify")]
+		[MaildatField(Version = "23-1", Extension = "csm", FieldCode = "CSM-1176", FieldName = "User Option Field", Start = 640, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "Available for customer data for unique user application.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "csm", FieldCode = "CSM-1176", FieldName = "User Option Field", Start = 640, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "Available for customer data for unique user application.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "csm", FieldCode = "CSM-1176", FieldName = "User Option Field", Start = 640, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "Available for customer data for unique user application.", Type = "string", Format = "leftjustify")]
 		[Column("UserOptionField", Order = 64, TypeName = "TEXT")]
@@ -1241,7 +1256,7 @@ namespace Mail.dat
 		/// Reserve (CSM-1134)
 		/// Reserved for future use.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "csm", FieldCode = "CSM-1134", FieldName = "Reserve", Start = 751, Length = 39, Required = false, Key = false, DataType = "A/N", Description = "", Type = "reserve", Format = "leftjustify")]
+		[MaildatField(Version = "23-1", Extension = "csm", FieldCode = "CSM-1134", FieldName = "Reserve", Start = 751, Length = 39, Required = false, Key = false, DataType = "A/N", Description = "Reserved for future use.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "csm", FieldCode = "CSM-1134", FieldName = "Reserve", Start = 751, Length = 39, Required = false, Key = false, DataType = "A/N", Description = "Reserved for future use.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "csm", FieldCode = "CSM-1134", FieldName = "Reserve", Start = 751, Length = 39, Required = false, Key = false, DataType = "A/N", Description = "Reserved for future use.", Type = "string", Format = "leftjustify")]
 		[Column("ReserveCsm1134", Order = 79, TypeName = "TEXT")]

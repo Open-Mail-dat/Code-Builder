@@ -1,12 +1,27 @@
 //
-// Copyright (c) 2025 Open Mail.dat
+// This file is part of Open Mail.dat.
+// Copyright (c) 2025 Open Mail.dat. All rights reserved.
 //
-// This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
+// ************************************************************************************************************************
+// License Agreement:
 //
-// This code was auto-generated on June 14th, 2025.
-// by the Open Mail.dat Code Generator.
+// Open Mail.dat is free software: you can redistribute it and/or modify it under the terms of the
+// GNU LESSER GENERAL PUBLIC LICENSE as published by the Free Software Foundation, either version 3
+// of the License, or (at your option) any later version.
+// Open Mail.dat is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+// even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU LESSER GENERAL PUBLIC LICENSE for more details.
+// You should have received three files as part of the license agreemen for Open Mail.dat.
 //
-// Author: Daniel M porrey
+// LICENSE.md (GNU Lesser General Public License)
+// LICENSE-GPL3.md (GNU General Public License)
+// LICENSE-ADDENDUM.md (Attribution and Public Use Addendum to the GNU Lesser General Public License v3.0 (LGPL-3.0))
+//
+// If not, see <https://www.gnu.org/licenses/>.
+// ************************************************************************************************************************
+//
+// This code was auto-generated on June 15th, 2025 by the Open Mail.dat Code Generator.
+// Code Generator Author: Daniel M porrey
 //
 namespace Mail.dat
 {
@@ -56,12 +71,6 @@ namespace Mail.dat
 		string PackageLevel { get; set; }
 
 		/// <summary>
-		/// Package Preparation Type (PQT-1115)
-		/// Populate in the scenario when CSM Tray Preparation Type is set to M = Mixed).
-		/// </summary>
-		string PackagePreparationType { get; set; }
-
-		/// <summary>
 		/// Number of Copies (PQT-1103)
 		/// Number of copies within the specific package.
 		/// </summary>
@@ -91,6 +100,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// PQT Record Status (PQT-2000)
+		/// O, D, I, U.
 		/// </summary>
 		string PqtRecordStatus { get; set; }
 
@@ -105,5 +115,11 @@ namespace Mail.dat
 		/// Must be the # sign.
 		/// </summary>
 		string ClosingCharacter { get; }
+
+		/// <summary>
+		/// Package Preparation Type (PQT-1115)
+		/// Populate in the scenario when CSM Tray Preparation Type is set to M = Mixed).
+		/// </summary>
+		string PackagePreparationType { get; set; }
 	}
 }

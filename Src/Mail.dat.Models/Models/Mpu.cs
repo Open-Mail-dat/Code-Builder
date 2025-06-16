@@ -1,12 +1,27 @@
 //
-// Copyright (c) 2025 Open Mail.dat
+// This file is part of Open Mail.dat.
+// Copyright (c) 2025 Open Mail.dat. All rights reserved.
 //
-// This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
+// ************************************************************************************************************************
+// License Agreement:
 //
-// This code was auto-generated on June 14th, 2025.
-// by the Open Mail.dat Code Generator.
+// Open Mail.dat is free software: you can redistribute it and/or modify it under the terms of the
+// GNU LESSER GENERAL PUBLIC LICENSE as published by the Free Software Foundation, either version 3
+// of the License, or (at your option) any later version.
+// Open Mail.dat is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+// even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU LESSER GENERAL PUBLIC LICENSE for more details.
+// You should have received three files as part of the license agreemen for Open Mail.dat.
 //
-// Author: Daniel M porrey
+// LICENSE.md (GNU Lesser General Public License)
+// LICENSE-GPL3.md (GNU General Public License)
+// LICENSE-ADDENDUM.md (Attribution and Public Use Addendum to the GNU Lesser General Public License v3.0 (LGPL-3.0))
+//
+// If not, see <https://www.gnu.org/licenses/>.
+// ************************************************************************************************************************
+//
+// This code was auto-generated on June 15th, 2025 by the Open Mail.dat Code Generator.
+// Code Generator Author: Daniel M porrey
 //
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +35,7 @@ namespace Mail.dat
 	/// A common code for set of components in a mail piece.
 	/// </summary>
 	[MaildatFile(Version = "23-1", Revision = "0.5", Extension = "mpu", File = "Mail Piece Unit", Summary = "A common code for set of components in a mail piece.", Description = "A common code for set of components in a mail piece.", LineLength = 193, ClosingCharacter = "#")]
-	[MaildatFile(Version = "24-1", Revision = "1.3", Extension = "mpu", File = "Mail Piece Unit", Summary = "A common code for set of components in a mail piece.", Description = "A common code for set of components in a mail piece.", LineLength = 193, ClosingCharacter = "#")]
+	[MaildatFile(Version = "24-1", Revision = "1.5", Extension = "mpu", File = "Mail Piece Unit", Summary = "A common code for set of components in a mail piece.", Description = "A common code for set of components in a mail piece.", LineLength = 193, ClosingCharacter = "#")]
 	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "mpu", File = "Mail Piece Unit", Summary = "A common code for set of components in a mail piece.", Description = "A common code for set of components in a mail piece.", LineLength = 193, ClosingCharacter = "#")]
 	[MaildatImport(Order = 3, Version = "23-1")]
 	[MaildatImport(Order = 3, Version = "24-1")]
@@ -34,7 +49,7 @@ namespace Mail.dat
 		/// Job ID (MPU-1001)
 		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "mpu", FieldCode = "MPU-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "", Type = "string", Format = "zfillnumeric", References = "HDR-1001")]
+		[MaildatField(Version = "23-1", Extension = "mpu", FieldCode = "MPU-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "(Zero fill prior to numeric, if numeric only). See Header File’s Job Id.", Type = "string", Format = "zfillnumeric", References = "HDR-1001")]
 		[MaildatField(Version = "24-1", Extension = "mpu", FieldCode = "MPU-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "(Zero fill prior to numeric, if numeric only). See Header File’s Job Id.", Type = "string", Format = "zfillnumeric", References = "HDR-1001")]
 		[MaildatField(Version = "25-1", Extension = "mpu", FieldCode = "MPU-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "(Zero fill prior to numeric, if numeric only). See Header File’s Job Id.", Type = "string", Format = "zfillnumeric", References = "HDR-1001")]
 		[Column("JobId", Order = 2, TypeName = "TEXT")]
@@ -138,7 +153,7 @@ namespace Mail.dat
 		/// Mail Piece Unit - Weight (MPU-1103)
 		/// Weight of a copy in pounds, rounded. Presort Facilities default to 1 ounce, if Metered Mail.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "mpu", FieldCode = "MPU-1103", FieldName = "Mail Piece Unit - Weight", Start = 60, Length = 6, Required = true, Key = false, DataType = "N", Description = "Weight of a copy in pounds, rounded.", Type = "decimal", Format = "zfill", Precision = 4)]
+		[MaildatField(Version = "23-1", Extension = "mpu", FieldCode = "MPU-1103", FieldName = "Mail Piece Unit - Weight", Start = 60, Length = 6, Required = true, Key = false, DataType = "N", Description = "Weight of a copy in pounds, rounded. Presort Facilities default to 1 ounce, if Metered Mail.", Type = "decimal", Format = "zfill", Precision = 4)]
 		[MaildatField(Version = "24-1", Extension = "mpu", FieldCode = "MPU-1103", FieldName = "Mail Piece Unit - Weight", Start = 60, Length = 6, Required = true, Key = false, DataType = "N", Description = "Weight of a copy in pounds, rounded. Presort Facilities default to 1 ounce, if Metered Mail.", Type = "decimal", Format = "zfill", Precision = 4)]
 		[MaildatField(Version = "25-1", Extension = "mpu", FieldCode = "MPU-1103", FieldName = "Mail Piece Unit - Weight", Start = 60, Length = 6, Required = true, Key = false, DataType = "N", Description = "Weight of a copy in pounds, rounded. Presort Facilities default to 1 ounce, if Metered Mail.", Type = "decimal", Format = "zfill", Precision = 4)]
 		[Column("MailPieceUnitWeight", Order = 7, TypeName = "NUMERIC")]
@@ -251,7 +266,7 @@ namespace Mail.dat
 		[Column("MailPieceUnitRateType", Order = 14, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(2)]
-		[AllowedValues("B", "C", "D", "D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "E", "E1", "E2", "E7", "F", "G", "J", "K", "L", "N", "O", "R", "S", "T", "T1", "T2", "T3", "T4", "T5", "W", "X", "Y")]
+		[AllowedValues("B", "C", "D", "D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "E", "E1", "E2", "E7", "F", "G", "J", "K", "L", "N", "O", "P", "R", "S", "T", "T1", "T2", "T3", "T4", "T5", "W", "X", "Y")]
 		[Comment("MPU-1112")]
 		[TypeConverter(typeof(MaildatEnumConverter))]
 		[MaildatValues(typeof(MailPieceUnitRateTypes))]
@@ -303,7 +318,7 @@ namespace Mail.dat
 		[Column("MpuSurcharge", Order = 17, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(1)]
-		[AllowedValues("2", "D", "N", "R", "T")]
+		[AllowedValues("1", "2", "D", "N", "O", "Q", "R", "S", "T")]
 		[Comment("MPU-1115")]
 		[TypeConverter(typeof(MaildatEnumConverter))]
 		[MaildatValues(typeof(MpuSurcharges))]
@@ -350,7 +365,7 @@ namespace Mail.dat
 		/// Pre-Denominated Amount (MPU-1124)
 		/// Cents.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "mpu", FieldCode = "MPU-1124", FieldName = "Pre-Denominated Amount", Start = 97, Length = 5, Required = false, Key = false, DataType = "N", Description = "", Type = "decimal", Format = "zfill", Precision = 1)]
+		[MaildatField(Version = "23-1", Extension = "mpu", FieldCode = "MPU-1124", FieldName = "Pre-Denominated Amount", Start = 97, Length = 5, Required = false, Key = false, DataType = "N", Description = "Cents.", Type = "decimal", Format = "zfill", Precision = 1)]
 		[MaildatField(Version = "24-1", Extension = "mpu", FieldCode = "MPU-1124", FieldName = "Pre-Denominated Amount", Start = 97, Length = 5, Required = false, Key = false, DataType = "N", Description = "Cents.", Type = "decimal", Format = "zfill", Precision = 1)]
 		[MaildatField(Version = "25-1", Extension = "mpu", FieldCode = "MPU-1124", FieldName = "Pre-Denominated Amount", Start = 97, Length = 5, Required = false, Key = false, DataType = "N", Description = "Cents.", Type = "decimal", Format = "zfill", Precision = 1)]
 		[Column("PreDenominatedAmount", Order = 20, TypeName = "NUMERIC")]
@@ -436,10 +451,11 @@ namespace Mail.dat
 
 		/// <summary>
 		/// MPU Record Status (MPU-2000)
+		/// O, D, I, U.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "mpu", FieldCode = "MPU-2000", FieldName = "MPU Record Status", Start = 148, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "", Type = "enum", Format = "leftjustify")]
-		[MaildatField(Version = "24-1", Extension = "mpu", FieldCode = "MPU-2000", FieldName = "MPU Record Status", Start = 148, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "", Type = "enum", Format = "leftjustify")]
-		[MaildatField(Version = "25-1", Extension = "mpu", FieldCode = "MPU-2000", FieldName = "MPU Record Status", Start = 148, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "", Type = "enum", Format = "leftjustify")]
+		[MaildatField(Version = "23-1", Extension = "mpu", FieldCode = "MPU-2000", FieldName = "MPU Record Status", Start = 148, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "O, D, I, U.", Type = "enum", Format = "leftjustify")]
+		[MaildatField(Version = "24-1", Extension = "mpu", FieldCode = "MPU-2000", FieldName = "MPU Record Status", Start = 148, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "O, D, I, U.", Type = "enum", Format = "leftjustify")]
+		[MaildatField(Version = "25-1", Extension = "mpu", FieldCode = "MPU-2000", FieldName = "MPU Record Status", Start = 148, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "O, D, I, U.", Type = "enum", Format = "leftjustify")]
 		[Column("MpuRecordStatus", Order = 26, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(1)]
@@ -502,7 +518,7 @@ namespace Mail.dat
 		/// Reserve (MPU-1121)
 		/// Reserved for future use.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "mpu", FieldCode = "MPU-1121", FieldName = "Reserved", Start = 185, Length = 8, Required = false, Key = false, DataType = "A/N", Description = "", Type = "string", Format = "zfillnumeric")]
+		[MaildatField(Version = "23-1", Extension = "mpu", FieldCode = "MPU-1121", FieldName = "Reserve", Start = 185, Length = 8, Required = false, Key = false, DataType = "A/N", Description = "Reserved for future use.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "mpu", FieldCode = "MPU-1121", FieldName = "Reserve", Start = 185, Length = 8, Required = false, Key = false, DataType = "A/N", Description = "Reserved for future use.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "mpu", FieldCode = "MPU-1121", FieldName = "Reserve", Start = 185, Length = 8, Required = false, Key = false, DataType = "A/N", Description = "Reserved for future use.", Type = "string", Format = "leftjustify")]
 		[Column("ReserveMpu1121", Order = 30, TypeName = "TEXT")]

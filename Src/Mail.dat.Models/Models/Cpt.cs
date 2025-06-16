@@ -1,12 +1,27 @@
 //
-// Copyright (c) 2025 Open Mail.dat
+// This file is part of Open Mail.dat.
+// Copyright (c) 2025 Open Mail.dat. All rights reserved.
 //
-// This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
+// ************************************************************************************************************************
+// License Agreement:
 //
-// This code was auto-generated on June 14th, 2025.
-// by the Open Mail.dat Code Generator.
+// Open Mail.dat is free software: you can redistribute it and/or modify it under the terms of the
+// GNU LESSER GENERAL PUBLIC LICENSE as published by the Free Software Foundation, either version 3
+// of the License, or (at your option) any later version.
+// Open Mail.dat is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+// even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU LESSER GENERAL PUBLIC LICENSE for more details.
+// You should have received three files as part of the license agreemen for Open Mail.dat.
 //
-// Author: Daniel M porrey
+// LICENSE.md (GNU Lesser General Public License)
+// LICENSE-GPL3.md (GNU General Public License)
+// LICENSE-ADDENDUM.md (Attribution and Public Use Addendum to the GNU Lesser General Public License v3.0 (LGPL-3.0))
+//
+// If not, see <https://www.gnu.org/licenses/>.
+// ************************************************************************************************************************
+//
+// This code was auto-generated on June 15th, 2025 by the Open Mail.dat Code Generator.
+// Code Generator Author: Daniel M porrey
 //
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +35,7 @@ namespace Mail.dat
 	/// A description of the applicable component.
 	/// </summary>
 	[MaildatFile(Version = "23-1", Revision = "0.5", Extension = "cpt", File = "Component Record", Summary = "A description of the applicable component.", Description = "A description of the applicable component.", LineLength = 264, ClosingCharacter = "#")]
-	[MaildatFile(Version = "24-1", Revision = "1.3", Extension = "cpt", File = "Component Record", Summary = "A description of the applicable component.", Description = "A description of the applicable component.", LineLength = 264, ClosingCharacter = "#")]
+	[MaildatFile(Version = "24-1", Revision = "1.5", Extension = "cpt", File = "Component Record", Summary = "A description of the applicable component.", Description = "A description of the applicable component.", LineLength = 264, ClosingCharacter = "#")]
 	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "cpt", File = "Component Record", Summary = "A description of the applicable component.", Description = "A description of the applicable component.", LineLength = 264, ClosingCharacter = "#")]
 	[MaildatImport(Order = 6, Version = "23-1")]
 	[MaildatImport(Order = 6, Version = "24-1")]
@@ -34,7 +49,7 @@ namespace Mail.dat
 		/// Job ID (CPT-1001)
 		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cpt", FieldCode = "CPT-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "See Header File's Job ID definition.", Type = "string", Format = "zfillnumeric", References = "HDR-1001")]
+		[MaildatField(Version = "23-1", Extension = "cpt", FieldCode = "CPT-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "(Zero fill prior to numeric, if numeric only). See Header File’s Job Id.", Type = "string", Format = "zfillnumeric", References = "HDR-1001")]
 		[MaildatField(Version = "24-1", Extension = "cpt", FieldCode = "CPT-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "(Zero fill prior to numeric, if numeric only). See Header File’s Job Id.", Type = "string", Format = "zfillnumeric", References = "HDR-1001")]
 		[MaildatField(Version = "25-1", Extension = "cpt", FieldCode = "CPT-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "(Zero fill prior to numeric, if numeric only). See Header File’s Job Id.", Type = "string", Format = "zfillnumeric", References = "HDR-1001")]
 		[Column("JobId", Order = 2, TypeName = "TEXT")]
@@ -229,7 +244,7 @@ namespace Mail.dat
 		[Column("ComponentRateType", Order = 14, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(2)]
-		[AllowedValues("B", "C", "D", "D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "E", "E1", "E2", "E7", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "R", "S", "T", "T1", "T2", "T3", "T4", "T5", "W", "X", "Y", "Z")]
+		[AllowedValues("B", "C", "D", "D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "E", "E1", "E2", "E7", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "T1", "T2", "T3", "T4", "T5", "W", "X", "Y", "Z")]
 		[Comment("CPT-1111")]
 		[TypeConverter(typeof(MaildatEnumConverter))]
 		[MaildatValues(typeof(ComponentRateTypes))]
@@ -257,7 +272,7 @@ namespace Mail.dat
 		/// Mailer ID of Mail Owner (CPT-1148)
 		/// USPS ID Left justify, space padded to the right, only digits 0 - 9 acceptable.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cpt", FieldCode = "CPT-1148", FieldName = "Mailer ID of Mail Owner", Start = 85, Length = 9, Required = false, Key = false, DataType = "A/N", Description = "USPS ID Left justify, space padded to the right, only digits 0 - 9 acceptable.", Type = "integer", Format = "leftjustify")]
+		[MaildatField(Version = "23-1", Extension = "cpt", FieldCode = "CPT-1148", FieldName = "Mailer ID of Mail Owner", Start = 85, Length = 9, Required = false, Key = false, DataType = "A/N", Description = "USPS ID Left justify, space padded to the right, only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "cpt", FieldCode = "CPT-1148", FieldName = "Mailer ID of Mail Owner", Start = 85, Length = 9, Required = false, Key = false, DataType = "A/N", Description = "USPS ID Left justify, space padded to the right, only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "cpt", FieldCode = "CPT-1148", FieldName = "Mailer ID of Mail Owner", Start = 85, Length = 9, Required = false, Key = false, DataType = "A/N", Description = "USPS ID Left justify, space padded to the right, only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
 		[Column("MailerIdOfMailOwner", Order = 16, TypeName = "TEXT")]
@@ -271,7 +286,7 @@ namespace Mail.dat
 		/// CRID of Mail Owner (CPT-1149)
 		/// USPS ID Left justify, space padded to the right, only digits 0 - 9 acceptable.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cpt", FieldCode = "CPT-1149", FieldName = "CRID of Mail Owner", Start = 94, Length = 12, Required = false, Key = false, DataType = "A/N", Description = "USPS ID Left justify, space padded to the right, only digits 0 - 9 acceptable.", Type = "integer", Format = "leftjustify")]
+		[MaildatField(Version = "23-1", Extension = "cpt", FieldCode = "CPT-1149", FieldName = "CRID of Mail Owner", Start = 94, Length = 12, Required = false, Key = false, DataType = "A/N", Description = "USPS ID Left justify, space padded to the right, only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "cpt", FieldCode = "CPT-1149", FieldName = "CRID of Mail Owner", Start = 94, Length = 12, Required = false, Key = false, DataType = "A/N", Description = "USPS ID Left justify, space padded to the right, only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "cpt", FieldCode = "CPT-1149", FieldName = "CRID of Mail Owner", Start = 94, Length = 12, Required = false, Key = false, DataType = "A/N", Description = "USPS ID Left justify, space padded to the right, only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
 		[Column("CridOfMailOwner", Order = 17, TypeName = "TEXT")]
@@ -532,7 +547,7 @@ namespace Mail.dat
 		/// Reserve (CPT-1130)
 		/// Reserved for future use.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cpt", FieldCode = "CPT-1130", FieldName = "Reserve", Start = 240, Length = 24, Required = false, Key = false, DataType = "A/N", Description = "", Type = "reserve", Format = "leftjustify")]
+		[MaildatField(Version = "23-1", Extension = "cpt", FieldCode = "CPT-1130", FieldName = "Reserve", Start = 240, Length = 24, Required = false, Key = false, DataType = "A/N", Description = "Reserved for future use.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "cpt", FieldCode = "CPT-1130", FieldName = "Reserve", Start = 240, Length = 24, Required = false, Key = false, DataType = "A/N", Description = "Reserved for future use.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "cpt", FieldCode = "CPT-1130", FieldName = "Reserve", Start = 240, Length = 24, Required = false, Key = false, DataType = "A/N", Description = "Reserved for future use.", Type = "string", Format = "leftjustify")]
 		[Column("ReserveCpt1130", Order = 35, TypeName = "TEXT")]

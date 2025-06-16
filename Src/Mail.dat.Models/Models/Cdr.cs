@@ -1,12 +1,27 @@
 //
-// Copyright (c) 2025 Open Mail.dat
+// This file is part of Open Mail.dat.
+// Copyright (c) 2025 Open Mail.dat. All rights reserved.
 //
-// This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
+// ************************************************************************************************************************
+// License Agreement:
 //
-// This code was auto-generated on June 14th, 2025.
-// by the Open Mail.dat Code Generator.
+// Open Mail.dat is free software: you can redistribute it and/or modify it under the terms of the
+// GNU LESSER GENERAL PUBLIC LICENSE as published by the Free Software Foundation, either version 3
+// of the License, or (at your option) any later version.
+// Open Mail.dat is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+// even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU LESSER GENERAL PUBLIC LICENSE for more details.
+// You should have received three files as part of the license agreemen for Open Mail.dat.
 //
-// Author: Daniel M porrey
+// LICENSE.md (GNU Lesser General Public License)
+// LICENSE-GPL3.md (GNU General Public License)
+// LICENSE-ADDENDUM.md (Attribution and Public Use Addendum to the GNU Lesser General Public License v3.0 (LGPL-3.0))
+//
+// If not, see <https://www.gnu.org/licenses/>.
+// ************************************************************************************************************************
+//
+// This code was auto-generated on June 15th, 2025 by the Open Mail.dat Code Generator.
+// Code Generator Author: Daniel M porrey
 //
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -20,22 +35,19 @@ namespace Mail.dat
 	/// Is used to capture the Detail information that is present on the Certificate of Mail Forms. Provide
 	/// the detailed information that is present on the Certificate of Mail Forms.
 	/// </summary>
-	[MaildatFile(Version = "23-1", Revision = "0.5", Extension = "cdr", File = "Certificate of Mailing Detail Record", Summary = "Is used to capture the Detail information that is present on the Certificate of Mail Forms.", Description = "Is used to capture the Detail information that is present on the Certificate of Mail Forms. Provide the detail information that is present on the Certificate of Mail Forms.", LineLength = 395, ClosingCharacter = "#")]
-	[MaildatFile(Version = "24-1", Revision = "1.3", Extension = "cdr", File = "Certificate of Mailing Detail Record", Summary = "Is used to capture the Detail information that is present on the Certificate of Mail Forms.", Description = "Is used to capture the Detail information that is present on the Certificate of Mail Forms. Provide the detailed information that is present on the Certificate of Mail Forms.", LineLength = 395, ClosingCharacter = "#")]
+	[MaildatFile(Version = "24-1", Revision = "1.5", Extension = "cdr", File = "Certificate of Mailing Detail Record", Summary = "Is used to capture the Detail information that is present on the Certificate of Mail Forms.", Description = "Is used to capture the Detail information that is present on the Certificate of Mail Forms. Provide the detailed information that is present on the Certificate of Mail Forms.", LineLength = 395, ClosingCharacter = "#")]
 	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "cdr", File = "Certificate of Mailing Detail Record", Summary = "Is used to capture the Detail information that is present on the Certificate of Mail Forms.", Description = "Is used to capture the Detail information that is present on the Certificate of Mail Forms. Provide the detailed information that is present on the Certificate of Mail Forms.", LineLength = 395, ClosingCharacter = "#")]
-	[MaildatImport(Order = 27, Version = "23-1")]
 	[MaildatImport(Order = 27, Version = "24-1")]
 	[MaildatImport(Order = 27, Version = "25-1")]
 	[Table("Cdr", Schema = "Maildat")]
 	[PrimaryKey("Id")]
-	[MaildatVersions("23-1", "24-1", "25-1")]
+	[MaildatVersions("24-1", "25-1")]
 	public partial class Cdr : MaildatEntity, ICdr 
 	{
 		/// <summary>
 		/// Job ID (CDR-1001)
 		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "", Type = "string", Format = "zfillnumeric", References = "HDR-1001")]
 		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "(Zero fill prior to numeric, if numeric only). See Header File’s Job Id.", Type = "string", Format = "zfillnumeric", References = "HDR-1001")]
 		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "(Zero fill prior to numeric, if numeric only). See Header File’s Job Id.", Type = "string", Format = "zfillnumeric", References = "HDR-1001")]
 		[Column("JobId", Order = 2, TypeName = "TEXT")]
@@ -44,14 +56,13 @@ namespace Mail.dat
 		[MaxLength(8)]
 		[Comment("CDR-1001")]
 		[TypeConverter(typeof(MaildatStringConverter))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public string JobId { get; set; }
 
 		/// <summary>
 		/// Certificate Of Mailing Header ID (CDR-1002)
 		/// Unique ID of the Certificate of Mailing Header Record.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-1002", FieldName = "Certificate Of Mailing Header ID", Start = 9, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "Unique ID of the Certificate of Mailing Header Record.", Type = "string", Format = "zfillnumeric", References = "CHR-1002")]
 		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-1002", FieldName = "Certificate Of Mailing Header ID", Start = 9, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "Unique ID of the Certificate of Mailing Header Record.", Type = "string", Format = "zfillnumeric", References = "CHR-1002")]
 		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-1002", FieldName = "Certificate Of Mailing Header ID", Start = 9, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "Unique ID of the Certificate of Mailing Header Record.", Type = "string", Format = "zfillnumeric", References = "CHR-1002")]
 		[Column("CertificateOfMailingHeaderId", Order = 3, TypeName = "TEXT")]
@@ -60,14 +71,13 @@ namespace Mail.dat
 		[MaxLength(8)]
 		[Comment("CDR-1002")]
 		[TypeConverter(typeof(MaildatStringConverter))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public string CertificateOfMailingHeaderId { get; set; }
 
 		/// <summary>
 		/// COM Piece ID (CDR-1003)
 		/// Unique ID of individual piece within mailing.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-1003", FieldName = "COM Piece ID", Start = 17, Length = 22, Required = true, Key = true, DataType = "A/N", Description = "Unique ID of individual piece within mailing.", Type = "string", Format = "zfillnumeric")]
 		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-1003", FieldName = "COM Piece ID", Start = 17, Length = 22, Required = true, Key = true, DataType = "A/N", Description = "Unique ID of individual piece within mailing.", Type = "string", Format = "zfillnumeric")]
 		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-1003", FieldName = "COM Piece ID", Start = 17, Length = 22, Required = true, Key = true, DataType = "A/N", Description = "Unique ID of individual piece within mailing.", Type = "string", Format = "zfillnumeric")]
 		[Column("ComPieceId", Order = 4, TypeName = "TEXT")]
@@ -76,14 +86,13 @@ namespace Mail.dat
 		[MaxLength(22)]
 		[Comment("CDR-1003")]
 		[TypeConverter(typeof(MaildatStringConverter))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public string ComPieceId { get; set; }
 
 		/// <summary>
 		/// Firm Specific ID (CDR-1101)
 		/// Submitter's unique ID of the record.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-1101", FieldName = "Firm Specific ID", Start = 39, Length = 30, Required = true, Key = false, DataType = "A/N", Description = "Submitter's unique ID of the record.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-1101", FieldName = "Firm Specific ID", Start = 39, Length = 30, Required = true, Key = false, DataType = "A/N", Description = "Submitter's unique ID of the record.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-1101", FieldName = "Firm Specific ID", Start = 39, Length = 30, Required = true, Key = false, DataType = "A/N", Description = "Submitter's unique ID of the record.", Type = "string", Format = "leftjustify")]
 		[Column("FirmSpecificId", Order = 5, TypeName = "TEXT")]
@@ -91,28 +100,26 @@ namespace Mail.dat
 		[MaxLength(30)]
 		[Comment("CDR-1101")]
 		[TypeConverter(typeof(MaildatStringConverter))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public string FirmSpecificId { get; set; }
 
 		/// <summary>
 		/// USPS Tracking Number (CDR-1102)
 		/// To be used for IM™ barcode or IMpb barcode.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-1102", FieldName = "USPS Tracking Number", Start = 69, Length = 34, Required = false, Key = false, DataType = "A/N", Description = "To be used for IM™ barcode or IMpb barcode.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-1102", FieldName = "USPS Tracking Number", Start = 69, Length = 34, Required = false, Key = false, DataType = "A/N", Description = "To be used for IM™ barcode or IMpb barcode.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-1102", FieldName = "USPS Tracking Number", Start = 69, Length = 34, Required = false, Key = false, DataType = "A/N", Description = "To be used for IM™ barcode or IMpb barcode.", Type = "string", Format = "leftjustify")]
 		[Column("USPSTrackingNumber", Order = 6, TypeName = "TEXT")]
 		[MaxLength(34)]
 		[Comment("CDR-1102")]
 		[TypeConverter(typeof(MaildatStringConverter))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public string USPSTrackingNumber { get; set; }
 
 		/// <summary>
 		/// Recipient Name (CDR-1103)
 		/// Name of Recipient.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-1103", FieldName = "Recipient Name", Start = 103, Length = 50, Required = true, Key = false, DataType = "A/N", Description = "Name of Recipient.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-1103", FieldName = "Recipient Name", Start = 103, Length = 50, Required = true, Key = false, DataType = "A/N", Description = "Name of Recipient.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-1103", FieldName = "Recipient Name", Start = 103, Length = 50, Required = true, Key = false, DataType = "A/N", Description = "Name of Recipient.", Type = "string", Format = "leftjustify")]
 		[Column("RecipientName", Order = 7, TypeName = "TEXT")]
@@ -120,28 +127,26 @@ namespace Mail.dat
 		[MaxLength(50)]
 		[Comment("CDR-1103")]
 		[TypeConverter(typeof(MaildatStringConverter))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public string RecipientName { get; set; }
 
 		/// <summary>
 		/// Secondary Address (CDR-1104)
 		/// Secondary address of recipient.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-1104", FieldName = "Secondary Address", Start = 153, Length = 50, Required = false, Key = false, DataType = "A/N", Description = "Secondary address of recipient.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-1104", FieldName = "Secondary Address", Start = 153, Length = 50, Required = false, Key = false, DataType = "A/N", Description = "Secondary address of recipient.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-1104", FieldName = "Secondary Address", Start = 153, Length = 50, Required = false, Key = false, DataType = "A/N", Description = "Secondary address of recipient.", Type = "string", Format = "leftjustify")]
 		[Column("SecondaryAddress", Order = 8, TypeName = "TEXT")]
 		[MaxLength(50)]
 		[Comment("CDR-1104")]
 		[TypeConverter(typeof(MaildatStringConverter))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public string SecondaryAddress { get; set; }
 
 		/// <summary>
 		/// Primary Address (CDR-1105)
 		/// Primary address of recipient.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-1105", FieldName = "Primary Address", Start = 203, Length = 50, Required = true, Key = false, DataType = "A/N", Description = "Primary address of recipient.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-1105", FieldName = "Primary Address", Start = 203, Length = 50, Required = true, Key = false, DataType = "A/N", Description = "Primary address of recipient.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-1105", FieldName = "Primary Address", Start = 203, Length = 50, Required = true, Key = false, DataType = "A/N", Description = "Primary address of recipient.", Type = "string", Format = "leftjustify")]
 		[Column("PrimaryAddress", Order = 9, TypeName = "TEXT")]
@@ -149,14 +154,13 @@ namespace Mail.dat
 		[MaxLength(50)]
 		[Comment("CDR-1105")]
 		[TypeConverter(typeof(MaildatStringConverter))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public string PrimaryAddress { get; set; }
 
 		/// <summary>
 		/// City (CDR-1106)
 		/// City of recipient.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-1106", FieldName = "City", Start = 253, Length = 30, Required = true, Key = false, DataType = "A/N", Description = "City of recipient.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-1106", FieldName = "City", Start = 253, Length = 30, Required = true, Key = false, DataType = "A/N", Description = "City of recipient.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-1106", FieldName = "City", Start = 253, Length = 30, Required = true, Key = false, DataType = "A/N", Description = "City of recipient.", Type = "string", Format = "leftjustify")]
 		[Column("City", Order = 10, TypeName = "TEXT")]
@@ -164,14 +168,13 @@ namespace Mail.dat
 		[MaxLength(30)]
 		[Comment("CDR-1106")]
 		[TypeConverter(typeof(MaildatStringConverter))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public string City { get; set; }
 
 		/// <summary>
 		/// State (CDR-1107)
 		/// State of recipient. Two-character state code, required for addresses in the United States.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-1107", FieldName = "State", Start = 283, Length = 2, Required = true, Key = false, DataType = "A/N", Description = "State of recipient. Two-character state code, required for addresses in the United States.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-1107", FieldName = "State", Start = 283, Length = 2, Required = true, Key = false, DataType = "A/N", Description = "State of recipient. Two-character state code, required for addresses in the United States.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-1107", FieldName = "State", Start = 283, Length = 2, Required = true, Key = false, DataType = "A/N", Description = "State of recipient. Two-character state code, required for addresses in the United States.", Type = "string", Format = "leftjustify")]
 		[Column("State", Order = 11, TypeName = "TEXT")]
@@ -179,7 +182,7 @@ namespace Mail.dat
 		[MaxLength(2)]
 		[Comment("CDR-1107")]
 		[TypeConverter(typeof(MaildatStringConverter))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public string State { get; set; }
 
 		/// <summary>
@@ -188,7 +191,6 @@ namespace Mail.dat
 		/// Barcode for the specific piece If specifying a 5-digit or 9-digit barcode,  then leave the rest of
 		/// the field blank.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-1108", FieldName = "Postal Code", Start = 285, Length = 11, Required = true, Key = false, DataType = "A/N", Description = "ZIP Code or Postal Code of recipient; numeric values of the applicable 5-Digit, 9-Digit, or 11-Digit Barcode for the specific piece If specifying a 5-digit or 9-digit barcode,  then leave the rest of the field blank.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-1108", FieldName = "Postal Code", Start = 285, Length = 11, Required = true, Key = false, DataType = "A/N", Description = "ZIP Code or Postal Code of recipient; numeric values of the applicable 5-Digit, 9-Digit, or 11-Digit Barcode for the specific piece If specifying a 5-digit or 9-digit barcode,  then leave the rest of the field blank.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-1108", FieldName = "Postal Code", Start = 285, Length = 11, Required = true, Key = false, DataType = "A/N", Description = "ZIP Code or Postal Code of recipient; numeric values of the applicable 5-Digit, 9-Digit, or 11-Digit Barcode for the specific piece If specifying a 5-digit or 9-digit barcode,  then leave the rest of the field blank.", Type = "string", Format = "leftjustify")]
 		[Column("PostalCode", Order = 12, TypeName = "TEXT")]
@@ -196,7 +198,7 @@ namespace Mail.dat
 		[MaxLength(11)]
 		[Comment("CDR-1108")]
 		[TypeConverter(typeof(MaildatStringConverter))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public string PostalCode { get; set; }
 
 		/// <summary>
@@ -204,14 +206,13 @@ namespace Mail.dat
 		/// Province of recipient's address. State or Province Code or Name. Applicable for international
 		/// addresses only.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-1109", FieldName = "Province or State - International", Start = 296, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "Province of recipient's address. State or Province Code or Name. Applicable for international addresses only.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-1109", FieldName = "Province or State - International", Start = 296, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "Province of recipient's address. State or Province Code or Name. Applicable for international addresses only.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-1109", FieldName = "Province or State - International", Start = 296, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "Province of recipient's address. State or Province Code or Name. Applicable for international addresses only.", Type = "string", Format = "leftjustify")]
 		[Column("ProvinceOrStateInternational", Order = 13, TypeName = "TEXT")]
 		[MaxLength(20)]
 		[Comment("CDR-1109")]
 		[TypeConverter(typeof(MaildatStringConverter))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public string ProvinceOrStateInternational { get; set; }
 
 		/// <summary>
@@ -219,21 +220,19 @@ namespace Mail.dat
 		/// Country Code of recipient's address.  When required populated with two-character ISO Country Code.
 		/// Used for international addresses.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-1110", FieldName = "Country Code", Start = 316, Length = 2, Required = false, Key = false, DataType = "A/N", Description = "Country Code of recipient's address.  When required populated with two-character ISO Country Code. Used for international addresses.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-1110", FieldName = "Country Code", Start = 316, Length = 2, Required = false, Key = false, DataType = "A/N", Description = "Country Code of recipient's address.  When required populated with two-character ISO Country Code. Used for international addresses.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-1110", FieldName = "Country Code", Start = 316, Length = 2, Required = false, Key = false, DataType = "A/N", Description = "Country Code of recipient's address.  When required populated with two-character ISO Country Code. Used for international addresses.", Type = "string", Format = "leftjustify")]
 		[Column("CountryCode", Order = 14, TypeName = "TEXT")]
 		[MaxLength(2)]
 		[Comment("CDR-1110")]
 		[TypeConverter(typeof(MaildatStringConverter))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public string CountryCode { get; set; }
 
 		/// <summary>
 		/// Postage (CDR-1111)
 		/// Dollars.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-1111", FieldName = "Postage", Start = 318, Length = 9, Required = true, Key = false, DataType = "N", Description = "Dollars.", Type = "decimal", Format = "zfill", Precision = 3)]
 		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-1111", FieldName = "Postage", Start = 318, Length = 9, Required = true, Key = false, DataType = "N", Description = "Dollars.", Type = "decimal", Format = "zfill", Precision = 3)]
 		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-1111", FieldName = "Postage", Start = 318, Length = 9, Required = true, Key = false, DataType = "N", Description = "Dollars.", Type = "decimal", Format = "zfill", Precision = 3)]
 		[Column("Postage", Order = 15, TypeName = "NUMERIC")]
@@ -241,28 +240,26 @@ namespace Mail.dat
 		[Precision(3)]
 		[Comment("CDR-1111")]
 		[TypeConverter(typeof(MaildatDecimalConverter))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public decimal Postage { get; set; }
 
 		/// <summary>
 		/// Fee (CDR-1112)
 		/// Fee for Certificate of Mailing;  dollars.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-1112", FieldName = "Fee", Start = 327, Length = 9, Required = false, Key = false, DataType = "N", Description = "Fee for Certificate of Mailing;  dollars.", Type = "decimal", Format = "zfill", Precision = 3)]
 		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-1112", FieldName = "Fee", Start = 327, Length = 9, Required = false, Key = false, DataType = "N", Description = "Fee for Certificate of Mailing;  dollars.", Type = "decimal", Format = "zfill", Precision = 3)]
 		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-1112", FieldName = "Fee", Start = 327, Length = 9, Required = false, Key = false, DataType = "N", Description = "Fee for Certificate of Mailing;  dollars.", Type = "decimal", Format = "zfill", Precision = 3)]
 		[Column("Fee", Order = 16, TypeName = "NUMERIC")]
 		[Precision(3)]
 		[Comment("CDR-1112")]
 		[TypeConverter(typeof(MaildatDecimalConverter))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public decimal? Fee { get; set; }
 
 		/// <summary>
 		/// PAL Fee Indicator (CDR-1113)
 		/// (Weight is NOT over).
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-1113", FieldName = "PAL Fee Indicator", Start = 336, Length = 1, Required = false, Key = false, DataType = "A/N", Description = "(Weight is NOT over).", Type = "enum", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-1113", FieldName = "PAL Fee Indicator", Start = 336, Length = 1, Required = false, Key = false, DataType = "A/N", Description = "(Weight is NOT over).", Type = "enum", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-1113", FieldName = "PAL Fee Indicator", Start = 336, Length = 1, Required = false, Key = false, DataType = "A/N", Description = "(Weight is NOT over).", Type = "enum", Format = "leftjustify")]
 		[Column("PALFeeIndicator", Order = 17, TypeName = "TEXT")]
@@ -271,99 +268,93 @@ namespace Mail.dat
 		[Comment("CDR-1113")]
 		[TypeConverter(typeof(MaildatEnumConverter))]
 		[MaildatValues(typeof(PALFeeIndicators))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public string PALFeeIndicator { get; set; }
 
 		/// <summary>
 		/// PAL Fee Amount (CDR-1114)
 		/// Fee for Parcel Airlift; dollars.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-1114", FieldName = "PAL Fee Amount", Start = 337, Length = 9, Required = false, Key = false, DataType = "N", Description = "Fee for Parcel Airlift; dollars.", Type = "decimal", Format = "zfill", Precision = 3)]
 		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-1114", FieldName = "PAL Fee Amount", Start = 337, Length = 9, Required = false, Key = false, DataType = "N", Description = "Fee for Parcel Airlift; dollars.", Type = "decimal", Format = "zfill", Precision = 3)]
 		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-1114", FieldName = "PAL Fee Amount", Start = 337, Length = 9, Required = false, Key = false, DataType = "N", Description = "Fee for Parcel Airlift; dollars.", Type = "decimal", Format = "zfill", Precision = 3)]
 		[Column("PALFeeAmount", Order = 18, TypeName = "NUMERIC")]
 		[Precision(3)]
 		[Comment("CDR-1114")]
 		[TypeConverter(typeof(MaildatDecimalConverter))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public decimal? PALFeeAmount { get; set; }
 
 		/// <summary>
 		/// Piece ID (CDR-1115)
 		/// Set for Future Use - Unique ID of individual piece within a mailing.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-1115", FieldName = "Piece ID", Start = 346, Length = 22, Required = false, Key = false, DataType = "A/N", Description = "Set for Future Use - Unique ID of individual piece within a mailing. One of the following two values can be used: PBC - PBC Unique ID, right justify and zero fill; PDR - Piece ID, zero fill prior to numeric, if numeric only.", Type = "string", Format = "leftjustify", References = "PDR-1018,PBC-1002")]
 		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-1115", FieldName = "Piece ID", Start = 346, Length = 22, Required = false, Key = false, DataType = "A/N", Description = "Set for Future Use - Unique ID of individual piece within a mailing. One of the following two values can be used: PBC - PBC Unique ID, right justify and zero fill; PDR - Piece ID, zero fill prior to numeric, if numeric only.", Type = "string", Format = "zfillnumeric", References = "PDR-1018,PBC-1002")]
 		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-1115", FieldName = "Piece ID", Start = 346, Length = 22, Required = false, Key = false, DataType = "A/N", Description = "Set for Future Use - Unique ID of individual piece within a mailing.", Type = "string", Format = "zfillnumeric", References = "PDR-1018,PBC-1002")]
 		[Column("PieceId", Order = 19, TypeName = "TEXT")]
 		[MaxLength(22)]
 		[Comment("CDR-1115")]
 		[TypeConverter(typeof(MaildatStringConverter))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public string PieceId { get; set; }
 
 		/// <summary>
 		/// Flex Option A (CDR-1116)
 		/// Reserve Option.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-1116", FieldName = "Flex Option A", Start = 368, Length = 2, Required = false, Key = false, DataType = "A/N", Description = "Reserve Option.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-1116", FieldName = "Flex Option A", Start = 368, Length = 2, Required = false, Key = false, DataType = "A/N", Description = "Reserve Option.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-1116", FieldName = "Flex Option A", Start = 368, Length = 2, Required = false, Key = false, DataType = "A/N", Description = "Reserve Option.", Type = "string", Format = "leftjustify")]
 		[Column("FlexOptionA", Order = 20, TypeName = "TEXT")]
 		[MaxLength(2)]
 		[Comment("CDR-1116")]
 		[TypeConverter(typeof(MaildatStringConverter))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public string FlexOptionA { get; set; }
 
 		/// <summary>
 		/// Flex Option B (CDR-1117)
 		/// Reserve Option.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-1117", FieldName = "Flex Option B", Start = 370, Length = 2, Required = false, Key = false, DataType = "A/N", Description = "Reserve Option.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-1117", FieldName = "Flex Option B", Start = 370, Length = 2, Required = false, Key = false, DataType = "A/N", Description = "Reserve Option.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-1117", FieldName = "Flex Option B", Start = 370, Length = 2, Required = false, Key = false, DataType = "A/N", Description = "Reserve Option.", Type = "string", Format = "leftjustify")]
 		[Column("FlexOptionB", Order = 21, TypeName = "TEXT")]
 		[MaxLength(2)]
 		[Comment("CDR-1117")]
 		[TypeConverter(typeof(MaildatStringConverter))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public string FlexOptionB { get; set; }
 
 		/// <summary>
 		/// Flex Option C (CDR-1118)
 		/// Reserve Option.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-1118", FieldName = "Flex Option C", Start = 372, Length = 2, Required = false, Key = false, DataType = "A/N", Description = "Reserve Option.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-1118", FieldName = "Flex Option C", Start = 372, Length = 2, Required = false, Key = false, DataType = "A/N", Description = "Reserve Option.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-1118", FieldName = "Flex Option C", Start = 372, Length = 2, Required = false, Key = false, DataType = "A/N", Description = "Reserve Option.", Type = "string", Format = "leftjustify")]
 		[Column("FlexOptionC", Order = 22, TypeName = "TEXT")]
 		[MaxLength(2)]
 		[Comment("CDR-1118")]
 		[TypeConverter(typeof(MaildatStringConverter))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public string FlexOptionC { get; set; }
 
 		/// <summary>
 		/// Reserve (CDR-1119)
 		/// Reserved for future use.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-1119", FieldName = "Reserve", Start = 374, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "Reserved for future use.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-1119", FieldName = "Reserve", Start = 374, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "Reserved for future use.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-1119", FieldName = "Reserve", Start = 374, Length = 20, Required = false, Key = false, DataType = "A/N", Description = "Reserved for future use.", Type = "string", Format = "leftjustify")]
 		[Column("ReserveCdr1119", Order = 23, TypeName = "TEXT")]
 		[MaxLength(20)]
 		[Comment("CDR-1119")]
 		[TypeConverter(typeof(MaildatStringConverter))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public string ReserveCdr1119 { get; set; }
 
 		/// <summary>
 		/// CDR Record Status (CDR-2000)
+		/// O, D, I, U.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-2000", FieldName = "CDR Record Status", Start = 394, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "", Type = "enum", Format = "leftjustify")]
-		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-2000", FieldName = "CDR Record Status", Start = 394, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "", Type = "enum", Format = "leftjustify")]
-		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-2000", FieldName = "CDR Record Status", Start = 394, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "", Type = "enum", Format = "leftjustify")]
+		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-2000", FieldName = "CDR Record Status", Start = 394, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "O, D, I, U.", Type = "enum", Format = "leftjustify")]
+		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-2000", FieldName = "CDR Record Status", Start = 394, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "O, D, I, U.", Type = "enum", Format = "leftjustify")]
 		[Column("CdrRecordStatus", Order = 24, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(1)]
@@ -371,14 +362,13 @@ namespace Mail.dat
 		[Comment("CDR-2000")]
 		[TypeConverter(typeof(MaildatEnumConverter))]
 		[MaildatValues(typeof(CdrRecordStatuses))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public string CdrRecordStatus { get; set; }
 
 		/// <summary>
 		/// Closing Character (CDR-9999)
 		/// Must be the # sign.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "cdr", FieldCode = "CDR-9999", FieldName = "Closing Character", Start = 395, Length = 1, Required = true, Key = false, DataType = "", Description = "Must be the # sign.", Type = "closing", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "cdr", FieldCode = "CDR-9999", FieldName = "Closing Character", Start = 395, Length = 1, Required = true, Key = false, DataType = "", Description = "Must be the # sign.", Type = "closing", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "cdr", FieldCode = "CDR-9999", FieldName = "Closing Character", Start = 395, Length = 1, Required = true, Key = false, DataType = "", Description = "Must be the # sign.", Type = "closing", Format = "leftjustify")]
 		[Column("ClosingCharacter", Order = 25, TypeName = "TEXT")]
@@ -387,7 +377,7 @@ namespace Mail.dat
 		[AllowedValues("#")]
 		[Comment("CDR-9999")]
 		[TypeConverter(typeof(MaildatClosingConverter))]
-		[MaildatVersions("23-1", "24-1", "25-1")]
+		[MaildatVersions("24-1", "25-1")]
 		public string ClosingCharacter { get; set; } = "#";
 
 		/// <summary>

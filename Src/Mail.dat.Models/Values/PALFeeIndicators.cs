@@ -1,12 +1,27 @@
 //
-// Copyright (c) 2025 Open Mail.dat
+// This file is part of Open Mail.dat.
+// Copyright (c) 2025 Open Mail.dat. All rights reserved.
 //
-// This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
+// ************************************************************************************************************************
+// License Agreement:
 //
-// This code was auto-generated on June 14th, 2025.
-// by the Open Mail.dat Code Generator.
+// Open Mail.dat is free software: you can redistribute it and/or modify it under the terms of the
+// GNU LESSER GENERAL PUBLIC LICENSE as published by the Free Software Foundation, either version 3
+// of the License, or (at your option) any later version.
+// Open Mail.dat is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+// even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU LESSER GENERAL PUBLIC LICENSE for more details.
+// You should have received three files as part of the license agreemen for Open Mail.dat.
 //
-// Author: Daniel M porrey
+// LICENSE.md (GNU Lesser General Public License)
+// LICENSE-GPL3.md (GNU General Public License)
+// LICENSE-ADDENDUM.md (Attribution and Public Use Addendum to the GNU Lesser General Public License v3.0 (LGPL-3.0))
+//
+// If not, see <https://www.gnu.org/licenses/>.
+// ************************************************************************************************************************
+//
+// This code was auto-generated on June 15th, 2025 by the Open Mail.dat Code Generator.
+// Code Generator Author: Daniel M porrey
 //
 using Mail.dat.Abstractions;
 
@@ -15,7 +30,7 @@ namespace Mail.dat
 	/// <summary>
 	/// These are the allowed values for the property PALFeeIndicator (CDR-1113).
 	/// </summary>
-	[MaildatVersions("23-1", "24-1", "25-1")]
+	[MaildatVersions("24-1", "25-1")]
 	[MaildatFieldLink(File = "cdr", FieldCode = "CDR-1113")]
 	public class PALFeeIndicators : MaildatValues 
 	{
@@ -41,22 +56,16 @@ namespace Mail.dat
 		/// </summary>
 		protected override void OnInitializeValues()
 		{
-			this.Add(new MaildatValue() { Version = "23-1", Key = " ", FileExtension = "cdr", Description = "Not Specified", FieldCode = "CDR-1113", FieldName = "PALFeeIndicator" });
 			this.Add(new MaildatValue() { Version = "24-1", Key = " ", FileExtension = "cdr", Description = "Not Specified", FieldCode = "CDR-1113", FieldName = "PALFeeIndicator" });
 			this.Add(new MaildatValue() { Version = "25-1", Key = " ", FileExtension = "cdr", Description = "Not Specified", FieldCode = "CDR-1113", FieldName = "PALFeeIndicator" });
-			this.Add(new MaildatValue() { Version = "23-1", Key = "A", FileExtension = "cdr", Description = "2 pounds", FieldCode = "CDR-1113", FieldName = "PALFeeIndicator" });
 			this.Add(new MaildatValue() { Version = "24-1", Key = "A", FileExtension = "cdr", Description = "2 pounds", FieldCode = "CDR-1113", FieldName = "PALFeeIndicator" });
 			this.Add(new MaildatValue() { Version = "25-1", Key = "A", FileExtension = "cdr", Description = "2 pounds", FieldCode = "CDR-1113", FieldName = "PALFeeIndicator" });
-			this.Add(new MaildatValue() { Version = "23-1", Key = "B", FileExtension = "cdr", Description = "3 pounds", FieldCode = "CDR-1113", FieldName = "PALFeeIndicator" });
 			this.Add(new MaildatValue() { Version = "24-1", Key = "B", FileExtension = "cdr", Description = "3 pounds", FieldCode = "CDR-1113", FieldName = "PALFeeIndicator" });
 			this.Add(new MaildatValue() { Version = "25-1", Key = "B", FileExtension = "cdr", Description = "3 pounds", FieldCode = "CDR-1113", FieldName = "PALFeeIndicator" });
-			this.Add(new MaildatValue() { Version = "23-1", Key = "C", FileExtension = "cdr", Description = "4 pounds", FieldCode = "CDR-1113", FieldName = "PALFeeIndicator" });
 			this.Add(new MaildatValue() { Version = "24-1", Key = "C", FileExtension = "cdr", Description = "4 pounds", FieldCode = "CDR-1113", FieldName = "PALFeeIndicator" });
 			this.Add(new MaildatValue() { Version = "25-1", Key = "C", FileExtension = "cdr", Description = "4 pounds", FieldCode = "CDR-1113", FieldName = "PALFeeIndicator" });
-			this.Add(new MaildatValue() { Version = "23-1", Key = "D", FileExtension = "cdr", Description = "30 pounds", FieldCode = "CDR-1113", FieldName = "PALFeeIndicator" });
 			this.Add(new MaildatValue() { Version = "24-1", Key = "D", FileExtension = "cdr", Description = "30 pounds", FieldCode = "CDR-1113", FieldName = "PALFeeIndicator" });
 			this.Add(new MaildatValue() { Version = "25-1", Key = "D", FileExtension = "cdr", Description = "30 pounds", FieldCode = "CDR-1113", FieldName = "PALFeeIndicator" });
-			this.Add(new MaildatValue() { Version = "23-1", Key = "E", FileExtension = "cdr", Description = "Reserved", FieldCode = "CDR-1113", FieldName = "PALFeeIndicator" });
 			this.Add(new MaildatValue() { Version = "24-1", Key = "E", FileExtension = "cdr", Description = "Reserved", FieldCode = "CDR-1113", FieldName = "PALFeeIndicator" });
 			this.Add(new MaildatValue() { Version = "25-1", Key = "E", FileExtension = "cdr", Description = "Reserved", FieldCode = "CDR-1113", FieldName = "PALFeeIndicator" });
 		}

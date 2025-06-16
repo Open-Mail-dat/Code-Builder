@@ -1,12 +1,27 @@
 //
-// Copyright (c) 2025 Open Mail.dat
+// This file is part of Open Mail.dat.
+// Copyright (c) 2025 Open Mail.dat. All rights reserved.
 //
-// This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
+// ************************************************************************************************************************
+// License Agreement:
 //
-// This code was auto-generated on June 14th, 2025.
-// by the Open Mail.dat Code Generator.
+// Open Mail.dat is free software: you can redistribute it and/or modify it under the terms of the
+// GNU LESSER GENERAL PUBLIC LICENSE as published by the Free Software Foundation, either version 3
+// of the License, or (at your option) any later version.
+// Open Mail.dat is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+// even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU LESSER GENERAL PUBLIC LICENSE for more details.
+// You should have received three files as part of the license agreemen for Open Mail.dat.
 //
-// Author: Daniel M porrey
+// LICENSE.md (GNU Lesser General Public License)
+// LICENSE-GPL3.md (GNU General Public License)
+// LICENSE-ADDENDUM.md (Attribution and Public Use Addendum to the GNU Lesser General Public License v3.0 (LGPL-3.0))
+//
+// If not, see <https://www.gnu.org/licenses/>.
+// ************************************************************************************************************************
+//
+// This code was auto-generated on June 15th, 2025 by the Open Mail.dat Code Generator.
+// Code Generator Author: Daniel M porrey
 //
 namespace Mail.dat
 {
@@ -36,7 +51,7 @@ namespace Mail.dat
 		/// etc. Current Active Header would be next in the series, hence the record with the lowest History
 		/// Sequence value. Header History Status field (see next) also denotes current active header.
 		/// </summary>
-		string HeaderHistorySequenceNumber { get; set; }
+		int HeaderHistorySequenceNumber { get; set; }
 
 		/// <summary>
 		/// Header History Status (HDR-1148)
@@ -139,6 +154,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Mail Piece Unit File Status (HDR-1114)
+		/// O, D, R, N, C, U.
 		/// </summary>
 		string MailPieceUnitFileStatus { get; set; }
 
@@ -150,6 +166,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// MPU / C Relationship File Status (HDR-1116)
+		/// O, D, R, N, C, U.
 		/// </summary>
 		string MpuCRelationshipFileStatus { get; set; }
 
@@ -161,6 +178,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Mailer Postage Account File Status (HDR-1159)
+		/// O, D, R, N, C, U.
 		/// </summary>
 		string MailerPostageAccountFileStatus { get; set; }
 
@@ -172,6 +190,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Component File Status (HDR-1119)
+		/// O, D, R, N, C, U.
 		/// </summary>
 		string ComponentFileStatus { get; set; }
 
@@ -183,6 +202,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Component Characteristic File Status (HDR-1180)
+		/// O, D, R, N, C, U.
 		/// </summary>
 		string ComponentCharacteristicFileStatus { get; set; }
 
@@ -194,6 +214,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Container Summary File Status (HDR-1121)
+		/// O, D, R, N, C, U.
 		/// </summary>
 		string ContainerSummaryFileStatus { get; set; }
 
@@ -205,6 +226,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Container Quantity File Status (HDR-1127)
+		/// O, D, R, N, C, U.
 		/// </summary>
 		string ContainerQuantityFileStatus { get; set; }
 
@@ -216,6 +238,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Package Quantity File Status (HDR-1129)
+		/// O, D, R, N, C, U.
 		/// </summary>
 		string PackageQuantityFileStatus { get; set; }
 
@@ -227,6 +250,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Walk Sequence File Status (HDR-1131)
+		/// O, D, R, N, C, U.
 		/// </summary>
 		string WalkSequenceFileStatus { get; set; }
 
@@ -238,6 +262,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Seed Name File Status (HDR-1133)
+		/// O, D, R, N, C, U.
 		/// </summary>
 		string SeedNameFileStatus { get; set; }
 
@@ -249,6 +274,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// IJ / C Relationship File Status (HDR-1137)
+		/// O, D, R, N, C, U.
 		/// </summary>
 		string IJCRelationshipFileStatus { get; set; }
 
@@ -260,6 +286,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Piece Detail File Status (HDR-1139)
+		/// O, D, R, N, C, U.
 		/// </summary>
 		string PieceDetailFileStatus { get; set; }
 
@@ -271,6 +298,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Piece Barcode File Status (HDR-1179)
+		/// O, D, R, N, C, U.
 		/// </summary>
 		string PieceBarcodeFileStatus { get; set; }
 
@@ -282,6 +310,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Special Fee/Charge File Status (HDR-1141)
+		/// O, D, R, N, C, U.
 		/// </summary>
 		string SpecialFeeChargeFileStatus { get; set; }
 
@@ -293,6 +322,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Postage Adjustment File Status (HDR-1147)
+		/// O, D, R, N, C, U.
 		/// </summary>
 		string PostageAdjustmentFileStatus { get; set; }
 
@@ -304,6 +334,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Original Container Identification File Status (HDR-1173)
+		/// O, D, R, N, C, U.
 		/// </summary>
 		string OriginalContainerIdentificationFileStatus { get; set; }
 
@@ -315,6 +346,7 @@ namespace Mail.dat
 
 		/// <summary>
 		/// Un-Coded Parcel Address File Status (HDR-1185)
+		/// O, D, R, N, C, U.
 		/// </summary>
 		string UnCodedParcelAddressFileStatus { get; set; }
 
@@ -374,48 +406,63 @@ namespace Mail.dat
 		string ReferenceableMailBarcodeStatus { get; set; }
 
 		/// <summary>
-		/// Certificate of Mailing Header Record Count (HDR-1201)
-		/// The number of Certificate of Mailing Header records in this Mail.dat.
+		/// Transportation Summary Record Count (HDR-1197)
+		/// The number of transportation summary records in this Mail.dat.
 		/// </summary>
-		int CertificateOfMailingHeaderRecordCount { get; set; }
+		int TransportationSummaryRecordCount { get; set; }
 
 		/// <summary>
-		/// Certificate of Mailing Header Status (HDR-1202)
+		/// Transportation Summary Record Status (HDR-1198)
+		/// O, D, R, N, C, U.
 		/// </summary>
-		string CertificateOfMailingHeaderStatus { get; set; }
+		string TransportationSummaryRecordStatus { get; set; }
 
 		/// <summary>
-		/// Certificate of Mailing Detail Record Count (HDR-1203)
+		/// Transportation Geo-Data Record Count (HDR-1199)
 		/// The number of certificate of mailing detail records in this Mail.dat.
 		/// </summary>
-		int CertificateOfMailingDetailRecordCount { get; set; }
+		int TransportationGeoDataRecordCount { get; set; }
 
 		/// <summary>
-		/// Certificate of Mailing Detail Status (HDR-1204)
+		/// Transportation Geo-Data Record Status (HDR-2001)
 		/// </summary>
-		string CertificateOfMailingDetailStatus { get; set; }
+		string TransportationGeoDataRecordStatus { get; set; }
 
 		/// <summary>
-		/// Certificate of Mailing Bulk Record Count (HDR-1205)
-		/// The number of certificate of mailing bulk records in this Mail.dat.
+		/// Transportation Detail Record Count (HDR-2002)
+		/// The number of transportation detail records in this Mail.dat.
 		/// </summary>
-		int CertificateOfMailingBulkRecordCount { get; set; }
+		int TransportationDetailRecordCount { get; set; }
 
 		/// <summary>
-		/// Certificate of Mailing Bulk Status (HDR-1206)
+		/// Transportation Detail Record Status (HDR-2003)
+		/// O, D, R, N, C, U.
 		/// </summary>
-		string CertificateOfMailingBulkStatus { get; set; }
+		string TransportationDetailRecordStatus { get; set; }
 
 		/// <summary>
-		/// Certificate of Mailing Services Record Count (HDR-1207)
-		/// The number of certificate of mailing services records in this Mail.dat.
+		/// Transportation Container Record Count (HDR-2004)
+		/// The number of transportation container records in this Mail.dat.
 		/// </summary>
-		int CertificateOfMailingServicesRecordCount { get; set; }
+		int TransportationContainerRecordCount { get; set; }
 
 		/// <summary>
-		/// Certificate of Mailing Services Status (HDR-1208)
+		/// Transportation Container Record Status (HDR-2005)
+		/// O, D, R, N, C, U.
 		/// </summary>
-		string CertificateOfMailingServicesStatus { get; set; }
+		string TransportationContainerRecordStatus { get; set; }
+
+		/// <summary>
+		/// Transportation Container Status Record Count (HDR-2006)
+		/// The number of transportation container records in this Mail.dat.
+		/// </summary>
+		int TransportationContainerStatusRecordCount { get; set; }
+
+		/// <summary>
+		/// Transportation Container Status Record Status (HDR-2007)
+		/// O, D, R, N, C, U.
+		/// </summary>
+		string TransportationContainerStatusRecordStatus { get; set; }
 
 		/// <summary>
 		/// Mail.dat Presentation Category (HDR-1154)
@@ -473,10 +520,16 @@ namespace Mail.dat
 		string MailDatSoftwareVendorSEmail { get; set; }
 
 		/// <summary>
+		/// Reserve (HDR-1162)
+		/// Reserved for future use.
+		/// </summary>
+		string ReserveHdr1162 { get; set; }
+
+		/// <summary>
 		/// Zone Matrix Date (HDR-1160)
 		/// (cannot be all zeros).
 		/// </summary>
-		string ZoneMatrixDate { get; set; }
+		DateOnly? ZoneMatrixDate { get; set; }
 
 		/// <summary>
 		/// eDoc Sender CRID (HDR-1183)
@@ -504,5 +557,49 @@ namespace Mail.dat
 		/// Must be the # sign.
 		/// </summary>
 		string ClosingCharacter { get; }
+
+		/// <summary>
+		/// Certificate of Mailing Header Record Count (HDR-1201)
+		/// The number of Certificate of Mailing Header records in this Mail.dat.
+		/// </summary>
+		int CertificateOfMailingHeaderRecordCount { get; set; }
+
+		/// <summary>
+		/// Certificate of Mailing Header Status (HDR-1202)
+		/// </summary>
+		string CertificateOfMailingHeaderStatus { get; set; }
+
+		/// <summary>
+		/// Certificate of Mailing Detail Record Count (HDR-1203)
+		/// The number of certificate of mailing detail records in this Mail.dat.
+		/// </summary>
+		int CertificateOfMailingDetailRecordCount { get; set; }
+
+		/// <summary>
+		/// Certificate of Mailing Detail Status (HDR-1204)
+		/// </summary>
+		string CertificateOfMailingDetailStatus { get; set; }
+
+		/// <summary>
+		/// Certificate of Mailing Bulk Record Count (HDR-1205)
+		/// The number of certificate of mailing bulk records in this Mail.dat.
+		/// </summary>
+		int CertificateOfMailingBulkRecordCount { get; set; }
+
+		/// <summary>
+		/// Certificate of Mailing Bulk Status (HDR-1206)
+		/// </summary>
+		string CertificateOfMailingBulkStatus { get; set; }
+
+		/// <summary>
+		/// Certificate of Mailing Services Record Count (HDR-1207)
+		/// The number of certificate of mailing services records in this Mail.dat.
+		/// </summary>
+		int CertificateOfMailingServicesRecordCount { get; set; }
+
+		/// <summary>
+		/// Certificate of Mailing Services Status (HDR-1208)
+		/// </summary>
+		string CertificateOfMailingServicesStatus { get; set; }
 	}
 }

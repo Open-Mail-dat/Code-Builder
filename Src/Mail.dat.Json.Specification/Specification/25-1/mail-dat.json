@@ -325,7 +325,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, R, N, C, U"
 					],
 					"data": {
 						"type": "enum",
@@ -365,7 +365,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, R, N, C, U"
 					],
 					"data": {
 						"type": "enum",
@@ -405,7 +405,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, R, N, C, U"
 					],
 					"data": {
 						"type": "enum",
@@ -445,7 +445,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, R, N, C, U"
 					],
 					"data": {
 						"type": "enum",
@@ -485,7 +485,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, R, N, C, U"
 					],
 					"data": {
 						"type": "enum",
@@ -525,7 +525,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, R, N, C, U"
 					],
 					"data": {
 						"type": "enum",
@@ -565,7 +565,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, R, N, C, U"
 					],
 					"data": {
 						"type": "enum",
@@ -605,7 +605,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, R, N, C, U"
 					],
 					"data": {
 						"type": "enum",
@@ -645,7 +645,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, R, N, C, U"
 					],
 					"data": {
 						"type": "enum",
@@ -685,7 +685,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, R, N, C, U"
 					],
 					"data": {
 						"type": "enum",
@@ -725,7 +725,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, R, N, C, U"
 					],
 					"data": {
 						"type": "enum",
@@ -765,7 +765,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, R, N, C, U"
 					],
 					"data": {
 						"type": "enum",
@@ -805,7 +805,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, R, N, C, U"
 					],
 					"data": {
 						"type": "enum",
@@ -845,7 +845,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, R, N, C, U"
 					],
 					"data": {
 						"type": "enum",
@@ -885,7 +885,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, R, N, C, U"
 					],
 					"data": {
 						"type": "enum",
@@ -925,7 +925,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, R, N, C, U"
 					],
 					"data": {
 						"type": "enum",
@@ -965,7 +965,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, R, N, C, U"
 					],
 					"data": {
 						"type": "enum",
@@ -2259,7 +2259,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -2822,7 +2822,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -3129,7 +3129,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -3547,7 +3547,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -4450,7 +4450,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -6133,7 +6133,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -6582,7 +6582,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -6836,7 +6836,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -7056,7 +7056,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -7336,7 +7336,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -7500,7 +7500,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -7734,7 +7734,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -8109,7 +8109,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -8381,7 +8381,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -8557,7 +8557,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -8859,7 +8859,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -9010,7 +9010,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -9146,7 +9146,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -9363,7 +9363,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -9762,7 +9762,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -9944,7 +9944,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -10393,7 +10393,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -10664,7 +10664,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -11084,7 +11084,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",
@@ -11401,7 +11401,7 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						""
+						"O, D, I, U"
 					],
 					"data": {
 						"type": "enum",

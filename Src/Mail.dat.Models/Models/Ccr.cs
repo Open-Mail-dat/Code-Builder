@@ -1,12 +1,27 @@
 //
-// Copyright (c) 2025 Open Mail.dat
+// This file is part of Open Mail.dat.
+// Copyright (c) 2025 Open Mail.dat. All rights reserved.
 //
-// This source code is licensed under the MIT license found in the LICENSE file in the root directory of this source tree.
+// ************************************************************************************************************************
+// License Agreement:
 //
-// This code was auto-generated on June 14th, 2025.
-// by the Open Mail.dat Code Generator.
+// Open Mail.dat is free software: you can redistribute it and/or modify it under the terms of the
+// GNU LESSER GENERAL PUBLIC LICENSE as published by the Free Software Foundation, either version 3
+// of the License, or (at your option) any later version.
+// Open Mail.dat is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+// even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU LESSER GENERAL PUBLIC LICENSE for more details.
+// You should have received three files as part of the license agreemen for Open Mail.dat.
 //
-// Author: Daniel M porrey
+// LICENSE.md (GNU Lesser General Public License)
+// LICENSE-GPL3.md (GNU General Public License)
+// LICENSE-ADDENDUM.md (Attribution and Public Use Addendum to the GNU Lesser General Public License v3.0 (LGPL-3.0))
+//
+// If not, see <https://www.gnu.org/licenses/>.
+// ************************************************************************************************************************
+//
+// This code was auto-generated on June 15th, 2025 by the Open Mail.dat Code Generator.
+// Code Generator Author: Daniel M porrey
 //
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -21,7 +36,7 @@ namespace Mail.dat
 	/// contents that are part of the mail piece.
 	/// </summary>
 	[MaildatFile(Version = "23-1", Revision = "0.5", Extension = "ccr", File = "Component Characteristics Record", Summary = "Characteristics of a component.", Description = "Characteristics of a component. Allows mailers to identify surcharges, incentive and specific contents that are part of the mail piece.", LineLength = 21, ClosingCharacter = "#")]
-	[MaildatFile(Version = "24-1", Revision = "1.3", Extension = "ccr", File = "Component Characteristics Record", Summary = "Characteristics of a component.", Description = "Characteristics of a component. Allows mailers to identify surcharges, incentive and specific contents that are part of the mail piece.", LineLength = 21, ClosingCharacter = "#")]
+	[MaildatFile(Version = "24-1", Revision = "1.5", Extension = "ccr", File = "Component Characteristics Record", Summary = "Characteristics of a component.", Description = "Characteristics of a component. Allows mailers to identify surcharges, incentive and specific contents that are part of the mail piece.", LineLength = 21, ClosingCharacter = "#")]
 	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "ccr", File = "Component Characteristics Record", Summary = "Characteristics of a component.", Description = "Characteristics of a component. Allows mailers to identify surcharges, incentive and specific contents that are part of the mail piece.", LineLength = 52, ClosingCharacter = "#")]
 	[MaildatImport(Order = 7, Version = "23-1")]
 	[MaildatImport(Order = 7, Version = "24-1")]
@@ -35,7 +50,7 @@ namespace Mail.dat
 		/// Job ID (CCR-1001)
 		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "ccr", FieldCode = "CCR-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "Job ID.", Type = "string", Format = "zfillnumeric", References = "HDR-1001")]
+		[MaildatField(Version = "23-1", Extension = "ccr", FieldCode = "CCR-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "(Zero fill prior to numeric, if numeric only). See Header File’s Job Id.", Type = "string", Format = "zfillnumeric", References = "HDR-1001")]
 		[MaildatField(Version = "24-1", Extension = "ccr", FieldCode = "CCR-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "(Zero fill prior to numeric, if numeric only). See Header File’s Job Id.", Type = "string", Format = "zfillnumeric", References = "HDR-1001")]
 		[MaildatField(Version = "25-1", Extension = "ccr", FieldCode = "CCR-1001", FieldName = "Job ID", Start = 1, Length = 8, Required = true, Key = true, DataType = "A/N", Description = "(Zero fill prior to numeric, if numeric only). See Header File’s Job Id.", Type = "string", Format = "zfillnumeric", References = "HDR-1001")]
 		[Column("JobId", Order = 2, TypeName = "TEXT")]
@@ -99,10 +114,11 @@ namespace Mail.dat
 
 		/// <summary>
 		/// CCR Record Status (CCR-2000)
+		/// O, D, I, U.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "ccr", FieldCode = "CCR-2000", FieldName = "CCR Record Status", Start = 20, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "", Type = "enum", Format = "leftjustify")]
-		[MaildatField(Version = "24-1", Extension = "ccr", FieldCode = "CCR-2000", FieldName = "CCR Record Status", Start = 20, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "", Type = "enum", Format = "leftjustify")]
-		[MaildatField(Version = "25-1", Extension = "ccr", FieldCode = "CCR-2000", FieldName = "CCR Record Status", Start = 51, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "", Type = "enum", Format = "leftjustify")]
+		[MaildatField(Version = "23-1", Extension = "ccr", FieldCode = "CCR-2000", FieldName = "CCR Record Status", Start = 20, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "O, D, I, U.", Type = "enum", Format = "leftjustify")]
+		[MaildatField(Version = "24-1", Extension = "ccr", FieldCode = "CCR-2000", FieldName = "CCR Record Status", Start = 20, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "O, D, I, U.", Type = "enum", Format = "leftjustify")]
+		[MaildatField(Version = "25-1", Extension = "ccr", FieldCode = "CCR-2000", FieldName = "CCR Record Status", Start = 51, Length = 1, Required = true, Key = false, DataType = "A/N", Description = "O, D, I, U.", Type = "enum", Format = "leftjustify")]
 		[Column("CcrRecordStatus", Order = 6, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(1)]
