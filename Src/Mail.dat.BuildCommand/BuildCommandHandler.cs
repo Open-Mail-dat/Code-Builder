@@ -128,7 +128,7 @@ namespace Mail.dat.BuildCommand
 						//
 						// Read some of the variables so they can be used multiple times.
 						//
-						let propertyName = tbl.FieldName.ToPropertyName(tbl.FieldCode)
+						let propertyName = tbl.ToPropertyName()
 						//
 						// Create the class property. If the name is Reserve, then append the field code because a
 						// class may have more than one reserve field.
@@ -141,7 +141,7 @@ namespace Mail.dat.BuildCommand
 							//
 							// Set the return type using a native .NET type.
 							//
-							.SetReturnType(fileGroup.ReturnType(tbl.FieldCode))
+							.SetReturnType(fileGroup.ReturnType(tbl))
 							//
 							// Add a summary made up of the code, name and description.
 							//
@@ -162,7 +162,7 @@ namespace Mail.dat.BuildCommand
 								//
 								// Add a MaildatField attribute for each specification version.
 								//
-								fileGroup.AddMaildatFieldAttributes(tbl.FieldCode),
+								fileGroup.AddMaildatFieldAttributes(tbl),
 								[
 									//
 									// Add the column attribute for compatibility to EF Core.
@@ -188,16 +188,16 @@ namespace Mail.dat.BuildCommand
 									// length of the filed in all specificatios.
 									//
 									AttributeBuilder.CreateConditional(
-										fileGroup.ReturnType(tbl.FieldCode) == "string",
+										fileGroup.ReturnType(tbl) == "string",
 										"MaxLength",
-										AttributeParameter.Create("", fileGroup.Length(tbl.FieldCode))),
+										AttributeParameter.Create("", fileGroup.Length(tbl))),
 									//
 									// Add the allowed values.
 									//
 									AttributeBuilder.CreateConditional(
 										tbl.Data.Values != null && tbl.Data.Values.Count > 0,
 										"AllowedValues",
-										[.. (from tbl in fileGroup.AllowedValueKeys(tbl.FieldCode)
+										[.. (from tbl in fileGroup.AllowedValueKeys(tbl)
 											 select AttributeParameter.Create("", tbl))]),
 									//
 									// Add allowed values for the closing field.
@@ -288,7 +288,7 @@ namespace Mail.dat.BuildCommand
 										tbl.Data != null && tbl.Data.Values != null && tbl.Data.Values.Count != 0,
 										"MaildatValues",
 										AttributeParameter.Create("", $"typeof({propertyName.Pluralize()})", false)),
-									fileGroup.MaildatVersionsAttribute(tbl.FieldCode)
+									fileGroup.MaildatVersionsAttribute(tbl)
 								]
 							])
 							.CreateValuesClass(
@@ -296,7 +296,7 @@ namespace Mail.dat.BuildCommand
 									propertyName,
 									NameSpace,
 									fileGroup,
-									tbl.FieldCode)
+									tbl)
 					])
 					.AddMethod(MethodBuilder.Create("OnImportDataAsync")
 						.SetScope("protected override")
@@ -309,8 +309,8 @@ namespace Mail.dat.BuildCommand
 						.AddCode("")
 						.AddCode(
 							[.. from tbl in fileGroup.RecordDefinitions()
-									let propertyName = tbl.FieldName.ToPropertyName(tbl.FieldCode)
-									select $"this.{propertyName} = line.ParseForImport<{fileGroup.FileExtension.ToClassName()}, {fileGroup.ReturnType(tbl.FieldCode)}>(version, p => p.{propertyName}, returnValue);"
+									let propertyName = tbl.ToPropertyName()
+									select $"this.{propertyName} = line.ParseForImport<{fileGroup.FileExtension.ToClassName()}, {fileGroup.ReturnType(tbl)}>(version, p => p.{propertyName}, returnValue);"
 							]
 						)
 						.AddCode("this.FileLineNumber = fileLineNumber;")
@@ -326,8 +326,8 @@ namespace Mail.dat.BuildCommand
 						.AddCode("")
 						.AddCode(
 							[.. from tbl in fileGroup.RecordDefinitions()
-									let propertyName = tbl.FieldName.ToPropertyName(tbl.FieldCode)
-									select $"sb.Append(this.{propertyName}.FormatForExport<{fileGroup.FileExtension.ToClassName()}, {fileGroup.ReturnType(tbl.FieldCode)}>(version, p => p.{propertyName}));"
+									let propertyName = tbl.ToPropertyName()
+									select $"sb.Append(this.{propertyName}.FormatForExport<{fileGroup.FileExtension.ToClassName()}, {fileGroup.ReturnType(tbl)}>(version, p => p.{propertyName}));"
 							]
 						)
 						.AddCode("")
@@ -356,7 +356,7 @@ namespace Mail.dat.BuildCommand
 							//
 							// Read some of the variables so they can be used multiple times.
 							//
-							let propertyName = tbl.FieldName.ToPropertyName(tbl.FieldCode)
+							let propertyName = tbl.ToPropertyName()
 							let description = string.Join(" ", tbl.Description.Select(t => t.Sanitize().Transform(To.SentenceCase))).EndSentence()
 							//
 							// Create the class property. If the name is Reserve, then append th field code because a
@@ -370,7 +370,7 @@ namespace Mail.dat.BuildCommand
 								//
 								// Set the return type using a ntive .NET type.
 								//
-								.SetReturnType(fileGroup.ReturnType(tbl.FieldCode))
+								.SetReturnType(fileGroup.ReturnType(tbl))
 								//
 								// Add a summary made up of the code, name and description.
 								//

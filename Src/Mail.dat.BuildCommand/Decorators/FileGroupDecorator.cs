@@ -57,33 +57,33 @@ namespace Mail.dat.BuildCommand
 			return $"{summary} {description}".Trim();
 		}
 
-		public static int Length(this FileGroup fileGroup, string fieldCode)
+		public static int Length(this FileGroup fileGroup, RecordDefinition recordDefinition)
 		{
 			return fileGroup.Items.SelectMany(t => t.FileDefinition.RecordDefinitions)
-								  .Where(t => t.FieldCode == fieldCode)
+								  .Where(t => t.ToPropertyName() == recordDefinition.ToPropertyName())
 								  .Max(t => t.Length);
 		}
 
-		public static string ReturnType(this FileGroup fileGroup, string fieldCode)
+		public static string ReturnType(this FileGroup fileGroup, RecordDefinition recordDefinition)
 		{
 			string returnValue = null;
 
 			IEnumerable<string> types = fileGroup.Items.SelectMany(t => t.FileDefinition.RecordDefinitions)
-														.Where(t => t.FieldCode == fieldCode)
+														.Where(t => t.ToPropertyName() == recordDefinition.ToPropertyName())
 														.Select(t => t.Data.Type)
 														.GroupBy(g => g)
 														.OrderBy(g => g.Key)
 														.Select(g => g.Key);
 
 			IEnumerable<bool> required = fileGroup.Items.SelectMany(t => t.FileDefinition.RecordDefinitions)
-														.Where(t => t.FieldCode == fieldCode && t.Required)
+														.Where(t => t.ToPropertyName() == recordDefinition.ToPropertyName() && t.Required)
 														.Select(t => t.Required)
 														.GroupBy(g => g)
 														.OrderBy(g => g.Key)
 														.Select(g => g.Key);
 
 			IEnumerable<string> dataType = fileGroup.Items.SelectMany(t => t.FileDefinition.RecordDefinitions)
-														.Where(t => t.FieldCode == fieldCode)
+														.Where(t => t.ToPropertyName() == recordDefinition.ToPropertyName())
 														.Select(t => t.DataType)
 														.GroupBy(g => g)
 														.OrderBy(g => g.Key)
@@ -135,13 +135,13 @@ namespace Mail.dat.BuildCommand
 			return returnValue;
 		}
 
-		public static IEnumerable<AttributeBuilder> AddMaildatFieldAttributes(this FileGroup fileGroup, string fieldCode)
+		public static IEnumerable<AttributeBuilder> AddMaildatFieldAttributes(this FileGroup fileGroup, RecordDefinition recordDefinition)
 		{
 			IList<AttributeBuilder> returnValue = [];
 
 			foreach (FileDefinitionList item in fileGroup.Items)
 			{
-				RecordDefinition field = item.FileDefinition.RecordDefinitions.Where(t => t.FieldCode == fieldCode).FirstOrDefault();
+				RecordDefinition field = item.FileDefinition.RecordDefinitions.Where(t => t.ToPropertyName() == recordDefinition.ToPropertyName()).FirstOrDefault();
 
 				if (field != null)
 				{
@@ -178,25 +178,26 @@ namespace Mail.dat.BuildCommand
 			returnValue = fileGroup.Items
 								.SelectMany(f => f.FileDefinition.RecordDefinitions.Select(rd => new
 								{
-									Record = rd,
+									RecordDefinition = rd,
 									f.Version,
-									rd.FieldCode
+									rd.FieldCode,
+									rd.FieldName
 								}))
-								.GroupBy(x => x.FieldCode)
+								.GroupBy(x => x.RecordDefinition.ToPropertyName())
 								.Select(g => g
 									.OrderByDescending(x => x.Version, new VersionInfoComparer())
-									.First().Record)
+									.First().RecordDefinition)
 								.ToList();
 
 			return returnValue;
 		}
 
-		public static IEnumerable<string> AllowedValueKeys(this FileGroup fileGroup, string fieldCode)
+		public static IEnumerable<string> AllowedValueKeys(this FileGroup fileGroup, RecordDefinition recordDefinition)
 		{
 			IEnumerable<string> returnValue = [];
 
 			returnValue = fileGroup.Items.SelectMany(t => t.FileDefinition.RecordDefinitions)
-										 .Where(t => t.FieldCode == fieldCode)
+										 .Where(t => t.ToPropertyName() == recordDefinition.ToPropertyName())
 										 .SelectMany(t => t.Data.Values.Keys)
 										 .GroupBy(g => g)
 										 .OrderBy(g => g.Key)
@@ -205,12 +206,12 @@ namespace Mail.dat.BuildCommand
 			return returnValue;
 		}
 
-		public static IEnumerable<AllowedValue> AllowedValues(this FileGroup fileGroup, string fieldCode)
+		public static IEnumerable<AllowedValue> AllowedValues(this FileGroup fileGroup, RecordDefinition recordDefinition)
 		{
 			IEnumerable<AllowedValue> returnValue = [];
 
 			returnValue = fileGroup.Items.SelectMany(t => t.FileDefinition.RecordDefinitions.Select(s => new { t.Version, RecordDefinition = s }))
-										 .Where(t => t.RecordDefinition.FieldCode == fieldCode)
+										 .Where(t => t.RecordDefinition.ToPropertyName() == recordDefinition.ToPropertyName())
 										 .SelectMany(t => t.RecordDefinition.Data.Values.Select(s => new { t.Version, s.Key, s.Value }))
 										 .OrderBy(g => g.Key)
 										 .ThenBy(g => g.Version.Major)
@@ -227,10 +228,10 @@ namespace Mail.dat.BuildCommand
 			return AttributeBuilder.Create("MaildatVersions").AddParameter("", parameter, false);
 		}
 
-		public static AttributeBuilder MaildatVersionsAttribute(this FileGroup fileGroup, string fieldCode)
+		public static AttributeBuilder MaildatVersionsAttribute(this FileGroup fileGroup, RecordDefinition recordDefinition)
 		{
 			string[] versions = fileGroup.Items.SelectMany(t => t.FileDefinition.RecordDefinitions.Select(s => new { t.Version, RecordDefinition = s }))
-										 .Where(t => t.RecordDefinition.FieldCode == fieldCode)
+										 .Where(t => t.RecordDefinition.ToPropertyName() == recordDefinition.ToPropertyName())
 										 .Select(t => t.Version)
 										 .GroupBy(g => g.Major)
 										 .Select(g => g.Key)

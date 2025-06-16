@@ -23,6 +23,7 @@
 // Author: Daniel M porrey
 //
 using Humanizer;
+using Mail.dat.Json.Specification;
 
 namespace Mail.dat.BuildCommand
 {
@@ -43,20 +44,43 @@ namespace Mail.dat.BuildCommand
 			return $"{value.TruePascalize()}.cs";
 		}
 
-		public static string ToPropertyName(this object value, object fieldCode)
+		//public static string ToPropertyName(this object value, object fieldCode)
+		//{
+		//	string returnValue = null;
+
+		//	if (value is not null)
+		//	{
+		//		returnValue = value.ToString().Dehumanize().TruePascalize().KeywordSanitize();
+
+		//		if (returnValue == "Reserve")
+		//		{
+		//			returnValue = $"{returnValue}{fieldCode.ToString().Dehumanize().TruePascalize().KeywordSanitize()}";
+		//		}
+		//	}
+		//	else
+		//	{
+		//		throw new ArgumentNullException(nameof(value), "Field name cannot be null.");
+		//	}
+
+		//	return returnValue;
+		//}
+
+		public static string ToPropertyName(this RecordDefinition recordDefintion)
 		{
 			string returnValue = null;
 
-			if (value is null)
+			if (recordDefintion is not null)
 			{
-				throw new ArgumentNullException(nameof(value), "Field name cannot be null.");
+				returnValue = recordDefintion.FieldName.ToString().Dehumanize().TruePascalize().KeywordSanitize();
+
+				if (returnValue == "Reserve")
+				{
+					returnValue = $"{returnValue}{recordDefintion.FieldCode.ToString().Dehumanize().TruePascalize().KeywordSanitize()}";
+				}
 			}
-
-			returnValue = value.ToString().Dehumanize().TruePascalize().KeywordSanitize();
-
-			if (returnValue == "Reserve")
+			else
 			{
-				returnValue = $"{returnValue}{fieldCode.ToString().Dehumanize().TruePascalize().KeywordSanitize()}";
+				throw new ArgumentNullException(nameof(recordDefintion), "RecordDefinition cannot be null.");
 			}
 
 			return returnValue;

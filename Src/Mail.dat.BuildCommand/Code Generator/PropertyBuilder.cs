@@ -23,6 +23,7 @@
 // Author: Daniel M porrey
 //
 using Humanizer;
+using Mail.dat.Json.Specification;
 
 namespace Mail.dat.BuildCommand
 {
@@ -122,9 +123,9 @@ namespace Mail.dat.BuildCommand
 			return this;
 		}
 
-		public PropertyBuilder CreateValuesClass(string filePath, string propertyName, string nameSpace, FileGroup fileGroup, string fieldCode)
+		public PropertyBuilder CreateValuesClass(string filePath, string propertyName, string nameSpace, FileGroup fileGroup, RecordDefinition recordDefinition)
 		{
-			IEnumerable<AllowedValue> values = fileGroup.AllowedValues(fieldCode);
+			IEnumerable<AllowedValue> values = fileGroup.AllowedValues(recordDefinition);
 
 			if (values.Count() > 0)
 			{
@@ -135,7 +136,7 @@ namespace Mail.dat.BuildCommand
 						.SetFileHeaderComments()
 						.SetNameSpace(nameSpace)
 						.AddUsing("Mail.dat.Abstractions")
-						.SetSummary($"These are the allowed values for the property {propertyName} ({fieldCode}).")
+						.SetSummary($"These are the allowed values for the property {propertyName} ({recordDefinition.FieldCode}).")
 						.SetObjectType("class")
 						.SetScope("public")
 						.SetPartial(false)
@@ -144,7 +145,7 @@ namespace Mail.dat.BuildCommand
 							fileGroup.MaildatVersionsAttribute(),
 							AttributeBuilder.Create("MaildatFieldLink")
 								.AddParameter("File", fileGroup.FileExtension)
-								.AddParameter("FieldCode", fieldCode)
+								.AddParameter("FieldCode", recordDefinition.FieldCode)
 						)
 						.AddMethod(MethodBuilder.Create("OnGetFieldCode")
 							.SetScope("protected override")
@@ -155,13 +156,13 @@ namespace Mail.dat.BuildCommand
 							.SetScope("protected override")
 							.SetReturnType("string")
 							.SetSummary("Returns the field code that this set of values is linked to.")
-							.AddCode($"return \"{fieldCode}\";"))
+							.AddCode($"return \"{recordDefinition.FieldCode}\";"))
 						.AddMethod(MethodBuilder.Create("OnInitializeValues")
 							.SetScope("protected override")
 							.SetReturnType("void")
 							.SetSummary("Initializes the values.")
 							.AddCode([.. (from tbl in values
-								select $"this.Add(new MaildatValue() {{ Version = \"{tbl.Version.Major}\", Key = \"{tbl.Key}\", FileExtension = \"{fileGroup.FileExtension}\", Description = \"{tbl.Value.Sanitize()}\", FieldCode = \"{fieldCode}\", FieldName = \"{propertyName}\" }});")]))
+								select $"this.Add(new MaildatValue() {{ Version = \"{tbl.Version.Major}\", Key = \"{tbl.Key}\", FileExtension = \"{fileGroup.FileExtension}\", Description = \"{tbl.Value.Sanitize()}\", FieldCode = \"{recordDefinition.FieldCode}\", FieldName = \"{propertyName}\" }});")]))
 						.Build(filePath, 1);
 			}
 

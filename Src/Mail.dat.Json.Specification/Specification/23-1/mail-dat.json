@@ -9507,7 +9507,7 @@
 					}
 				},
 				{
-					"fieldCode": "EPD-1101",
+					"fieldCode": "EPD-1004",
 					"fieldName": "CRID",
 					"start": 32,
 					"length": 12,
@@ -9515,7 +9515,6 @@
 					"key": false,
 					"dataType": "A/N",
 					"description": [
-						"Defined as EPD-1004 in 23-1 Specification.",
 						"This USPS-assigned id, CRID, will be used to uniquely identify the role of this party. Left justify, space padded to the right, only digits 0 - 9 acceptable."
 					],
 					"data": {
