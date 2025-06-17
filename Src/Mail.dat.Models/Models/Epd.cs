@@ -20,7 +20,7 @@
 // If not, see <https://www.gnu.org/licenses/>.
 // ************************************************************************************************************************
 //
-// This code was auto-generated on June 15th, 2025 by the Open Mail.dat Code Generator.
+// This code was auto-generated on June 16th, 2025 by the Open Mail.dat Code Generator.
 // Code Generator Author: Daniel M porrey
 //
 using System.ComponentModel.DataAnnotations.Schema;
@@ -101,7 +101,7 @@ namespace Mail.dat
 		/// This USPS-assigned id, CRID, will be used to uniquely identify the role of this party. Only digits 0
 		/// - 9 acceptable.
 		/// </summary>
-		[MaildatField(Version = "23-1", Extension = "epd", FieldCode = "EPD-1101", FieldName = "CRID", Start = 32, Length = 12, Required = true, Key = false, DataType = "A/N", Description = "Defined as EPD-1004 in 23-1 Specification. This USPS-assigned id, CRID, will be used to uniquely identify the role of this party. Left justify, space padded to the right, only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
+		[MaildatField(Version = "23-1", Extension = "epd", FieldCode = "EPD-1004", FieldName = "CRID", Start = 32, Length = 12, Required = true, Key = false, DataType = "A/N", Description = "This USPS-assigned id, CRID, will be used to uniquely identify the role of this party. Left justify, space padded to the right, only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "24-1", Extension = "epd", FieldCode = "EPD-1101", FieldName = "CRID", Start = 32, Length = 12, Required = true, Key = false, DataType = "A/N", Description = "This USPS-assigned id, CRID, will be used to uniquely identify the role of this party. Left justify, space padded to the right, only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
 		[MaildatField(Version = "25-1", Extension = "epd", FieldCode = "EPD-1101", FieldName = "CRID", Start = 32, Length = 12, Required = true, Key = false, DataType = "A/N", Description = "This USPS-assigned id, CRID, will be used to uniquely identify the role of this party. Only digits 0 - 9 acceptable.", Type = "string", Format = "leftjustify")]
 		[Column("Crid", Order = 5, TypeName = "TEXT")]

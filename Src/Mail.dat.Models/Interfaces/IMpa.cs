@@ -20,7 +20,7 @@
 // If not, see <https://www.gnu.org/licenses/>.
 // ************************************************************************************************************************
 //
-// This code was auto-generated on June 15th, 2025 by the Open Mail.dat Code Generator.
+// This code was auto-generated on June 16th, 2025 by the Open Mail.dat Code Generator.
 // Code Generator Author: Daniel M porrey
 //
 namespace Mail.dat
@@ -71,13 +71,13 @@ namespace Mail.dat
 		string PermitZip4 { get; set; }
 
 		/// <summary>
-		/// Mail Owner's Lcl Permit Ref Num/Int'l Bill Num (MPA-1107)
-		/// Number used by local USPS for client identification. This field can be used to let the Postal
-		/// Service know what permit numbers are included in the mailing that the Mail.dat® file represents.
-		/// This field is used for identifying what permits are being used for the entire job in an MLOCR
-		/// environment. Should not be zero padded.
+		/// Mail Owner's Lcl Permit Ref Num (MPA-1107)
+		/// Number used by local USPS for client identification. This field can be used to Let the Postal
+		/// Service know what permit numbers are included in the mailing That the Mail.dat® file represents.
+		/// This field is used for identifying what Permits are being used for the entire job in an MLOCR
+		/// environment. Should Not be zero padded.
 		/// </summary>
-		string MailOwnerSLclPermitRefNumIntLBillNum { get; set; }
+		string MailOwnerSLclPermitRefNum { get; set; }
 
 		/// <summary>
 		/// Mail Owner's Lcl Permit Ref Num/Int'l Bill Num - Type (MPA-1108)
@@ -176,5 +176,14 @@ namespace Mail.dat
 		/// Must be the # sign.
 		/// </summary>
 		string ClosingCharacter { get; }
+
+		/// <summary>
+		/// Mail Owner's Lcl Permit Ref Num/Int'l Bill Num (MPA-1107)
+		/// Number used by local USPS for client identification. This field can be used to let the Postal
+		/// Service know what permit numbers are included in the mailing that the Mail.dat® file represents.
+		/// This field is used for identifying what permits are being used for the entire job in an MLOCR
+		/// environment. Should not be zero padded.
+		/// </summary>
+		string MailOwnerSLclPermitRefNumIntLBillNum { get; set; }
 	}
 }
