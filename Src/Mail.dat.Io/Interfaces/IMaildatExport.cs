@@ -24,8 +24,20 @@
 //
 namespace Mail.dat.Io
 {
+	/// <summary>
+	/// Defines the interface for exporting maildat files.
+	/// </summary>
 	public interface IMaildatExport
 	{
+		/// <summary>
+		/// Exports data asynchronously based on the specified export options.
+		/// </summary>
+		/// <remarks>The export operation is performed asynchronously and may involve I/O operations. Ensure that the
+		/// provided <paramref name="options"/> object is properly configured to avoid errors.</remarks>
+		/// <param name="options">The export options that define the configuration and parameters for the export operation. Cannot be <see
+		/// langword="null"/>.</param>
+		/// <returns>A task that represents the asynchronous export operation. The task result is <see langword="true"/> if the export
+		/// completes successfully; otherwise, <see langword="false"/>.</returns>
 		Task<bool> ExportAsync(IExportOptions options);
 	}
 }

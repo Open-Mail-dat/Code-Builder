@@ -26,15 +26,58 @@ using Microsoft.Extensions.Logging;
 
 namespace Mail.dat.Io
 {
+	/// <summary>
+	/// Defines the options used to configure the import process for a maildat file.
+	/// </summary>
+	/// <remarks>This interface provides properties to specify the source file, target file, temporary directory,
+	/// logging behavior, and other settings that influence the import process. Implementations of this interface are
+	/// expected to encapsulate all necessary configuration for the import operation.</remarks>
 	public interface IImportOptions
 	{
+		/// <summary>
+		/// Gets or sets the source file associated with the maildat operation.
+		/// </summary>
+		/// <remarks>The source file is used as the input for maildat-related operations. Ensure that the file is
+		/// properly initialized and accessible before setting this property.</remarks>
 		IMaildatFile SourceFile { get; set; }
+
+		/// <summary>
+		/// Gets or sets the path to the temporary directory used for storing intermediate or temporary files.
+		/// </summary>
 		string TemporaryDirectory { get; set; }
+
+		/// <summary>
+		/// Gets or sets the path to the target file.
+		/// </summary>
 		string TargetFile { get; set; }
+
+		/// <summary>
+		/// Gets or sets a value indicating whether the PBC (Piece barcode details) step should be skipped.
+		/// </summary>
 		bool SkipPbc { get; set; }
+
+		/// <summary>
+		/// Gets or sets the logger used to record messages and events related to import options.
+		/// </summary>
 		ILogger<IImportOptions> Logger { get; set; }
+
+		/// <summary>
+		/// Gets or sets the <see cref="System.Threading.CancellationToken"/> used to signal cancellation of an operation.
+		/// </summary>
 		CancellationToken CancellationToken { get; set; }
+
+		/// <summary>
+		/// Gets or sets a value indicating whether the system should prioritize memory usage over performance.
+		/// </summary>
+		/// <remarks>This property allows the caller to control the trade-off between memory efficiency and
+		/// performance.  Setting this to <see langword="true"/> may result in slower operations but reduced memory
+		/// consumption,  while setting it to <see langword="false"/> may improve performance at the cost of higher memory
+		/// usage.</remarks>
 		bool FavorMemoryOverPerformance { get; set; }
+
+		/// <summary>
+		/// Gets or sets the maximum number of records that can be held in memory at a given time.
+		/// </summary>
 		int MaxRecordsInMemory { get; set; }
 	}
 }

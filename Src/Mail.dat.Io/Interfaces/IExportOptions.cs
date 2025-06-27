@@ -35,12 +35,45 @@ namespace Mail.dat.Io
 	/// necessary configuration for export operations.</remarks>
 	public interface IExportOptions
 	{
+		/// <summary>
+		/// Gets or sets the target Mail.dat file associated with the operation.
+		/// </summary>
 		IMaildatFile TargetFile { get; set; }
+
+		/// <summary>
+		/// Gets or sets the target version of the application or component.
+		/// </summary>
 		string TaregtVersion { get; set; }
+
+		/// <summary>
+		/// Gets or sets the path to the source file associated with the operation.
+		/// </summary>
 		string SourceFile { get; set; }
+
+		/// <summary>
+		/// Gets or sets the character encoding used for text operations.
+		/// </summary>
+		/// <remarks>The encoding must be set to a valid <see cref="System.Text.Encoding"/> instance.  Common
+		/// encodings include <see cref="System.Text.Encoding.UTF8"/> and <see
+		/// cref="System.Text.Encoding.Unicode"/>.</remarks>
 		Encoding Encoding { get; set; }
+
+		/// <summary>
+		/// Gets or sets the string used to terminate lines in the output.
+		/// </summary>
+		/// <remarks>The value of this property determines how lines are separated in the output.  Common values
+		/// include "\n" for Unix-style line endings or "\r\n" for Windows-style line endings.  If set to <see
+		/// langword="null"/> or an empty string, no line terminator will be appended.</remarks>
 		string LineTerminator { get; set; }
+
+		/// <summary>
+		/// Gets or sets the logger used to record messages and events related to import options.
+		/// </summary>
 		ILogger<IImportOptions> Logger { get; set; }
+
+		/// <summary>
+		/// Gets or sets the <see cref="System.Threading.CancellationToken"/> used to signal cancellation of an operation.
+		/// </summary>
 		CancellationToken CancellationToken { get; set; }
 	}
 }

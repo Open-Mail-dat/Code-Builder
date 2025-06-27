@@ -24,8 +24,17 @@
 //
 namespace Mail.dat.Json.Specification
 {
+	/// <summary>
+	/// Calculates the total line length of all <see cref="RecordDefinition"/> objects in the collection.
+	/// </summary>
 	public static class RecordDefinitionDecorator
 	{
+		/// <summary>
+		/// Calculates the total length of all lines represented by the collection of <see cref="RecordDefinition"/> objects.
+		/// </summary>
+		/// <param name="items">A collection of <see cref="RecordDefinition"/> objects. Each object must have a valid <c>Length</c> property.</param>
+		/// <returns>The sum of the <c>Length</c> property values for all <see cref="RecordDefinition"/> objects in the collection.
+		/// Returns 0 if the collection is empty.</returns>
 		public static int TotalLineLength(this IEnumerable<RecordDefinition> items)
 		{
 			return items.Sum(t => t.Length);

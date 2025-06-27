@@ -24,15 +24,52 @@
 //
 namespace Mail.dat.Io.Models
 {
+	/// <summary>
+	/// Represents a message that provides progress information for an operation.
+	/// </summary>
+	/// <remarks>This class is used to convey details about the progress of an operation, including the type of
+	/// action being performed, the current item's name and source, and the overall progress state. It can also include
+	/// additional context information relevant to the operation.</remarks>
 	internal class ProgressMessage : IProgressMessage
 	{
+		/// <summary>
+		/// Gets or sets the type of action being performed on the item.
+		/// </summary>
 		public ProgressMessageType ItemAction { get; set; }
+
+		/// <summary>
+		/// Gets or sets the message associated with the current operation or context.
+		/// </summary>
 		public string Message { get; set; }
+
+		/// <summary>
+		/// Gets or sets the name of the item.
+		/// </summary>
 		public string ItemName { get; set; }
+
+		/// <summary>
+		/// Gets or sets the source identifier for the item.
+		/// </summary>
 		public string ItemSource { get; set; }
+
+		/// <summary>
+		/// Gets or sets the index of the current item in a collection.
+		/// </summary>
 		public int ItemIndex { get; set; }
+
+		/// <summary>
+		/// Gets or sets the number of items in the collection.
+		/// </summary>
 		public int ItemCount { get; set; }
+
+		/// <summary>
+		/// Gets or sets a value indicating whether progress will be displayed during the operation.
+		/// </summary>
 		public bool WillShowProgress { get; set; }
+
+		/// <summary>
+		/// Gets or sets the context object associated with the current operation.
+		/// </summary>
 		public object Context { get; set; }
 	}
 }

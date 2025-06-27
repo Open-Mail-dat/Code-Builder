@@ -27,14 +27,54 @@ using Microsoft.Extensions.Logging;
 
 namespace Mail.dat.Io
 {
+	/// <summary>
+	/// Represents the options used for exporting data to a target file.
+	/// </summary>
+	/// <remarks>This class provides configuration settings for controlling the export process,  including the
+	/// source file, target version, encoding, and other related options.</remarks>
 	public class ExportOptions : IExportOptions
 	{
+		/// <summary>
+		/// Gets or sets the path to the source file associated with the operation.
+		/// </summary>
 		public string SourceFile { get; set; }
+
+		/// <summary>
+		/// Gets or sets the target version of the application or component.
+		/// </summary>
 		public string TaregtVersion { get; set; }
+
+		/// <summary>
+		/// Gets or sets the target maildat file associated with the operation.
+		/// </summary>
+		/// <remarks>Ensure that the assigned value is not null and adheres to the expected implementation of <see
+		/// cref="IMaildatFile"/>.</remarks>
 		public IMaildatFile TargetFile { get; set; }
+
+		/// <summary>
+		/// Gets or sets the character encoding used for text operations.
+		/// </summary>
 		public Encoding Encoding { get; set; } = Encoding.UTF8;
+
+		/// <summary>
+		/// Gets or sets the string used to terminate lines in the output.
+		/// </summary>
+		/// <remarks>This property determines the sequence of characters appended to the end of each line.  It can be
+		/// customized to use a specific line terminator, such as "\n" for Unix-style line endings  or "\r\n" for
+		/// Windows-style line endings.</remarks>
 		public string LineTerminator { get; set; } = Environment.NewLine;
+
+		/// <summary>
+		/// Gets or sets the logger used to log messages related to import options.
+		/// </summary>
 		public ILogger<IImportOptions> Logger { get; set; }
+
+		/// <summary>
+		/// Gets or sets the <see cref="CancellationToken"/> used to propagate notification that operations should be
+		/// canceled.
+		/// </summary>
+		/// <remarks>Assigning a new <see cref="CancellationToken"/> allows the caller to control the cancellation
+		/// behavior of the associated operation.</remarks>
 		public CancellationToken CancellationToken { get; set; }
 	}
 }

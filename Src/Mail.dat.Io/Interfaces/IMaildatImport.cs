@@ -24,8 +24,24 @@
 //
 namespace Mail.dat.Io
 {
+	/// <summary>
+	/// Defines a contract for importing Mail.dat files into a processing context.
+	/// </summary>
+	/// <remarks>This interface provides a method to import Mail.dat files using the specified options.  The result
+	/// indicates whether the import was successful and provides a context object  containing details about the imported
+	/// data.</remarks>
 	public interface IMaildatImport
 	{
+		/// <summary>
+		/// Imports data asynchronously based on the specified import options.
+		/// </summary>
+		/// <remarks>The method performs an asynchronous import operation using the provided options. The caller can
+		/// use the  returned <MaildatContext> to access details about the imported data. If the import fails, the 
+		/// <MaildatContext> may be <null>.</remarks>
+		/// <param name="options">The options that configure the import operation. This parameter cannot be null.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result is a tuple where the first value is a  <bool>
+		/// indicating whether the import was successful, and the second value is a  <MaildatContext> containing the context
+		/// of the imported data.</returns>
 		Task<(bool, MaildatContext)> ImportAsync(IImportOptions options);
 	}
 }
