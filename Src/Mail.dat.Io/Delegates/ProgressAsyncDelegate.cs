@@ -24,5 +24,12 @@
 //
 namespace Mail.dat.Io
 {
+	/// <summary>
+	/// Represents a method that processes a progress message asynchronously.
+	/// </summary>
+	/// <remarks>This delegate is typically used to handle progress updates in asynchronous workflows.
+	/// Implementations should ensure thread safety if the delegate is invoked from multiple threads.</remarks>
+	/// <param name="message">The progress message to be processed. Cannot be null.</param>
+	/// <returns>A task that represents the asynchronous operation.</returns>
 	public delegate Task ProgressAsyncDelegate(IProgressMessage message);
 }

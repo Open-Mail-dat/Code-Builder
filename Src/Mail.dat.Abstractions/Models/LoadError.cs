@@ -23,10 +23,26 @@
 // Author: Daniel M porrey
 namespace Mail.dat
 {
+	/// <summary>
+	/// Represents an error encountered during the loading of a Maildat field.
+	/// </summary>
+	/// <remarks>This class provides details about a specific error, including the associated field attribute, the
+	/// value that caused the error, and a descriptive error message.</remarks>
 	public class LoadError : ILoadError
 	{
+		/// <summary>
+		/// Gets or sets the attribute associated with the Maildat field.
+		/// </summary>
 		public MaildatFieldAttribute Attribute { get; set; }
+
+		/// <summary>
+		/// Gets or sets the value represented by this instance.
+		/// </summary>
 		public string Value { get; set; }
+
+		/// <summary>
+		/// Gets or sets the error message associated with the current operation or state.
+		/// </summary>
 		public string ErrorMessage { get; set; }
 	}
 }

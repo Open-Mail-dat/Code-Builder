@@ -27,13 +27,41 @@ using System.Globalization;
 
 namespace Mail.dat
 {
+	/// <summary>
+	/// Provides a type converter to convert between <see cref="string"/> and <see cref="int"/> values for Mail.dat fields,
+	/// with support for custom formatting and padding based on field attributes.
+	/// </summary>
+	/// <remarks>This converter is designed to handle Mail.dat-specific formatting requirements, such as
+	/// left-justified or zero-filled numeric strings, based on the <see cref="MaildatFieldAttribute"/> associated with the
+	/// context. It supports conversions from <see cref="string"/> to <see cref="int"/> and vice versa, applying the
+	/// appropriate formatting rules during the conversion process.</remarks>
 	public class MaildatIntegerConverter : TypeConverter
 	{
+		/// <summary>
+		/// Determines whether the converter can convert an object of the specified type to the type of this converter.
+		/// </summary>
+		/// <param name="context">An <see cref="ITypeDescriptorContext"/> that provides a format context. This parameter can be <see
+		/// langword="null"/>.</param>
+		/// <param name="sourceType">The <see cref="Type"/> representing the type to evaluate for conversion.</param>
+		/// <returns><see langword="true"/> if the <paramref name="sourceType"/> is <see cref="string"/>; otherwise, <see
+		/// langword="false"/>.</returns>
 		public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
 		{
 			return sourceType == typeof(string);
 		}
 
+		/// <summary>
+		/// Converts the specified string representation of a number to an integer.
+		/// </summary>
+		/// <remarks>If the <paramref name="value"/> is not a string or is an empty or whitespace-only string, the
+		/// method returns <see langword="null"/>.</remarks>
+		/// <param name="context">An <see cref="ITypeDescriptorContext"/> that provides a format context. This parameter is not used in the
+		/// conversion.</param>
+		/// <param name="culture">A <see cref="CultureInfo"/> object that provides culture-specific formatting information. This parameter is not
+		/// used in the conversion.</param>
+		/// <param name="value">The object to convert. Must be a non-null, non-empty string representing a valid integer.</param>
+		/// <returns>An <see cref="int"/> representing the converted value if the input is a valid string representation of an integer;
+		/// otherwise, <see langword="null"/>.</returns>
 		public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
 		{
 			object returnValue = null;
@@ -46,11 +74,37 @@ namespace Mail.dat
 			return returnValue;
 		}
 
+		/// <summary>
+		/// Determines whether this converter can convert an object to the specified destination type.
+		/// </summary>
+		/// <param name="context">An <see cref="ITypeDescriptorContext"/> that provides a format context. This parameter can be <see
+		/// langword="null"/>.</param>
+		/// <param name="destinationType">The <see cref="Type"/> to evaluate for conversion. This parameter cannot be <see langword="null"/>.</param>
+		/// <returns><see langword="true"/> if the converter can convert to the specified <paramref name="destinationType"/>;
+		/// otherwise, <see langword="false"/>.</returns>
 		public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
 		{
 			return destinationType == typeof(string);
 		}
 
+		/// <summary>
+		/// Converts the specified value to the desired destination type, applying formatting rules defined by the <see
+		/// cref="MaildatFieldAttribute"/> associated with the context.
+		/// </summary>
+		/// <remarks>The formatting behavior is determined by the <see cref="MaildatFieldAttribute"/> associated  with
+		/// the context. Supported formatting options include left justification, zero-filling,  and space-filling, depending
+		/// on the attribute's <c>DataType</c> and <c>Format</c> properties.  If the input value is not numeric when numeric
+		/// formatting is required, a default space-filled  string is returned.</remarks>
+		/// <param name="context">Provides contextual information about the component, including access to the  <see cref="MaildatFieldAttribute"/>
+		/// that defines formatting rules such as data type,  alignment, and required length.</param>
+		/// <param name="culture">An optional <see cref="CultureInfo"/> object that provides culture-specific formatting  information. This
+		/// parameter is not used in the current implementation.</param>
+		/// <param name="value">The value to be converted. Must be of type <see cref="int"/> or <see cref="string"/>  to be processed; otherwise,
+		/// a default formatted string is returned.</param>
+		/// <param name="destinationType">The type to which the value should be converted. This method supports conversion to  <see cref="string"/> only.</param>
+		/// <returns>A formatted string representation of the input value, adhering to the rules specified  by the <see
+		/// cref="MaildatFieldAttribute"/>. The returned string is padded or truncated  to match the required length and
+		/// alignment.</returns>
 		public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
 		{
 			string returnValue = null;

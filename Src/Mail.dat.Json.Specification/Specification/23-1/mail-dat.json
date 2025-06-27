@@ -10400,6 +10400,159 @@
 					}
 				}
 			]
+		},
+		{
+			"file": "Transportation Summary Record",
+			"fileExtension": "tsr",
+			"fileSummary": "Provide summary of transportation trucks",
+			"fileDescription": "",
+			"recordDefinitions": [
+				{
+					"fieldCode": "TSR-1001",
+					"fieldName": "Job ID",
+					"start": 1,
+					"length": 8,
+					"required": true,
+					"key": true,
+					"dataType": "A/N",
+					"description": [
+						"(Zero fill prior to numeric, if numeric only). See Header File’s Job Id."
+					],
+					"data": {
+						"type": "string",
+						"format": "zfillnumeric",
+						"references": [
+							"HDR-1001"
+						]
+					}
+				},
+				{
+					"fieldCode": "TSR-1002 ",
+					"fieldName": "Transportation ID ",
+					"start": 9,
+					"length": 5,
+					"required": true,
+					"key": true,
+					"dataType": "A/N",
+					"description": [
+						"Unique ID of Transportation records. (zero fill prior to numeric, if numeric only)",
+						"Key field. To link to the Transportation Summary",
+						"Record to all of the Transportation Detail Records",
+						"Transportation Geo-data Records, and Transportation",
+						"Container Records if they exist in the submission."
+					],
+					"data": {
+						"type": "string",
+						"format": "zfillnumeric"
+					}
+				},
+				{
+					"fieldCode": "TSR-1101",
+					"fieldName": "Load / Truck Dispatch Number",
+					"start": 14,
+					"length": 10,
+					"required": true,
+					"key": false,
+					"dataType": "A/N",
+					"description": [
+						"Value used by transportation to represent the, ransportation associated. As available, the applicable transportation information."
+					],
+					"data": {
+						"type": "string",
+						"format": "leftjustify"
+					}
+				},
+				{
+					"fieldCode": "TSR-1102",
+					"fieldName": "Target Ship Date/Time",
+					"start": 24,
+					"length": 25,
+					"required": false,
+					"key": true,
+					"dataType": "A/N",
+					"description": [
+						"Date/Time transportation schedule to ship.",
+						"In ISO-8601 Format",
+						"YYYY-MM-DDThh:mm:ssTZD",
+						"YYYY = four-digit year",
+						"MM   = two-digit month (01=January, etc.)",
+						"DD   = two-digit day of month (01 through 31)",
+						"hh   = two digits of hour (00 through 23) (am/pm",
+						"NOT allowed)",
+						"mm   = two digits of minute (00 through 59)",
+						"ss   = two digits of second (00 through 59)",
+						"TZD  = time zone designator (Z = UTC designator",
+						"or +hh:mm or -hh:mm to express the local",
+						"time offset)",
+						"Note that the \"T\" appears literally in the string, to indicate",
+						"the beginning of the time element.",
+						"Example:",
+						"November 5, 1994, 8:15:30 am, US Eastern Standard Time.",
+						"Expressed as local time:",
+						"1994-11-05T08:15:30-05:00",
+						"Expressed as UTC:",
+						"1994-11-05T13:15:30Z"
+					],
+					"data": {
+						"type": "datetime",
+						"format": "leftjustify"
+					}
+				},
+				{
+					"fieldCode": "TSR-2000",
+					"fieldName": "TSR Record Status",
+					"start": 49,
+					"length": 1,
+					"required": true,
+					"key": false,
+					"dataType": "A/N",
+					"description": [
+						"O, D, I, U"
+					],
+					"data": {
+						"type": "enum",
+						"format": "leftjustify",
+						"values": {
+							"D": "Delete",
+							"I": "Insert",
+							"O": "Original",
+							"U": "Update"
+						}
+					}
+				},
+				{
+					"fieldCode": "TSR-1104",
+					"fieldName": "Reserved",
+					"start": 50,
+					"length": 3,
+					"required": true,
+					"key": true,
+					"dataType": "A/N",
+					"description": [
+						""
+					],
+					"data": {
+						"type": "string",
+						"format": "leftjustify"
+					}
+				},
+				{
+					"fieldCode": "TSR-1101",
+					"fieldName": "Closing Character",
+					"start": 53,
+					"length": 1,
+					"required": true,
+					"key": false,
+					"dataType": "",
+					"description": [
+						"Must be the \"#\" sign."
+					],
+					"data": {
+						"type": "closing",
+						"format": "leftjustify"
+					}
+				}
+			]
 		}
 	]
 }

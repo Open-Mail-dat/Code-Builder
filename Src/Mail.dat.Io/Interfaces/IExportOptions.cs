@@ -27,6 +27,12 @@ using Microsoft.Extensions.Logging;
 
 namespace Mail.dat.Io
 {
+	/// <summary>
+	/// Defines the options for exporting data to a target file.
+	/// </summary>
+	/// <remarks>This interface provides properties to configure the export process, including the target file, 
+	/// source file, encoding, and other related settings. Implementations of this interface are used  to supply the
+	/// necessary configuration for export operations.</remarks>
 	public interface IExportOptions
 	{
 		IMaildatFile TargetFile { get; set; }

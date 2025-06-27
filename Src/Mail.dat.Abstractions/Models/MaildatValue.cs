@@ -26,17 +26,45 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Mail.dat.Abstractions
 {
+	/// <summary>
+	/// Represents a value in the Mail.dat system, including metadata such as version, key, file extension, and field
+	/// details.
+	/// </summary>
+	/// <remarks>This class is used to store and manage information about specific Mail.dat fields, including their
+	/// version, unique key, file extension, description, and field metadata. Instances of this class are typically used in
+	/// contexts where Mail.dat field definitions need to be processed or referenced.</remarks>
 	public class MaildatValue
 	{
+		/// <summary>
+		/// Gets or sets the version identifier for the entity.
+		/// </summary>
 		[Key]
 		public string Version { get; set; }
 
+		/// <summary>
+		/// Gets or sets the unique identifier for the entity.
+		/// </summary>
 		[Key]
 		public string Key { get; set; }
 
+		/// <summary>
+		/// Gets or sets the file extension associated with the file.
+		/// </summary>
 		public string FileExtension { get; set; }
+
+		/// <summary>
+		/// Gets or sets the description associated with the object.
+		/// </summary>
 		public string Description { get; set; }
+
+		/// <summary>
+		/// Gets or sets the code representing the field in the Mail.dat system.
+		/// </summary>
 		public string FieldCode { get; set; }
+
+		/// <summary>
+		/// Gets or sets the name of the field in the Mail.dat system.
+		/// </summary>
 		public string FieldName { get; set; }
 	}
 }

@@ -56,6 +56,7 @@ namespace Mail.dat.Json.Specification.Models
 			this.Add(new FileOrder { Extension = "cbr", Ordinal = 26 });
 			this.Add(new FileOrder { Extension = "cdr", Ordinal = 27 });
 			this.Add(new FileOrder { Extension = "cfr", Ordinal = 28 });
+			this.Add(new FileOrder { Extension = "tsr", Ordinal = 29 });
 		}
 
 		public static FileOrdering List => [];

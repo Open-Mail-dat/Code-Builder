@@ -24,18 +24,67 @@
 //
 namespace Mail.dat
 {
+	/// <summary>
+	/// Represents an error encountered during the processing of a maildat entity.
+	/// </summary>
+	/// <remarks>This interface provides detailed information about an error, including its location, type, and
+	/// associated data. It is intended to be implemented by classes that encapsulate error details for diagnostic or
+	/// logging purposes.</remarks>
 	public interface IError : IMaildatEntity
 	{
+		/// <summary>
+		/// Gets or sets the process identifier or name associated with the current operation.
+		/// </summary>
 		string Process { get; set; }
+
+		/// <summary>
+		/// Gets or sets the file path associated with the operation.
+		/// </summary>
 		string File { get; set; }
+
+		/// <summary>
+		/// Gets or sets the name of the field where the error occurred.
+		/// </summary>
 		string FieldName { get; set; }
+
+		/// <summary>
+		/// Gets or sets the code of the field where the error occurred.
+		/// </summary>
 		string FieldCode { get; set; }
+
+		/// <summary>
+		/// Gets or sets the data type of the field where the error occurred.
+		/// </summary>
 		string DataType { get; set; }
+
+		/// <summary>
+		/// Gets or sets the type of error encountered.
+		/// </summary>
 		string Type { get; set; }
+
+		/// <summary>
+		/// Gets or sets the starting position of the error within the data.
+		/// </summary>
 		int LineNumber { get; set; }
+
+		/// <summary>
+		/// Gets or sets the starting position of the error within the data.
+		/// </summary>
 		int StartPosition { get; set; }
+
+		/// <summary>
+		/// Gets or sets the length of the error in the data.
+		/// </summary>
 		int Length { get; set; }
+
+		/// <summary>
+		/// Gets or sets the value associated with the error.
+		/// </summary>
 		string Value { get; set; }
+
+		/// <summary>
+		/// Gets or sets the error message associated with the error.
+		/// </summary>
 		string ErrorMessage { get; set; }
 	}
 }

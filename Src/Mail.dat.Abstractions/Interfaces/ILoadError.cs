@@ -24,10 +24,26 @@
 //
 namespace Mail.dat
 {
+	/// <summary>
+	/// Represents an error encountered during the loading of a value associated with a specific attribute.
+	/// </summary>
+	/// <remarks>This interface is used to encapsulate details about a load error, including the attribute that
+	/// caused the error, the value that was being processed, and a descriptive error message.</remarks>
 	public interface ILoadError
 	{
+		/// <summary>
+		/// Gets or sets the attribute associated with the Maildat field.
+		/// </summary>
 		MaildatFieldAttribute Attribute { get; set; }
+
+		/// <summary>
+		/// Gets or sets the value associated with this instance.
+		/// </summary>
 		string Value { get; set; }
+
+		/// <summary>
+		/// Gets or sets the error message associated with the current operation or state.
+		/// </summary>
 		string ErrorMessage { get; set; }
 	}
 }

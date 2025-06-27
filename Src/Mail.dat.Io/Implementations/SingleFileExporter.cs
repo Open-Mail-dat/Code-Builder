@@ -26,10 +26,36 @@ using Mail.dat.Io.Models;
 
 namespace Mail.dat.Io
 {
+	/// <summary>
+	/// Provides functionality to export a collection of entities to a single file in a specified format.
+	/// </summary>
+	/// <remarks>This class is designed to handle the export of entities implementing the <see
+	/// cref="IMaildatEntity"/> interface. The export process includes writing the entities to a file in the specified
+	/// format, updating progress during the operation, and ensuring the target directory and file are properly
+	/// managed.</remarks>
 	internal class SingleFileExporter
 	{
+		/// <summary>
+		/// Gets or sets the delegate to handle asynchronous progress updates.
+		/// </summary>
 		public ProgressAsyncDelegate ProgressUpdateAsync { get; set; }
 
+		/// <summary>
+		/// Exports a collection of entities to a file in a specified format.
+		/// </summary>
+		/// <remarks>This method creates a file in the target directory specified by <paramref name="options"/>. If
+		/// the target directory does not exist, it will be created. If a file with the same name already exists, it will be
+		/// overwritten. The method writes the entities to the file in the order specified by their <see
+		/// cref="IMaildatEntity.FileLineNumber"/> property and sends progress updates during the export process.</remarks>
+		/// <typeparam name="T">The type of the entities to export. Must implement <see cref="IMaildatEntity"/> and have a parameterless
+		/// constructor.</typeparam>
+		/// <param name="options">The export options that specify the target file, encoding, and line terminator.</param>
+		/// <param name="version">The version of the export format to use.</param>
+		/// <param name="entityType">The type of the entities being exported. This is used to determine the appropriate export behavior.</param>
+		/// <param name="items">A queryable collection of entities to export. The entities must implement <see cref="IMaildatEntity"/>.</param>
+		/// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
+		/// <returns>A task that represents the asynchronous export operation. The task result is <see langword="true"/> if the export
+		/// completes successfully; otherwise, <see langword="false"/>.</returns>
 		public async Task<bool> ExportAsync<T>(IExportOptions options, string version, Type entityType, IQueryable<IMaildatEntity> items, CancellationToken cancellationToken) where T : class, IMaildatEntity, new()
 		{
 			bool returnValue = true;
@@ -98,6 +124,13 @@ namespace Mail.dat.Io
 			return returnValue;
 		}
 
+		/// <summary>
+		/// Triggers the <see cref="ProgressUpdateAsync"/> event with the specified progress message.
+		/// </summary>
+		/// <remarks>This method invokes the <see cref="ProgressUpdateAsync"/> event if it has subscribers.  The
+		/// provided <paramref name="message"/> should contain the relevant progress information.</remarks>
+		/// <param name="message">The progress message to pass to the event handlers. Cannot be <see langword="null"/>.</param>
+		/// <returns>A completed <see cref="Task"/> representing the asynchronous operation.</returns>
 		protected Task FireProgressUpdateAsync(IProgressMessage message)
 		{
 			this.ProgressUpdateAsync?.Invoke(message);

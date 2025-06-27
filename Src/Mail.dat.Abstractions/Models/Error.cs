@@ -29,7 +29,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Mail.dat
 {
 	/// <summary>
-	/// 
+	/// Represents an error record in the Mail.dat system.
 	/// </summary>
 	[PrimaryKey("Id")]
 	public partial class Error : MaildatEntity, IError
@@ -42,38 +42,71 @@ namespace Mail.dat
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public new int Id { get; set; }
 
+		/// <summary>
+		/// Gets or sets the name of the process.
+		/// </summary>
 		[MaxLength(100)]
 		[Column(Order = 1)]
 		public string Process { get; set; }
 
+		/// <summary>
+		/// Gets or sets the file identifier.
+		/// </summary>
 		[MaxLength(3)]
 		[Column(Order = 2)]
 		public string File { get; set; }
 
+		/// <summary>
+		/// Gets or sets the name of the field associated with this entity.
+		/// </summary>
 		[Column(Order = 3)]
 		public string FieldName { get; set; }
 
+		/// <summary>
+		/// Gets or sets the code that uniquely identifies the field.
+		/// </summary>
 		[Column(Order = 4)]
 		public string FieldCode { get; set; }
 
+		/// <summary>
+		/// Gets or sets the data type associated with the entity.
+		/// </summary>
 		[Column(Order = 5)]
 		public string DataType { get; set; }
 
+		/// <summary>
+		/// Gets or sets the type associated with the entity.
+		/// </summary>
 		[Column(Order = 6)]
 		public string Type { get; set; }
 
+		/// <summary>
+		/// Gets or sets the line number associated with the entity.
+		/// </summary>
 		[Column(Order = 7)]
 		public int LineNumber { get; set; }
 
+		/// <summary>
+		/// Gets or sets the starting position of an item or entity within a sequence or collection.
+		/// </summary>
 		[Column(Order = 8)]
 		public int StartPosition { get; set; }
 
+		/// <summary>
+		/// Gets or sets the length of the item.
+		/// </summary>
 		[Column(Order = 8)]
 		public int Length { get; set; }
 
+		/// <summary>
+		/// Gets or sets the value associated with this entity.
+		/// </summary>
 		[Column(Order = 10)]
 		public string Value { get; set; }
 
+		/// <summary>
+		/// Gets or sets the error message associated with this entity.
+		/// </summary>
 		[Column(Order = 11)]
 		public string ErrorMessage { get; set; }
 	}

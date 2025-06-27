@@ -30,11 +30,22 @@ namespace Mail.dat
 	[AttributeUsage(AttributeTargets.All)]
 	public class MaildatVersionsAttribute : Attribute
 	{
+		/// <summary>
+		/// Specifies the Maildat versions supported by the associated component or functionality.
+		/// </summary>
+		/// <param name="supportedVersions">An array of strings representing the supported Maildat versions. Each version should be specified as a non-null,
+		/// non-empty string.</param>
 		public MaildatVersionsAttribute(params string[] supportedVersions)
 		{
 			this.SupportedVersions = supportedVersions;
 		}
 
+		/// <summary>
+		/// Gets or sets the collection of supported version identifiers.
+		/// </summary>
+		/// <remarks>This property allows you to specify or retrieve the versions that are supported by the current
+		/// context.  Ensure that the collection contains valid version identifiers relevant to your application's
+		/// requirements.</remarks>
 		public IEnumerable<string> SupportedVersions { get; set; }
 	}
 }

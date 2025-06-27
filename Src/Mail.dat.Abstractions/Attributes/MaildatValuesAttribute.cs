@@ -30,11 +30,18 @@ namespace Mail.dat
 	[AttributeUsage(AttributeTargets.Property)]
 	public class MaildatValuesAttribute : Attribute
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MaildatValuesAttribute"/> class with the specified type.
+		/// </summary>
+		/// <param name="type">The type associated with the attribute. This value cannot be <see langword="null"/>.</param>
 		public MaildatValuesAttribute(Type type)
 		{
 			this.Type = type;
 		}
 
+		/// <summary>
+		/// Gets or sets the type of the object represented by this instance.
+		/// </summary>
 		public Type Type { get; set; }
 	}
 }

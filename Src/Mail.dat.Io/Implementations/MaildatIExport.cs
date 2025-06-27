@@ -30,19 +30,47 @@ using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Mail.dat.Io
 {
+	/// <summary>
+	/// Provides functionality to export Mail.dat files based on the specified options.
+	/// </summary>
+	/// <remarks>This class supports creating instances with or without a progress update delegate.  Use the <see
+	/// cref="Create()"/> or <see cref="Create(ProgressAsyncDelegate)"/> methods to instantiate the class. The <see
+	/// cref="ExportAsync(IExportOptions)"/> method performs the export operation,  and progress updates can be reported
+	/// via the provided delegate, if specified.</remarks>
 	public class MaildatExport : IMaildatExport
 	{
+		/// <summary>
+		/// Gets or sets the delegate to report progress updates during an asynchronous operation.
+		/// </summary>
+		/// <remarks>Assign a delegate to this property to handle progress reporting for long-running asynchronous
+		/// operations. The delegate will be called with progress information as the operation progresses.</remarks>
 		public ProgressAsyncDelegate ProgressUpdate { get; set; }
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MaildatExport"/> class.
+		/// </summary>
+		/// <remarks>This constructor is private, indicating that instances of the <see cref="MaildatExport"/> class
+		/// cannot be created directly from outside the class. Use the appropriate factory methods or public members provided
+		/// by the class to obtain an instance, if applicable.</remarks>
 		private MaildatExport()
 		{
 		}
 
+		/// <summary>
+		/// Creates a new instance of an object that implements the <see cref="IMaildatExport"/> interface.
+		/// </summary>
+		/// <returns>An instance of a class that implements the <see cref="IMaildatExport"/> interface.</returns>
 		public static IMaildatExport Create()
 		{
 			return new MaildatExport();
 		}
 
+		/// <summary>
+		/// Creates a new instance of an object that implements the <see cref="IMaildatExport"/> interface.
+		/// </summary>
+		/// <param name="progressAction">A delegate to report progress asynchronously during the export process. Can be <see langword="null"/> if progress
+		/// reporting is not required.</param>
+		/// <returns>An instance of a class that implements the <see cref="IMaildatExport"/> interface.</returns>
 		public static IMaildatExport Create(ProgressAsyncDelegate progressAction)
 		{
 			return new MaildatExport()
@@ -51,6 +79,17 @@ namespace Mail.dat.Io
 			};
 		}
 
+		/// <summary>
+		/// Exports data from a source file to a target file in the specified format asynchronously.
+		/// </summary>
+		/// <remarks>This method processes data from the source file specified in the <paramref name="options"/>
+		/// parameter and exports it to the target file. The export process includes generating a connection to the source
+		/// database, retrieving data entities, and optionally compressing the output if the target file extension is ".zip".
+		/// Progress updates are reported during the operation.</remarks>
+		/// <param name="options">The export options, including source file path, target file path, target version, and cancellation token.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result is <see langword="true"/> if the export
+		/// operation completes successfully.</returns>
+		/// <exception cref="FileNotFoundException">Thrown if the source file specified in <paramref name="options"/> does not exist.</exception>
 		public async Task<bool> ExportAsync(IExportOptions options)
 		{
 			bool returnValue = true;
@@ -83,7 +122,7 @@ namespace Mail.dat.Io
 					// Get the Mail.dat version.
 					//
 					string version = options.TaregtVersion;
-					version ??= localContext.Hdr.Where(t=>t.HeaderHistoryStatus=="C").Single().MailDatVersion;
+					version ??= localContext.Hdr.Where(t => t.HeaderHistoryStatus == "C").Single().MailDatVersion;
 
 					//
 					// Get all of the model entities.
@@ -107,10 +146,13 @@ namespace Mail.dat.Io
 					MethodInfo exportMethod = typeof(SingleFileExporter).GetMethod("ExportAsync");
 
 					//
-					// Get all of the properties of the context.
+					// Get all of the properties of the context that suport the Mail.dat version being exported.
 					//
 					PropertyInfo[] properties = localContext.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
 												.Where(t => t.GetCustomAttribute<MaildatExportAttribute>() != null)
+												.Select(t => new { Property = t, Atrribute = t.GetCustomAttribute<MaildatExportAttribute>() })
+												.Where(t => t.Atrribute.Version == version)
+												.Select(t => t.Property)
 												.ToArray();
 
 					//
@@ -188,6 +230,13 @@ namespace Mail.dat.Io
 			return returnValue;
 		}
 
+		/// <summary>
+		/// Triggers the <see cref="ProgressUpdate"/> event with the specified progress message.
+		/// </summary>
+		/// <remarks>This method invokes the <see cref="ProgressUpdate"/> event if it has any subscribers.  The
+		/// provided <paramref name="message"/> is passed to all event handlers.</remarks>
+		/// <param name="message">The progress message to be passed to the event handlers. Cannot be <see langword="null"/>.</param>
+		/// <returns>A completed <see cref="Task"/> representing the asynchronous operation.</returns>
 		protected Task FireProgressUpdateAsync(IProgressMessage message)
 		{
 			this.ProgressUpdate?.Invoke(message);

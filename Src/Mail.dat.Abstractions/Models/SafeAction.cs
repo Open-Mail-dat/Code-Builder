@@ -24,8 +24,21 @@
 //
 namespace Mail.dat
 {
+	/// <summary>
+	/// Provides methods for executing actions with built-in exception handling.
+	/// </summary>
+	/// <remarks>This class simplifies the process of executing code that may throw exceptions by allowing the
+	/// caller to specify both the action to execute and a handler for any exceptions that occur.</remarks>
 	public static class SafeExecutor
 	{
+		/// <summary>
+		/// Executes the specified action within a try-catch block, allowing custom handling of exceptions.
+		/// </summary>
+		/// <remarks>This method provides a simplified way to handle exceptions by separating the logic for the main
+		/// operation  and the exception handling. Ensure that <paramref name="tryAction"/> and <paramref name="catchAction"/>
+		/// are not null  to avoid a <see cref="NullReferenceException"/>.</remarks>
+		/// <param name="tryAction">The action to execute. This action is run within the try block.</param>
+		/// <param name="catchAction">The action to execute if an exception is thrown. The exception is passed as a parameter to this action.</param>
 		public static void Try(Action tryAction, Action<Exception> catchAction)
 		{
 			try

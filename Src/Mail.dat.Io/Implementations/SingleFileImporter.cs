@@ -28,10 +28,36 @@ using Mail.dat.Io.Models;
 
 namespace Mail.dat.Io
 {
+	/// <summary>
+	/// Provides functionality to import a single file into the system, processing its contents and updating progress
+	/// asynchronously.
+	/// </summary>
+	/// <remarks>This class is designed to handle the import of files associated with a specific type of entity,
+	/// represented by the generic parameter <typeparamref name="T"/>. It supports progress updates, error handling, and
+	/// bulk insertion of data into the provided context.</remarks>
 	internal class SingleFileImporter
 	{
+		/// <summary>
+		/// Gets or sets the delegate to handle asynchronous progress updates.
+		/// </summary>
 		public ProgressAsyncDelegate ProgressUpdateAsync { get; set; }
 
+		/// <summary>
+		/// Imports data from a specified source file into the provided database context asynchronously.
+		/// </summary>
+		/// <remarks>This method processes the source file in parallel to improve performance and uses bulk insertion
+		/// to optimize database operations. It also provides progress updates and handles errors encountered during the
+		/// import process.</remarks>
+		/// <typeparam name="T">The type of the entity to import. Must implement <see cref="IMaildatEntity"/> and have a parameterless
+		/// constructor.</typeparam>
+		/// <param name="options">The import options that control the behavior of the import process, such as file source and memory usage
+		/// preferences.</param>
+		/// <param name="version">The version of the data format being imported. This is used to interpret the structure of the source file.</param>
+		/// <param name="context">The database context into which the imported data will be inserted.</param>
+		/// <param name="cancellationToken">A token to monitor for cancellation requests. If cancellation is requested, the import process will terminate
+		/// early.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result is <see langword="true"/> if the import
+		/// completes successfully; otherwise, <see langword="false"/>.</returns>
 		public async Task<bool> ImportAsync<T>(IImportOptions options, string version, MaildatContext context, CancellationToken cancellationToken) where T : class, IMaildatEntity, new()
 		{
 			bool returnValue = true;
@@ -235,6 +261,14 @@ namespace Mail.dat.Io
 			return returnValue;
 		}
 
+		/// <summary>
+		/// Triggers the <see cref="ProgressUpdateAsync"/> event with the specified progress message.
+		/// </summary>
+		/// <remarks>This method invokes the <see cref="ProgressUpdateAsync"/> event if it has been subscribed to. 
+		/// Callers should ensure that <paramref name="message"/> is not <see langword="null"/> before invoking this
+		/// method.</remarks>
+		/// <param name="message">The progress message to be passed to the event handler. Cannot be <see langword="null"/>.</param>
+		/// <returns>A completed <see cref="Task"/> representing the asynchronous operation.</returns>
 		protected Task FireProgressUpdateAsync(IProgressMessage message)
 		{
 			this.ProgressUpdateAsync?.Invoke(message);

@@ -26,8 +26,32 @@ using System.Runtime.CompilerServices;
 
 namespace Mail.dat.Io
 {
+	/// <summary>
+	/// Reads a binary file asynchronously, yielding each line as a tuple containing the line number and the line's
+	/// content.
+	/// </summary>
+	/// <remarks>This method reads a binary file line by line, where each line is defined by a fixed length and
+	/// specific line-ending characters. The method validates that each line ends with the specified closing character
+	/// before yielding it. If the validation fails, an exception is thrown. The method supports cancellation via the
+	/// <paramref name="cancellationToken"/>.</remarks>
 	public static class BinaryReaderDecorator
 	{
+		/// <summary>
+		/// Asynchronously reads lines from a mail.dat file and returns each line as a tuple containing the line number and
+		/// its content.
+		/// </summary>
+		/// <remarks>This method reads lines from a mail.dat file based on the specified line length and line-ending
+		/// characters. Each line is validated to ensure it ends with the specified closing character. If a line does not meet
+		/// this requirement, an exception is thrown. The method supports cancellation via the <paramref
+		/// name="cancellationToken"/>.</remarks>
+		/// <param name="reader">The <see cref="BinaryReader"/> used to read the mail.dat file.</param>
+		/// <param name="lineLength">The fixed length of each line, excluding line-ending characters.</param>
+		/// <param name="lineEndingCharacters">The characters that terminate each line (e.g., "\r\n").</param>
+		/// <param name="closingCharacter">The expected closing character for each line, used for validation.</param>
+		/// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
+		/// <returns>An asynchronous stream of tuples, where each tuple contains the line number (starting at 1) and the line content
+		/// as a byte array.</returns>
+		/// <exception cref="Exception">Thrown if a line does not end with the specified closing character.</exception>
 		public static async IAsyncEnumerable<(int, byte[])> ReadMaildatFileAsync(this BinaryReader reader, int lineLength, string lineEndingCharacters, string closingCharacter, [EnumeratorCancellation] CancellationToken cancellationToken = default)
 		{
 			await Task.Delay(0, cancellationToken);

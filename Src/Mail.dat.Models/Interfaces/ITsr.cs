@@ -26,54 +26,57 @@
 namespace Mail.dat
 {
 	/// <summary>
-	/// Un-coded parcels address record (linked to PDR). Un-Coded Parcel Address file: records addresses for
-	/// the un-coded parcels. (Links with .pdr ONLY).
+	/// Provide summary of transportation trucks.
 	/// </summary>
-	public interface IUpa : IMaildatEntity 
+	public interface ITsr : IMaildatEntity 
 	{
 		/// <summary>
-		/// Job ID (UPA-1001)
+		/// Job ID (TSR-1001)
 		/// (Zero fill prior to numeric, if numeric only). See Header File’s Job Id.
 		/// </summary>
 		string JobId { get; set; }
 
 		/// <summary>
-		/// Piece ID (UPA-1018)
-		/// Unique ID of individual piece within mailing.
+		/// Transportation ID (TSR-1002 )
+		/// Unique ID of Transportation records. (zero fill prior to numeric, if numeric only) Key field. To
+		/// link to the Transportation Summary Record to all of the Transportation Detail Records Transportation
+		/// Geo-data Records, and Transportation Container Records if they exist in the submission.
 		/// </summary>
-		string PieceId { get; set; }
+		string TransportationId { get; set; }
 
 		/// <summary>
-		/// CQT Database ID (UPA-1034)
+		/// Load / Truck Dispatch Number (TSR-1101)
+		/// Value used by transportation to represent the, ransportation associated. As available, the
+		/// applicable transportation information.
 		/// </summary>
-		int CqtDatabaseId { get; set; }
+		string LoadTruckDispatchNumber { get; set; }
 
 		/// <summary>
-		/// Address (UPA-1102)
-		/// Address line to be used for population of shipping services file.
+		/// Target Ship Date/Time (TSR-1102)
+		/// Date/Time transportation schedule to ship. In ISO-8601 Format YYYY-MM-DDThh:mm:ssTZD YYYY =
+		/// four-digit year MM   = two-digit month (01=January, etc.) DD   = two-digit day of month (01 through
+		/// 31) Hh   = two digits of hour (00 through 23) (am/pm NOT allowed) Mm   = two digits of minute (00
+		/// through 59) Ss   = two digits of second (00 through 59) TZD  = time zone designator (Z = UTC
+		/// designator Or +hh:mm or -hh:mm to express the local Time offset) Note that the T appears literally
+		/// in the string, to indicate The beginning of the time element. Example: November 5, 1994, 8:15:30 am,
+		/// US Eastern Standard Time. Expressed as local time: 1994-11-05T08:15:30-05:00 Expressed as UTC:
+		/// 1994-11-05T13:15:30Z.
 		/// </summary>
-		string Address { get; set; }
+		string TargetShipDateTime { get; set; }
 
 		/// <summary>
-		/// Additional Address (UPA-1103)
-		/// Address 2 line to be used for Secondary Address or Urbanization information.
-		/// </summary>
-		string AdditionalAddress { get; set; }
-
-		/// <summary>
-		/// UPA Record Status (UPA-2000)
+		/// TSR Record Status (TSR-2000)
 		/// O, D, I, U.
 		/// </summary>
-		string UParecordStatus { get; set; }
+		string TSRRecordStatus { get; set; }
 
 		/// <summary>
-		/// Reserve (UPA-1120)
-		/// Reserved for future use.
+		/// Reserved (TSR-1104)
 		/// </summary>
-		string ReserveUpa1120 { get; set; }
+		string Reserved { get; set; }
 
 		/// <summary>
-		/// Closing Character (UPA-9999)
+		/// Closing Character (TSR-1101)
 		/// Must be the # sign.
 		/// </summary>
 		string ClosingCharacter { get; }

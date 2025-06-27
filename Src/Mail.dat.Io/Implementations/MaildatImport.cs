@@ -31,19 +31,46 @@ using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Mail.dat.Io
 {
+	/// <summary>
+	/// Provides functionality to import Mail.dat files into a database context.
+	/// </summary>
+	/// <remarks>The <see cref="MaildatImport"/> class supports importing Mail.dat files, including handling zipped
+	/// files, creating a database context, and processing entities in parallel. Progress updates can be reported using the
+	/// <see cref="ProgressUpdate"/> delegate. Use the <see cref="Create()"/> or <see
+	/// cref="Create(ProgressAsyncDelegate)"/> methods to instantiate this class.</remarks>
 	public class MaildatImport : IMaildatImport
 	{
+		/// <summary>
+		/// Gets or sets the delegate to report progress updates during an asynchronous operation.
+		/// </summary>
+		/// <remarks>Assign a delegate to this property to handle progress reporting for long-running asynchronous
+		/// operations. The delegate will be called with progress information as the operation progresses.</remarks>
 		public ProgressAsyncDelegate ProgressUpdate { get; set; }
 
+		/// <summary>
+		/// Prevents the instantiation of the <see cref="MaildatImport"/> class from outside the class.
+		/// </summary>
+		/// <remarks>This private constructor is used to restrict the creation of instances of the <see
+		/// cref="MaildatImport"/> class, enforcing a specific design pattern, such as a static utility class or
+		/// singleton.</remarks>
 		private MaildatImport()
 		{
 		}
 
+		/// <summary>
+		/// Creates a new instance of an object that implements the <see cref="IMaildatImport"/> interface.
+		/// </summary>
+		/// <returns>An instance of a class that implements the <see cref="IMaildatImport"/> interface.</returns>
 		public static IMaildatImport Create()
 		{
 			return new MaildatImport();
 		}
 
+		/// <summary>
+		/// Creates a new instance of an object that implements the <see cref="IMaildatImport"/> interface.
+		/// </summary>
+		/// <param name="progressAction">A delegate that is invoked to report progress updates during the import process.</param>
+		/// <returns>An instance of a class that implements the <see cref="IMaildatImport"/> interface.</returns>
 		public static IMaildatImport Create(ProgressAsyncDelegate progressAction)
 		{
 			return new MaildatImport()
@@ -52,6 +79,20 @@ namespace Mail.dat.Io
 			};
 		}
 
+		/// <summary>
+		/// Imports data from the specified source file into the target database asynchronously.
+		/// </summary>
+		/// <remarks>This method performs the following steps: <list type="bullet"> <item>Unzips the source file if it
+		/// is compressed.</item> <item>Determines the version of the data to be imported.</item> <item>Creates and configures
+		/// a database context for the target database.</item> <item>Deletes any existing database and creates a new
+		/// one.</item> <item>Imports data entities in parallel, using a transaction to ensure consistency and improve
+		/// performance.</item> </list> Progress updates are reported throughout the process via the <see
+		/// cref="FireProgressUpdateAsync"/> method.</remarks>
+		/// <param name="options">The options that configure the import process, including source file, target database, temporary directory, and
+		/// cancellation token.</param>
+		/// <returns>A tuple containing a boolean indicating whether the import was successful and a <see cref="MaildatContext"/>
+		/// representing the database context for the imported data.</returns>
+		/// <exception cref="Exception">Thrown if the source file cannot be unzipped or if other errors occur during the import process.</exception>
 		public async Task<(bool, MaildatContext)> ImportAsync(IImportOptions options)
 		{
 			(bool returnValue, MaildatContext context) = (true, null);
@@ -119,6 +160,9 @@ namespace Mail.dat.Io
 				//
 				IEnumerable<IEntityType> entities = context.Model.GetEntityTypes()
 													.Where(t => t.ClrType.GetAttribute<MaildatImportAttribute>() != null)
+													.Select(t => new { EntityType = t, Atrribute = t.ClrType.GetCustomAttribute<MaildatExportAttribute>() })
+													.Where(t => t.Atrribute.Version == version)
+													.Select(t => t.EntityType)
 													.OrderBy(t => t.ClrType.GetAttribute<MaildatImportAttribute>().Order);
 
 				//
@@ -189,6 +233,11 @@ namespace Mail.dat.Io
 			return (returnValue, context);
 		}
 
+		/// <summary>
+		/// Asynchronously triggers a progress update event with the specified progress message.
+		/// </summary>
+		/// <param name="message">The progress message to be passed to the event handlers. Cannot be null.</param>
+		/// <returns>A completed task representing the asynchronous operation.</returns>
 		protected Task FireProgressUpdateAsync(IProgressMessage message)
 		{
 			this.ProgressUpdate.Invoke(message);

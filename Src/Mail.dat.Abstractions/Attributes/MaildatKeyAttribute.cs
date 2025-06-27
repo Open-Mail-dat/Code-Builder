@@ -30,6 +30,9 @@ namespace Mail.dat
     [AttributeUsage(AttributeTargets.Property)]
     public class MaildatKeyAttribute : Attribute
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MaildatKeyAttribute"/> class.
+        /// </summary>
         public MaildatKeyAttribute()
         {
         }

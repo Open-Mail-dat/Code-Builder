@@ -30,6 +30,9 @@ namespace Mail.dat
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
     public class MaildatFileAttribute : Attribute
     {
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MaildatFileAttribute"/> class.
+		/// </summary>
         public MaildatFileAttribute()
         {
         }
@@ -70,7 +73,7 @@ namespace Mail.dat
 		public int LineLength { get; set; }
 
 		/// <summary>
-		/// The charcater that marks the end of a line in the file.
+		/// The character that marks the end of a line in the file.
 		/// </summary>
 		public string ClosingCharacter { get; set; }
 	}

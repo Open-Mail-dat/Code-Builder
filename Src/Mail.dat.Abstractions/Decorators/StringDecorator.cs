@@ -24,6 +24,13 @@
 //
 namespace Mail.dat
 {
+	/// <summary>
+	/// Provides extension methods for string manipulation, such as truncating strings to a specified length or determining
+	/// if a string represents a numeric value.
+	/// </summary>
+	/// <remarks>This static class contains utility methods that extend the functionality of the <see
+	/// cref="string"/> type. These methods are designed to simplify common string operations, such as limiting the length
+	/// of a string or checking if a string can be parsed as a numeric value.</remarks>
 	public static class StringDecorator
 	{
 		/// <summary>
@@ -52,6 +59,11 @@ namespace Mail.dat
 			return returnValue;
 		}
 
+		/// <summary>
+		/// Determines whether the specified string represents a numeric value.
+		/// </summary>
+		/// <param name="value">The string to evaluate.</param>
+		/// <returns><see langword="true"/> if the string can be parsed as an integer; otherwise, <see langword="false"/>.</returns>
 		public static bool IsNumeric(this string value)
 		{
 			return int.TryParse(value, out int _);

@@ -26,16 +26,38 @@ using System.ComponentModel;
 
 namespace Mail.dat
 {
+	/// <summary>
+	/// Provides an extension method for retrieving a <see cref="ConverterContext"/> from an <see
+	/// cref="ITypeDescriptorContext"/>.
+	/// </summary>
+	/// <remarks>This class contains a single extension method that allows callers to extract a <see
+	/// cref="ConverterContext"/> from an <see cref="ITypeDescriptorContext"/> instance. If the provided context is not of
+	/// type <see cref="ConverterContext"/>, an exception is thrown.</remarks>
 	public static class ITypeDescriptorContextDecorator
 	{
+		/// <summary>
+		/// Retrieves the <see cref="ConverterContext"/> instance from the specified <see cref="ITypeDescriptorContext"/>.
+		/// </summary>
+		/// <param name="context">The <see cref="ITypeDescriptorContext"/> to retrieve the <see cref="ConverterContext"/> from.</param>
+		/// <returns>The <see cref="ConverterContext"/> instance if the specified context is of type <see cref="ConverterContext"/>.</returns>
+		/// <exception cref="InvalidOperationException">Thrown if the specified <paramref name="context"/> is not a <see cref="ConverterContext"/>.</exception>
 		public static ConverterContext Get(this ITypeDescriptorContext context)
 		{
+			//
+			// Validate the input parameter
+			//
 			if (context is ConverterContext converterContext)
 			{
+				//
+				// Return the ConverterContext if the context is of the correct type.
+				//
 				return converterContext;
 			}
 			else
 			{
+				//
+				// Throw an exception if the context is not a ConverterContext.
+				//
 				throw new InvalidOperationException("The context is not a ConverterContext.");
 			}
 		}

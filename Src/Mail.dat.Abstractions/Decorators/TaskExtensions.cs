@@ -24,8 +24,24 @@
 //
 namespace Mail.dat
 {
+	/// <summary>
+	/// Executes multiple actions asynchronously and waits for all of them to complete.
+	/// </summary>
+	/// <remarks>This method runs each action in the <paramref name="actions"/> collection on a separate task  and
+	/// waits for all tasks to complete. If the <paramref name="actions"/> collection is empty,  the method completes
+	/// immediately.</remarks>
 	public static class TaskExtensions
 	{
+		/// <summary>
+		/// Executes multiple actions concurrently in an asynchronous context.
+		/// </summary>
+		/// <remarks>This method runs all provided actions concurrently using <see cref="Task.Run(Action)"/>.  If any
+		/// of the actions throw an exception, the method will propagate the exception after all tasks have
+		/// completed.</remarks>
+		/// <param name="maildatEntity">The <see cref="MaildatEntity"/> instance on which the method is invoked. This parameter is not used within the
+		/// method but is required for extension method syntax.</param>
+		/// <param name="actions">A collection of actions to be executed concurrently. Each action is run on a separate task.</param>
+		/// <returns>A completed <see cref="Task"/> that represents the asynchronous operation.</returns>
 		public static Task MultipleActionsAsync(this MaildatEntity maildatEntity, params IEnumerable<Action> actions)
 		{
 			Task.WaitAll(actions.Select(a => Task.Run(a)).ToArray());

@@ -28,11 +28,11 @@ using Mail.dat.Abstractions;
 namespace Mail.dat
 {
 	/// <summary>
-	/// These are the allowed values for the property ChrRecordStatus (CHR-2000).
+	/// These are the allowed values for the property TSRRecordStatus (TSR-2000).
 	/// </summary>
-	[MaildatVersions("24-1", "25-1")]
-	[MaildatFieldLink(File = "chr", FieldCode = "CHR-2000")]
-	public class ChrRecordStatuses : MaildatValues 
+	[MaildatVersions("23-1")]
+	[MaildatFieldLink(File = "tsr", FieldCode = "TSR-2000")]
+	public class TSRRecordStatuses : MaildatValues 
 	{
 
 		/// <summary>
@@ -40,7 +40,7 @@ namespace Mail.dat
 		/// </summary>
 		protected override string OnGetFieldCode()
 		{
-			return "chr";
+			return "tsr";
 		}
 
 		/// <summary>
@@ -48,7 +48,7 @@ namespace Mail.dat
 		/// </summary>
 		protected override string OnGetFile()
 		{
-			return "CHR-2000";
+			return "TSR-2000";
 		}
 
 		/// <summary>
@@ -56,14 +56,10 @@ namespace Mail.dat
 		/// </summary>
 		protected override void OnInitializeValues()
 		{
-			this.Add(new MaildatValue() { Version = "24-1", Key = "D", FileExtension = "chr", Description = "Delete", FieldCode = "CHR-2000", FieldName = "ChrRecordStatus" });
-			this.Add(new MaildatValue() { Version = "25-1", Key = "D", FileExtension = "chr", Description = "Delete", FieldCode = "CHR-2000", FieldName = "ChrRecordStatus" });
-			this.Add(new MaildatValue() { Version = "24-1", Key = "I", FileExtension = "chr", Description = "Insert", FieldCode = "CHR-2000", FieldName = "ChrRecordStatus" });
-			this.Add(new MaildatValue() { Version = "25-1", Key = "I", FileExtension = "chr", Description = "Insert", FieldCode = "CHR-2000", FieldName = "ChrRecordStatus" });
-			this.Add(new MaildatValue() { Version = "24-1", Key = "O", FileExtension = "chr", Description = "Original", FieldCode = "CHR-2000", FieldName = "ChrRecordStatus" });
-			this.Add(new MaildatValue() { Version = "25-1", Key = "O", FileExtension = "chr", Description = "Original", FieldCode = "CHR-2000", FieldName = "ChrRecordStatus" });
-			this.Add(new MaildatValue() { Version = "24-1", Key = "U", FileExtension = "chr", Description = "Update", FieldCode = "CHR-2000", FieldName = "ChrRecordStatus" });
-			this.Add(new MaildatValue() { Version = "25-1", Key = "U", FileExtension = "chr", Description = "Update", FieldCode = "CHR-2000", FieldName = "ChrRecordStatus" });
+			this.Add(new MaildatValue() { Version = "23-1", Key = "D", FileExtension = "tsr", Description = "Delete", FieldCode = "TSR-2000", FieldName = "TSRRecordStatus" });
+			this.Add(new MaildatValue() { Version = "23-1", Key = "I", FileExtension = "tsr", Description = "Insert", FieldCode = "TSR-2000", FieldName = "TSRRecordStatus" });
+			this.Add(new MaildatValue() { Version = "23-1", Key = "O", FileExtension = "tsr", Description = "Original", FieldCode = "TSR-2000", FieldName = "TSRRecordStatus" });
+			this.Add(new MaildatValue() { Version = "23-1", Key = "U", FileExtension = "tsr", Description = "Update", FieldCode = "TSR-2000", FieldName = "TSRRecordStatus" });
 		}
 	}
 }

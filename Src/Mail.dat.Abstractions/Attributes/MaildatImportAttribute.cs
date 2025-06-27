@@ -30,6 +30,9 @@ namespace Mail.dat
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
 	public class MaildatImportAttribute : Attribute
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MaildatImportAttribute"/> class.
+		/// </summary>
 		public MaildatImportAttribute()
 		{
 		}
@@ -40,7 +43,7 @@ namespace Mail.dat
 		public string Version { get; set; }
 
 		/// <summary>
-		/// 
+		/// Gets or sets the order in which this item should be processed or displayed.
 		/// </summary>
 		public int Order { get; set; }
 	}

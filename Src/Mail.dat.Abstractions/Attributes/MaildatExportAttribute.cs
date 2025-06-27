@@ -40,7 +40,7 @@ namespace Mail.dat
 		public string Version { get; set; }
 
 		/// <summary>
-		/// 
+		/// Gets or sets the order in which this item should be processed or displayed.
 		/// </summary>
 		public int Order { get; set; }
 	}

@@ -30,11 +30,21 @@ namespace Mail.dat
 	[AttributeUsage(AttributeTargets.Class)]
 	public class MaildatFieldLinkAttribute : Attribute
 	{
+		/// <summary>
+		/// Gets or sets the file associated with this field link.
+		/// </summary>
 		public MaildatFieldLinkAttribute()
 		{
 		}
 
+		/// <summary>
+		/// Gets or sets the file associated with this field link.
+		/// </summary>
 		public string File { get; set; }
+
+		/// <summary>
+		/// Gets or sets the field code associated with this field link.
+		/// </summary>
 		public string FieldCode { get; set; }
 	}
 }

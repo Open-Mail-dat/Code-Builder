@@ -27,13 +27,29 @@ using Humanizer;
 
 namespace Mail.dat.BuildCommand
 {
+	/// <summary>
+	/// Provides string extension methods for sanitization, formatting, and type conversion used throughout the Mail.dat build process.
+	/// </summary>
 	public static class StringDecorator
 	{
+		/// <summary>
+		/// Sanitizes a string by removing quotes, carriage returns, and newlines, then trims whitespace.
+		/// </summary>
 		public static string Sanitize(this string value)
 		{
 			return value.Replace("\"", "").Replace("\r", "").Replace("\n", "").Trim();
 		}
 
+		/// <summary>
+		/// Sanitizes the input string by removing specific characters and formatting it for use as a keyword.
+		/// </summary>
+		/// <remarks>This method removes the following characters from the input string: '/', '-', and '''.  It also
+		/// trims leading and trailing whitespace. If the first character of the sanitized string  is a number, it is
+		/// converted to its word representation (e.g., '1' becomes "One") and  capitalized before being prepended to the rest
+		/// of the string.</remarks>
+		/// <param name="value">The input string to sanitize. Cannot be null or whitespace.</param>
+		/// <returns>A sanitized version of the input string with specific characters removed and formatted.  If the first character is
+		/// a number, it is converted to its word representation. Returns an empty string if the input is null or whitespace.</returns>
 		public static string KeywordSanitize(this string value)
 		{
 			string returnValue = value;
@@ -55,6 +71,13 @@ namespace Mail.dat.BuildCommand
 			return returnValue;
 		}
 
+		/// <summary>
+		/// Ensures that the specified string ends with a period ('.').
+		/// </summary>
+		/// <param name="value">The string to process. If <paramref name="value"/> is <see langword="null"/>, empty, or consists only of
+		/// whitespace, it is returned unchanged.</param>
+		/// <returns>A string that ends with a period ('.') if <paramref name="value"/> is non-empty and does not already end with a
+		/// period;  otherwise, the original <paramref name="value"/>.</returns>
 		public static string EndSentence(this string value)
 		{
 			string returnValue = value;
@@ -70,6 +93,12 @@ namespace Mail.dat.BuildCommand
 			return returnValue;
 		}
 
+		/// <summary>
+		/// Appends the word "Record" to the end of the specified string if it does not already end with "Record".
+		/// </summary>
+		/// <param name="value">The input string to which "Record" may be appended. Must not be null or whitespace.</param>
+		/// <returns>A string that ends with "Record". If the input string is null, whitespace, or already ends with "Record",  the
+		/// original string is returned unchanged.</returns>
 		public static string AddRecord(this string value)
 		{
 			string returnValue = value;
@@ -85,6 +114,17 @@ namespace Mail.dat.BuildCommand
 			return returnValue;
 		}
 
+		/// <summary>
+		/// Splits the input string into a list of substrings, ensuring that each substring does not exceed the specified
+		/// maximum length.
+		/// </summary>
+		/// <remarks>This method splits the input string by spaces to preserve word boundaries where possible. If a
+		/// single word exceeds the specified <paramref name="maxLength"/>, it is further split into smaller
+		/// substrings.</remarks>
+		/// <param name="input">The input string to be split. Cannot be null, empty, or consist only of whitespace.</param>
+		/// <param name="maxLength">The maximum length of each substring. Must be greater than zero.</param>
+		/// <returns>A list of substrings where each substring is no longer than <paramref name="maxLength"/>. If the input string is
+		/// null, empty, or consists only of whitespace, an empty list is returned.</returns>
 		public static List<string> Split(this string input, int maxLength)
 		{
 			if (string.IsNullOrWhiteSpace(input))
@@ -154,6 +194,23 @@ namespace Mail.dat.BuildCommand
 			return lines;
 		}
 
+		/// <summary>
+		/// Converts a specified type, data type, and required flag into an equivalent .NET type representation.
+		/// </summary>
+		/// <remarks>The method maps specific input types to their corresponding .NET types based on predefined rules.
+		/// For example: <list type="bullet"> <item><description>If <paramref name="type"/> is "decimal" and <paramref
+		/// name="required"/> is <see langword="true"/>, the result is "decimal"; otherwise, "decimal?".</description></item>
+		/// <item><description>If <paramref name="type"/> is "integer" and <paramref name="dataType"/> is "A/N", the result is
+		/// "string".</description></item> <item><description>If <paramref name="type"/> is "date", the result is "DateOnly"
+		/// or "DateOnly?" depending on <paramref name="required"/>.</description></item> </list> For unsupported or
+		/// unrecognized types, the method defaults to returning "string".</remarks>
+		/// <param name="type">The type to be converted, such as "decimal", "string", "integer", or other predefined types.</param>
+		/// <param name="dataType">Additional information about the data type, such as "A/N" for alphanumeric types. This may influence the resulting
+		/// .NET type for certain input types.</param>
+		/// <param name="required">A boolean value indicating whether the type is required. If <see langword="true"/>, the resulting .NET type will
+		/// be non-nullable where applicable; otherwise, it will be nullable.</param>
+		/// <returns>A string representing the equivalent .NET type. For example, "decimal", "int", "string", "DateOnly", or their
+		/// nullable counterparts (e.g., "decimal?", "int?") depending on the input parameters.</returns>
 		public static string ToDotNetType(this string type, string dataType, bool required)
 		{
 			string returnValue = "string";
@@ -230,6 +287,18 @@ namespace Mail.dat.BuildCommand
 			return returnValue;
 		}
 
+		/// <summary>
+		/// Converts a given type name to its corresponding SQLite data type.
+		/// </summary>
+		/// <remarks>This method maps common type names to SQLite-compatible data types based on predefined rules. If
+		/// the provided <paramref name="type"/> does not match any known type, the method defaults to returning
+		/// "TEXT".</remarks>
+		/// <param name="type">The type name to convert (e.g., "decimal", "string", "integer").</param>
+		/// <param name="dataType">An additional data type specifier used for certain conversions. For example, if <paramref name="type"/> is
+		/// "integer" and <paramref name="dataType"/> is "A/N", the method returns "TEXT"; otherwise, it returns "INTEGER".</param>
+		/// <returns>A string representing the SQLite data type corresponding to the provided <paramref name="type"/>. Returns
+		/// "NUMERIC" for "decimal", "TEXT" for "string" and other text-based types, and "INTEGER" for "integer" unless
+		/// <paramref name="dataType"/> specifies otherwise.</returns>
 		public static string ToSqliteType(this string type, string dataType)
 		{
 			string returnValue = type;
@@ -278,6 +347,12 @@ namespace Mail.dat.BuildCommand
 			return returnValue;
 		}
 
+		/// <summary>
+		/// Provides a mapping of specific acronyms to their corrected casing.
+		/// </summary>
+		/// <remarks>This dictionary is used to standardize the casing of acronyms in strings.  For example, "CBR" is
+		/// mapped to "Cbr", and "URL" is mapped to "Url".  The keys represent the original acronyms, and the values represent
+		/// their corrected forms.</remarks>
 		private static readonly Dictionary<string, string> AcronymFixes = new()
 		{
 			{ "CBR", "Cbr" },
@@ -326,13 +401,21 @@ namespace Mail.dat.BuildCommand
 			{ "XML", "Xml"  }
 		};
 
+		/// <summary>
+		/// Converts the specified string to PascalCase, ensuring proper handling of acronyms.
+		/// </summary>
+		/// <remarks>This method first applies standard PascalCase conversion to the input string and then adjusts
+		/// specific acronyms to ensure they are properly capitalized. Acronym corrections are based on predefined
+		/// mappings.</remarks>
+		/// <param name="input">The input string to be converted to PascalCase. Cannot be <see langword="null"/>.</param>
+		/// <returns>A new string in PascalCase format, with acronyms correctly capitalized.</returns>
 		public static string TruePascalize(this string input)
 		{
 			string result = input.Pascalize();
 
 			foreach (KeyValuePair<string, string> kvp in AcronymFixes)
 			{
-				result = result.Replace(kvp.Key, kvp.Value);
+				result = result.Replace(kvp.Key, kvp.Value, StringComparison.Ordinal);
 			}
 
 			return result;

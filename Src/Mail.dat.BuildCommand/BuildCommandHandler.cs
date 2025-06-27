@@ -27,18 +27,6 @@ namespace Mail.dat.BuildCommand
 			//
 			Dictionary<string, SpecificationFile> specificationFiles = await options.SpecificationFiles.LoadSpecificationsAsync();
 
-			//string[] extensions = specificationFiles.Select(t => t.Value).SelectMany(t => t.Files).Select(t => t.FileExtension).GroupBy(g => g).Select(t => t.Key).ToArray();
-
-			//foreach (string ext in extensions)
-			//{
-			//	System.Diagnostics.Debug.WriteLine($"{{ \"{ext.ToUpper()}\", \"{ext.Pascalize()}\" }},");
-			//}
-
-			//IOrderedEnumerable<FileDefinition> x1 = specificationFiles.Where(t => t.Key == "24-1").Select(t => t.Value.Files.OrderBy(t => t.FileExtension)).SingleOrDefault();
-			//IOrderedEnumerable<FileDefinition> x2 = specificationFiles.Where(t => t.Key == "25-1").Select(t => t.Value.Files.OrderBy(t => t.FileExtension)).SingleOrDefault();
-			//File.WriteAllText("Z:/Desktop/mail-dat-24-1.json", JsonConvert.SerializeObject(x1, Formatting.Indented));
-			//File.WriteAllText("Z:/Desktop/mail-dat-25-1.json", JsonConvert.SerializeObject(x2, Formatting.Indented));
-
 			//
 			// Merge all the specifications into one.
 			//
@@ -428,7 +416,8 @@ namespace Mail.dat.BuildCommand
 						.SetReturnType($"DbSet<{tbl.FileExtension.ToClassName()}>")
 						.AddAttributes(
 							AttributeBuilder.Create("MaildatExport")
-								.AddParameter("Order", tbl.Ordinal)
+								.AddParameter("Order", tbl.Ordinal),
+							tbl.MaildatVersionsAttribute()
 						)
 				])
 				.AddProperties(

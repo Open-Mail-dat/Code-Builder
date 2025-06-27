@@ -24,8 +24,19 @@
 //
 namespace Mail.dat.Io
 {
+	/// <summary>
+	/// Provides extension methods for working with file and directory paths.
+	/// </summary>
+	/// <remarks>This class includes utility methods for normalizing and manipulating paths to ensure consistency
+	/// across different operating systems or environments.</remarks>
 	public static class PathDecorator
 	{
+		/// <summary>
+		/// Converts all backslashes in the specified file path to forward slashes.
+		/// </summary>
+		/// <param name="path">The file path to normalize. Can be <see langword="null"/>.</param>
+		/// <returns>A new string with all backslashes ('\') replaced by forward slashes ('/'),  or <see langword="null"/> if <paramref
+		/// name="path"/> is <see langword="null"/>.</returns>
 		public static string NormalizePath(this string path)
 		{
 			return path?.Replace('\\', '/');
