@@ -26,20 +26,41 @@ using Newtonsoft.Json;
 
 namespace Mail.dat.Json.Specification
 {
+	/// <summary>
+	/// Represents a data structure containing metadata and associated values for a specific field.
+	/// </summary>
+	/// <remarks>This class is used to encapsulate information about a field, including its type, format, precision,
+	/// references, and associated key-value pairs. It is commonly used in scenarios where structured  metadata and values
+	/// need to be stored and processed.</remarks>
 	public class FieldData
 	{
+		/// <summary>
+		/// Gets or sets the type of the object represented as a string.
+		/// </summary>
 		[JsonProperty("type")]
 		public string Type { get; set; }
 
+		/// <summary>
+		/// Gets or sets the format of the data as a string.
+		/// </summary>
 		[JsonProperty("format")]
 		public string Format { get; set; }
 
+		/// <summary>
+		/// Gets or sets the precision level for numerical values.
+		/// </summary>
 		[JsonProperty("precision")]
 		public int? Precision { get; set; }
 
+		/// <summary>
+		/// Gets or sets the list of references associated with the object.
+		/// </summary>
 		[JsonProperty("references")]
 		public List<string> References { get; set; } = [];
 
+		/// <summary>
+		/// Gets or sets a dictionary containing key-value pairs representing the values associated with this object.
+		/// </summary>
 		[JsonProperty("values")]
 		public Dictionary<string, string> Values { get; set; } = [];
 	}

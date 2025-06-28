@@ -1,7 +1,7 @@
 {
 	"version": {
 		"major": "25-1",
-		"revision": "0.3"
+		"revision": "0.4"
 	},
 	"files": [
 		{
@@ -256,7 +256,7 @@
 						"type": "enum",
 						"format": "leftjustify",
 						"values": {
-							"0.3": ""
+							"0.4": ""
 						}
 					}
 				},
@@ -4661,7 +4661,7 @@
 							"AD": "ASF (S, T, P)",
 							"AE": "NDC (S, T, P)",
 							"AF": "Protected NDC (P)",
-							"AG": "Mixed NDC (S, T, P)",
+							"AG": "Mixed NDC/Mixed Working (S, T, P)",
 							"AH": "Origin MxADC (S, T, P)",
 							"AI": "Protected ADC (P)",
 							"AJ": "Single Piece (S, T, P)",

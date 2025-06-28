@@ -26,36 +26,61 @@ namespace Mail.dat.BuildCommand
 {
 	public class CommentBuilder : ICodeBuilder<CommentBuilder>
 	{
+		//
+		// Stores the lines of comments to be written.
+		//
 		public List<string> Lines { get; internal set; } = new();
+
+		//
+		// Specifies the maximum length for each comment line.
+		//
 		public int MaximumLineLength { get; internal set; } = 100;
 
+		//
+		// Creates a new CommentBuilder instance with the provided lines.
+		//
 		public static CommentBuilder Create(params List<string> lines)
 		{
 			return new CommentBuilder() { Lines = lines };
 		}
 
+		//
+		// Sets the maximum line length for the comment builder.
+		//
 		public CommentBuilder SetMaximumLineLength(int maximumLineLength)
 		{
 			this.MaximumLineLength = maximumLineLength;
 			return this;
 		}
 
+		//
+		// Adds a single comment line to the builder.
+		//
 		public CommentBuilder AddComment(string comment)
 		{
 			this.Lines.Add(comment);
 			return this;
 		}
 
+		//
+		// Adds multiple comment lines to the builder.
+		//
 		public CommentBuilder AddComments(params List<string> lines)
 		{
 			this.Lines.AddRange(lines);
 			return this;
 		}
 
+		//
+		// Writes all comment lines to the specified file, with optional indentation.
+		//
 		public CommentBuilder Build(string filePath, int indentLevel = 0)
 		{
 			foreach (string line in this.Lines)
 			{
+				//
+				// Write each comment line to the file, prepending indentation and comment slashes.
+				//
 				File.AppendAllLines(filePath, [$"{Tabs.Create(indentLevel)}// {line.Trim()}".Trim()]);
 			}
 

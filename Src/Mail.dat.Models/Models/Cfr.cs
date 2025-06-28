@@ -20,7 +20,7 @@
 // If not, see <https://www.gnu.org/licenses/>.
 // ************************************************************************************************************************
 //
-// This code was auto-generated on June 22nd, 2025 by the Open Mail.dat Code Generator.
+// This code was auto-generated on June 28th, 2025 by the Open Mail.dat Code Generator.
 // Code Generator Author: Daniel M porrey
 //
 using System.ComponentModel.DataAnnotations.Schema;
@@ -36,7 +36,7 @@ namespace Mail.dat
 	/// Certificate of Mail Forms.
 	/// </summary>
 	[MaildatFile(Version = "24-1", Revision = "1.5", Extension = "cfr", File = "Certification of Mailing Services fee record", Summary = "Is used to capture the service fee information.", Description = "Is used to capture the service fee information. Provides the fee information that is present on the Certificate of Mail Forms.", LineLength = 115, ClosingCharacter = "#")]
-	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "cfr", File = "Certification of Mailing Services fee record", Summary = "Is used to capture the service fee information.", Description = "Is used to capture the service fee information. Provides the fee information that is present on the Certificate of Mail Forms.", LineLength = 115, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.4", Extension = "cfr", File = "Certification of Mailing Services fee record", Summary = "Is used to capture the service fee information.", Description = "Is used to capture the service fee information. Provides the fee information that is present on the Certificate of Mail Forms.", LineLength = 115, ClosingCharacter = "#")]
 	[MaildatImport(Order = 28, Version = "24-1")]
 	[MaildatImport(Order = 28, Version = "25-1")]
 	[Table("Cfr", Schema = "Maildat")]

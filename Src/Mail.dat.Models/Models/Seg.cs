@@ -20,7 +20,7 @@
 // If not, see <https://www.gnu.org/licenses/>.
 // ************************************************************************************************************************
 //
-// This code was auto-generated on June 22nd, 2025 by the Open Mail.dat Code Generator.
+// This code was auto-generated on June 28th, 2025 by the Open Mail.dat Code Generator.
 // Code Generator Author: Daniel M porrey
 //
 using System.ComponentModel.DataAnnotations.Schema;
@@ -36,7 +36,7 @@ namespace Mail.dat
 	/// </summary>
 	[MaildatFile(Version = "23-1", Revision = "0.5", Extension = "seg", File = "Segment Record", Summary = "Identifies specific mail list supplied for this job.", Description = "Identifies specific mail list supplied for this job.", LineLength = 277, ClosingCharacter = "#")]
 	[MaildatFile(Version = "24-1", Revision = "1.5", Extension = "seg", File = "Segment Record", Summary = "Identifies specific mail list supplied for this job.", Description = "Identifies specific mail list supplied for this job.", LineLength = 277, ClosingCharacter = "#")]
-	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "seg", File = "Segment Record", Summary = "Identifies specific mail list supplied for this job.", Description = "Identifies specific mail list supplied for this job.", LineLength = 277, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.4", Extension = "seg", File = "Segment Record", Summary = "Identifies specific mail list supplied for this job.", Description = "Identifies specific mail list supplied for this job.", LineLength = 277, ClosingCharacter = "#")]
 	[MaildatImport(Order = 2, Version = "23-1")]
 	[MaildatImport(Order = 2, Version = "24-1")]
 	[MaildatImport(Order = 2, Version = "25-1")]

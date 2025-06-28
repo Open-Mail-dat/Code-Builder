@@ -26,11 +26,25 @@ namespace Mail.dat.BuildCommand
 {
 	public static class DirectoryDecorator
 	{
+		//
+		// This extension method deletes all files in the specified directory that match the given pattern.
+		// It ensures the directory exists before attempting to delete files.
+		//
 		public static void DeleteAllFiles(this DirectoryInfo directory, string pattern)
 		{
+			//
+			// Ensure the directory exists. If it does not, it will be created.
+			//
 			directory.Create();
+
+			//
+			// Retrieve all files in the directory that match the specified pattern.
+			//
 			FileInfo[] files = directory.GetFiles(pattern, SearchOption.TopDirectoryOnly);
 
+			//
+			// Iterate through each file and delete it.
+			//
 			foreach (FileInfo file in files)
 			{
 				file.Delete();

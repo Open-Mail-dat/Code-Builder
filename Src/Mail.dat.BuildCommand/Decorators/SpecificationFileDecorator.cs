@@ -30,16 +30,23 @@ namespace Mail.dat.BuildCommand
 {
 	public static class SpecificationFileDecorator
 	{
+		//
+		// Loads specification files from a comma-separated list of file paths.
+		// Each file is deserialized into a SpecificationFile object and added to the dictionary by its major version.
+		//
 		public static Task<Dictionary<string, SpecificationFile>> LoadSpecificationsAsync(this string parameter)
 		{
 			Dictionary<string, SpecificationFile> returnValue = [];
 
 			//
-			// Get the files.
+			// Split the input string by commas to get individual file paths.
 			//
 			IEnumerable<FileInfo> files = from tbl in parameter.Split(',')
 										  select new FileInfo(tbl);
 
+			//
+			// Iterate through each file and process it.
+			//
 			foreach (FileInfo file in files)
 			{
 				if (file.Exists)
@@ -50,28 +57,41 @@ namespace Mail.dat.BuildCommand
 					string jsonContent = File.ReadAllText(file.FullName);
 
 					//
-					// Deserialize the JSON into a SpecificationFile.
+					// Deserialize the JSON into a SpecificationFile object.
 					//
 					SpecificationFile specificationFile = JsonConvert.DeserializeObject<SpecificationFile>(jsonContent);
 
 					//
-					// Add the file.
+					// Add the specification file to the dictionary using its major version as the key.
 					//
 					returnValue.Add(specificationFile.Version.Major, specificationFile);
 				}
 				else
 				{
+					//
+					// Throw an exception if the file does not exist.
+					//
 					throw new FileNotFoundException(file.FullName);
 				}
 			}
 
+			//
+			// Return the dictionary ordered by key.
+			//
 			return Task.FromResult(returnValue.OrderBy(t => t.Key).ToDictionary());
 		}
 
+		//
+		// Merges multiple specification files into groups by file extension and orders them.
+		// Each group contains file definitions for a specific extension across all versions.
+		//
 		public static Task<IEnumerable<FileGroup>> MergeSpecificationsAsync(this Dictionary<string, SpecificationFile> specificationFiles)
 		{
 			IEnumerable<FileGroup> returnValue = [];
 
+			//
+			// Flatten the file definitions, group them by file extension, and join with the ordering list.
+			//
 			returnValue = specificationFiles
 							.SelectMany(t => t.Value.Files.Select(x => new 
 							{ 
@@ -97,6 +117,9 @@ namespace Mail.dat.BuildCommand
 							.OrderBy(x => x.Ordinal)
 							.Select(x => x);
 
+			//
+			// Return the grouped and ordered file definitions.
+			//
 			return Task.FromResult(returnValue);
 		}
 	}

@@ -20,7 +20,7 @@
 // If not, see <https://www.gnu.org/licenses/>.
 // ************************************************************************************************************************
 //
-// This code was auto-generated on June 22nd, 2025 by the Open Mail.dat Code Generator.
+// This code was auto-generated on June 28th, 2025 by the Open Mail.dat Code Generator.
 // Code Generator Author: Daniel M porrey
 //
 using System.ComponentModel.DataAnnotations.Schema;
@@ -36,7 +36,7 @@ namespace Mail.dat
 	/// the detailed information that is present on the Certificate of Mail Forms.
 	/// </summary>
 	[MaildatFile(Version = "24-1", Revision = "1.5", Extension = "cdr", File = "Certificate of Mailing Detail Record", Summary = "Is used to capture the Detail information that is present on the Certificate of Mail Forms.", Description = "Is used to capture the Detail information that is present on the Certificate of Mail Forms. Provide the detailed information that is present on the Certificate of Mail Forms.", LineLength = 395, ClosingCharacter = "#")]
-	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "cdr", File = "Certificate of Mailing Detail Record", Summary = "Is used to capture the Detail information that is present on the Certificate of Mail Forms.", Description = "Is used to capture the Detail information that is present on the Certificate of Mail Forms. Provide the detailed information that is present on the Certificate of Mail Forms.", LineLength = 395, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.4", Extension = "cdr", File = "Certificate of Mailing Detail Record", Summary = "Is used to capture the Detail information that is present on the Certificate of Mail Forms.", Description = "Is used to capture the Detail information that is present on the Certificate of Mail Forms. Provide the detailed information that is present on the Certificate of Mail Forms.", LineLength = 395, ClosingCharacter = "#")]
 	[MaildatImport(Order = 27, Version = "24-1")]
 	[MaildatImport(Order = 27, Version = "25-1")]
 	[Table("Cdr", Schema = "Maildat")]

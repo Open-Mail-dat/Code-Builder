@@ -34,13 +34,40 @@ using Spectre.Console.Rendering;
 
 namespace Mail.dat.ImportCommand
 {
+	/// <summary>
+	/// Handles the "import" command, which imports a Mail.dat file into a SQLite database.
+	/// </summary>
+	/// <remarks>This command performs the following operations: <list type="bullet"> <item><description>Validates
+	/// the existence of the source file specified in the command options.</description></item> <item><description>Displays
+	/// a progress bar to track the import process.</description></item> <item><description>Unzips the source file,
+	/// processes its contents, and imports the data into a database.</description></item> <item><description>Reports any
+	/// errors encountered during the import process, grouped by file.</description></item> </list> If the source file does
+	/// not exist, the command logs an error and exits with a non-zero status code.  Otherwise, it performs the import and
+	/// logs the results, including any discrepancies between expected  and actual record counts.</remarks>
 	internal class ImportCommandHandler : ModelCommand<CommandOptions>
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ImportCommandHandler"/> class.
+		/// </summary>
+		/// <param name="logger">The logger instance used to log messages and diagnostics for the command handler.</param>
 		public ImportCommandHandler(ILogger<ImportCommandHandler> logger)
 			: base(logger, "import", "Import a Mail.dat into a Sqlite database.")
 		{
 		}
 
+		/// <summary>
+		/// Handles the execution of the command with the specified options.
+		/// </summary>
+		/// <remarks>This method performs the following operations: <list type="bullet"> <item><description>Validates
+		/// the existence of the source file specified in the options.</description></item> <item><description>Displays a
+		/// progress bar to track the import process.</description></item> <item><description>Unzips the source file,
+		/// processes its contents, and imports the data into a database.</description></item> <item><description>Reports any
+		/// errors encountered during the import process, grouped by file.</description></item> </list> If the source file
+		/// does not exist, the method logs an error message and returns 1. Otherwise, it performs the import and logs the
+		/// results, including any discrepancies between expected and actual record counts.</remarks>
+		/// <param name="options">The options provided for the command execution, including file paths and import settings.</param>
+		/// <returns>An integer representing the result of the command execution. Returns 0 if the operation completes successfully;
+		/// otherwise, returns 1 if the source file does not exist or an error occurs.</returns>
 		protected override async Task<int> OnHandleCommand(CommandOptions options)
 		{
 			int returnValue = 0;
@@ -235,6 +262,16 @@ namespace Mail.dat.ImportCommand
 			return returnValue;
 		}
 
+		/// <summary>
+		/// Renders a custom progress display by combining a header and the provided renderable content.
+		/// </summary>
+		/// <remarks>The header panel is styled with a rounded border and a sky-blue border color. The method combines
+		/// the header and the provided renderable content into a single layout using a <see cref="Rows"/>
+		/// container.</remarks>
+		/// <param name="tasks">A read-only list of progress tasks. This parameter is currently unused but may be utilized in future
+		/// implementations.</param>
+		/// <param name="renderable">The renderable content to display below the header. Cannot be null.</param>
+		/// <returns>A composite renderable object that includes a header panel labeled "Progress" and the provided renderable content.</returns>
 		private static IRenderable RenderHook(IReadOnlyList<ProgressTask> tasks, IRenderable renderable)
 		{
 			//

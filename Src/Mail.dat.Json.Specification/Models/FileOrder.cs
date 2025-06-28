@@ -22,11 +22,26 @@
 //
 // Author: Daniel M porrey
 //
+using System.Diagnostics;
+
 namespace Mail.dat.Json.Specification
 {
+	/// <summary>
+	/// Represents an orderable file with an associated extension and position within a collection.
+	/// </summary>
+	/// <remarks>This class is typically used to manage files in a collection where both the file type (via its
+	/// extension) and its position in the collection are important.</remarks>
+	[DebuggerDisplay("Extension = {Extension}, Ordinal = {Ordinal}")]
 	public class FileOrder
 	{
+		/// <summary>
+		/// Gets or sets the file extension, including the leading period (e.g., ".txt").
+		/// </summary>
 		public string Extension { get; set; }
+
+		/// <summary>
+		/// Gets or sets the zero-based position of the item within a collection.
+		/// </summary>
 		public int Ordinal { get; set; }
 	}
 }

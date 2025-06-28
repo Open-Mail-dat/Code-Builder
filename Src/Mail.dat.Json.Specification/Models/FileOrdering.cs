@@ -26,6 +26,12 @@ namespace Mail.dat.Json.Specification.Models
 {
 	public class FileOrdering : List<FileOrder>
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="FileOrdering"/> class with a predefined order of file extensions.
+		/// </summary>
+		/// <remarks>This constructor populates the collection with a predefined sequence of file extensions and their
+		/// corresponding ordinal values. The order is significant and can be used to determine the processing or
+		/// prioritization of files based on their extensions.</remarks>
 		public FileOrdering()
 		{
 			this.Add(new FileOrder { Extension = "hdr", Ordinal = 1 });
@@ -59,6 +65,9 @@ namespace Mail.dat.Json.Specification.Models
 			this.Add(new FileOrder { Extension = "tsr", Ordinal = 29 });
 		}
 
+		/// <summary>
+		/// Gets a predefined file ordering configuration.
+		/// </summary>
 		public static FileOrdering List => [];
 	}
 }

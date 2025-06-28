@@ -20,7 +20,7 @@
 // If not, see <https://www.gnu.org/licenses/>.
 // ************************************************************************************************************************
 //
-// This code was auto-generated on June 22nd, 2025 by the Open Mail.dat Code Generator.
+// This code was auto-generated on June 28th, 2025 by the Open Mail.dat Code Generator.
 // Code Generator Author: Daniel M porrey
 //
 using Mail.dat.Abstractions;
@@ -79,7 +79,7 @@ namespace Mail.dat
 			this.Add(new MaildatValue() { Version = "25-1", Key = "AF", FileExtension = "csm", Description = "Protected NDC (P)", FieldCode = "CSM-1104", FieldName = "ContainerLevel" });
 			this.Add(new MaildatValue() { Version = "23-1", Key = "AG", FileExtension = "csm", Description = "Mixed NDC (S, T, P)", FieldCode = "CSM-1104", FieldName = "ContainerLevel" });
 			this.Add(new MaildatValue() { Version = "24-1", Key = "AG", FileExtension = "csm", Description = "Mixed NDC (S, T, P)", FieldCode = "CSM-1104", FieldName = "ContainerLevel" });
-			this.Add(new MaildatValue() { Version = "25-1", Key = "AG", FileExtension = "csm", Description = "Mixed NDC (S, T, P)", FieldCode = "CSM-1104", FieldName = "ContainerLevel" });
+			this.Add(new MaildatValue() { Version = "25-1", Key = "AG", FileExtension = "csm", Description = "Mixed NDC/Mixed Working (S, T, P)", FieldCode = "CSM-1104", FieldName = "ContainerLevel" });
 			this.Add(new MaildatValue() { Version = "23-1", Key = "AH", FileExtension = "csm", Description = "Origin MxADC (S, T, P)", FieldCode = "CSM-1104", FieldName = "ContainerLevel" });
 			this.Add(new MaildatValue() { Version = "24-1", Key = "AH", FileExtension = "csm", Description = "Origin MxADC (S, T, P)", FieldCode = "CSM-1104", FieldName = "ContainerLevel" });
 			this.Add(new MaildatValue() { Version = "25-1", Key = "AH", FileExtension = "csm", Description = "Origin MxADC (S, T, P)", FieldCode = "CSM-1104", FieldName = "ContainerLevel" });

@@ -20,7 +20,7 @@
 // If not, see <https://www.gnu.org/licenses/>.
 // ************************************************************************************************************************
 //
-// This code was auto-generated on June 22nd, 2025 by the Open Mail.dat Code Generator.
+// This code was auto-generated on June 28th, 2025 by the Open Mail.dat Code Generator.
 // Code Generator Author: Daniel M porrey
 //
 using System.ComponentModel.DataAnnotations.Schema;
@@ -36,7 +36,7 @@ namespace Mail.dat
 	/// Provides the bulk form information that is present on the Certificate of Mailing Forms.
 	/// </summary>
 	[MaildatFile(Version = "24-1", Revision = "1.5", Extension = "cbr", File = "Certificate of Mailing Bulk Record", Summary = "Is used to capture the bulk form information that is present on the Certificate of Mailing Forms.", Description = "Is used to capture the bulk form information that is present on the Certificate of Mailing Forms. Provides the bulk form information that is present on the Certificate of Mailing Forms.", LineLength = 99, ClosingCharacter = "#")]
-	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "cbr", File = "Certificate of Mailing Bulk Record", Summary = "Is used to capture the bulk form information that is present on the Certificate of Mailing Forms.", Description = "Is used to capture the bulk form information that is present on the Certificate of Mailing Forms. Provides the bulk form information that is present on the Certificate of Mailing Forms.", LineLength = 99, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.4", Extension = "cbr", File = "Certificate of Mailing Bulk Record", Summary = "Is used to capture the bulk form information that is present on the Certificate of Mailing Forms.", Description = "Is used to capture the bulk form information that is present on the Certificate of Mailing Forms. Provides the bulk form information that is present on the Certificate of Mailing Forms.", LineLength = 99, ClosingCharacter = "#")]
 	[MaildatImport(Order = 26, Version = "24-1")]
 	[MaildatImport(Order = 26, Version = "25-1")]
 	[Table("Cbr", Schema = "Maildat")]

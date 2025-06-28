@@ -20,7 +20,7 @@
 // If not, see <https://www.gnu.org/licenses/>.
 // ************************************************************************************************************************
 //
-// This code was auto-generated on June 22nd, 2025 by the Open Mail.dat Code Generator.
+// This code was auto-generated on June 28th, 2025 by the Open Mail.dat Code Generator.
 // Code Generator Author: Daniel M porrey
 //
 using System.ComponentModel.DataAnnotations.Schema;
@@ -36,7 +36,7 @@ namespace Mail.dat
 	/// Provides the header information that is present on the Certificate of Mailing Forms.
 	/// </summary>
 	[MaildatFile(Version = "24-1", Revision = "1.5", Extension = "chr", File = "Certificate of Mailing Header record", Summary = "Is used to capture the header information that is present on the Certificate of Mailing Form.", Description = "Is used to capture the header information that is present on the Certificate of Mailing Form. Provides the header information that is present on the Certificate of Mailing Forms.", LineLength = 347, ClosingCharacter = "#")]
-	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "chr", File = "Certificate of Mailing Header record", Summary = "Is used to capture the header information that is present on the Certificate of Mailing Form.", Description = "Is used to capture the header information that is present on the Certificate of Mailing Form. Provides the header information that is present on the Certificate of Mailing Forms.", LineLength = 386, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.4", Extension = "chr", File = "Certificate of Mailing Header record", Summary = "Is used to capture the header information that is present on the Certificate of Mailing Form.", Description = "Is used to capture the header information that is present on the Certificate of Mailing Form. Provides the header information that is present on the Certificate of Mailing Forms.", LineLength = 386, ClosingCharacter = "#")]
 	[MaildatImport(Order = 25, Version = "24-1")]
 	[MaildatImport(Order = 25, Version = "25-1")]
 	[Table("Chr", Schema = "Maildat")]

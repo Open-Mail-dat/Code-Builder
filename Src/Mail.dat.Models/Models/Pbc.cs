@@ -20,7 +20,7 @@
 // If not, see <https://www.gnu.org/licenses/>.
 // ************************************************************************************************************************
 //
-// This code was auto-generated on June 22nd, 2025 by the Open Mail.dat Code Generator.
+// This code was auto-generated on June 28th, 2025 by the Open Mail.dat Code Generator.
 // Code Generator Author: Daniel M porrey
 //
 using System.ComponentModel.DataAnnotations.Schema;
@@ -37,7 +37,7 @@ namespace Mail.dat
 	/// </summary>
 	[MaildatFile(Version = "23-1", Revision = "0.5", Extension = "pbc", File = "Piece Barcode Record", Summary = "Piece barcode details.", Description = "Piece barcode details. Provides piece level detail required of full service mailings; when used instead of the Piece Detail file, acts as an extension of the PQT file.", LineLength = 70, ClosingCharacter = "#")]
 	[MaildatFile(Version = "24-1", Revision = "1.5", Extension = "pbc", File = "Piece Barcode Record", Summary = "Piece barcode details.", Description = "Piece barcode details. Provides piece level detail required of full service mailings; when used instead of the Piece Detail file, acts as an extension of the PQT file.", LineLength = 70, ClosingCharacter = "#")]
-	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "pbc", File = "Piece Barcode Record", Summary = "Piece barcode details.", Description = "Piece barcode details. Provides piece level detail required of full service mailings; when used instead of the Piece Detail file, acts as an extension of the PQT file.", LineLength = 70, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.4", Extension = "pbc", File = "Piece Barcode Record", Summary = "Piece barcode details.", Description = "Piece barcode details. Provides piece level detail required of full service mailings; when used instead of the Piece Detail file, acts as an extension of the PQT file.", LineLength = 70, ClosingCharacter = "#")]
 	[MaildatImport(Order = 15, Version = "23-1")]
 	[MaildatImport(Order = 15, Version = "24-1")]
 	[MaildatImport(Order = 15, Version = "25-1")]

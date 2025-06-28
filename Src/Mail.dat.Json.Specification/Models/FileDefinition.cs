@@ -22,24 +22,44 @@
 //
 // Author: Daniel M porrey
 //
+using System.Diagnostics;
 using Newtonsoft.Json;
 
 namespace Mail.dat.Json.Specification
 {
+	/// <summary>
+	/// Represents a Mail.dat file definition, including its name, extension, summary, description, and record definitions.
+	/// </summary>
+	[DebuggerDisplay("FileName = {FileName}, FileExtension = {FileExtension}")]
 	public class FileDefinition
 	{
+		/// <summary>
+		/// Gets or sets the title of the file.
+		/// </summary>
 		[JsonProperty("file")]
 		public string FileName { get; set; }
 
+		/// <summary>
+		/// Gets or sets the 3-character extension of the file.
+		/// </summary>
 		[JsonProperty("fileExtension")]
 		public string FileExtension { get; set; }
 
+		/// <summary>
+		/// Gets or sets a short summary of the purpose of the file.
+		/// </summary>
 		[JsonProperty("fileSummary")]
 		public string FileSummary { get; set; }
 
+		/// <summary>
+		/// Gets or sets a detailed description of the purpose of the file.
+		/// </summary>
 		[JsonProperty("fileDescription")]
 		public string FileDescription { get; set; }
 
+		/// <summary>
+		/// Gets or sets the collection of record definitions for this file.
+		/// </summary>
 		[JsonProperty("recordDefinitions")]
 		public List<RecordDefinition> RecordDefinitions { get; set; } = [];
 	}

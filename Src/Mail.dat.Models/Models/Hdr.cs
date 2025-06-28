@@ -20,7 +20,7 @@
 // If not, see <https://www.gnu.org/licenses/>.
 // ************************************************************************************************************************
 //
-// This code was auto-generated on June 22nd, 2025 by the Open Mail.dat Code Generator.
+// This code was auto-generated on June 28th, 2025 by the Open Mail.dat Code Generator.
 // Code Generator Author: Daniel M porrey
 //
 using System.ComponentModel.DataAnnotations.Schema;
@@ -36,7 +36,7 @@ namespace Mail.dat
 	/// </summary>
 	[MaildatFile(Version = "23-1", Revision = "0.5", Extension = "hdr", File = "Header Record", Summary = "Who, what and when of this job.", Description = "Who, what and when of this job.", LineLength = 2000, ClosingCharacter = "#")]
 	[MaildatFile(Version = "24-1", Revision = "1.5", Extension = "hdr", File = "Header Record", Summary = "Who, what and when of this job.", Description = "Who, what and when of this job.", LineLength = 2000, ClosingCharacter = "#")]
-	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "hdr", File = "Header Record", Summary = "Who, what and when of this job.", Description = "Who, what and when of this job.", LineLength = 2000, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.4", Extension = "hdr", File = "Header Record", Summary = "Who, what and when of this job.", Description = "Who, what and when of this job.", LineLength = 2000, ClosingCharacter = "#")]
 	[MaildatImport(Order = 1, Version = "23-1")]
 	[MaildatImport(Order = 1, Version = "24-1")]
 	[MaildatImport(Order = 1, Version = "25-1")]
@@ -278,7 +278,7 @@ namespace Mail.dat
 		[Column("MailDatRevision", Order = 16, TypeName = "TEXT")]
 		[Required]
 		[MaxLength(5)]
-		[AllowedValues("0.3", "0.5", "1.5")]
+		[AllowedValues("0.4", "0.5", "1.5")]
 		[Comment("HDR-1192")]
 		[TypeConverter(typeof(MaildatEnumConverter))]
 		[MaildatValues(typeof(MailDatRevisions))]

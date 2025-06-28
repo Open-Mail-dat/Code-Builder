@@ -20,7 +20,7 @@
 // If not, see <https://www.gnu.org/licenses/>.
 // ************************************************************************************************************************
 //
-// This code was auto-generated on June 22nd, 2025 by the Open Mail.dat Code Generator.
+// This code was auto-generated on June 28th, 2025 by the Open Mail.dat Code Generator.
 // Code Generator Author: Daniel M porrey
 //
 using Mail.dat.Abstractions;
@@ -56,7 +56,7 @@ namespace Mail.dat
 		/// </summary>
 		protected override void OnInitializeValues()
 		{
-			this.Add(new MaildatValue() { Version = "25-1", Key = "0.3", FileExtension = "hdr", Description = "", FieldCode = "HDR-1192", FieldName = "MailDatRevision" });
+			this.Add(new MaildatValue() { Version = "25-1", Key = "0.4", FileExtension = "hdr", Description = "", FieldCode = "HDR-1192", FieldName = "MailDatRevision" });
 			this.Add(new MaildatValue() { Version = "23-1", Key = "0.5", FileExtension = "hdr", Description = "", FieldCode = "HDR-1192", FieldName = "MailDatRevision" });
 			this.Add(new MaildatValue() { Version = "24-1", Key = "1.5", FileExtension = "hdr", Description = "", FieldCode = "HDR-1192", FieldName = "MailDatRevision" });
 		}

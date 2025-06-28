@@ -20,7 +20,7 @@
 // If not, see <https://www.gnu.org/licenses/>.
 // ************************************************************************************************************************
 //
-// This code was auto-generated on June 22nd, 2025 by the Open Mail.dat Code Generator.
+// This code was auto-generated on June 28th, 2025 by the Open Mail.dat Code Generator.
 // Code Generator Author: Daniel M porrey
 //
 using System.ComponentModel.DataAnnotations.Schema;
@@ -37,7 +37,7 @@ namespace Mail.dat
 	/// </summary>
 	[MaildatFile(Version = "23-1", Revision = "0.5", Extension = "upa", File = "un-coded parcels address", Summary = "Un-coded parcels address record (linked to PDR).", Description = "Un-coded parcels address record (linked to PDR). Un-Coded Parcel Address file: records addresses for the un-coded parcels. (Links with .pdr ONLY).", LineLength = 135, ClosingCharacter = "#")]
 	[MaildatFile(Version = "24-1", Revision = "1.5", Extension = "upa", File = "un-coded parcels address", Summary = "Un-coded parcels address record (linked to PDR).", Description = "Un-coded parcels address record (linked to PDR). Un-Coded Parcel Address file: records addresses for the un-coded parcels. (Links with .pdr ONLY).", LineLength = 135, ClosingCharacter = "#")]
-	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "upa", File = "un-coded parcels address", Summary = "Un-coded parcels address record (linked to PDR).", Description = "Un-coded parcels address record (linked to PDR). Un-Coded Parcel Address file: records addresses for the un-coded parcels. (Links with .pdr ONLY).", LineLength = 135, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.4", Extension = "upa", File = "un-coded parcels address", Summary = "Un-coded parcels address record (linked to PDR).", Description = "Un-coded parcels address record (linked to PDR). Un-Coded Parcel Address file: records addresses for the un-coded parcels. (Links with .pdr ONLY).", LineLength = 135, ClosingCharacter = "#")]
 	[MaildatImport(Order = 20, Version = "23-1")]
 	[MaildatImport(Order = 20, Version = "24-1")]
 	[MaildatImport(Order = 20, Version = "25-1")]

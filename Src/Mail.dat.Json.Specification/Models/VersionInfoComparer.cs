@@ -24,8 +24,33 @@
 //
 namespace Mail.dat.Json.Specification
 {
+	/// <summary>
+	/// Provides a comparison mechanism for <see cref="VersionInfo"/> objects based on their major, minor, and revision
+	/// components.
+	/// </summary>
+	/// <remarks>This comparer is designed to compare <see cref="VersionInfo"/> objects in the following order:
+	/// <list type="number"> <item><description>Major version numbers are compared first.</description></item>
+	/// <item><description>If the major versions are equal, minor version numbers are compared.</description></item>
+	/// <item><description>If both major and minor versions are equal, the revision strings are compared using a
+	/// case-insensitive ordinal comparison.</description></item> </list> If either <see cref="VersionInfo"/> object being
+	/// compared is <see langword="null"/>, it is treated as less than a non-<see langword="null"/> value.</remarks>
 	public class VersionInfoComparer : IComparer<VersionInfo>
 	{
+		/// <summary>
+		/// Compares two <see cref="VersionInfo"/> objects based on their major, minor, and revision components.
+		/// </summary>
+		/// <remarks>The comparison is performed in the following order: <list type="number"> <item>Major version
+		/// numbers are compared first.</item> <item>If the major versions are equal, minor version numbers are
+		/// compared.</item> <item>If both major and minor versions are equal, the revision strings are compared using a
+		/// case-insensitive ordinal comparison.</item> </list> If either <paramref name="x"/> or <paramref name="y"/> is <see
+		/// langword="null"/>, it is treated as less than a non-<see langword="null"/> value.</remarks>
+		/// <param name="x">The first <see cref="VersionInfo"/> object to compare. Can be <see langword="null"/>.</param>
+		/// <param name="y">The second <see cref="VersionInfo"/> object to compare. Can be <see langword="null"/>.</param>
+		/// <returns>A signed integer that indicates the relative order of the two objects: <list type="bullet"> <item> <description>A
+		/// value less than zero if <paramref name="x"/> is less than <paramref name="y"/>.</description> </item> <item>
+		/// <description>Zero if <paramref name="x"/> is equal to <paramref name="y"/>.</description> </item> <item>
+		/// <description>A value greater than zero if <paramref name="x"/> is greater than <paramref name="y"/>.</description>
+		/// </item> </list></returns>
 		public int Compare(VersionInfo x, VersionInfo y)
 		{
 			(int xMajor, int xMinor) = ParseMajor(x?.Major);
@@ -49,6 +74,13 @@ namespace Mail.dat.Json.Specification
 			return string.Compare(x?.Revision, y?.Revision, StringComparison.OrdinalIgnoreCase);
 		}
 
+		/// <summary>
+		/// Parses a version string into its major and minor components.
+		/// </summary>
+		/// <param name="version">A string representing the version in the format "major-minor".  The major and minor components must be integers
+		/// separated by a hyphen.</param>
+		/// <returns>A tuple containing the major and minor version numbers as integers.  If the input string is null, empty, consists
+		/// only of whitespace, or is not in the expected format,  the method returns (0, 0).</returns>
 		private static (int Major, int Minor) ParseMajor(string version)
 		{
 			if (string.IsNullOrWhiteSpace(version))

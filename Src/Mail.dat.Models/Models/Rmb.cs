@@ -20,7 +20,7 @@
 // If not, see <https://www.gnu.org/licenses/>.
 // ************************************************************************************************************************
 //
-// This code was auto-generated on June 22nd, 2025 by the Open Mail.dat Code Generator.
+// This code was auto-generated on June 28th, 2025 by the Open Mail.dat Code Generator.
 // Code Generator Author: Daniel M porrey
 //
 using System.ComponentModel.DataAnnotations.Schema;
@@ -38,7 +38,7 @@ namespace Mail.dat
 	/// </summary>
 	[MaildatFile(Version = "23-1", Revision = "0.5", Extension = "rmb", File = "Referenceable Mail Barcode Record", Summary = "Reference-able Mail Barcode to provide digital content at the piece level outside of the Mail.dat required files and structure.", Description = "Reference-able Mail Barcode to provide digital content at the piece level outside of the Mail.dat required files and structure. Records identify digital campaigns and enhance capabilities of the USPS Informed Delivery  program separate from the required file structure.", LineLength = 316, ClosingCharacter = "#")]
 	[MaildatFile(Version = "24-1", Revision = "1.5", Extension = "rmb", File = "Referenceable Mail Barcode Record", Summary = "Reference-able Mail Barcode to provide digital content at the piece level outside of the Mail.dat required files and structure.", Description = "Reference-able Mail Barcode to provide digital content at the piece level outside of the Mail.dat required files and structure. Records identify digital campaigns and enhance capabilities of the USPS Informed Delivery  program separate from the required file structure.", LineLength = 316, ClosingCharacter = "#")]
-	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "rmb", File = "Referenceable Mail Barcode Record", Summary = "Reference-able Mail Barcode to provide digital content at the piece level outside of the Mail.dat required files and structure.", Description = "Reference-able Mail Barcode to provide digital content at the piece level outside of the Mail.dat required files and structure. Records identify digital campaigns and enhance capabilities of the USPS Informed Delivery  program separate from the required file structure.", LineLength = 316, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.4", Extension = "rmb", File = "Referenceable Mail Barcode Record", Summary = "Reference-able Mail Barcode to provide digital content at the piece level outside of the Mail.dat required files and structure.", Description = "Reference-able Mail Barcode to provide digital content at the piece level outside of the Mail.dat required files and structure. Records identify digital campaigns and enhance capabilities of the USPS Informed Delivery  program separate from the required file structure.", LineLength = 316, ClosingCharacter = "#")]
 	[MaildatImport(Order = 23, Version = "23-1")]
 	[MaildatImport(Order = 23, Version = "24-1")]
 	[MaildatImport(Order = 23, Version = "25-1")]

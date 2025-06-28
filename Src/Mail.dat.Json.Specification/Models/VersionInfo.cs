@@ -22,15 +22,29 @@
 //
 // Author: Daniel M porrey
 //
+using System.Diagnostics;
 using Newtonsoft.Json;
 
 namespace Mail.dat.Json.Specification
 {
+	/// <summary>
+	/// Represents version information for an entity, including major version and revision details.
+	/// </summary>
+	/// <remarks>This class is typically used to encapsulate versioning details for objects or entities that require
+	/// version tracking. The <see cref="Major"/> property indicates the primary version, while the <see cref="Revision"/>
+	/// property provides additional granularity for identifying specific revisions.</remarks>
+	[DebuggerDisplay("Major = {Major}, Revision = {Revision}")]
 	public class VersionInfo
 	{
+		/// <summary>
+		/// Gets or sets the major version of the entity.
+		/// </summary>
 		[JsonProperty("major")]
 		public string Major { get; set; }
 
+		/// <summary>
+		/// Gets or sets the revision identifier for the object.
+		/// </summary>
 		[JsonProperty("revision")]
 		public string Revision { get; set; }
 	}

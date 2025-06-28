@@ -26,7 +26,7 @@ using System.Diagnostics;
 
 namespace Mail.dat.BuildCommand
 {
-	[DebuggerDisplay("Extension = {Extension}, Ordinal = {Ordinal}")]
+	[DebuggerDisplay("Extension = {FileExtension}, Ordinal = {Ordinal}")]
 	public class FileGroup
 	{
 		public int Ordinal { get; set; }

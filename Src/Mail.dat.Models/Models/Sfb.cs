@@ -20,7 +20,7 @@
 // If not, see <https://www.gnu.org/licenses/>.
 // ************************************************************************************************************************
 //
-// This code was auto-generated on June 22nd, 2025 by the Open Mail.dat Code Generator.
+// This code was auto-generated on June 28th, 2025 by the Open Mail.dat Code Generator.
 // Code Generator Author: Daniel M porrey
 //
 using System.ComponentModel.DataAnnotations.Schema;
@@ -36,7 +36,7 @@ namespace Mail.dat
 	/// </summary>
 	[MaildatFile(Version = "23-1", Revision = "0.5", Extension = "sfb", File = "Special Barcode Record", Summary = "Barcode for special services.", Description = "Barcode for special services. Provides barcode for special fees.", LineLength = 68, ClosingCharacter = "#")]
 	[MaildatFile(Version = "24-1", Revision = "1.5", Extension = "sfb", File = "Special Barcode Record", Summary = "Barcode for special services.", Description = "Barcode for special services. Provides barcode for special fees.", LineLength = 68, ClosingCharacter = "#")]
-	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "sfb", File = "Special Barcode Record", Summary = "Barcode for special services.", Description = "Barcode for special services. Provides barcode for special fees.", LineLength = 68, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.4", Extension = "sfb", File = "Special Barcode Record", Summary = "Barcode for special services.", Description = "Barcode for special services. Provides barcode for special fees.", LineLength = 68, ClosingCharacter = "#")]
 	[MaildatImport(Order = 17, Version = "23-1")]
 	[MaildatImport(Order = 17, Version = "24-1")]
 	[MaildatImport(Order = 17, Version = "25-1")]

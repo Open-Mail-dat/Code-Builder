@@ -20,7 +20,7 @@
 // If not, see <https://www.gnu.org/licenses/>.
 // ************************************************************************************************************************
 //
-// This code was auto-generated on June 22nd, 2025 by the Open Mail.dat Code Generator.
+// This code was auto-generated on June 28th, 2025 by the Open Mail.dat Code Generator.
 // Code Generator Author: Daniel M porrey
 //
 using System.ComponentModel.DataAnnotations.Schema;
@@ -37,7 +37,7 @@ namespace Mail.dat
 	/// </summary>
 	[MaildatFile(Version = "23-1", Revision = "0.5", Extension = "epd", File = "Extra Piece Detail", Summary = "CRID for Move update charges.", Description = "CRID for Move update charges. Records identify third party move update entities that should be invoiced.", LineLength = 45, ClosingCharacter = "#")]
 	[MaildatFile(Version = "24-1", Revision = "1.5", Extension = "epd", File = "Extra Piece Detail", Summary = "CRID for Move update charges.", Description = "CRID for Move update charges. Records identify third party move update entities that should be invoiced.", LineLength = 45, ClosingCharacter = "#")]
-	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "epd", File = "Extra Piece Detail", Summary = "CRID for Move update charges.", Description = "CRID for Move update charges. Records identify third party move update entities that should be invoiced.", LineLength = 45, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.4", Extension = "epd", File = "Extra Piece Detail", Summary = "CRID for Move update charges.", Description = "CRID for Move update charges. Records identify third party move update entities that should be invoiced.", LineLength = 45, ClosingCharacter = "#")]
 	[MaildatImport(Order = 21, Version = "23-1")]
 	[MaildatImport(Order = 21, Version = "24-1")]
 	[MaildatImport(Order = 21, Version = "25-1")]

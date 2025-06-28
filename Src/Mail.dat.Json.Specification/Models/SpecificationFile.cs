@@ -22,27 +22,31 @@
 //
 // Author: Daniel M porrey
 //
+using System.Diagnostics;
 using Newtonsoft.Json;
 
 namespace Mail.dat.Json.Specification
 {
+	/// <summary>
+	/// Represents a specification file containing version information and a collection of file definitions.
+	/// </summary>
+	/// <remarks>This class is designed to manage metadata and configuration details for a specification file.  It
+	/// provides access to version information and a collection of file definitions, which are  automatically ordered by
+	/// file extension when retrieved.</remarks>
+	[DebuggerDisplay("Version = {Version}, File Count = {Files.Length}")]
 	public class SpecificationFile
 	{
+		/// <summary>
+		/// Gets or sets the version information for the current object.
+		/// </summary>
 		[JsonProperty("version")]
 		public VersionInfo Version { get; set; }
 
+		
+		/// <summary>
+		/// Gets or sets the collection of file definitions, ordered by file extension when retrieved.
+		/// </summary>
 		[JsonProperty("files")]
-		private List<FileDefinition> _files = [];
-		public List<FileDefinition> Files
-		{
-			get
-			{
-				return _files.OrderBy(t=>t.FileExtension).ToList();
-			}
-			set
-			{
-				_files = value;
-			}
-		}
+		public FileDefinition[] Files { get; set; }
 	}
 }

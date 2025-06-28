@@ -20,7 +20,7 @@
 // If not, see <https://www.gnu.org/licenses/>.
 // ************************************************************************************************************************
 //
-// This code was auto-generated on June 22nd, 2025 by the Open Mail.dat Code Generator.
+// This code was auto-generated on June 28th, 2025 by the Open Mail.dat Code Generator.
 // Code Generator Author: Daniel M porrey
 //
 using System.ComponentModel.DataAnnotations.Schema;
@@ -37,7 +37,7 @@ namespace Mail.dat
 	/// </summary>
 	[MaildatFile(Version = "23-1", Revision = "0.5", Extension = "ccr", File = "Component Characteristics Record", Summary = "Characteristics of a component.", Description = "Characteristics of a component. Allows mailers to identify surcharges, incentive and specific contents that are part of the mail piece.", LineLength = 21, ClosingCharacter = "#")]
 	[MaildatFile(Version = "24-1", Revision = "1.5", Extension = "ccr", File = "Component Characteristics Record", Summary = "Characteristics of a component.", Description = "Characteristics of a component. Allows mailers to identify surcharges, incentive and specific contents that are part of the mail piece.", LineLength = 21, ClosingCharacter = "#")]
-	[MaildatFile(Version = "25-1", Revision = "0.3", Extension = "ccr", File = "Component Characteristics Record", Summary = "Characteristics of a component.", Description = "Characteristics of a component. Allows mailers to identify surcharges, incentive and specific contents that are part of the mail piece.", LineLength = 52, ClosingCharacter = "#")]
+	[MaildatFile(Version = "25-1", Revision = "0.4", Extension = "ccr", File = "Component Characteristics Record", Summary = "Characteristics of a component.", Description = "Characteristics of a component. Allows mailers to identify surcharges, incentive and specific contents that are part of the mail piece.", LineLength = 52, ClosingCharacter = "#")]
 	[MaildatImport(Order = 7, Version = "23-1")]
 	[MaildatImport(Order = 7, Version = "24-1")]
 	[MaildatImport(Order = 7, Version = "25-1")]
