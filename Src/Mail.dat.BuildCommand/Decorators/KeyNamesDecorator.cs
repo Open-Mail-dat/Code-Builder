@@ -26,45 +26,55 @@ using Humanizer;
 using Mail.dat.Json.Specification;
 
 namespace Mail.dat.BuildCommand
-{
+{	
+	/// <summary>
+	/// Provides extension methods for converting strings and <see cref="RecordDefinition"/> objects  into various naming
+	/// conventions, such as PascalCase class names, interface names, and property names.
+	/// </summary>
+	/// <remarks>This static class is designed to assist with generating consistent and valid names for classes, 
+	/// interfaces, and properties based on input strings or record definitions. It includes methods  for applying Pascal
+	/// casing, prefixing interface names, and appending file extensions.</remarks>
 	public static class KeyNamesDecorator
 	{
+		/// <summary>
+		/// Converts the specified string to a PascalCase class name.
+		/// </summary>
+		/// <param name="value">The string to convert. Cannot be <see langword="null"/> or empty.</param>
+		/// <returns>A PascalCase representation of the input string, suitable for use as a class name.</returns>
 		public static string ToClassName(this string value)
 		{
 			return value.TruePascalize();
 		}
 
+		/// <summary>
+		/// Converts the specified string to an interface name by prefixing it with "I"  and applying class name formatting
+		/// conventions.
+		/// </summary>
+		/// <param name="value">The string to convert. Cannot be null.</param>
+		/// <returns>A string representing the interface name, prefixed with "I".</returns>
 		public static string ToInterfaceName(this string value)
 		{
 			return $"I{value.ToClassName()}";
 		}
 
+		/// <summary>
+		/// Converts the specified string to a Pascal-cased class file name with a ".cs" extension.
+		/// </summary>
+		/// <remarks>This method applies Pascal casing to the input string and appends the ".cs" file extension. Use
+		/// this method to generate class file names from entity or class names.</remarks>
+		/// <param name="value">The string to convert. Typically represents the name of a class or entity.</param>
+		/// <returns>A string representing the Pascal-cased class file name with a ".cs" extension.</returns>
 		public static string ToClassFileName(this string value)
 		{
 			return $"{value.TruePascalize()}.cs";
 		}
 
-		//public static string ToPropertyName(this object value, object fieldCode)
-		//{
-		//	string returnValue = null;
-
-		//	if (value is not null)
-		//	{
-		//		returnValue = value.ToString().Dehumanize().TruePascalize().KeywordSanitize();
-
-		//		if (returnValue == "Reserve")
-		//		{
-		//			returnValue = $"{returnValue}{fieldCode.ToString().Dehumanize().TruePascalize().KeywordSanitize()}";
-		//		}
-		//	}
-		//	else
-		//	{
-		//		throw new ArgumentNullException(nameof(value), "Field name cannot be null.");
-		//	}
-
-		//	return returnValue;
-		//}
-
+		/// <summary>
+		/// Converts a <see cref="RecordDefinition"/> to a property name.	
+		/// </summary>
+		/// <param name="recordDefintion">The <see cref="RecordDefinition"/> to convert. Cannot be null.</param>
+		/// <returns>A string representing the property name derived from the record definition.</returns>
+		/// <exception cref="ArgumentNullException"></exception>
 		public static string ToPropertyName(this RecordDefinition recordDefintion)
 		{
 			string returnValue = null;

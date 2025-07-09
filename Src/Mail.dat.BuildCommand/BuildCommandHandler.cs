@@ -8,16 +8,43 @@ using Spectre.Console;
 
 namespace Mail.dat.BuildCommand
 {
+	/// <summary>
+	/// Handles the build command for generating code from the JSON Mail.dat specification.
+	/// </summary>
 	internal class BuildCommandHandler : ModelCommand<CommandOptions>
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="BuildCommandHandler"/> class.
+		/// </summary>
+		/// <param name="logger">The logger instance used for logging.</param>
 		public BuildCommandHandler(ILogger<BuildCommandHandler> logger)
 			: base(logger, "build", "Generates code from the JSON Mail.dat specification..")
 		{
 		}
 
+		/// <summary>
+		/// Represents the namespace used for Mail.dat-related operations.
+		/// </summary>
 		private const string NameSpace = "Mail.dat";
+
+		/// <summary>
+		/// Represents the name of the database context used for Maildat operations.
+		/// </summary>
 		private const string ContextName = "MaildatContext";
 
+		/// <summary>
+		/// Handles the execution of the command by processing the provided options, generating classes, interfaces, and
+		/// database context files based on the specifications, and managing the output directories.
+		/// </summary>
+		/// <remarks>This method performs the following operations: <list type="bullet"> <item><description>Loads and
+		/// merges specification files into a unified structure.</description></item> <item><description>Generates class and
+		/// interface files based on the specifications.</description></item> <item><description>Builds a database context
+		/// file for Entity Framework Core integration.</description></item> <item><description>Manages output directories by
+		/// clearing existing files to avoid conflicts.</description></item> </list> The method provides progress updates and
+		/// ensures that all generated files adhere to the specified structure and naming conventions.</remarks>
+		/// <param name="options">The command options containing input specifications, output directory paths, and other configuration settings.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains an integer indicating the success or
+		/// failure of the command execution. A value of 0 typically indicates success.</returns>
 		protected override async Task<int> OnHandleCommand(CommandOptions options)
 		{
 			int returnValue = 0;

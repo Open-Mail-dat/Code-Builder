@@ -26,10 +26,27 @@ using Mail.dat.Json.Specification;
 
 namespace Mail.dat.BuildCommand
 {
+	/// <summary>
+	/// Represents a key-value pair with an associated version, used to define an allowed value in a specific context.
+	/// </summary>
+	/// <remarks>This class is typically used to store and manage configuration or validation data, where each
+	/// allowed value is identified by a unique key, its corresponding value, and an optional version for tracking
+	/// changes.</remarks>
 	public class AllowedValue
 	{
+		/// <summary>
+		/// Gets or sets the version information for the application or component.
+		/// </summary>
 		public VersionInfo Version { get; set; }
+
+		/// <summary>
+		/// Gets or sets the unique identifier associated with the object.
+		/// </summary>
 		public string Key { get; set; }
+
+		/// <summary>
+		/// Gets or sets the value represented by this instance.
+		/// </summary>
 		public string Value { get; set; }
 	}
 }

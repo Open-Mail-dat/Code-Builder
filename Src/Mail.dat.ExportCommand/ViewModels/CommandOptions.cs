@@ -22,16 +22,29 @@
 //
 // Author: Daniel M porrey
 //
-using System.ComponentModel.DataAnnotations;
-
 namespace Mail.dat.ExportCommand
 {
+	/// <summary>
+	/// Represents the options required to execute a command, including source and target file paths.
+	/// </summary>
+	/// <remarks>This class is used to define the input parameters for a command-line operation.  Both the source
+	/// and target file paths are required and must be valid file paths.</remarks>
 	internal class CommandOptions
 	{
+		/// <summary>
+		/// Gets or sets the full target file path for the SQLite database.
+		/// </summary>
+		/// <remarks>This property is required and must be set to a valid file path. The file path should point to the
+		/// target SQLite database file.</remarks>
 		[Required]
 		[Display(Order = 1, Name = "source-file-path", ShortName = "s", Description = "Specifies the full target file path for the Sqlite database.")]
 		public FileInfo SourceFilePath { get; set; }
 
+		/// <summary>
+		/// Gets or sets the full path to the Mail.dat file to export.
+		/// </summary>
+		/// <remarks>This property is required and must specify a valid file path.  Ensure the path points to either a
+		/// ZIP file or an HDR file.</remarks>
 		[Required]
 		[Display(Order = 2, Name = "target-file-path", ShortName = "t", Description = "Specifies the full path to the Mail.dat file to Export. The path should point to a ZIP file or the HDR file.")]
 		public FileInfo TargetFilePath { get; set; }

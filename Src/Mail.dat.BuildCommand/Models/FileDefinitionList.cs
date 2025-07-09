@@ -26,9 +26,21 @@ using Mail.dat.Json.Specification;
 
 namespace Mail.dat.BuildCommand
 {
+	/// <summary>
+	/// Represents a collection of file-related definitions and associated version information.
+	/// </summary>
+	/// <remarks>This class encapsulates a file definition and its corresponding version details. It is typically
+	/// used to manage and organize metadata about files in a structured format.</remarks>
 	public class FileDefinitionList
 	{
+		/// <summary>
+		/// Gets or sets the version information for the application or component.
+		/// </summary>
 		public VersionInfo Version { get; set; }
+
+		/// <summary>
+		/// Gets or sets the file definition that specifies the structure and metadata of a file.
+		/// </summary>
 		public FileDefinition FileDefinition { get; set; }
 	}
 }

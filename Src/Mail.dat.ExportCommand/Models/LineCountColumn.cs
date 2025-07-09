@@ -27,16 +27,36 @@ using Spectre.Console.Rendering;
 
 namespace Mail.dat.ExportCommand
 {
+	/// <summary>
+	/// Represents a progress column that displays the current line count and the maximum line count for a task.
+	/// </summary>
+	/// <remarks>This column is typically used in progress displays to show the progress of a task in terms of lines
+	/// processed. The output format includes the current value and the maximum value, formatted with thousands
+	/// separators.</remarks>
 	public class LineCountColumn : ProgressColumn
 	{
+		/// <summary>
+		/// Renders a visual representation of the progress task's current value and maximum value.
+		/// </summary>
+		/// <param name="options">The rendering options that define how the output should be formatted.</param>
+		/// <param name="task">The progress task whose value and maximum value are to be rendered.</param>
+		/// <param name="deltaTime">The time elapsed since the last render, which can be used for animations or updates.</param>
+		/// <returns>An <see cref="IRenderable"/> object representing the progress task's current state.  If the task's value is 0, an
+		/// empty markup is returned; otherwise, a formatted string showing the current and maximum values is returned.</returns>
 		public override IRenderable Render(RenderOptions options, ProgressTask task, TimeSpan deltaTime)
 		{
+			//
+			// If the task's value is 0, return an empty markup.
+			//
 			if (task.Value == 0)
 			{
 				return new Markup("");
 			}
 			else
 			{
+				//
+				// Return a formatted markup showing the current value and maximum value of the task.
+				//
 				return new Markup($"([white]{task.Value:#,###}[/] of [white]{task.MaxValue:#,###}[/])").Overflow(Overflow.Ellipsis).Justify(Justify.Left);
 			}
 		}

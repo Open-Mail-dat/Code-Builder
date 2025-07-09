@@ -31,15 +31,15 @@ using Serilog;
 namespace Mail.dat.Cmd
 {
 	/// <summary>
-	/// 
+	/// The entry point of the application.
 	/// </summary>
 	public class Program
 	{
 		/// <summary>
-		/// 
+		/// Initializes and runs the application using the specified command-line arguments.
 		/// </summary>
-		/// <param name="args"></param>
-		/// <returns></returns>
+		/// <param name="args">An array of command-line arguments passed to the application.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result contains the application's exit code.</returns>
 		static Task<int> Main(string[] args) => Host.CreateDefaultBuilder(args)
 							.AddRootCommand("Mail.dat Command Line Utility", args)
 							.UseStartup<ConsoleStartup>()

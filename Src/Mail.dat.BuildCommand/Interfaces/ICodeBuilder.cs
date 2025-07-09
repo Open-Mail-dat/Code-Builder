@@ -24,8 +24,18 @@
 //
 namespace Mail.dat.BuildCommand
 {
+	/// <summary>
+	/// Defines a contract for a code builder that constructs an object of type <typeparamref name="T"/> from a file path.
+	/// </summary>
+	/// <typeparam name="T">Type of the object to be built.</typeparam>
 	public interface ICodeBuilder<T>
 	{
+		/// <summary>
+		/// Builds an object of type <typeparamref name="T"/> from the specified file.
+		/// </summary>
+		/// <param name="filePath">The path to the file from which the object will be built. Cannot be null or empty.</param>
+		/// <param name="indentLevel">The level of indentation to apply during the build process. Defaults to 0.</param>
+		/// <returns>An instance of type <typeparamref name="T"/> constructed from the specified file.</returns>
 		T Build(string filePath, int indentLevel = 0);
 	}
 }

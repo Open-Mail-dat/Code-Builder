@@ -26,11 +26,25 @@ using System.Diagnostics;
 
 namespace Mail.dat.BuildCommand
 {
+	/// <summary>
+	/// Represents a group of files with a specific file extension and an ordinal value.
+	/// </summary>
 	[DebuggerDisplay("Extension = {FileExtension}, Ordinal = {Ordinal}")]
 	public class FileGroup
 	{
+		/// <summary>
+		/// Gets or sets the zero-based position of the item within a collection.
+		/// </summary>
 		public int Ordinal { get; set; }
+
+		/// <summary>
+		/// Gets or sets the file extension associated with the file.
+		/// </summary>
 		public string FileExtension { get; set; }
+
+		/// <summary>
+		/// Gets or sets the collection of file definition lists.
+		/// </summary>
 		public IEnumerable<FileDefinitionList> Items { get; set; }
 	}
 }

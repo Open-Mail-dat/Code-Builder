@@ -27,8 +27,16 @@ using Mail.dat.Json.Specification;
 
 namespace Mail.dat.BuildCommand
 {
+	/// <summary>
+	/// Provides extension methods for decorating and transforming <see cref="RecordDefinition"/> objects.
+	/// </summary>
 	public static class RecordDefinitionDecorator
 	{
+		/// <summary>
+		/// Generates a formatted description for the specified <see cref="RecordDefinition"/>.
+		/// </summary>
+		/// <param name="recordDefinition">The <see cref="RecordDefinition"/> instance for which the description is generated. Cannot be null.</param>
+		/// <returns>A string containing the sanitized and sentence-cased description of the record, ending with proper punctuation.</returns>
 		public static string Description(this RecordDefinition recordDefinition)
 		{
 			return string.Join(" ", recordDefinition.Description.Select(t => t.Sanitize().Transform(To.SentenceCase))).EndSentence();

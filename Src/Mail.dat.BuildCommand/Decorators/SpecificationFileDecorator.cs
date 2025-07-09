@@ -28,12 +28,21 @@ using Newtonsoft.Json;
 
 namespace Mail.dat.BuildCommand
 {
+	/// <summary>
+	/// Provides methods for processing and managing specification files, including loading and merging operations.
+	/// </summary>
+	/// <remarks>This static class contains extension methods for handling specification files, such as loading them
+	/// from file paths and merging them into grouped structures. The methods are designed to work asynchronously and
+	/// support operations like deserialization, grouping, and ordering of specification data.</remarks>
 	public static class SpecificationFileDecorator
 	{
-		//
-		// Loads specification files from a comma-separated list of file paths.
-		// Each file is deserialized into a SpecificationFile object and added to the dictionary by its major version.
-		//
+		/// <summary>
+		/// Loads specification files from a comma-separated list of file paths.
+		/// Each file is deserialized into a SpecificationFile object and added to the dictionary by its major version.
+		/// </summary>
+		/// <param name="parameter">A comma-separated list of file paths to specification files.</param>
+		/// <returns>A task that represents the asynchronous operation, containing a dictionary of SpecificationFile objects.</returns>
+		/// <exception cref="FileNotFoundException"></exception>
 		public static Task<Dictionary<string, SpecificationFile>> LoadSpecificationsAsync(this string parameter)
 		{
 			Dictionary<string, SpecificationFile> returnValue = [];
@@ -81,10 +90,12 @@ namespace Mail.dat.BuildCommand
 			return Task.FromResult(returnValue.OrderBy(t => t.Key).ToDictionary());
 		}
 
-		//
-		// Merges multiple specification files into groups by file extension and orders them.
-		// Each group contains file definitions for a specific extension across all versions.
-		//
+		/// <summary>
+		/// Merges multiple specification files into groups by file extension and orders them.
+		/// Each group contains file definitions for a specific extension across all versions.
+		/// </summary>
+		/// <param name="specificationFiles">A dictionary of SpecificationFile objects indexed by their major version.</param>
+		/// <returns>A task that represents the asynchronous operation, containing the merged file groups.</returns>
 		public static Task<IEnumerable<FileGroup>> MergeSpecificationsAsync(this Dictionary<string, SpecificationFile> specificationFiles)
 		{
 			IEnumerable<FileGroup> returnValue = [];

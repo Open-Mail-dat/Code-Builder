@@ -33,17 +33,36 @@ using Spectre.Console.Rendering;
 
 namespace Mail.dat.ExportCommand
 {
+	/// <summary>
+	/// Represents a command handler for exporting a Mail.dat file from a Sqlite database.
+	/// </summary>
 	internal class ExportCommandHandler : ModelCommand<CommandOptions>
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ExportCommandHandler"/> class.
+		/// </summary>
+		/// <param name="logger">The logger instance for logging information.</param>
 		public ExportCommandHandler(ILogger<ExportCommandHandler> logger)
 			: base(logger, "export", "Export a Mail.dat from a Sqlite database.")
 		{
 		}
 
+		/// <summary>
+		/// Handles the execution of the command with the specified options.
+		/// </summary>
+		/// <remarks>This method processes the specified source file, displaying progress information in the console.
+		/// If the source file does not exist, an error message is displayed, and the method returns an exit code of
+		/// 1.</remarks>
+		/// <param name="options">The options provided for the command execution, including file paths and other parameters.</param>
+		/// <returns>A task that represents the asynchronous operation. The task result is an integer indicating the exit code: 0 if
+		/// the operation completes successfully; otherwise, 1 if an error occurs.</returns>
 		protected override async Task<int> OnHandleCommand(CommandOptions options)
 		{
 			int returnValue = 0;
 
+			//
+			// Check if the source file exists. If it does, proceed with the export.
+			//
 			if (options.SourceFilePath.Exists)
 			{
 				AnsiConsole.Clear();
@@ -176,6 +195,9 @@ namespace Mail.dat.ExportCommand
 			}
 			else
 			{
+				//
+				// If the source file does not exist, display an error message.
+				//
 				AnsiConsole.MarkupLine($"[red]The file '{options.SourceFilePath.FullName}' does not exist.[/]");
 				returnValue = 1;
 			}
@@ -183,6 +205,16 @@ namespace Mail.dat.ExportCommand
 			return returnValue;
 		}
 
+		/// <summary>
+		/// Renders a custom progress display by combining a header and the provided renderable content.
+		/// </summary>
+		/// <remarks>The header panel is styled with a rounded border and a sky-blue border color. The method combines
+		/// the header and the provided renderable content into a single layout using a <see cref="Rows"/>
+		/// container.</remarks>
+		/// <param name="tasks">A read-only list of progress tasks. This parameter is currently unused but may be utilized in future
+		/// implementations.</param>
+		/// <param name="renderable">The renderable content to display below the header. Cannot be null.</param>
+		/// <returns>A composite renderable object that includes a header panel labeled "Progress" and the provided renderable content.</returns>
 		private static IRenderable RenderHook(IReadOnlyList<ProgressTask> tasks, IRenderable renderable)
 		{
 			//
