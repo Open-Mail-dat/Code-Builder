@@ -34,7 +34,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Diamond.Core.Repository.Abstractions" Version="9.0.2" />
+	  <PackageReference Include="Diamond.Core.Repository.Abstractions" Version="9.1.0" />
 	  <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.7" />
 	</ItemGroup>
 
@@ -44,9 +44,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Update="C:\Users\Danie\.nuget\packages\diamond.core.repository.abstractions\9.0.2\contentFiles\any\net9.0\Services\Diamond.Core.Repository.Abstractions.json">
+	  <Content Update="$(UserProfile)\.nuget\packages\diamond.core.repository.abstractions\9.1.0\contentFiles\any\net9.0\Services\Diamond.Core.Repository.Abstractions.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Services\" />
 	</ItemGroup>
 
 </Project>

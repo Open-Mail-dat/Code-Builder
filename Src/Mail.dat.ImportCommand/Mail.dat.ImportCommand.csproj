@@ -20,12 +20,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Diamond.Core.CommandLine" Version="9.0.2" />
-		<PackageReference Include="Diamond.Core.CommandLine.Abstractions" Version="9.0.2" />
-		<PackageReference Include="Diamond.Core.CommandLine.Model" Version="9.0.2" />
-		<PackageReference Include="Diamond.Core.Extensions.DependencyInjection.Abstractions" Version="9.0.2" />
-		<PackageReference Include="Diamond.Core.Extensions.Hosting.Abstractions" Version="9.0.2" />
-		<PackageReference Include="Diamond.Core.System.TemporaryFolder" Version="9.0.2" />
+		<PackageReference Include="Diamond.Core.CommandLine" Version="9.1.0" />
+		<PackageReference Include="Diamond.Core.CommandLine.Abstractions" Version="9.1.0" />
+		<PackageReference Include="Diamond.Core.CommandLine.Model" Version="9.1.0" />
+		<PackageReference Include="Diamond.Core.Extensions.DependencyInjection.Abstractions" Version="9.1.0" />
+		<PackageReference Include="Diamond.Core.Extensions.Hosting.Abstractions" Version="9.1.0" />
+		<PackageReference Include="Diamond.Core.System.TemporaryFolder" Version="9.1.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.7" />
 		<PackageReference Include="Humanizer.Core" Version="2.14.1" />
 		<PackageReference Include="Spectre.Console" Version="0.50.0" />
@@ -36,7 +36,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Update="$(UserProfile)\.nuget\packages\diamond.core.commandline.abstractions\9.0.2\contentFiles\any\net9.0\Services\Diamond.Core.CommandLine.Abstractions.json">
+		<Content Update="$(UserProfile)\.nuget\packages\diamond.core.commandline.abstractions\9.1.0\contentFiles\any\net9.0\Services\Diamond.Core.CommandLine.Abstractions.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>

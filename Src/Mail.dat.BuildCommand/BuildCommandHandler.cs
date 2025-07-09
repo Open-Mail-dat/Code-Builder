@@ -468,6 +468,7 @@ namespace Mail.dat.BuildCommand
 			foreach (FileGroup fileGroup in merged)
 			{
 				string objectName = fileGroup.FileExtension.ToClassName();
+				string interfaceName = fileGroup.FileExtension.ToInterfaceName();
 
 				ClassBuilder.Create($"{objectName}Repository")
 					.SetFileHeaderComments()
@@ -480,12 +481,18 @@ namespace Mail.dat.BuildCommand
 					.SetScope("public")
 					.SetPartial(true)
 					.SetSummary($"Repository for the <see cref=\"{objectName}\"/> entity.")
-					.AddImplements($"EntityFrameworkRepository<I{objectName}, {objectName}, {ContextName}>")
+					.AddImplements($"EntityFrameworkRepository<{interfaceName}, {objectName}, {ContextName}>")
+					.AddConstructor(MethodBuilder.Create($"{objectName}Repository")
+						.SetScope("public")
+						.SetSummary($"Creates and instance of the <see cref=\"{objectName}Repository\"/> class with the specified context and entity factory.")
+						.AddParameter($"IEntityFactory<{interfaceName}>", "entityFactory")
+						.SetBase("base(entityFactory)")
+					)
 					.AddConstructor(MethodBuilder.Create($"{objectName}Repository")
 						.SetScope("public")
 						.SetSummary($"Creates and instance of the <see cref=\"{objectName}Repository\"/> class with the specified context and entity factory.")
 						.AddParameter(ContextName, "context")
-						.AddParameter($"IEntityFactory<I{objectName}>", "entityFactory")
+						.AddParameter($"IEntityFactory<{interfaceName}>", "entityFactory")
 						.SetBase("base(context, entityFactory)")
 					)
 					.AddMethod(MethodBuilder.Create("MyDbSet")
@@ -516,18 +523,55 @@ namespace Mail.dat.BuildCommand
 						.SetSummary("Adds the Open Mail.dat services to the specified service collection.")
 						.AddCode([.. (from tbl in merged
 								  let objectName = tbl.FileExtension.ToClassName()
+								  let interfaceName = tbl.FileExtension.ToInterfaceName()
 								  select new string[]
 								  {
 									"//",
 									$"// {objectName}",
 									"//",
-									$"services.AddTransient<IEntityFactory<I{objectName}>, EntityFactory<I{objectName}, {objectName}>>();",
-									$"services.AddTransient<IRepository<I{objectName}>, {objectName}Repository>();",
+									$"services.AddTransient<IEntityFactory<{interfaceName}>, EntityFactory<{interfaceName}, {objectName}>>();",
+									$"services.AddTransient<IRepository<{interfaceName}>, {objectName}Repository>();",
 									""
 								  }).SelectMany(t => t)])
 						  .AddCode("return services;")
 					)
 					.Build($"{hostingDirectory.FullName}/ModelExtensions.cs", 1);
+
+			//
+			// Build the JSON services file for the models.
+			//
+			AnsiConsole.MarkupLine("\r\nBuilding [yellow]JSON services[/] file.");
+			ServiceFileBuilder.Create()
+				.AddAliases((from tbl in merged
+							 let interfaceName = tbl.FileExtension.ToInterfaceName()
+							 let objectName = tbl.FileExtension.ToClassName()
+							 select new AliasBuilder[]
+							 {
+								 AliasBuilder.Create(
+									interfaceName,
+									AssemblyReferenceBuilder.Create(interfaceName, NameSpace, $"{NameSpace}.Models")),
+								 AliasBuilder.Create(
+									objectName,
+									AssemblyReferenceBuilder.Create(objectName, NameSpace, $"{NameSpace}.Models"))
+							 }
+							).SelectMany(t => t).ToList())
+				.AddServices((from tbl in merged
+							  let objectName = tbl.FileExtension.ToClassName()
+							  let interfaceName = tbl.FileExtension.ToInterfaceName()
+							  select new ServiceBuilder[]
+							  {
+								  ServiceBuilder.Create(
+									 AssemblyReferenceBuilder.Create($"IEntityFactory`1[[<{interfaceName}>]]", "Diamond.Core.Repository", $"Diamond.Core.Repository.Abstractions"),
+									 AssemblyReferenceBuilder.Create($"EntityFactory`2[[<{interfaceName}>], [<{objectName}>]]", "Diamond.Core.Repository", $"Diamond.Core.Repository"),
+									 "Transient"),
+								  ServiceBuilder.Create(
+									 AssemblyReferenceBuilder.Create($"IRepository`1[[<{interfaceName}>]]", "Diamond.Core.Repository", $"Diamond.Core.Repository.Abstractions"),
+									 AssemblyReferenceBuilder.Create($"{objectName}Repository", NameSpace, $"{NameSpace}.Models"),
+									 "Transient")
+							  }
+							).SelectMany(t => t).ToList())
+				.Build($"{options.ModelsDirectory}/Services/Mail.dat.Models.json", 0);
+
 
 			//
 			// Display the summary.

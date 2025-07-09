@@ -25,6 +25,12 @@
 		<PackageTags>efcore,mail.dat</PackageTags>
 		<Copyright>Copyright (c) 2025 Open Mail.dat. All rights reserved.</Copyright>
 	</PropertyGroup>
+	
+	<ItemGroup>
+	  <Content Include="Services\Mail.dat.Models.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
 
 	<ItemGroup>
 		<None Include="..\..\README.md">
@@ -41,10 +47,21 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.7" />
+		<PackageReference Include="Diamond.Core.Repository.Abstractions" Version="9.1.0" />
+		<PackageReference Include="Diamond.Core.Repository" Version="9.1.0" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\Mail.dat.Abstractions\Mail.dat.Abstractions.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Update="$(UserProfile)\.nuget\packages\diamond.core.repository.abstractions\9.1.0\contentFiles\any\net9.0\Services\Diamond.Core.Repository.Abstractions.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="$(UserProfile)\.nuget\packages\diamond.core.repository\9.1.0\contentFiles\any\net9.0\Services\Diamond.Core.Repository.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 
 </Project>

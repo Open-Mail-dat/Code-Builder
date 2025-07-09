@@ -1,0 +1,528 @@
+{
+	"aliases": [
+		{
+			"Key": "IHdr",
+			"TypeDefinition": "Mail.dat.IHdr, Mail.dat.Models"
+		},
+		{
+			"Key": "Hdr",
+			"TypeDefinition": "Mail.dat.Hdr, Mail.dat.Models"
+		},
+		{
+			"Key": "ISeg",
+			"TypeDefinition": "Mail.dat.ISeg, Mail.dat.Models"
+		},
+		{
+			"Key": "Seg",
+			"TypeDefinition": "Mail.dat.Seg, Mail.dat.Models"
+		},
+		{
+			"Key": "IMpu",
+			"TypeDefinition": "Mail.dat.IMpu, Mail.dat.Models"
+		},
+		{
+			"Key": "Mpu",
+			"TypeDefinition": "Mail.dat.Mpu, Mail.dat.Models"
+		},
+		{
+			"Key": "IMcr",
+			"TypeDefinition": "Mail.dat.IMcr, Mail.dat.Models"
+		},
+		{
+			"Key": "Mcr",
+			"TypeDefinition": "Mail.dat.Mcr, Mail.dat.Models"
+		},
+		{
+			"Key": "IMpa",
+			"TypeDefinition": "Mail.dat.IMpa, Mail.dat.Models"
+		},
+		{
+			"Key": "Mpa",
+			"TypeDefinition": "Mail.dat.Mpa, Mail.dat.Models"
+		},
+		{
+			"Key": "ICpt",
+			"TypeDefinition": "Mail.dat.ICpt, Mail.dat.Models"
+		},
+		{
+			"Key": "Cpt",
+			"TypeDefinition": "Mail.dat.Cpt, Mail.dat.Models"
+		},
+		{
+			"Key": "ICcr",
+			"TypeDefinition": "Mail.dat.ICcr, Mail.dat.Models"
+		},
+		{
+			"Key": "Ccr",
+			"TypeDefinition": "Mail.dat.Ccr, Mail.dat.Models"
+		},
+		{
+			"Key": "ICsm",
+			"TypeDefinition": "Mail.dat.ICsm, Mail.dat.Models"
+		},
+		{
+			"Key": "Csm",
+			"TypeDefinition": "Mail.dat.Csm, Mail.dat.Models"
+		},
+		{
+			"Key": "ICqt",
+			"TypeDefinition": "Mail.dat.ICqt, Mail.dat.Models"
+		},
+		{
+			"Key": "Cqt",
+			"TypeDefinition": "Mail.dat.Cqt, Mail.dat.Models"
+		},
+		{
+			"Key": "IPqt",
+			"TypeDefinition": "Mail.dat.IPqt, Mail.dat.Models"
+		},
+		{
+			"Key": "Pqt",
+			"TypeDefinition": "Mail.dat.Pqt, Mail.dat.Models"
+		},
+		{
+			"Key": "IWsr",
+			"TypeDefinition": "Mail.dat.IWsr, Mail.dat.Models"
+		},
+		{
+			"Key": "Wsr",
+			"TypeDefinition": "Mail.dat.Wsr, Mail.dat.Models"
+		},
+		{
+			"Key": "ISnr",
+			"TypeDefinition": "Mail.dat.ISnr, Mail.dat.Models"
+		},
+		{
+			"Key": "Snr",
+			"TypeDefinition": "Mail.dat.Snr, Mail.dat.Models"
+		},
+		{
+			"Key": "IIcr",
+			"TypeDefinition": "Mail.dat.IIcr, Mail.dat.Models"
+		},
+		{
+			"Key": "Icr",
+			"TypeDefinition": "Mail.dat.Icr, Mail.dat.Models"
+		},
+		{
+			"Key": "IPdr",
+			"TypeDefinition": "Mail.dat.IPdr, Mail.dat.Models"
+		},
+		{
+			"Key": "Pdr",
+			"TypeDefinition": "Mail.dat.Pdr, Mail.dat.Models"
+		},
+		{
+			"Key": "IPbc",
+			"TypeDefinition": "Mail.dat.IPbc, Mail.dat.Models"
+		},
+		{
+			"Key": "Pbc",
+			"TypeDefinition": "Mail.dat.Pbc, Mail.dat.Models"
+		},
+		{
+			"Key": "ISfr",
+			"TypeDefinition": "Mail.dat.ISfr, Mail.dat.Models"
+		},
+		{
+			"Key": "Sfr",
+			"TypeDefinition": "Mail.dat.Sfr, Mail.dat.Models"
+		},
+		{
+			"Key": "ISfb",
+			"TypeDefinition": "Mail.dat.ISfb, Mail.dat.Models"
+		},
+		{
+			"Key": "Sfb",
+			"TypeDefinition": "Mail.dat.Sfb, Mail.dat.Models"
+		},
+		{
+			"Key": "IPar",
+			"TypeDefinition": "Mail.dat.IPar, Mail.dat.Models"
+		},
+		{
+			"Key": "Par",
+			"TypeDefinition": "Mail.dat.Par, Mail.dat.Models"
+		},
+		{
+			"Key": "IOci",
+			"TypeDefinition": "Mail.dat.IOci, Mail.dat.Models"
+		},
+		{
+			"Key": "Oci",
+			"TypeDefinition": "Mail.dat.Oci, Mail.dat.Models"
+		},
+		{
+			"Key": "IUpa",
+			"TypeDefinition": "Mail.dat.IUpa, Mail.dat.Models"
+		},
+		{
+			"Key": "Upa",
+			"TypeDefinition": "Mail.dat.Upa, Mail.dat.Models"
+		},
+		{
+			"Key": "IEpd",
+			"TypeDefinition": "Mail.dat.IEpd, Mail.dat.Models"
+		},
+		{
+			"Key": "Epd",
+			"TypeDefinition": "Mail.dat.Epd, Mail.dat.Models"
+		},
+		{
+			"Key": "IRmr",
+			"TypeDefinition": "Mail.dat.IRmr, Mail.dat.Models"
+		},
+		{
+			"Key": "Rmr",
+			"TypeDefinition": "Mail.dat.Rmr, Mail.dat.Models"
+		},
+		{
+			"Key": "IRmb",
+			"TypeDefinition": "Mail.dat.IRmb, Mail.dat.Models"
+		},
+		{
+			"Key": "Rmb",
+			"TypeDefinition": "Mail.dat.Rmb, Mail.dat.Models"
+		},
+		{
+			"Key": "IRms",
+			"TypeDefinition": "Mail.dat.IRms, Mail.dat.Models"
+		},
+		{
+			"Key": "Rms",
+			"TypeDefinition": "Mail.dat.Rms, Mail.dat.Models"
+		},
+		{
+			"Key": "IChr",
+			"TypeDefinition": "Mail.dat.IChr, Mail.dat.Models"
+		},
+		{
+			"Key": "Chr",
+			"TypeDefinition": "Mail.dat.Chr, Mail.dat.Models"
+		},
+		{
+			"Key": "ICbr",
+			"TypeDefinition": "Mail.dat.ICbr, Mail.dat.Models"
+		},
+		{
+			"Key": "Cbr",
+			"TypeDefinition": "Mail.dat.Cbr, Mail.dat.Models"
+		},
+		{
+			"Key": "ICdr",
+			"TypeDefinition": "Mail.dat.ICdr, Mail.dat.Models"
+		},
+		{
+			"Key": "Cdr",
+			"TypeDefinition": "Mail.dat.Cdr, Mail.dat.Models"
+		},
+		{
+			"Key": "ICfr",
+			"TypeDefinition": "Mail.dat.ICfr, Mail.dat.Models"
+		},
+		{
+			"Key": "Cfr",
+			"TypeDefinition": "Mail.dat.Cfr, Mail.dat.Models"
+		},
+		{
+			"Key": "ITsr",
+			"TypeDefinition": "Mail.dat.ITsr, Mail.dat.Models"
+		},
+		{
+			"Key": "Tsr",
+			"TypeDefinition": "Mail.dat.Tsr, Mail.dat.Models"
+		}
+	],
+	"services": [
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<IHdr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<IHdr>], [<Hdr>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<IHdr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.HdrRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<ISeg>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<ISeg>], [<Seg>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<ISeg>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.SegRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<IMpu>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<IMpu>], [<Mpu>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<IMpu>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.MpuRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<IMcr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<IMcr>], [<Mcr>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<IMcr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.McrRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<IMpa>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<IMpa>], [<Mpa>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<IMpa>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.MpaRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<ICpt>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<ICpt>], [<Cpt>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<ICpt>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.CptRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<ICcr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<ICcr>], [<Ccr>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<ICcr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.CcrRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<ICsm>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<ICsm>], [<Csm>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<ICsm>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.CsmRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<ICqt>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<ICqt>], [<Cqt>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<ICqt>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.CqtRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<IPqt>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<IPqt>], [<Pqt>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<IPqt>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.PqtRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<IWsr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<IWsr>], [<Wsr>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<IWsr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.WsrRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<ISnr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<ISnr>], [<Snr>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<ISnr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.SnrRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<IIcr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<IIcr>], [<Icr>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<IIcr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.IcrRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<IPdr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<IPdr>], [<Pdr>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<IPdr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.PdrRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<IPbc>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<IPbc>], [<Pbc>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<IPbc>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.PbcRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<ISfr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<ISfr>], [<Sfr>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<ISfr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.SfrRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<ISfb>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<ISfb>], [<Sfb>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<ISfb>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.SfbRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<IPar>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<IPar>], [<Par>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<IPar>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.ParRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<IOci>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<IOci>], [<Oci>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<IOci>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.OciRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<IUpa>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<IUpa>], [<Upa>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<IUpa>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.UpaRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<IEpd>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<IEpd>], [<Epd>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<IEpd>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.EpdRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<IRmr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<IRmr>], [<Rmr>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<IRmr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.RmrRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<IRmb>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<IRmb>], [<Rmb>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<IRmb>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.RmbRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<IRms>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<IRms>], [<Rms>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<IRms>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.RmsRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<IChr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<IChr>], [<Chr>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<IChr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.ChrRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<ICbr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<ICbr>], [<Cbr>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<ICbr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.CbrRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<ICdr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<ICdr>], [<Cdr>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<ICdr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.CdrRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<ICfr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<ICfr>], [<Cfr>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<ICfr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.CfrRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IEntityFactory`1[[<ITsr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Diamond.Core.Repository.EntityFactory`2[[<ITsr>], [<Tsr>]], Diamond.Core.Repository",
+			"Lifetime": "Transient"
+		},
+		{
+			"ServiceType": "Diamond.Core.Repository.IRepository`1[[<ITsr>]], Diamond.Core.Repository.Abstractions",
+			"ImplementationType": "Mail.dat.TsrRepository, Mail.dat.Models",
+			"Lifetime": "Transient"
+		}
+	]
+}

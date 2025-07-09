@@ -20,7 +20,7 @@
 // If not, see <https://www.gnu.org/licenses/>.
 // ************************************************************************************************************************
 //
-// This code was auto-generated on July 8th, 2025 by the Open Mail.dat Code Generator.
+// This code was auto-generated on July 9th, 2025 by the Open Mail.dat Code Generator.
 // Code Generator Author: Daniel M porrey
 //
 using Diamond.Core.Repository;
@@ -35,6 +35,15 @@ namespace Mail.dat
 	[MaildatVersions("24-1", "25-1")]
 	public partial class CdrRepository : EntityFrameworkRepository<ICdr, Cdr, MaildatContext> 
 	{
+		/// <summary>
+		/// Creates and instance of the <see cref="CdrRepository"/> class with the specified context and entity
+		/// factory.
+		/// </summary>
+		public CdrRepository(IEntityFactory<ICdr> entityFactory)
+			 : base(entityFactory)
+		{
+		}
+
 		/// <summary>
 		/// Creates and instance of the <see cref="CdrRepository"/> class with the specified context and entity
 		/// factory.
