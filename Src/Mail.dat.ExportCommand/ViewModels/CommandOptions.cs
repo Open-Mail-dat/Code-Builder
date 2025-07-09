@@ -22,6 +22,8 @@
 //
 // Author: Daniel M porrey
 //
+using System.ComponentModel.DataAnnotations;
+
 namespace Mail.dat.ExportCommand
 {
 	/// <summary>

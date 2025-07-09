@@ -20,7 +20,7 @@
 // If not, see <https://www.gnu.org/licenses/>.
 // ************************************************************************************************************************
 //
-// This code was auto-generated on June 28th, 2025 by the Open Mail.dat Code Generator.
+// This code was auto-generated on July 8th, 2025 by the Open Mail.dat Code Generator.
 // Code Generator Author: Daniel M porrey
 //
 using Diamond.Core.Repository.EntityFrameworkCore;
@@ -34,12 +34,12 @@ namespace Mail.dat
 	/// </summary>
 	public partial class MaildatContext : RepositoryContext<MaildatContext> 
 	{
-		public  MaildatContext()
+		public MaildatContext()
 			 : base()
 		{
 		}
 
-		public  MaildatContext(ILogger<MaildatContext> logger, DbContextOptions<MaildatContext> options)
+		public MaildatContext(ILogger<MaildatContext> logger, DbContextOptions<MaildatContext> options)
 			 : base(logger, options)
 		{
 			logger.LogDebug("Created {context}.", nameof(MaildatContext));

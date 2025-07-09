@@ -10,6 +10,30 @@
 		<FileVersion>0.0.1</FileVersion>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>Open Mail.dat IO</Title>
+		<Description>Import an export support for Mail.dats in the Open mail.dat library.</Description>
+		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<IncludeSymbols>True</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageProjectUrl>https://github.com/Open-Mail-dat/</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/Open-Mail-dat/Code-Builder</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<NeutralLanguage>en</NeutralLanguage>
+		<PackageTags>efcore,mail.dat</PackageTags>
+		<Copyright>Copyright (c) 2025 Open Mail.dat. All rights reserved.</Copyright>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+	
 	<ItemGroup>
 		<None Include="Implementations\MaildatIExport.cs" />
 	</ItemGroup>

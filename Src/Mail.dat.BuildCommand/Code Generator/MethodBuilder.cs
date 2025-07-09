@@ -41,6 +41,8 @@ namespace Mail.dat.BuildCommand
 		public SummaryBuilder Summary { get; internal set; }
 		public List<AttributeBuilder> Attributes { get; } = [];
 		public string BaseType { get; internal set; }
+		public string ExpressionValue { get; internal set; }
+		public bool IsExpression { get; set; }
 
 		public static MethodBuilder Create(string name)
 		{
@@ -101,6 +103,13 @@ namespace Mail.dat.BuildCommand
 			return this;
 		}
 
+		public MethodBuilder SetExpression(string expressionValue)
+		{
+			this.IsExpression = true;
+			this.ExpressionValue = expressionValue;
+			return this;
+		}
+
 		public MethodBuilder Build(string filePath, int indentLevel = 0)
 		{
 			//
@@ -119,7 +128,10 @@ namespace Mail.dat.BuildCommand
 			//
 			// Write the method name
 			//
-			File.AppendAllText(filePath, $"{Tabs.Create(indentLevel)}{(this.Scope ?? "")} {(this.ReturnType ?? "")} {this.Name}(");
+			string[] items = [this.Scope, this.ReturnType, this.Name];
+			string methodLine = string.Join(" ", items.Where(t => !string.IsNullOrEmpty(t)));
+
+			File.AppendAllText(filePath, $"{Tabs.Create(indentLevel)}{methodLine}(");
 
 			if (this.Parameters != null)
 			{
@@ -134,24 +146,36 @@ namespace Mail.dat.BuildCommand
 				}
 			}
 
-			File.AppendAllLines(filePath, [")"]);
+			File.AppendAllText(filePath, ")");
 
-			if (this.BaseType != null)
+			if (!this.IsExpression && this.BaseType != null)
 			{
-				File.AppendAllLines(filePath, [$"{Tabs.Create(indentLevel + 1)} : {this.BaseType}"]);
+				File.AppendAllLines(filePath, [$"\r\n{Tabs.Create(indentLevel + 1)} : {this.BaseType}"]);
 			}
 
 			//
 			// Write the method body.
 			//
-			File.AppendAllLines(filePath, [$"{Tabs.Create(indentLevel)}{{"]);
-
-			foreach (string line in this.Code)
+			if (this.IsExpression)
 			{
-				File.AppendAllLines(filePath, [$"{Tabs.Create(indentLevel + 1)}{line}"]);
+				File.AppendAllLines(filePath, [$" => {this.ExpressionValue};"]);
 			}
+			else
+			{
+				if (this.BaseType == null)
+				{
+					File.AppendAllText(filePath, "\r\n");
+				}
 
-			File.AppendAllLines(filePath, [$"{Tabs.Create(indentLevel)}}}"]);
+				File.AppendAllLines(filePath, [$"{Tabs.Create(indentLevel)}{{"]);
+
+				foreach (string line in this.Code)
+				{
+					File.AppendAllLines(filePath, [$"{Tabs.Create(indentLevel + 1)}{line}"]);
+				}
+
+				File.AppendAllLines(filePath, [$"{Tabs.Create(indentLevel)}}}"]);
+			}
 
 			return this;
 		}

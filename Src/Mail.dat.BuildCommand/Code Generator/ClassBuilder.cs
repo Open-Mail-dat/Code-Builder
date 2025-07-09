@@ -169,7 +169,10 @@ namespace Mail.dat.BuildCommand
 			//
 			// Write the summary.
 			//
-			this.Summary.Build(filePath, indentLevel);
+			if (this.Summary != null)
+			{
+				this.Summary.Build(filePath, indentLevel);
+			}
 
 			//
 			// Write the attributes.
@@ -230,7 +233,10 @@ namespace Mail.dat.BuildCommand
 			//
 			if (this.Methods.Count != 0)
 			{
-				File.AppendAllLines(filePath, [""]);
+				if (this.Constructors.Count != 0 || this.Properties.Count != 0)
+				{
+					File.AppendAllLines(filePath, [""]);
+				}
 
 				foreach (MethodBuilder method in this.Methods)
 				{

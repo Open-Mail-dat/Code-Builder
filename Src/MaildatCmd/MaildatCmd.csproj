@@ -27,15 +27,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Diamond.Core.CommandLine" Version="9.0.1" />
-		<PackageReference Include="Diamond.Core.CommandLine.Abstractions" Version="9.0.1" />
-		<PackageReference Include="Diamond.Core.CommandLine.Model" Version="9.0.1" />
-		<PackageReference Include="Diamond.Core.Extensions.DependencyInjection" Version="9.0.1" />
-		<PackageReference Include="Diamond.Core.Extensions.DependencyInjection.Abstractions" Version="9.0.1" />
-		<PackageReference Include="Diamond.Core.Extensions.Hosting" Version="9.0.1" />
-		<PackageReference Include="Diamond.Core.Extensions.Hosting.Abstractions" Version="9.0.1" />
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.6" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.6" />
+		<PackageReference Include="Diamond.Core.CommandLine" Version="9.0.2" />
+		<PackageReference Include="Diamond.Core.CommandLine.Abstractions" Version="9.0.2" />
+		<PackageReference Include="Diamond.Core.CommandLine.Model" Version="9.0.2" />
+		<PackageReference Include="Diamond.Core.Extensions.DependencyInjection" Version="9.0.2" />
+		<PackageReference Include="Diamond.Core.Extensions.DependencyInjection.Abstractions" Version="9.0.2" />
+		<PackageReference Include="Diamond.Core.Extensions.Hosting" Version="9.0.2" />
+		<PackageReference Include="Diamond.Core.Extensions.Hosting.Abstractions" Version="9.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.7" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.7" />
 		<PackageReference Include="Serilog.Extensions.Hosting" Version="9.0.0" />
 		<PackageReference Include="Serilog.Settings.Configuration" Version="9.0.0" />
 		<PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
@@ -49,7 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Update="$(UserProfile)\.nuget\packages\diamond.core.commandline.abstractions\9.0.1\contentFiles\any\net9.0\Services\Diamond.Core.CommandLine.Abstractions.json">
+		<Content Update="$(UserProfile)\.nuget\packages\diamond.core.commandline.abstractions\9.0.2\contentFiles\any\net9.0\Services\Diamond.Core.CommandLine.Abstractions.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>

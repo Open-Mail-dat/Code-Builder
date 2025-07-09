@@ -34,9 +34,9 @@ namespace Mail.dat.BuildCommand
 		public string ReturnType { get; internal set; }
 		public string Scope { get; internal set; }
 		public SummaryBuilder Summary { get; internal set; }
-		public string DefaultValue { get; internal set; }
+		public string DefaultOrExpressionValue { get; internal set; }
 		public bool ReadOnly { get; internal set; } = false;
-		public int? Precision { get; internal set; } = null;
+		public bool IsExpression { get; set; }
 
 		public static PropertyBuilder Create(string name)
 		{
@@ -57,7 +57,14 @@ namespace Mail.dat.BuildCommand
 
 		public PropertyBuilder SetDefaultValue(string defaultValue)
 		{
-			this.DefaultValue = defaultValue;
+			this.DefaultOrExpressionValue = defaultValue;
+			return this;
+		}
+
+		public PropertyBuilder SetExpression(string expressionValue)
+		{
+			this.IsExpression = true;
+			this.DefaultOrExpressionValue = expressionValue;
 			return this;
 		}
 
@@ -85,12 +92,6 @@ namespace Mail.dat.BuildCommand
 			return this;
 		}
 
-		public PropertyBuilder SetPrecision(int? precision)
-		{
-			this.Precision = precision;
-			return this;
-		}
-
 		public PropertyBuilder Build(string filePath, int indentLevel = 0)
 		{
 			//
@@ -111,59 +112,20 @@ namespace Mail.dat.BuildCommand
 			//
 			File.AppendAllText(filePath, $"{Tabs.Create(indentLevel)}{(this.Scope != null ? $"{this.Scope} " : "")}{this.ReturnType} {this.Name}");
 
-			if (!string.IsNullOrWhiteSpace(this.DefaultValue))
+			if (this.IsExpression)
 			{
-				File.AppendAllText(filePath, $" {{ get;{(!this.ReadOnly ? " set;" : null)} }} = {this.DefaultValue};");
+				File.AppendAllText(filePath, $" => {this.DefaultOrExpressionValue};");
 			}
 			else
 			{
-				File.AppendAllText(filePath, $" {{ get;{(!this.ReadOnly ? " set;" : null)} }}");
-			}
-
-			return this;
-		}
-
-		public PropertyBuilder CreateValuesClass(string filePath, string propertyName, string nameSpace, FileGroup fileGroup, RecordDefinition recordDefinition)
-		{
-			IEnumerable<AllowedValue> values = fileGroup.AllowedValues(recordDefinition);
-
-			if (values.Count() > 0)
-			{
-				DirectoryInfo dir = new(Path.GetDirectoryName(filePath));
-				dir.Create();
-
-				ClassBuilder.Create(propertyName.Pluralize())
-						.SetFileHeaderComments()
-						.SetNameSpace(nameSpace)
-						.AddUsing("Mail.dat.Abstractions")
-						.SetSummary($"These are the allowed values for the property {propertyName} ({recordDefinition.FieldCode}).")
-						.SetObjectType("class")
-						.SetScope("public")
-						.SetPartial(false)
-						.AddImplements("MaildatValues")
-						.AddAttributes(
-							fileGroup.MaildatVersionsAttribute(),
-							AttributeBuilder.Create("MaildatFieldLink")
-								.AddParameter("File", fileGroup.FileExtension)
-								.AddParameter("FieldCode", recordDefinition.FieldCode)
-						)
-						.AddMethod(MethodBuilder.Create("OnGetFieldCode")
-							.SetScope("protected override")
-							.SetReturnType("string")
-							.SetSummary("Returns the Mail.dat file this set of values is lined to.")
-							.AddCode($"return \"{fileGroup.FileExtension}\";"))
-						.AddMethod(MethodBuilder.Create("OnGetFile")
-							.SetScope("protected override")
-							.SetReturnType("string")
-							.SetSummary("Returns the field code that this set of values is linked to.")
-							.AddCode($"return \"{recordDefinition.FieldCode}\";"))
-						.AddMethod(MethodBuilder.Create("OnInitializeValues")
-							.SetScope("protected override")
-							.SetReturnType("void")
-							.SetSummary("Initializes the values.")
-							.AddCode([.. (from tbl in values
-								select $"this.Add(new MaildatValue() {{ Version = \"{tbl.Version.Major}\", Key = \"{tbl.Key}\", FileExtension = \"{fileGroup.FileExtension}\", Description = \"{tbl.Value.Sanitize()}\", FieldCode = \"{recordDefinition.FieldCode}\", FieldName = \"{propertyName}\" }});")]))
-						.Build(filePath, 1);
+				if (!string.IsNullOrWhiteSpace(this.DefaultOrExpressionValue))
+				{
+					File.AppendAllText(filePath, $" {{ get;{(!this.ReadOnly ? " set;" : null)} }} = {this.DefaultOrExpressionValue};");
+				}
+				else
+				{
+					File.AppendAllText(filePath, $" {{ get;{(!this.ReadOnly ? " set;" : null)} }}");
+				}
 			}
 
 			return this;

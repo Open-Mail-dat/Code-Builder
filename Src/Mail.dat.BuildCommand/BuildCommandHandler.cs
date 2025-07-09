@@ -1,9 +1,7 @@
 ﻿using Diamond.Core.CommandLine.Model;
 using Humanizer;
 using Mail.dat.Json.Specification;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using Spectre.Console;
 
 namespace Mail.dat.BuildCommand
@@ -68,10 +66,12 @@ namespace Mail.dat.BuildCommand
 			//
 			// Build the output directories.
 			//
-			DirectoryInfo modelDirectory = new($"{options.OutputDirectory}/Models");
-			DirectoryInfo interfaceDirectory = new($"{options.OutputDirectory}/Interfaces");
-			DirectoryInfo contextDirectory = new($"{options.OutputDirectory}/Context");
-			DirectoryInfo valuesDirectory = new($"{options.OutputDirectory}/Values");
+			DirectoryInfo modelDirectory = new($"{options.ModelsDirectory}/Models");
+			DirectoryInfo interfaceDirectory = new($"{options.ModelsDirectory}/Interfaces");
+			DirectoryInfo contextDirectory = new($"{options.ModelsDirectory}/Context");
+			DirectoryInfo valuesDirectory = new($"{options.ModelsDirectory}/Values");
+			DirectoryInfo repositoriesDirectory = new($"{options.ModelsDirectory}/Repositories");
+			DirectoryInfo hostingDirectory = new($"{options.HostingDirectory}/Hosting");
 
 			//
 			// Remove all targets files now so that we do not get an error mid-way through the process.
@@ -80,6 +80,7 @@ namespace Mail.dat.BuildCommand
 			interfaceDirectory.DeleteAllFiles("*.cs");
 			contextDirectory.DeleteAllFiles("*.cs");
 			valuesDirectory.DeleteAllFiles("*.cs");
+			repositoriesDirectory.DeleteAllFiles("*.cs");
 
 			//
 			// Iterate through each file and build the classes.
@@ -89,25 +90,25 @@ namespace Mail.dat.BuildCommand
 			{
 				index++;
 
-				//
-				// Get the newest version.
-				//
+				//	//
+				//	// Get the newest version.
+				//	//
 				string maxVersion = fileGroup.Items.Max(t => t.Version.Major);
 
-				//
-				// Display the extension and and name to show progress.
-				//
+				//	//
+				//	// Display the extension and and name to show progress.
+				//	//
 				Panel panel = new Panel($"[white]{fileGroup.FileExtension}[/] - [yellow]{fileGroup.Name(maxVersion)}[/] ({index} of {merged.Count()})").RoundedBorder().Expand();
 				AnsiConsole.Write(panel);
 
-				//
-				// Mark the starting column order for specifying the filed order in the database.
-				//
+				//	//
+				//	// Mark the starting column order for specifying the filed order in the database.
+				//	//
 				int columnOrder = 2;
 
-				//
-				// Create a class for this file.
-				//
+				//	//
+				//	// Create a class for this file.
+				//	//
 				AnsiConsole.MarkupLine("\tBuilding [yellow]class[/] file.");
 				classes.Add(ClassBuilder.Create(fileGroup.FileExtension.ToClassName())
 					.SetFileHeaderComments()
@@ -165,10 +166,6 @@ namespace Mail.dat.BuildCommand
 							// Set the default value of the clsoing character to #.
 							//
 							.SetDefaultValue(tbl.Data.Type == "closing" ? "\"#\"" : null)
-							//
-							// If decimal, set the field precision.
-							//
-							.SetPrecision(tbl.Data.Precision)
 							//
 							// Add the property attributes.
 							//
@@ -350,9 +347,9 @@ namespace Mail.dat.BuildCommand
 					)
 					.Build($"{modelDirectory.FullName}/{fileGroup.FileExtension.ToClassFileName()}", 1));
 
-				//
-				// Create an interface for this file.
-				//
+				//	//
+				//	// Create an interface for this file.
+				//	//
 				AnsiConsole.MarkupLine("\tBuilding [yellow]interface[/] file.");
 				interfaces.Add(ClassBuilder.Create($"{fileGroup.FileExtension.ToInterfaceName()}")
 					.SetFileHeaderComments()
@@ -463,6 +460,74 @@ namespace Mail.dat.BuildCommand
 					.AddCode()
 				)
 				.Build($"{contextDirectory.FullName}/{ContextName}.cs", 1);
+
+			//
+			// Build the repository files.
+			//
+			AnsiConsole.MarkupLine("\r\nBuilding [yellow]repository[/] files.");
+			foreach (FileGroup fileGroup in merged)
+			{
+				string objectName = fileGroup.FileExtension.ToClassName();
+
+				ClassBuilder.Create($"{objectName}Repository")
+					.SetFileHeaderComments()
+					.SetNameSpace(NameSpace)
+					.AddUsing("Diamond.Core.Repository")
+					.AddUsing("Diamond.Core.Repository.EntityFrameworkCore")
+					.AddUsing("Microsoft.EntityFrameworkCore")
+					.AddAttributes(fileGroup.MaildatVersionsAttribute())
+					.SetObjectType("class")
+					.SetScope("public")
+					.SetPartial(true)
+					.SetSummary($"Repository for the <see cref=\"{objectName}\"/> entity.")
+					.AddImplements($"EntityFrameworkRepository<I{objectName}, {objectName}, {ContextName}>")
+					.AddConstructor(MethodBuilder.Create($"{objectName}Repository")
+						.SetScope("public")
+						.SetSummary($"Creates and instance of the <see cref=\"{objectName}Repository\"/> class with the specified context and entity factory.")
+						.AddParameter(ContextName, "context")
+						.AddParameter($"IEntityFactory<I{objectName}>", "entityFactory")
+						.SetBase("base(context, entityFactory)")
+					)
+					.AddMethod(MethodBuilder.Create("MyDbSet")
+						.SetScope("protected override")
+						.SetReturnType($"DbSet<{objectName}>")
+						.SetSummary($"Returns the DbSet for the <see cref=\"{objectName}\"/> entity.")
+						.AddParameter(ContextName, "context")
+						.SetExpression($"context.{objectName}")
+					)
+					.Build($"{repositoriesDirectory.FullName}/{objectName}Repository.cs", 1);
+			}
+
+			//
+			// Build the host extensions class.
+			//
+			AnsiConsole.MarkupLine("\r\nBuilding [yellow]hosting extensions[/] file.");
+			ClassBuilder.Create("ModelExtensions")
+					.SetFileHeaderComments()
+					.SetNameSpace(NameSpace)
+					.AddUsing("Diamond.Core.Repository")
+					.AddUsing("Microsoft.Extensions.DependencyInjection")
+					.SetScope("public static")
+					.SetObjectType("class")
+					.AddMethod(MethodBuilder.Create("AddOpenMaildatModels")
+						.SetScope("public static")
+						.SetReturnType("IServiceCollection")
+						.AddParameter("this IServiceCollection", "services")
+						.SetSummary("Adds the Open Mail.dat services to the specified service collection.")
+						.AddCode([.. (from tbl in merged
+								  let objectName = tbl.FileExtension.ToClassName()
+								  select new string[]
+								  {
+									"//",
+									$"// {objectName}",
+									"//",
+									$"services.AddTransient<IEntityFactory<I{objectName}>, EntityFactory<I{objectName}, {objectName}>>();",
+									$"services.AddTransient<IRepository<I{objectName}>, {objectName}Repository>();",
+									""
+								  }).SelectMany(t => t)])
+						  .AddCode("return services;")
+					)
+					.Build($"{hostingDirectory.FullName}/ModelExtensions.cs", 1);
 
 			//
 			// Display the summary.

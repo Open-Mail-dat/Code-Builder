@@ -25,7 +25,16 @@ namespace Mail.dat.BuildCommand
 		/// <remarks>The directory specified must exist and be writable. Ensure that the application has the necessary
 		/// permissions  to write to the specified directory.</remarks>
 		[Required]
-		[Display(Order = 2, Name = "output-directory", ShortName = "c", Description = "The output directory where files are written.")]
-		public DirectoryInfo OutputDirectory { get; set; }
+		[Display(Order = 2, Name = "models-directory", ShortName = "c", Description = "The full path to the Models project.")]
+		public DirectoryInfo ModelsDirectory { get; set; }
+
+		/// <summary>
+		/// Gets or sets the output directory where files are written.
+		/// </summary>
+		/// <remarks>The directory specified must exist and be writable. Ensure that the application has the necessary
+		/// permissions  to write to the specified directory.</remarks>
+		[Required]
+		[Display(Order = 2, Name = "hosting-directory", ShortName = "h", Description = "The full path to the Hosting project.")]
+		public DirectoryInfo HostingDirectory { get; set; }
 	}
 }
